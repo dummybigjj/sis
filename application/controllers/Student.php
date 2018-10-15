@@ -79,20 +79,17 @@ class Student extends CI_Controller{
      * @return render students registration form
      */
     public function student_registration(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data['header'] = array('title'=>'Register Student','icon'=>'ion-ios-personadd-outline');
+        // user credentials authentication
+        $this->crud->credibilityAuth(array('Administrator','Registrar'));        
         // Necessary page data
         // Page headers and navigation
-        $this->load->view('templates/html-comp/header');
-        $this->load->view('templates/html-comp/header-bar',$data);
-        $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        $this->load->view('templates/html-comp/sis-header');
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
-        $this->load->view('sis-users/sis-admin/register-student');
+        $this->load->view('sis-users/sis-admin/sis-registration');
         // Page modals
         // Page footer
-        $this->load->view('templates/html-comp/footer');
     }
 
     /**
