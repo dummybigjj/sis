@@ -8,6 +8,53 @@ class Student_model extends CI_Model {
 	}
 
 	/**
+	 * isStudentNumberValid function.
+	 * 
+	 * @access public
+	 * @param int $student_no
+	 * @return boolean TRUE on success.
+	 */
+	public function isStudentNumberValid($student_no){
+		$verify = $this->crud->getData('','c',array('student_no'=>$student_no),'tbl2');
+		if($verify > 0){
+			return FALSE;
+		}
+		return TRUE;
+	}
+
+	/**
+	 * isStudentEmailValid function.
+	 * 
+	 * @access public
+	 * @param mixed $email
+	 * @return boolean TRUE on success.
+	 */
+	public function isStudentEmailValid($email){
+		$verify = $this->crud->getData('','c',array('email_address'=>$email),'tbl2');
+		if($verify > 0){
+			return FALSE;
+		}
+		return TRUE;
+	}
+
+	/**
+	 * isStudentNationalIdValid function.
+	 * 
+	 * @access public
+	 * @param int $national_id
+	 * @return boolean TRUE on success.
+	 */
+	public function isStudentNationalIdValid($national_id){
+		$verify = $this->crud->getData('','c',array('national_id'=>$national_id),'tbl2');
+		if($verify > 0){
+			return FALSE;
+		}
+		return TRUE;
+	}
+
+	//------------------------------------------ Below is functions are deprecated ------------------------------------------//
+
+	/**
 	 * getStudents function.
 	 * 
 	 * @access public
@@ -128,9 +175,10 @@ class Student_model extends CI_Model {
 	}
 
 	/**
-	 * isSubjectValid function.
+	 * validateStudentsSubject function.
+	 * validate student subjects
 	 * 
-	 * @access private
+	 * @access public
 	 * @param array $students
 	 * @param associative array $subjects
 	 * @return array list of valid students.
@@ -153,6 +201,9 @@ class Student_model extends CI_Model {
 				$ctr++;
 			}
 		}
+
+
+
 		return $new_students;
 	}
 
