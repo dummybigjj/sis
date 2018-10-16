@@ -4,12 +4,20 @@
 
               <div class="col-xl-6 col-xs-12" style="margin: 0 auto">
                 <!-- START panel-->
-                <form action="<?php echo site_url('user/user_update_profile'); ?>" method="post" accept-charset="utf-8">
+                <form action="<?php echo site_url('user/user_update_profile'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                   <div class="card mb-3" id="cardDemo7">
                     <div class="card-header"><span class="nav-icon"><em class="ion-ios-person-outline icon-lg"></em></span> User Profile</div>
                     <div class="card-body">
                       <div class="form-group col-lg-12">
-                        <label class="control-label"><span class="nav-icon"><em class="ion-ios-help-outline"></em></span> Fields with (<font style="color: red">*</font>) are required.</label>
+                        <label class="control-label"><span class="nav-icon"><em class="ion-ios-help-outline icon-lg"></em></span> Fields with (<font style="color: red">*</font>) are required.</label>
+                      </div>
+                      <div class="form-group col-sm-12">
+                        <label class="control-label">Change Profile Picture</label>
+                        <input type="file" class="form-control" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
+                        <small id="help_block_file" class="form-text text-muted">
+                            image file accepts: .jpg, .jpeg, and .png<br>
+                            recommended dimensions: 400px x 400px
+                        </small>
                       </div>
                       <div class="form-group col-sm-12">
                         <label class="control-label"><font style="color: red">*</font> Fullname</label>

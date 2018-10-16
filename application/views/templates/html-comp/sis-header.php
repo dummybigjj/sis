@@ -26,7 +26,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Select2-->
-    <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/select2/dist/css/select2.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/select2/dist/css/select22.css'); ?>">
     <!-- JQUERY DATETIME PICKER -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/assets/jquery/jquery.datetimepicker.css'); ?>">
     

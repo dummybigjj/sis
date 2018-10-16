@@ -31,7 +31,7 @@
     <!-- Datepicker-->
     <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'); ?>">
     <!-- Select2-->
-    <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/select2/dist/css/select2.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/select2/dist/css/select22.css'); ?>">
     <!-- Clockpicker-->
     <link rel="stylesheet" href="<?php  echo base_url('application/assets/vendor/clockpicker/dist/bootstrap-clockpicker.css'); ?>">
     <!-- Range Slider-->

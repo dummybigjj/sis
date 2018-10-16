@@ -55,6 +55,7 @@ class User_model extends CI_Model {
 			'u_id'		 		=> $user['user_id'],
 			'u_fullname'		=> $user['u_full_name'],
 			'u_email'			=> $user['u_email_address'],
+			'profile_pic'		=> $user['profile_pic'],
 			'u_login_attempt'	=> $user['login_attempt'],
 			'pass_reset_date' 	=> $user['password_reset_date'],
 			'u_designation'		=> $user['designation'],

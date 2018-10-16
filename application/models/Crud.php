@@ -12,10 +12,11 @@ class Cruds extends CI_Model {
 			'tbl5' => 'room',
 			'tbl6' => 'vocational_program',
 			'tbl7' => 'subject',
-			'tbl8' => 'batch_year',
+			'tbl8' => 'english_proficiency',
 			'tbl9' => 'student_subject',
-			'tbl10'=> 'schedule',
+			'tbl10'=> 'craft',
 			'tbl11'=> 'diploma_course',
+			'tbl12'=> 'core',
 		);
 		$this->init_returnType = array(
 			'c' => 'count',
@@ -476,7 +477,7 @@ class Cruds extends CI_Model {
 
 	/** 
 	 * insertBatchvalidateAndRemoveDuplicateData function.
-	 * IT VALIDATE AND REMOVE DUPLICATE DATA ON EXISTING ASSOCIATIVE ARRAY AND ON EXISTING DATA FROM YOUR DB TABLE
+	 * validates and remove duplicate data on existing associative array | validates data on existing db table
 	 * 
 	 * @access public
 	 * @param associative array $data
@@ -484,7 +485,7 @@ class Cruds extends CI_Model {
 	 * @param string $key
 	 * @param array $con
 	 * @param mixed $tbl
-	 * @return associative array the updated associative array data
+	 * @return associative array updated associative array data on success.
 	 */
 	public function insertBatchvalidateAndRemoveDuplicateData($data = array(), $select, $key, $con = array(), $tbl){
 		$ctr = 0;
@@ -713,31 +714,15 @@ class Crud extends Cruds
 		$arr_data = array();
         foreach ($data as $key => $value) {
             $ctr = 0;
-            for ($i=0; $i < count($data[$key]); $i++) { 
-        		$arr_data[$ctr][$key] = trim($data[$key][$i]);
-            	$ctr++;
+            if(is_array($data[$key])){
+            	for ($i=0; $i < count($data[$key]); $i++) { 
+	        		$arr_data[$ctr][$key] = trim($data[$key][$i]);
+	            	$ctr++;
+	            }
             }
         }
-
-        // remove invalid array
-        for ($i=0; $i < count($keys); $i++) { 
-        	for ($a=0; $a < count($arr_data); $a++) { 
-        		if(empty($arr_data[$a][$keys[$i]])){
-        			$arr_data[$a] = '';
-        		}
-        	}
-        }
-
-        // create new array
-        $arr = array();
-        $ctr = 0;
-        for ($i=0; $i < count($arr_data); $i++) { 
-        	if(is_array($arr_data[$i])){
-        		$arr[$ctr] = $arr_data[$i];
-        		$ctr++;
-        	}
-        }
-
+        // remove an array from $arr_data with empty "$keys" value
+        $arr = $this->removeEmptyKeyValue($keys, $arr_data);
         // add array keys
         for ($i=0; $i < count($arr); $i++) { 
         	if(!empty($fk)){
@@ -746,14 +731,56 @@ class Crud extends Cruds
 				}
 			}
         }
+        // insert batch
+		if(!empty($arr)){
+			return $this->basicInsertBatch($arr,$tbl);
+		}
+		return FALSE;
+	}
 
-        if(!empty($arr)){
-			$insert_batch = $this->db->insert_batch($this->init_tbl[$tbl],$arr);
+	/**
+	 * removeEmptyKeyValue function.
+	 * remove an array from associative array with empty "$keys" value
+	 * 
+	 * @access public
+	 * @param associative array $array
+	 * @param associative array $arr_data
+	 * @return associative array on success.
+	 */
+	public function removeEmptyKeyValue($keys = array(),$arr_data = array()){
+		// remove invalid array
+        for ($i=0; $i < count($keys); $i++) { 
+        	for ($a=0; $a < count($arr_data); $a++) { 
+        		if(empty($arr_data[$a][$keys[$i]])){
+        			$arr_data[$a] = '';
+        		}
+        	}
+        }
+        // create new array
+        $arr = array();
+        for ($i=0; $i < count($arr_data); $i++) { 
+        	if(is_array($arr_data[$i])){
+        		$arr[] = $arr_data[$i];
+        	}
+        }
+        return $arr;
+	}
+
+	/**
+	 * basicInsertBatch function.
+	 * 
+	 * @access public
+	 * @param associative array $data
+	 * @param mixed $tbl
+	 * @return int insert id on success.
+	 */
+	public function basicInsertBatch($data = array(),$tbl){
+		if(!empty($data)){
+			$insert_batch = $this->db->insert_batch($this->init_tbl[$tbl],$data);
 			if($insert_batch){
 				return $this->db->insert_id();
 			}
 		}
-
 		return FALSE;
 	}
 

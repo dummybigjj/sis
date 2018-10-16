@@ -11,10 +11,10 @@ class Student extends CI_Controller{
         $this->load->model('crud');
         $this->load->model('user_model');
         $this->load->model('student_model');
-        // $this->load->model('batch_year_model');
         $this->load->model('subject_model');
         $this->load->model('room_model');
         $this->load->model('vocational_program_model');
+        $this->load->model('diploma_course_model');
     }
 
     /**
@@ -82,84 +82,22 @@ class Student extends CI_Controller{
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar'));        
         // Necessary page data
+        // diploma courses
+        $data['diploma'] = $this->diploma_course_model->getDiplomaCourses('a',array('status'=>'1'));
+        // vocational programs
+        $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
+        // subjects
+        $data['subjects'] = $this->subject_model->getSubjects('a',array('status'=>'1'));
+        // rooms
+        $data['rooms'] = $this->room_model->getRooms('a',array('status'=>'1'));
         // Page headers and navigation
         $this->load->view('templates/html-comp/sis-header');
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
-        $this->load->view('sis-users/sis-admin/sis-registration');
+        $this->load->view('sis-users/sis-admin/sis-registration',$data);
         // Page modals
         // Page footer
-    }
-
-    /**
-     * student_enrollment_registration function.
-     * 
-     * @access public
-     * @return render enrollment registration table
-     */
-    public function student_enrollment_registration(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        // Subheader bar title and icon
-        $data['subheader'] = array('title'=>'Register Student','icon'=>'fa fa-user-o');
-        // Necessary page data
-        $data['batch_year']= $this->batch_year_model->getBatchCurrentYear();
-        $data['enrolled']  = $this->student_model->getEnrolledStudent(array('`student_subject`.`batch_year`'=>$data['batch_year']['batch_year_id']),'a');
-        // Page headers
-        $this->load->view('templates/header');
-        $this->load->view('templates/header-bar');
-        $this->load->view('oam-users/oam-admin/admin-menu/menu-student');
-        $this->load->view('templates/content-inner');
-        $this->load->view('templates/subheader-bar',$data);
-        // Flash data messages
-        $this->load->view('templates/flashdata/flashdata-success');
-        $this->load->view('templates/flashdata/flashdata-warning');
-        $this->load->view('templates/flashdata/flashdata-danger');
-        // Page contents
-        $this->load->view('oam-users/oam-admin/admin-student-enrollment-registration',$data);
-        // Page modals
-        $this->load->view('oam-users/oam-admin/admin-modals/view-student-registration-modal');
-        $this->load->view('oam-users/oam-admin/admin-modals/remove-student-registration-modal');
-        // Page footer
-        $this->load->view('templates/footer');
-    }
-
-    /**
-     * register_students function.
-     * 
-     * @access public
-     * @return render student registration of subjects and schedule
-     */
-    public function register_students(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data['subheader'] = array('title'=>'Register Students','icon'=>'fa fa-user-o');
-        // Necessary page data
-        // Current Batch Year
-        $data['batch_year']  = $this->batch_year_model->getBatchCurrentYear();
-        // Options for "Student" dropdown field
-        $data['students']    = $this->student_model->getStudents('a',array('status'=>'1'));
-        // Options for "Subject" dropdown field
-        $data['subjects']    = $this->subject_model->getSubjects('a',array('status'=>'1'));
-        // Option for "Room" dropdown field
-        $data['rooms']       = $this->room_model->getRooms('a',array('status'=>'1'));
-        // Option for "Vocational Program" dropdown field
-        $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
-        // Page headers
-        $this->load->view('templates/header');
-        $this->load->view('templates/header-bar');
-        $this->load->view('oam-users/oam-admin/admin-menu/menu-student');
-        $this->load->view('templates/content-inner');
-        $this->load->view('templates/subheader-bar',$data);
-        // Flash data messages
-        $this->load->view('templates/flashdata/flashdata-success');
-        $this->load->view('templates/flashdata/flashdata-warning');
-        $this->load->view('templates/flashdata/flashdata-danger');
-        // Page contents
-        $this->load->view('oam-users/oam-admin/students-registration');
-        // Page modals
-        // your modal view here
-        // Page footer
-        $this->load->view('templates/footer');
     }
 
     /**
@@ -168,26 +106,120 @@ class Student extends CI_Controller{
      * @access public
      * @return set new students
      */
-    public function set_students(){
+    public function create_student(){
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data = array(
-            'student_no'    => $this->input->post('student_no'),
-            'national_id'   => $this->input->post('national_id'),
-            'email_address' => $this->input->post('email_address'),
-            'mobile_no'     => $this->input->post('mobile_no'),
-            'english_name'  => $this->input->post('english_name'),
-            'arabic_name'   => $this->input->post('arabic_name'),
-            'nationality'   => $this->input->post('nationality')
+        // set flash data message
+        $msg_type= 'success';
+        $message = 'Success! Student has been registered!.';
+        // student data
+        $student = array(
+            'student_no'        => trim($this->input->post('student_no')),
+            'national_id'       => trim($this->input->post('national_id')),
+            'email_address'     => trim($this->input->post('email_address')),
+            'mobile_no'         => trim($this->input->post('mobile_no')),
+            'english_name'      => trim($this->input->post('english_name')),
+            'arabic_name'       => trim($this->input->post('arabic_name')),
+            'nationality'       => trim($this->input->post('nationality')),
+            'company'           => trim($this->input->post('company')),
+            'type_of_course'    => trim($this->input->post('type_of_course')),
+            'training_start'    => trim($this->input->post('training_start')),
+            'training_end'      => trim($this->input->post('training_end')),
+            'address'           => trim($this->input->post('address')),
+            'date_of_birth'     => $this->input->post('dob'),
+            'guardian_name'     => trim($this->input->post('guardian_name')),
+            'guardian_contact'  => trim($this->input->post('guardian_contact')),
+            'created_by'        => $this->session->userdata('u_fullname')
         );
-        $n_data = $this->crud->insertBatchvalidateAndRemoveDuplicateData($data,'','student_no','','tbl2');
-        $insert = $this->crud->insertBatch($n_data,array('student_no'),array('created_by'=>$this->session->userdata('u_id')),'tbl2');
-        if($insert){
-            $this->user_model->recordLogs('Register students',$this->session->userdata('u_id'));
-            $this->session->set_flashdata('success', 'Students has been registered!.');
-            echo "SUCCESS!";
-        }else{
-            $this->session->set_flashdata('danger', 'Error occured!.');
+        // check type of course and set vocational or diploma course
+        if($student['type_of_course']=='Vocational'){
+            $student['vocational_course'] = $this->input->post('vocational_course');
         }
+        if($student['type_of_course']=='Diploma'){
+            $student['diploma_course'] = $this->input->post('diploma_course');
+        }
+        $verify_student_no  = $this->student_model->isStudentNumberValid($student['student_no']);
+        $verify_national_id = $this->student_model->isStudentNationalIdValid($student['national_id']);
+        $verify_email       = $this->student_model->isStudentEmailValid($student['email_address']);
+        if($verify_student_no===TRUE && $verify_national_id===TRUE && $verify_email===TRUE){
+
+            // upload student image
+            // Check whether user upload picture
+            if(!empty($_FILES['picture']['name'])){
+                $config['upload_path']   = 'uploads/students_images/';
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['file_name']     = $student['student_no'];
+                $config['max_width']     = 0;
+                $config['max_height']    = 0;
+                
+                //Load upload library and initialize configuration
+                $this->upload->initialize($config);
+                
+                if($this->upload->do_upload('picture')){
+                    $upload_data = $this->upload->data();
+                    $student['id_picture'] = $upload_data['file_name'];
+                }else{
+                    $student['id_picture'] = '';
+                    $this->session->set_flashdata('warning','Image upload failed!.');
+                }
+            }
+
+            // insert student data
+            $insert = $this->crud->setData($student,'','tbl2');
+            if($insert){
+                // record student registration in history logs
+                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Register student',$this->session->userdata('u_id'));
+                // student subjects and schedule data
+                $subjects = array(
+                    'subject'    => $this->input->post('subject'),
+                    'day'        => $this->input->post('day'),
+                    'time'       => $this->input->post('time'),
+                    'room'       => $this->input->post('room')
+                );
+                // validate duplicate and remove duplicate subjects
+                $subjects = $this->crud->insertBatchvalidateAndRemoveDuplicateData($subjects,'','subject',array('student_id'=>$insert),'tbl9');
+                $fk = array('student_id'=>$insert,'created_by'=>$this->session->userdata('u_fullname'));
+                // set student subjects
+                $insert_subjects = $this->crud->insertBatch($subjects,array('subject'),$fk,'tbl9');
+                // record student registration in history logs
+                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created subjects for '.$student['student_no'],$this->session->userdata('u_id'));
+
+                // set english proficiency rating
+                $eng_pro = array(
+                    'student_id' => $insert,
+                    'eng_rating' => $this->input->post('eng_rating')
+                );
+                $this->crud->setData($eng_pro,'','tbl8');
+                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created english proficiency rating for '.$student['student_no'],$this->session->userdata('u_id'));
+
+
+                // set craft rating and skill
+                $craft = array(
+                    'student_id'    => $insert,
+                    'craft_rating'  => $this->input->post('craft_rating'),
+                    'craft_skill'   => $this->input->post('craft_skill')
+                );
+                $this->crud->setData($craft,'','tbl10');
+                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
+
+
+                // set core rating and skill
+                $core = array(
+                    'student_id'   => $insert,
+                    'core_rating'  => $this->input->post('core_rating'),
+                    'core_skill'   => $this->input->post('core_skill')
+                );
+                $this->crud->setData($core,'','tbl12');
+                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
+            }
+        }else{
+            $msg_type= 'danger';
+            $message = 'Error occured due to ';
+            ($verify_student_no===FALSE)?$message.='Invalid `Student No.` ':'';
+            ($verify_national_id===FALSE)?$message.='Invalid `National Id` ':'';
+            ($verify_email===FALSE)?$message.='Invalid `Email` ':'';
+        }
+        // set flash data message and redirect
+        $this->session->set_flashdata($msg_type,$message);
         redirect('student_registration');
     }
 

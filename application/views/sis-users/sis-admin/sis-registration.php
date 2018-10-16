@@ -96,7 +96,7 @@
                 <!-- BEGIN STEP CONTAINER -->
                 <div class="tsf-container">
                     <!-- BEGIN CONTENT-->
-                    <form class="tsf-content" action="submit.html" method="post">
+                    <form class="tsf-content" action="<?php echo site_url('student/create_student'); ?>" method="post" enctype="multipart/form-data">
                         <!-- BEGIN STEP 1-->
                         <div class="tsf-step step-1 active">
                             <fieldset>
@@ -124,18 +124,18 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="student_no"><font color="red">*</font> Student No.</label>
-                                                    <input type="text" class="form-control required" id="student_no" name="student_no" maxlength="100" data-mask="99999">
+                                                    <input type="text" class="form-control required" id="student_no" name="student_no" data-mask="99999" placeholder="99999">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="national_id">National ID</label>
-                                                    <input type="text" class="form-control" id="national_id" name="national_id" maxlength="3">
+                                                    <input type="text" class="form-control" id="national_id" name="national_id" data-mask="9999999999" placeholder="9999999999">
                                                 </div>
                                             </div>
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="email"><font color="red">*</font> Email</label>
-                                                    <input type="email" class="form-control required" id="email" name="email" maxlength="100">
+                                                    <label for="email_address"><font color="red">*</font> Email</label>
+                                                    <input type="email" class="form-control required" id="email_address" name="email_address" maxlength="100">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="mobile_no">Mobile No.</label>
@@ -144,6 +144,14 @@
                                             </div>
 
                                             <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
+                                                    <label for="picture"><font color="red">*</font> Student Picture</label>
+                                                    <input type="file" class="form-control required" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
+                                                    <small id="help_block_file" class="form-text text-muted">
+                                                        image file accepts: .jpg, .jpeg, and .png<br>
+                                                        recommended dimensions: 400px x 400px
+                                                    </small>
+                                                </div>
                                                 <div class="col-lg-6">
                                                     <label for="nationality"> Nationality</label>
                                                     <input type="text" class="form-control" id="nationality" name="nationality" maxlength="100">
@@ -231,8 +239,11 @@
                                                     <label for="diploma_course"><font color="red">*</font> Diploma Course</label>
                                                     <select class="form-control select2-search " id="diploma_course" name="diploma_course" style="width: 100%">
                                                         <option></option>
-                                                        <option value="Diploma">Diploma</option>
-                                                        <option value="Vocational">Vocational</option>
+                                                        <?php if(!empty($diploma)): ?>
+                                                            <?php foreach ($diploma as $value): ?>
+                                                                <option value="<?php echo $value['course_id']; ?>"><?php echo $value['course_name']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </select>
                                                 </div>
 
@@ -240,8 +251,11 @@
                                                     <label for="vocational_course"><font color="red">*</font> Vocational Course</label>
                                                     <select class="form-control select2-search " id="vocational_course" name="vocational_course" style="width: 100%">
                                                         <option></option>
-                                                        <option value="Diploma">Diploma</option>
-                                                        <option value="Vocational">Vocational</option>
+                                                        <?php if(!empty($voc_program)): ?>
+                                                            <?php foreach ($voc_program as $value): ?>
+                                                                <option value="<?php echo $value['voc_program_id']; ?>"><?php echo $value['voc_program']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -283,16 +297,22 @@
                                                     <label for="subject"><font color="red">*</font> Subject</label>
                                                     <select name="subject[]" id="subject" class="form-control required select2" style="width: 100%">
                                                       <option></option>
-                                                      <option value="Subject1">Subject1</option>
-                                                      <option value="Subject2">Subject2</option>
+                                                        <?php if(!empty($subjects)): ?>
+                                                            <?php foreach ($subjects as $value): ?>
+                                                                <option value="<?php echo $value['subject_id']; ?>"><?php echo $value['subject_title']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="room"><font color="red">*</font> Room</label>
                                                     <select name="room[]" id="room" class="form-control required select2" style="width: 100%">
                                                       <option></option>
-                                                      <option value="Room1">Room1</option>
-                                                      <option value="Room1">Room2</option>
+                                                        <?php if(!empty($rooms)): ?>
+                                                            <?php foreach ($rooms as $value): ?>
+                                                                <option value="<?php echo $value['room_id']; ?>"><?php echo $value['room_name']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -360,15 +380,15 @@
                                             </div>
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="english_pro_rating"><font color="red">*</font> Rating</label>
-                                                    <select name="english_pro_rating" id="english_pro_rating" class="form-control required" style="width: 100%">
+                                                    <label for="eng_rating"><font color="red">*</font> Rating</label>
+                                                    <select name="eng_rating" id="eng_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="POOR">POOR</option>
-                                                      <option value="BELOW AVERAGE">BELOW AVERAGE</option>
-                                                      <option value="AVERAGE">AVERAGE</option>
-                                                      <option value="GOOD">GOOD</option>
-                                                      <option value="VERY GOOD">VERY GOOD</option>
-                                                      <option value="EXCELLENT">EXCELLENT</option>
+                                                      <option value="Poor">Poor</option>
+                                                      <option value="Below Average">Below Average</option>
+                                                      <option value="Average">Average</option>
+                                                      <option value="Good">Good</option>
+                                                      <option value="Very Good">Very Good</option>
+                                                      <option value="Excellent">Excellent</option>
                                                     </select>
                                                 </div>
                                             </div><br>
@@ -378,8 +398,8 @@
                                             </div>
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="craft_skills"><font color="red">*</font> Skill</label>
-                                                    <select name="craft_skills" id="craft_skills" class="form-control required" style="width: 100%">
+                                                    <label for="craft_skill"><font color="red">*</font> Skill</label>
+                                                    <select name="craft_skill" id="craft_skill" class="form-control required" style="width: 100%">
                                                       <option></option>
                                                       <option value="1">1</option>
                                                       <option value="2">2</option>
@@ -396,12 +416,12 @@
                                                     <label for="craft_rating"><font color="red">*</font> Rating</label>
                                                     <select name="craft_rating" id="craft_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="POOR">POOR</option>
-                                                      <option value="BELOW AVERAGE">BELOW AVERAGE</option>
-                                                      <option value="AVERAGE">AVERAGE</option>
-                                                      <option value="GOOD">GOOD</option>
-                                                      <option value="VERY GOOD">VERY GOOD</option>
-                                                      <option value="EXCELLENT">EXCELLENT</option>
+                                                      <option value="Poor">Poor</option>
+                                                      <option value="Below Average">Below Average</option>
+                                                      <option value="Average">Average</option>
+                                                      <option value="Good">Good</option>
+                                                      <option value="Very Good">Very Good</option>
+                                                      <option value="Excellent">Excellent</option>
                                                     </select>
                                                 </div>
                                             </div><br>
@@ -411,8 +431,8 @@
                                             </div>
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="core_skills"><font color="red">*</font> Skill</label>
-                                                    <select name="core_skills" id="core_skills" class="form-control required" style="width: 100%">
+                                                    <label for="core_skill"><font color="red">*</font> Skill</label>
+                                                    <select name="core_skill" id="core_skill" class="form-control required" style="width: 100%">
                                                       <option></option>
                                                       <option value="1">1</option>
                                                       <option value="2">2</option>
@@ -429,12 +449,12 @@
                                                     <label for="core_rating"><font color="red">*</font> Rating</label>
                                                     <select name="core_rating" id="core_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="POOR">POOR</option>
-                                                      <option value="BELOW AVERAGE">BELOW AVERAGE</option>
-                                                      <option value="AVERAGE">AVERAGE</option>
-                                                      <option value="GOOD">GOOD</option>
-                                                      <option value="VERY GOOD">VERY GOOD</option>
-                                                      <option value="EXCELLENT">EXCELLENT</option>
+                                                      <option value="Poor">Poor</option>
+                                                      <option value="Below Average">Below Average</option>
+                                                      <option value="Average">Average</option>
+                                                      <option value="Good">Good</option>
+                                                      <option value="Very Good">Very Good</option>
+                                                      <option value="Excellent">Excellent</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -475,90 +495,12 @@
         </div>
         <br /><hr><br />
         <footer>
-            <p>  2018 © Copyright THIEP</p>
+            <p>  <?php echo date('Y'); ?> © Copyright THIEP</p>
         </footer>
     </div>
 
-    <script>
-        $(function () {
-            pageLoadScript();
-        });
-
-        function pageLoadScript() {
-
-            _stepEffect = $('#stepEffect').val();
-            _style = 'style2';
-            _stepTransition = $('#stepTransition').is(':checked');
-            _showButtons = $('#showButtons').is(':checked');
-            _showStepNum = $('#showStepNum').is(':checked');
-
-          tsf1=  $('.tsf-wizard-1').tsfWizard({
-                stepEffect: 'slideRightLeft',
-                stepStyle: _style,
-                navPosition: 'top',
-                validation: true,
-                manySteps: true,
-                stepTransition: _stepTransition,
-                showButtons: _showButtons,
-                showStepNum: _showStepNum,
-                height: 'auto'
-            });         
-
-        }
-
-        function courseCheck(that) {
-          if(that.value == "Diploma") {
-            // show field
-            document.getElementById("diploma_course_field").style.display = "";
-            // set diploma_course_field to required
-            $("#diploma_course").addClass("required");
-
-            // hide field
-            document.getElementById("vocational_course_field").style.display = "none";
-            // reset vocational course field value
-            document.getElementById("vocational_course").value = "";
-            // remove required class in vocational_course_field
-            $("#vocational_course").removeClass("required");
-
-          }else if(that.value == "Vocational"){
-            // show field
-            document.getElementById("vocational_course_field").style.display = "";
-            // set diploma_course_field to required
-            $("#vocational_course").addClass("required");
-
-            // hide field
-            document.getElementById("diploma_course_field").style.display = "none";
-            // reset value
-            document.getElementById("diploma_course").value = "";
-            // remove required class in vocational_course_field
-            $("#diploma_course").removeClass("required");
-
-          }else if(that.value == ""){
-            // hide field
-            document.getElementById("vocational_course_field").style.display = "none";
-            // hide field
-            document.getElementById("diploma_course_field").style.display = "none";
-
-            // reset value
-            document.getElementById("vocational_course").value = "";
-            document.getElementById("diploma_course").value = "";
-
-            // remove required class in vocational_course_field
-            $("#vocational_course").removeClass("required");
-            // remove required class in vocational_course_field
-            $("#diploma_course").removeClass("required");
-          }
-        }
-
-        $(document).ready(function(){
-            $("#training_end").keyup(function(){
-                if($('#training_start').val() > $(this).val()){
-                    alert('Invalid input. Start date should be less than on Expected end date');
-                    $(this).val("");
-                }
-            });
-        });
-
+    <script src="<?php echo base_url('application/assets/js/custom.js'); ?>"></script>
+    <script type="text/javascript">
         $(document).ready(function(){
           var counter = 1;
           $("#addButton").click(function () {
@@ -575,17 +517,23 @@
                     '<div class="col-lg-6">'+
                         '<label for="subject'+counter+'"><font color="red">*</font> Subject</label>'+
                         '<select name="subject[]" id="subject'+counter+'" class="form-control required select2" style="width: 100%">'+
-                          '<option></option>'+
-                          '<option value="Subject1">Subject1</option>'+
-                          '<option value="Subject2">Subject2</option>'+
+                            '<option></option>'+
+                            '<?php if(!empty($subjects)): ?>'+
+                                '<?php foreach ($subjects as $value): ?>'+
+                                    '<option value="<?php echo $value["subject_id"]; ?>"><?php echo $value["subject_title"]; ?></option>'+
+                                '<?php endforeach; ?>'+
+                            '<?php endif; ?>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-lg-6">'+
                         '<label for="room'+counter+'"><font color="red">*</font> Room</label>'+
                         '<select name="room[]" id="room'+counter+'" class="form-control required select2" style="width: 100%">'+
-                          '<option></option>'+
-                          '<option value="Room1">Room1</option>'+
-                          '<option value="Room1">Room2</option>'+
+                            '<option></option>'+
+                            '<?php if(!empty($rooms)): ?>'+
+                                '<?php foreach ($rooms as $value): ?>'+
+                                    '<option value="<?php echo $value["room_id"]; ?>"><?php echo $value["room_name"]; ?></option>'+
+                                '<?php endforeach; ?>'+
+                            '<?php endif; ?>'+
                         '</select>'+
                     '</div>'+
                 '</div>'+
@@ -635,18 +583,7 @@
           });
 
         });
-
-        $(".select2").select2();
-        $('.select2-search').select2();
-        $("form").attr('autocomplete', 'off');
-        $('.dob').datetimepicker({
-            format:'Y-m-d',
-            timepicker:false,
-            step:30
-        });
-    
     </script>
-
 
 </body>
 
