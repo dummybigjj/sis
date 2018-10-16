@@ -141,6 +141,28 @@ class Student extends CI_Controller{
         $verify_national_id = $this->student_model->isStudentNationalIdValid($student['national_id']);
         $verify_email       = $this->student_model->isStudentEmailValid($student['email_address']);
         if($verify_student_no===TRUE && $verify_national_id===TRUE && $verify_email===TRUE){
+
+            // upload student image
+            // Check whether user upload picture
+            if(!empty($_FILES['picture']['name'])){
+                $config['upload_path']   = 'uploads/students_images/';
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['file_name']     = $student['student_no'];
+                $config['max_width']     = 0;
+                $config['max_height']    = 0;
+                
+                //Load upload library and initialize configuration
+                $this->upload->initialize($config);
+                
+                if($this->upload->do_upload('picture')){
+                    $upload_data = $this->upload->data();
+                    $student['id_picture'] = $upload_data['file_name'];
+                }else{
+                    $student['id_picture'] = '';
+                    $this->session->set_flashdata('warning','Image upload failed!.');
+                }
+            }
+
             // insert student data
             $insert = $this->crud->setData($student,'','tbl2');
             if($insert){
@@ -154,7 +176,7 @@ class Student extends CI_Controller{
                     'room'       => $this->input->post('room')
                 );
                 // validate duplicate and remove duplicate subjects
-                $subjects = $this->crud->insertBatchvalidateAndRemoveDuplicateData($subjects,'','subject','','tbl9');
+                $subjects = $this->crud->insertBatchvalidateAndRemoveDuplicateData($subjects,'','subject',array('student_id'=>$insert),'tbl9');
                 $fk = array('student_id'=>$insert,'created_by'=>$this->session->userdata('u_fullname'));
                 // set student subjects
                 $insert_subjects = $this->crud->insertBatch($subjects,array('subject'),$fk,'tbl9');
@@ -188,8 +210,6 @@ class Student extends CI_Controller{
                 );
                 $this->crud->setData($core,'','tbl12');
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
-
-
             }
         }else{
             $msg_type= 'danger';

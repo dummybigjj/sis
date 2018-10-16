@@ -9,7 +9,8 @@
             <div class="sidebar-toolbar-background"></div>
             <div class="sidebar-toolbar-content text-center">
               <a href="#">
-                <img class="rounded-circle thumb64" src="<?php echo base_url('application/assets/img/user/01.jpg'); ?>" alt="Profile">
+                <!-- <img class="rounded-circle thumb64" src="<?php //echo base_url('application/assets/img/user/01.jpg'); ?>" alt="Profile"> -->
+                <img class="rounded-circle thumb64" src="<?php echo base_url('uploads/users_images/'.$this->session->userdata('profile_pic')); ?>" alt="Profile">
               </a>
               <div class="mt-3">
                 <div class="lead"><?php echo !empty($this->session->userdata('u_fullname'))?$this->session->userdata('u_fullname'):''; ?></div>

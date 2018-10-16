@@ -96,7 +96,7 @@
                 <!-- BEGIN STEP CONTAINER -->
                 <div class="tsf-container">
                     <!-- BEGIN CONTENT-->
-                    <form class="tsf-content" action="<?php echo site_url('student/create_student'); ?>" method="post">
+                    <form class="tsf-content" action="<?php echo site_url('student/create_student'); ?>" method="post" enctype="multipart/form-data">
                         <!-- BEGIN STEP 1-->
                         <div class="tsf-step step-1 active">
                             <fieldset>
@@ -144,6 +144,14 @@
                                             </div>
 
                                             <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
+                                                    <label for="picture"><font color="red">*</font> Student Picture</label>
+                                                    <input type="file" class="form-control required" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
+                                                    <small id="help_block_file" class="form-text text-muted">
+                                                        image file accepts: .jpg, .jpeg, and .png<br>
+                                                        recommended dimensions: 400px x 400px
+                                                    </small>
+                                                </div>
                                                 <div class="col-lg-6">
                                                     <label for="nationality"> Nationality</label>
                                                     <input type="text" class="form-control" id="nationality" name="nationality" maxlength="100">
@@ -286,8 +294,8 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="subject">Subject</label>
-                                                    <select name="subject[]" id="subject" class="form-control select2" style="width: 100%">
+                                                    <label for="subject"><font color="red">*</font> Subject</label>
+                                                    <select name="subject[]" id="subject" class="form-control required select2" style="width: 100%">
                                                       <option></option>
                                                         <?php if(!empty($subjects)): ?>
                                                             <?php foreach ($subjects as $value): ?>
@@ -297,8 +305,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label for="room">Room</label>
-                                                    <select name="room[]" id="room" class="form-control select2" style="width: 100%">
+                                                    <label for="room"><font color="red">*</font> Room</label>
+                                                    <select name="room[]" id="room" class="form-control required select2" style="width: 100%">
                                                       <option></option>
                                                         <?php if(!empty($rooms)): ?>
                                                             <?php foreach ($rooms as $value): ?>
@@ -311,8 +319,8 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="day">Day</label>
-                                                    <select name="day[]" id="day" class="form-control ">
+                                                    <label for="day"><font color="red">*</font> Day</label>
+                                                    <select name="day[]" id="day" class="form-control required">
                                                       <option></option>
                                                         <option value="MONDAY">MONDAY</option>
                                                         <option value="TUESDAY">TUESDAY</option>
@@ -325,8 +333,8 @@
 
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label for="time">Time</label>
-                                                    <select name="time[]" id="time" class="form-control ">
+                                                    <label for="time"><font color="red">*</font> Time</label>
+                                                    <select name="time[]" id="time" class="form-control required">
                                                         <option> </option>
                                                         <option value="08:00:00"> 08:00AM - 09:30AM </option>
                                                         <option value="10:00:00"> 10:00AM - 11:30AM </option>

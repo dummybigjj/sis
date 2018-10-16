@@ -256,16 +256,46 @@ class User extends CI_Controller{
         $email    = trim($this->input->post('email'));
         $password = $this->user_model->hashPassword(trim($this->input->post('password1')));
         if(!empty($name) && !empty($email)){
+            // set user data
+            $user_data = array(
+                'u_full_name'     => $name,
+                'u_email_address' => $email,
+                'updated_by'      => $this->session->userdata('u_id')
+            );
+
+            // upload profile picture
+            // Check whether user upload picture
+            if(!empty($_FILES['picture']['name'])){
+                $config['upload_path']   = 'uploads/users_images/';
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['file_name']     = $_FILES['picture']['name'];
+                $config['max_width']     = 0;
+                $config['max_height']    = 0;
+                
+                //Load upload library and initialize configuration
+                $this->upload->initialize($config);
+                
+                if($this->upload->do_upload('picture')){
+                    $upload_data = $this->upload->data();
+                    $user_data['profile_pic'] = $upload_data['file_name'];
+                    $this->session->set_flashdata('success','Profile picture has been updated.');
+                }else{
+                    $user_data['profile_pic'] = '';
+                    $this->session->set_flashdata('warning','Image upload failed!.');
+                }
+            }
+
             if($this->user_model->isEmailValid($email,$this->session->userdata('u_id'))===TRUE && !empty(trim($this->input->post('password1')))){
-                $this->crud->updateData(array('u_full_name'=>$name,'u_email_address'=>$email,'u_password'=>$password,'updated_by'=>$this->session->userdata('u_id')),array('user_id'=>$user_id),'tbl1');
+                $user_data['u_password'] = $password;
+                $this->crud->updateData($user_data,array('user_id'=>$user_id),'tbl1');
                 $this->user_model->recordLogs('Update user profile',$this->session->userdata('u_id'));
-                $this->session->set_flashdata('success','Profile has been successfully updated!. You have to re-login to see changes made.');
+                $this->session->set_flashdata('success','Profile has been successfully updated!. You have to logout and re-login to see changes made.');
             }else if($this->user_model->isEmailValid($email,$this->session->userdata('u_id'))===FALSE){
                 $this->session->set_flashdata('warning','Profile has not been updated due to an email that is not valid.');
             }else{
-                $this->crud->updateData(array('u_full_name'=>$name,'u_email_address'=>$email,'updated_by'=>$this->session->userdata('u_id')),array('user_id'=>$user_id),'tbl1');
+                $this->crud->updateData($user_data,array('user_id'=>$user_id),'tbl1');
                 $this->user_model->recordLogs('Update user profile',$this->session->userdata('u_id'));
-                $this->session->set_flashdata('success','Profile has been successfully updated!. You have to re-login to see changes made.');
+                $this->session->set_flashdata('success','Profile has been successfully updated!. You have to logout and re-login to see changes made.');
             }
         }else{
             $this->session->set_flashdata('warning','Profile has not been updated due to empty required fields.');
@@ -353,8 +383,10 @@ class User extends CI_Controller{
     public function user_logout(){
         $userdata = array(
             'isLoggedIn',
-            'u_id','u_fullname',
+            'u_id',
+            'u_fullname',
             'u_email',
+            'profile_pic',
             'u_login_attempt',
             'pass_reset_date',
             'u_designation',
