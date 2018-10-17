@@ -40,37 +40,33 @@ class Student extends CI_Controller{
         $this->load->view('templates/html-comp/footer');
     }
 
-    // /**
-    //  * students function.
-    //  * 
-    //  * @access public
-    //  * @return render students table
-    //  */
-    // public function students(){
-    //     $this->crud->credibilityAuth(array('Administrator','Registrar'));
-    //     // Subheader bar title and icon
-    //     $data['subheader'] = array('title'=>'Students','icon'=>'fa fa-user-o');
-    //     // Necessary page data
-    //     $data['students']  = $this->student_model->getStudents('a','');
-    //     // Page headers
-    //     $this->load->view('templates/header');
-    //     $this->load->view('templates/header-bar');
-    //     $this->load->view('oam-users/oam-admin/admin-menu/menu-student');
-    //     $this->load->view('templates/content-inner');
-    //     $this->load->view('templates/subheader-bar',$data);
-    //     // Flash data messages
-    //     $this->load->view('templates/flashdata/flashdata-success');
-    //     $this->load->view('templates/flashdata/flashdata-warning');
-    //     $this->load->view('templates/flashdata/flashdata-danger');
-    //     // Page contents
-    //     $this->load->view('oam-users/oam-admin/admin-student',$data);
-    //     // Page modals
-    //     $this->load->view('oam-users/oam-admin/admin-modals/view-student-modal');
-    //     $this->load->view('oam-users/oam-admin/admin-modals/edit-student-modal');
-    //     $this->load->view('templates/modals/success');
-    //     // Page footer
-    //     $this->load->view('templates/footer');
-    // }
+    /**
+     * students function.
+     * 
+     * @access public
+     * @return render students table
+     */
+    public function students(){
+        // user credentials authentication
+        $this->crud->credibilityAuth(array('Administrator','Registrar'));   
+        // Header bar title and icon
+        $data['header'] = array('title'=>'User','icon'=>'ios-people-outline');
+        // Necessary page data
+        $data['students']  = $this->student_model->getStudents('a','');
+        // Page headers
+        $this->load->view('templates/html-comp/header');
+        $this->load->view('templates/html-comp/header-bar',$data);
+        $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        // Flash data messages
+        $this->load->view('templates/html-comp/flashdata');
+        // Page contents
+        $this->load->view('sis-users/sis-admin/students',$data);
+        // Page modals
+        // $this->load->view('oam-users/oam-admin/admin-modals/view-student-modal');
+        // $this->load->view('oam-users/oam-admin/admin-modals/edit-student-modal');
+        // Page footer
+        $this->load->view('templates/html-comp/footer');
+    }
 
     /**
      * student_registration function.
@@ -236,15 +232,15 @@ class Student extends CI_Controller{
         if($this->input->post('deactivate')){
             // Deactivate student
             $data = array('student_id'=>$this->input->post('student_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_id')),'student_id','tbl2');
-            $this->user_model->recordLogs('Deactivate student record',$this->session->userdata('u_id'));
-            $this->session->set_flashdata('success','Subject(s) has been deactivated');
+            $this->crud->updateDataBatch($data,array('student_status'=>'0','student_updated_by'=>$this->session->userdata('u_id')),'student_id','tbl2');
+            $this->user_model->recordLogs($this->session->userdata('u_fullname').' Deactivate Students',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Students has been deactivated');
         }else if($this->input->post('activate')){
             // Activate student
             $data = array('student_id'=>$this->input->post('student_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_id')),'student_id','tbl2');
-            $this->user_model->recordLogs('Activate student record',$this->session->userdata('u_id'));
-            $this->session->set_flashdata('success','Subject(s) has been activated');
+            $this->crud->updateDataBatch($data,array('student_status'=>'1','student_updated_by'=>$this->session->userdata('u_id')),'student_id','tbl2');
+            $this->user_model->recordLogs($this->session->userdata('u_fullname').' Activate Students',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Students has been activated');
         }
         redirect('students');
     }
@@ -415,16 +411,16 @@ class Student extends CI_Controller{
     // }
 
     /**
-     * import_student function.
+     * student_printable function.
      * 
      * @access public
-     * @return import students registration
+     * @return render student information printable in pdf
      */
-    public function student_information_pdf(){
-        $this->crud->credibilityAuth(array('Administrator'));
-
+    public function student_printable($student_id = NULL){
+        // user credentials authentication
+        $this->crud->credibilityAuth(array('Administrator','Registrar'));
+        empty($student_id)?redirect('students'):TRUE;
         // get student info
-        $student_id = 6;
         $student = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl2');
         $student_craft = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl10');
         $student_core  = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl12');

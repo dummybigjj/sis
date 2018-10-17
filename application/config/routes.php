@@ -80,12 +80,12 @@ $route['new_room']		 		= 'room/new_room';
 $route['diploma_courses']		= 'diploma_course/diploma_courses';
 $route['new_diploma_course']	= 'diploma_course/new_diploma_course';
 $route['student_registration']	= 'student/student_registration';
+$route['students']				= 'student/students';
 
 
-
+// ------------------------------------------------------------------- //
 
 $route['batch_year']				= 'batch_year/current_batch_year';
-$route['students']					= 'student/students';
 $route['register_student']			= 'student/student_enrollment_registration';
 $route['register_students']			= 'student/register_students';
 $route['subject_assigning']			= 'subject/subject_assigning';
@@ -101,6 +101,9 @@ $route['faculty_attendance_records']= 'faculty/faculty_attendance_records';
 
 // Unauthorized Error page
 $route['unauthorized_access']		= 'faculty/unauthorized_access';
+
+// ------------------------------------------------------------------- //
+
 
 $route['default_controller'] = 'user/user_login';
 $route['404_override'] = '';

@@ -39,7 +39,7 @@
                 <div class="sidebar-nav-heading"></div>
               </li>
               <li>
-                <a href="#"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-people-outline"></em></span><span>Student</span></a>
+                <a href="<?php echo site_url('students'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-people-outline"></em></span><span>Student</span></a>
               </li>
               <li>
                 <div class="sidebar-nav-heading"></div>

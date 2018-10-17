@@ -44,7 +44,7 @@ class Admin extends CI_Controller{
      * @return render admin dashboard
      */
     public function admin_dashboard(){
-        $this->crud->credibilityAuth(array('Administrator'));
+        $this->crud->credibilityAuth(array('Administrator','Registrar'));
         $data['header'] = array('title'=>'Dashboard','icon'=>'ios-speedometer-outline');
         // Necessary page data
         // Page headers and navigation

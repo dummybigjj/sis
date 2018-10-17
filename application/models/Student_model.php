@@ -8,6 +8,49 @@ class Student_model extends CI_Model {
 	}
 
 	/**
+	 * getStudents function.
+	 * 
+	 * @access public
+	 * @param char $return_type
+	 * @param associative array $conditions
+	 * @return associative array list or single student on success.
+	 */
+	public function getStudents($return_type,$condition){
+		$data = $this->crud->getDataWithSort('',$return_type,$condition,'arabic_name ASC','tbl2');
+		return $this->getDiplomaAndVocationalCourse($data);
+	}
+
+	/**
+	 * getDiplomaAndVocationalCourse function.
+	 * 
+	 * @access private
+	 * @param associative array $students
+	 * @return associative array list or single student on success.
+	 */
+	private function getDiplomaAndVocationalCourse($students = array()){
+		if(!empty($students)){
+			if(array_key_exists('student_id', $students)){
+				$voc_program 	= $this->crud->getData('voc_program,voc_program_acronym','s',array('voc_program_id'=>$students['vocational_course']),'tbl6');
+				$diploma_course = $this->crud->getData('course_name,course_acronym','s',array('course_id'=>$students['diploma_course']),'tbl11');
+				$students['voc_program'] = $voc_program['voc_program'];
+				$students['voc_program_acronym'] = $voc_program['voc_program_acronym'];
+				$students['diploma_course_name'] = $diploma_course['course_name'];
+				$students['diploma_course_acronym'] = $diploma_course['course_acronym'];
+			}else{
+				for ($i=0; $i < count($students); $i++) { 
+					$voc_program 	= $this->crud->getData('voc_program,voc_program_acronym','s',array('voc_program_id'=>$students[$i]['vocational_course']),'tbl6');
+					$diploma_course = $this->crud->getData('course_name,course_acronym','s',array('course_id'=>$students[$i]['diploma_course']),'tbl11');
+					$students[$i]['voc_program'] = $voc_program['voc_program'];
+					$students[$i]['voc_program_acronym'] = $voc_program['voc_program_acronym'];
+					$students[$i]['diploma_course_name'] = $diploma_course['course_name'];
+					$students[$i]['diploma_course_acronym'] = $diploma_course['course_acronym'];
+				}
+			}
+		}
+		return $students;
+	}
+
+	/**
 	 * isStudentNumberValid function.
 	 * 
 	 * @access public
@@ -53,45 +96,6 @@ class Student_model extends CI_Model {
 	}
 
 	//------------------------------------------ Below is functions are deprecated ------------------------------------------//
-
-	/**
-	 * getStudents function.
-	 * 
-	 * @access public
-	 * @param char $return_type
-	 * @param associative array $conditions
-	 * @return associative array list or single student on success.
-	 */
-	public function getStudents($return_type,$condition){
-		$data = $this->crud->getDataWithSort('',$return_type,$condition,'arabic_name ASC','tbl2');
-		return $this->getStudentsCreator($data);
-	}
-
-	/**
-	 * getStudentsCreator function.
-	 * 
-	 * @access private
-	 * @param associative array $users
-	 * @return associative array list or single student on success.
-	 */
-	private function getStudentsCreator($students = array()){
-		if(!empty($students)){
-			if(array_key_exists('student_id', $students)){
-				$created_by = $this->crud->getData('u_full_name','s',array('user_id'=>$students['created_by']),'tbl1');
-				$updated_by = $this->crud->getData('u_full_name','s',array('user_id'=>$students['updated_by']),'tbl1');
-				$students['created_by'] = $created_by['u_full_name'];
-				$students['updated_by'] = $updated_by['u_full_name'];
-			}else{
-				for ($i=0; $i < count($students); $i++) { 
-					$created_by = $this->crud->getData('u_full_name','s',array('user_id'=>$students[$i]['created_by']),'tbl1');
-					$updated_by = $this->crud->getData('u_full_name','s',array('user_id'=>$students[$i]['updated_by']),'tbl1');
-					$students[$i]['created_by'] = $created_by['u_full_name'];
-					$students[$i]['updated_by'] = $updated_by['u_full_name'];
-				}
-			}
-		}
-		return $students;
-	}
 
 	/**
 	 * getEnrolledStudent function.
