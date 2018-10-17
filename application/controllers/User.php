@@ -81,7 +81,7 @@ class User extends CI_Controller{
      */
     public function users(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'User','icon'=>'ion-ios-person-outline');
+        $data['header'] = array('title'=>'User','icon'=>'ios-person-outline');
         // Necessary page data here
         $data['users'] = $this->user_model->getUsers('a','');        
         // Page headers and navigation
@@ -107,7 +107,7 @@ class User extends CI_Controller{
      */
     public function user_register(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'User Registration','icon'=>'ion-ios-personadd-outline');
+        $data['header'] = array('title'=>'User Registration','icon'=>'ios-person-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
@@ -130,7 +130,7 @@ class User extends CI_Controller{
      */
     public function user_profile(){
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
-        $data['header'] = array('title'=>'User Profile','icon'=>'ion-ios-person-outline');
+        $data['header'] = array('title'=>'User Profile','icon'=>'ios-person-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');

@@ -6,7 +6,7 @@
                 <!-- START panel-->
                 <form action="<?php echo site_url('admin/admin_update_security_config'); ?>" method="post" accept-charset="utf-8">
                   <div class="card mb-3" id="cardDemo7">
-                    <div class="card-header"><span class="nav-icon"><em class="ion-ios-gear-outline icon-lg"></em></span> Security Config</div>
+                    <div class="card-header"><span class="nav-icon"><em class="icon-ios-gear-outline icon-lg"></em></span> Security Config</div>
                     <div class="card-body">
                       <div class="form-group col-lg-12">
                         <label class="control-label"><span class="nav-icon"><em class="ion-ios-help-outline"></em></span> Fields with (<font style="color: red">*</font>) are required.</label>

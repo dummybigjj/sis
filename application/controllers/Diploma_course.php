@@ -45,7 +45,7 @@ class Diploma_course extends CI_Controller{
      */
     public function diploma_courses(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header']  = array('title'=>'Diploma Course','icon'=>'ion-ios-paper-outline');
+        $data['header']  = array('title'=>'Diploma Course','icon'=>'ios-paper-outline');
         // Necessary page data
         $data['courses'] = $this->diploma_course_model->getDiplomaCourses('a','');
         // Page headers and navigation
@@ -70,7 +70,7 @@ class Diploma_course extends CI_Controller{
      */
     public function new_diploma_course(){
     	$this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'New Diploma Course','icon'=>'ion-ios-paper-outline');
+        $data['header'] = array('title'=>'New Diploma Course','icon'=>'ios-paper-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');

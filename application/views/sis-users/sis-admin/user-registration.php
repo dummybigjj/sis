@@ -6,7 +6,7 @@
                 <!-- START panel-->
                 <form action="<?php echo site_url('user/user_save_registration'); ?>" method="post" accept-charset="utf-8">
                   <div class="card mb-3" id="cardDemo7">
-                    <div class="card-header"><span class="nav-icon"><em class="ion-ios-personadd-outline icon-lg"></em></span> New Users</div>
+                    <div class="card-header"><span class="nav-icon"><em class="icon-ios-person-outline icon-lg"></em></span> New Users</div>
                     <div class="card-body">
 
                       <div class="form-group col-lg-12">
@@ -32,7 +32,7 @@
                           <option value="Registrar">Registrar</option>
                           <option value="Program Head">Program Head</option>
                         </select>
-                      </div>
+                      </div><br>
 
                       <div id="TextBoxesGroup"></div>
                       
@@ -70,7 +70,7 @@ $(document).ready(function(){
     var new_user = $(document.createElement('div')).attr("id", 'new_user' + counter);
     new_user.after().html(
 
-      '<div class="card-footer"></div><br><div class="form-group col-lg-12">'+
+      '<hr/><br><div class="form-group col-lg-12">'+
         '<label class="control-label"><font style="color: red">*</font> Fullname</label>'  +
         '<input type="text" name="fname[]" class="form-control" maxlength="100" required="">'+
       '</div>'+
@@ -94,7 +94,7 @@ $(document).ready(function(){
           '<option value="Registrar">Registrar</option>'+
           '<option value="Program Head">Program Head</option>'+
         '</select>'+
-      '</div>'
+      '</div><br>'
 
     );
 

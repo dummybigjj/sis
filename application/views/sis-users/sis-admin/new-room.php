@@ -6,7 +6,7 @@
                 <!-- START panel-->
                 <form action="<?php echo site_url('room/room_save_registration'); ?>" method="post" accept-charset="utf-8">
                   <div class="card mb-3" id="cardDemo7">
-                    <div class="card-header"><span class="nav-icon"><em class="ion-ios-book-outline icon-lg"></em></span> New Room</div>
+                    <div class="card-header"><span class="nav-icon"><em class="icon-ios-home-outline icon-lg"></em></span> New Room</div>
                     <div class="card-body">
 
                       <div class="form-group col-lg-12">
@@ -15,7 +15,7 @@
                       <div class="form-group col-lg-12">
                         <label class="control-label"><font style="color: red">*</font> Room Name</label>
                         <input type="text" name="room_name[]" class="form-control" maxlength="60" required="">
-                      </div>
+                      </div><br>
 
                       <div id="TextBoxesGroup"></div>
                       
@@ -53,10 +53,10 @@ $(document).ready(function(){
     var new_room = $(document.createElement('div')).attr("id", 'new_room' + counter);
     new_room.after().html(
 
-      '<div class="card-footer"></div><br><div class="form-group col-lg-12">'+
+      '<hr/><br><div class="form-group col-lg-12">'+
         '<label class="control-label"><font style="color: red">*</font> Room Name</label>'  +
         '<input type="text" name="room_name[]" class="form-control" maxlength="60" required="">'+
-      '</div>'
+      '</div><br>'
 
     );
 

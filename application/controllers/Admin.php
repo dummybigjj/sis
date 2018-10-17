@@ -45,7 +45,7 @@ class Admin extends CI_Controller{
      */
     public function admin_dashboard(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'Dashboard','icon'=>'ion-ios-speedometer-outline');
+        $data['header'] = array('title'=>'Dashboard','icon'=>'ios-speedometer-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
@@ -69,7 +69,7 @@ class Admin extends CI_Controller{
      */
     public function admin_history(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'History Logs','icon'=>'ion-ios-loop');
+        $data['header'] = array('title'=>'History Logs','icon'=>'ios-loop');
         // Necessary page data
         $data['history']= $this->admin_model->getHistoryLogs('');
         // Page headers and navigation
@@ -92,7 +92,7 @@ class Admin extends CI_Controller{
      */
     public function admin_security(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'Security Configuration','icon'=>'ion-ios-gear-outline');
+        $data['header'] = array('title'=>'Security Configuration','icon'=>'ios-gear-outline');
         // Necessary page data here
         $data['config'] = $this->admin_model->getSecurityConfig();
         // Page headers and navigation

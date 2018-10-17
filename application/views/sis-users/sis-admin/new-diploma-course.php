@@ -6,7 +6,7 @@
                 <!-- START panel-->
                 <form action="<?php echo site_url('diploma_course/diploma_course_save_registration'); ?>" method="post" accept-charset="utf-8">
                   <div class="card mb-3" id="cardDemo7">
-                    <div class="card-header"><span class="nav-icon"><em class="ion-ios-paper-outline icon-lg"></em></span> New Diploma Course</div>
+                    <div class="card-header"><span class="nav-icon"><em class="icon-ios-paper-outline icon-lg"></em></span> New Diploma Course</div>
                     <div class="card-body">
 
                       <div class="form-group col-lg-12">
@@ -19,7 +19,7 @@
                       <div class="form-group col-lg-12">
                         <label class="control-label"><font style="color: red">*</font> Acronym</label>
                         <input type="text" name="course_acronym[]" class="form-control" maxlength="60" required="">
-                      </div>
+                      </div><br>
 
                       <div id="TextBoxesGroup"></div>
                       
@@ -57,7 +57,7 @@ $(document).ready(function(){
     var new_course = $(document.createElement('div')).attr("id", 'new_course' + counter);
     new_course.after().html(
 
-      '<div class="card-footer"></div><br><div class="form-group col-lg-12">'+
+      '<hr/><br><div class="form-group col-lg-12">'+
         '<label class="control-label"><font style="color: red">*</font> Name</label>'  +
         '<input type="text" name="course_name[]" class="form-control" maxlength="100" required="">'+
       '</div>'+
@@ -65,7 +65,7 @@ $(document).ready(function(){
       '<div class="form-group col-lg-12">'+
         '<label class="control-label"><font style="color: red">*</font> Acronym</label>'  +
         '<input type="text" name="course_acronym[]" class="form-control" maxlength="100" required="">'+
-      '</div>'
+      '</div><br>'
 
     );
 

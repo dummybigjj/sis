@@ -6,10 +6,10 @@
                 <!-- START panel-->
                 <form action="<?php echo site_url('user/user_update_profile'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                   <div class="card mb-3" id="cardDemo7">
-                    <div class="card-header"><span class="nav-icon"><em class="ion-ios-person-outline icon-lg"></em></span> User Profile</div>
+                    <div class="card-header"><span class="nav-icon"><em class="icon-ios-person-outline icon-lg"></em></span> User Profile</div>
                     <div class="card-body">
                       <div class="form-group col-lg-12">
-                        <label class="control-label"><span class="nav-icon"><em class="ion-ios-help-outline icon-lg"></em></span> Fields with (<font style="color: red">*</font>) are required.</label>
+                        <label class="control-label"><span class="nav-icon"><em class="ion-ios-help-outline"></em></span> Fields with (<font style="color: red">*</font>) are required.</label>
                       </div>
                       <div class="form-group col-sm-12">
                         <label class="control-label">Change Profile Picture</label>
@@ -28,10 +28,10 @@
                         <input type="email" name="email" maxlength="60" value="<?php echo $this->session->userdata('u_email'); ?>" class="form-control" required="">
                       </div>
 
-                      <div class="card-footer"></div><br>
+                      <br><hr/><br>
 
                       <div class="form-group col-sm-12">
-                        <label class="control-label"><span class="nav-icon"><em class="ion-ios-help-outline icon-lg"></em></span> Change Password</label>
+                        <label class="control-label"><span class="nav-icon"><em class="icon-lock-combination"></em></span> Change Password</label>
                       </div>
 
                       <div class="form-group col-sm-12">
@@ -39,10 +39,10 @@
                         <input type="password" name="password1" class="form-control">
                       </div>
 
-                      <div class="card-footer"></div><br>
+                      <br><hr/><br>
 
                       <div class="form-group col-sm-12">
-                        <label class="control-label"><span class="nav-icon"><em class="ion-ios-loop icon-lg"></em></span> History</label><br>
+                        <label class="control-label"><span class="nav-icon"><em class="icon-ios-loop icon-lg"></em></span> History</label><br>
                         <small class="control-label"><span class="nav-icon"><em class="ion-ios-time-outline"></em></span> Recent Login: <?php echo $this->session->userdata('recent_login'); ?></small><br>
                         <small class="control-label"><span class="nav-icon"><em class="ion-android-calendar"></em></span> Password Reset: <?php echo $this->session->userdata('pass_reset_date'); ?></small>
                       </div>

@@ -211,6 +211,8 @@ class Student extends CI_Controller{
                 $this->crud->setData($core,'','tbl12');
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
             }
+            $msg_type= 'danger';
+            $message = 'Internal Server Error!.';
         }else{
             $msg_type= 'danger';
             $message = 'Error occured due to ';
@@ -298,134 +300,119 @@ class Student extends CI_Controller{
         echo json_encode(array("status"=>TRUE,"msg"=>$msg,"class_add"=>$alert));
     }
 
-    /**
-     * set_students_subjects function.
-     * 
-     * @access public
-     * @return set student subjects and schedules
-     */
-    public function set_students_subjects(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $student_subject = array(
-            'student_id'    => trim($this->input->post('student_id')),
-            'subject'       => trim($this->input->post('subject')),
-            'subject_code'  => trim($this->input->post('subject_code')),
-            'time'          => $this->input->post('time'),
-            'room'          => trim($this->input->post('room')),
-            'day'           => trim($this->input->post('day')),
-            'vocational_program' => trim($this->input->post('vocational_program')),
-            'batch_year'    => $this->input->post('batch_year'),
-            'created_by'    => $this->session->userdata('u_id')
-        );
-        $schedule = array(
-            'subject_id'    => $student_subject['subject'],
-            'subject_code'  => $student_subject['subject_code'],
-            'room_id'       => $student_subject['room'],
-            'day'           => $student_subject['day'],
-            'time'          => $student_subject['time'],
-            'batch_year_id' => $student_subject['batch_year'],
-        );
-        $validate_subject = $this->student_model->isSubjectValid($student_subject);
-        if($validate_subject==TRUE){
-            $process_schedule = $this->student_model->processStundentSchedule($schedule);
-            if($process_schedule==TRUE){
-                $count = $this->crud->getData('','c',$schedule,'tbl9');
-                if($count <= 25){
-                    $this->crud->setData($student_subject,'','tbl9');
-                    $this->user_model->recordLogs('Register New Student Subject and Schedule',$this->session->userdata('u_id'));
-                    $this->session->set_flashdata('success','Student has been successfully registered!.');
-                }else{
-                    $this->session->set_flashdata('warning','Subject Code have reached its maximum enlistment capacity (25 Students). Student will not be registered!.');
-                }
-            }else{
-                $this->session->set_flashdata('danger','Student has not been registered! due to conflict of room schedule.');
-            }
-        }else{
-            $this->session->set_flashdata('danger','Student is not allowed to have Duplicate "Subject" and "Subject Code".');
-        }
-        redirect('register_students');
-    }
+    // /**
+    //  * set_students_subjects function.
+    //  * 
+    //  * @access public
+    //  * @return set student subjects and schedules
+    //  */
+    // public function set_students_subjects(){
+    //     $this->crud->credibilityAuth(array('Administrator','Registrar'));
+    //     $student_subject = array(
+    //         'student_id'    => trim($this->input->post('student_id')),
+    //         'subject'       => trim($this->input->post('subject')),
+    //         'subject_code'  => trim($this->input->post('subject_code')),
+    //         'time'          => $this->input->post('time'),
+    //         'room'          => trim($this->input->post('room')),
+    //         'day'           => trim($this->input->post('day')),
+    //         'vocational_program' => trim($this->input->post('vocational_program')),
+    //         'batch_year'    => $this->input->post('batch_year'),
+    //         'created_by'    => $this->session->userdata('u_id')
+    //     );
+    //     $schedule = array(
+    //         'subject_id'    => $student_subject['subject'],
+    //         'subject_code'  => $student_subject['subject_code'],
+    //         'room_id'       => $student_subject['room'],
+    //         'day'           => $student_subject['day'],
+    //         'time'          => $student_subject['time'],
+    //         'batch_year_id' => $student_subject['batch_year'],
+    //     );
+    //     $validate_subject = $this->student_model->isSubjectValid($student_subject);
+    //     if($validate_subject==TRUE){
+    //         $process_schedule = $this->student_model->processStundentSchedule($schedule);
+    //         if($process_schedule==TRUE){
+    //             $count = $this->crud->getData('','c',$schedule,'tbl9');
+    //             if($count <= 25){
+    //                 $this->crud->setData($student_subject,'','tbl9');
+    //                 $this->user_model->recordLogs('Register New Student Subject and Schedule',$this->session->userdata('u_id'));
+    //                 $this->session->set_flashdata('success','Student has been successfully registered!.');
+    //             }else{
+    //                 $this->session->set_flashdata('warning','Subject Code have reached its maximum enlistment capacity (25 Students). Student will not be registered!.');
+    //             }
+    //         }else{
+    //             $this->session->set_flashdata('danger','Student has not been registered! due to conflict of room schedule.');
+    //         }
+    //     }else{
+    //         $this->session->set_flashdata('danger','Student is not allowed to have Duplicate "Subject" and "Subject Code".');
+    //     }
+    //     redirect('register_students');
+    // }
 
-    public function set_students_subjects_s(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $students = $this->input->post('student_id');
-        $student_subject = array(
-            'subject'       => $this->input->post('subject'),
-            'subject_code'  => trim($this->input->post('subject_code')),
-            'time'          => $this->input->post('time'),
-            'room'          => $this->input->post('room'),
-            'day'           => $this->input->post('day'),
-            'vocational_program' => $this->input->post('vocational_program'),
-            'batch_year'    => $this->input->post('batch_year'),
-            'created_by'    => $this->session->userdata('u_id')
-        );
-        $schedule = array(
-            'subject_id'    => $student_subject['subject'],
-            'subject_code'  => $student_subject['subject_code'],
-            'room_id'       => $student_subject['room'],
-            'day'           => $student_subject['day'],
-            'time'          => $student_subject['time'],
-            'batch_year_id' => $student_subject['batch_year'],
-        );
+    // public function set_students_subjects_s(){
+    //     $this->crud->credibilityAuth(array('Administrator','Registrar'));
+    //     $students = $this->input->post('student_id');
+    //     $student_subject = array(
+    //         'subject'       => $this->input->post('subject'),
+    //         'subject_code'  => trim($this->input->post('subject_code')),
+    //         'time'          => $this->input->post('time'),
+    //         'room'          => $this->input->post('room'),
+    //         'day'           => $this->input->post('day'),
+    //         'vocational_program' => $this->input->post('vocational_program'),
+    //         'batch_year'    => $this->input->post('batch_year'),
+    //         'created_by'    => $this->session->userdata('u_id')
+    //     );
+    //     $schedule = array(
+    //         'subject_id'    => $student_subject['subject'],
+    //         'subject_code'  => $student_subject['subject_code'],
+    //         'room_id'       => $student_subject['room'],
+    //         'day'           => $student_subject['day'],
+    //         'time'          => $student_subject['time'],
+    //         'batch_year_id' => $student_subject['batch_year'],
+    //     );
         
-        $valid_students = $this->student_model->validateStudentsSubject($students,$student_subject);
-        if(count($valid_students) > 0){
-            $process_schedule = $this->student_model->processStundentSchedule($schedule);
-            if($process_schedule==TRUE){
-                $con = array(
-                    'subject'       => $student_subject['subject'],
-                    'subject_code'  => $student_subject['subject_code'],
-                    'room'          => $student_subject['room'],
-                    'day'           => $student_subject['day'],
-                    'time'          => $student_subject['time'],
-                    'batch_year'    => $student_subject['batch_year'],
-                );
-                $count = $this->crud->getData('','c',$con,'tbl9') + count($valid_students);
-                if($count <= 25){
-                    $this->crud->setDataBatch(array('student_id'=>$valid_students),$student_subject,'tbl9');
-                    $this->user_model->recordLogs('Register New Student Subject and Schedule',$this->session->userdata('u_id'));
-                    $this->session->set_flashdata('success','Student has been successfully registered!.');
-                }else{
-                    $diff = $count - 25;
-                    $this->session->set_flashdata('warning','Subject Code will/have reached its 25 enlistment capacity ('.$diff.' left). Students will not be registered!.');
-                }
-            }else{
-                $this->session->set_flashdata('danger','Students has not been registered! due to conflict of room schedule.');
-            }
-        }else{
-            $this->session->set_flashdata('danger','Error occured!.');
-        }
-        redirect('register_students');
-    }
+    //     $valid_students = $this->student_model->validateStudentsSubject($students,$student_subject);
+    //     if(count($valid_students) > 0){
+    //         $process_schedule = $this->student_model->processStundentSchedule($schedule);
+    //         if($process_schedule==TRUE){
+    //             $con = array(
+    //                 'subject'       => $student_subject['subject'],
+    //                 'subject_code'  => $student_subject['subject_code'],
+    //                 'room'          => $student_subject['room'],
+    //                 'day'           => $student_subject['day'],
+    //                 'time'          => $student_subject['time'],
+    //                 'batch_year'    => $student_subject['batch_year'],
+    //             );
+    //             $count = $this->crud->getData('','c',$con,'tbl9') + count($valid_students);
+    //             if($count <= 25){
+    //                 $this->crud->setDataBatch(array('student_id'=>$valid_students),$student_subject,'tbl9');
+    //                 $this->user_model->recordLogs('Register New Student Subject and Schedule',$this->session->userdata('u_id'));
+    //                 $this->session->set_flashdata('success','Student has been successfully registered!.');
+    //             }else{
+    //                 $diff = $count - 25;
+    //                 $this->session->set_flashdata('warning','Subject Code will/have reached its 25 enlistment capacity ('.$diff.' left). Students will not be registered!.');
+    //             }
+    //         }else{
+    //             $this->session->set_flashdata('danger','Students has not been registered! due to conflict of room schedule.');
+    //         }
+    //     }else{
+    //         $this->session->set_flashdata('danger','Error occured!.');
+    //     }
+    //     redirect('register_students');
+    // }
 
-    /**
-     * get_student_registration function.
-     * 
-     * @access public
-     * @return get student registration information with schedule for the current batch year
-     */
-    public function get_student_registration($id = NULL,$batch_year){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $conn = array(
-            '`student_subject`.`batch_year`'=>$batch_year,
-            '`student_subject`.`student_id`'=>$id
-        );
-        $data = $this->student_model->getEnrolledStudent($conn,'s');
-        echo json_encode($data);
-    }
 
-    /**
-     * student_remove_registration function.
-     * 
-     * @access public
-     * @return remove student registration
-     */
-    public function student_remove_registration(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $this->crud->deleteData(array('tbl_id'=>$this->input->post('tbl_id')),'tbl9');
-        $this->user_model->recordLogs('Remove Student Registration',$this->session->userdata('u_id'));
-        echo json_encode(array("status"=>TRUE));
-    }
+    // /**
+    //  * student_remove_registration function.
+    //  * 
+    //  * @access public
+    //  * @return remove student registration
+    //  */
+    // public function student_remove_registration(){
+    //     $this->crud->credibilityAuth(array('Administrator','Registrar'));
+    //     $this->crud->deleteData(array('tbl_id'=>$this->input->post('tbl_id')),'tbl9');
+    //     $this->user_model->recordLogs('Remove Student Registration',$this->session->userdata('u_id'));
+    //     echo json_encode(array("status"=>TRUE));
+    // }
 
     /**
      * import_student function.
@@ -433,11 +420,326 @@ class Student extends CI_Controller{
      * @access public
      * @return import students registration
      */
-    public function import_students(){
-        if($this->input->post('import_student')){
-            var_dump(ROOT_UPLOAD_IMPORT_PATH);
-        }
-        // var_dump($this->input->post('file'));
+    public function student_information_pdf(){
+        $this->crud->credibilityAuth(array('Administrator'));
+
+        // get student info
+        $student_id = 6;
+        $student = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl2');
+        $student_craft = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl10');
+        $student_core  = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl12');
+        $student_pro   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
+
+        // get student diploma or vocational course
+        $diploma    = $this->crud->getData('','s',array('course_id'=>$student['diploma_course']),'tbl11');
+        $vocational = $this->crud->getData('','s',array('voc_program_id'=>$student['vocational_course']),'tbl6');
+
+        //============================================================+
+        // File name   : example_001.php
+        // Begin       : 2008-03-04
+        // Last Update : 2013-05-14
+        //
+        // Description : Example 001 for TCPDF class
+        //               Default Header and Footer
+        //
+        // Author: Nicola Asuni
+        //
+        // (c) Copyright:
+        //               Nicola Asuni
+        //               Tecnick.com LTD
+        //               www.tecnick.com
+        //               info@tecnick.com
+        //============================================================+
+     
+        /**
+        * Creates an example PDF TEST document using TCPDF
+        * @package com.tecnick.tcpdf
+        * @abstract TCPDF - Example: Default Header and Footer
+        * @author Nicola Asuni
+        * @since 2008-03-04
+        */
+     
+        // create new PDF document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);    
+     
+        // set document information
+        // $pdf->SetCreator(PDF_CREATOR);
+        // $pdf->SetAuthor('Nicola Asuni');
+        // $pdf->SetTitle('TCPDF Example 001');
+        // $pdf->SetSubject('TCPDF Tutorial');
+        // $pdf->SetKeywords('TCPDF, PDF, example, test, guide');   
+     
+        // set default header data
+        // $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
+        // $pdf->setFooterData(array(0,64,0), array(0,64,128)); 
+     
+        // set header and footer fonts
+        // $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        // $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
+     
+        // set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED); 
+     
+        // set margins
+        // $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        // $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        // $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);    
+     
+        // set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM); 
+     
+        // set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);  
+     
+        // set some language-dependent strings (optional)
+        if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+        }   
+     
+        // ---------------------------------------------------------    
+     
+        // set default font subsetting mode
+        $pdf->setFontSubsetting(true);   
+     
+        // Set font
+        // dejavusans is a UTF-8 Unicode font, if you only need to
+        // print standard ASCII chars, you can use core fonts like
+        // helvetica or times to reduce file size.
+        $pdf->SetFont('times', '', 14, '', true); 
+
+        $pdf->SetPrintHeader(false);  
+     
+        // Add a page
+        // This method has several options, check the source code documentation for more information.
+        // The array() inside AddPage method defines the size of the page
+        // $pdf->AddPage('P','A4') for portrate || $pdf->AddPage('L','A4'); for Landscape
+        $pdf->AddPage('P','A4'); 
+     
+        // set text shadow effect
+        $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
+     
+        // Set some content to print
+        $html = '
+
+        <table border="0">
+            <tr>
+                <td style="width:21%;">
+
+                    <table border="0">
+                        <tr>
+                            <td align="right">
+                                <img width="70px" height="70px" src="'.base_url('uploads/THIEP.png').'" >
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td style="width:79%;">
+
+                    <table border="0">
+                        <tr style="font-size:40px;" align="left">
+                            <td>Student Information Sheet</td>
+                        </tr>
+                        <tr style="font-size:13px;" align="left">
+                            <td> TECHNICAL HIGHER INSTITUTE FOR ENGINEERING AND PETROLEUM </td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td cellspacing="1" style="width:100%;border-top:3px #000000 solid;"> </td>
+            </tr>
+        </table>
+
+        <br><br>
+        <table border="0" style="width:100%;font-size:12px;">
+            <tr>
+                <td style="width:75%;">
+                    <br><br>
+                    <table border="0">
+                        <tr style="font-size:35px;">
+                            <td><u>'.$student['arabic_name'].'</u></td>
+                        </tr>
+                        <tr style="font-size:12px;">';
+                            
+                            if(!empty($diploma)){
+                                $html .= '<td>'.$diploma['course_name'].' ('.$diploma['course_acronym'].') - '.date('F d, Y',strtotime($student['training_start'])).' to '.date('F d, Y',strtotime($student['training_end'])).'</td>';
+                            }else{
+                                $html .= '<td>'.$vocational['voc_program'].' ('.$vocational['voc_program_acronym'].') - '.date('F d, Y',strtotime($student['training_start'])).' to '.date('F d, Y',strtotime($student['training_end'])).'</td>';
+                            }
+        $html .='       </tr>
+
+                        <tr style="font-size:12px;">
+                            <td>'.$student['company'].'</td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+
+                        <tr style="font-size:20px;color:blue;">
+                            <td>Student Basic and Personal Details</td>
+                        </tr>
+                        <tr>
+                            <td cellspacing="1" style="width:100%;border-top:3px #000000 solid;"> </td>
+                        </tr>
+
+
+                        <table>
+                            <tr>
+                                <td style="width:20%;">Student Number:</td>
+                                <td>'.$student['student_no'].'</td>
+                            </tr>
+                            <tr>
+                                <td>National ID:</td>
+                                <td>'.$student['national_id'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile No.:</td>
+                                <td>'.$student['mobile_no'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td style="color:blue;">'.$student['email_address'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Nationality:</td>
+                                <td>'.$student['nationality'].'</td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>English Name:</td>
+                                <td>'.$student['english_name'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth:</td>
+                                <td>'.date('F d, Y',strtotime($student['date_of_birth'])).'</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>'.$student['address'].'</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Guardian:</td>
+                                <td>'.$student['guardian_name'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Guardian Contact:</td>
+                                <td>'.$student['guardian_contact'].'</td>
+                            </tr>
+                        </table><br><br><br><br>
+
+                        <table>
+
+                            <tr style="font-size:20px;color:blue;">
+                                <td>Student Skills Accumulated</td>
+                            </tr>
+                            <tr>
+                                <td cellspacing="1" style="width:100%;border-top:3px #000000 solid;"> </td>
+                            </tr>
+
+                        </table>
+
+                        <table>
+                            <tr>
+                                <td><b>English Proficiency</b></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td style="width:10%;">Rating:</td>
+                                <td>'.$student_pro['eng_rating'].'</td>
+                            </tr>
+                        </table><br><br>
+
+                        <table>
+                            <tr>
+                                <td><b>Craft</b></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td  style="width:10%;">Rating:</td>
+                                <td>'.$student_craft['craft_rating'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Skills:</td>
+                                <td>'.$student_craft['craft_skill'].'</td>
+                            </tr>
+                        </table><br><br>
+
+                        <table>
+                            <tr>
+                                <td><b>Core</b></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td  style="width:10%;">Rating:</td>
+                                <td>'.$student_core['core_rating'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Skills:</td>
+                                <td>'.$student_core['core_skill'].'</td>
+                            </tr>
+                        </table>
+
+                    </table>
+
+                    
+
+                </td>
+                <td style="width:25%;">
+                    
+                    <table>
+                        <tr>
+                            <td align="right">';
+                            if(!empty($student['id_picture'])){
+                                $html .= '<img border="1" width="140px" height="140px" src="'.base_url('uploads/students_images/'.$student['id_picture']).'" >';
+                            }else{
+                                $html .= '<img border="1" width="140px" height="140px" src="'.base_url('uploads/students_images/not-available.png').'" >';
+                            }
+        $html .='           </td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+        </table><br>
+
+        ';
+
+
+
+
+        $html1 = '<p style="font-size:12px;">Printed by: '.$this->session->userdata('u_fullname').'</p>';
+     
+        // Print text using writeHTMLCell()
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+        // $pdf->writeHTMLCell(0, 0, '', '', $html1, 0, 1, 0, true, '', true);
+        // ---------------------------------------------------------    
+     
+        // Close and output PDF document
+        // This method has several options, check the source code documentation for more information.
+
+        // $pdf->Output('example_001.pdf', 'I');  // FOR PREVIEW PURPOSES  
+        return $pdf->Output('Student-Information-Sheet.pdf', 'I');   
+        // D FOR FORCE DOWNLOAD 
+     
+        //============================================================+
+        // END OF FILE
+        //============================================================+
     }
 
 

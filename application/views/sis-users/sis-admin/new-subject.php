@@ -6,7 +6,7 @@
                 <!-- START panel-->
                 <form action="<?php echo site_url('subject/subject_save_registration'); ?>" method="post" accept-charset="utf-8">
                   <div class="card mb-3" id="cardDemo7">
-                    <div class="card-header"><span class="nav-icon"><em class="ion-ios-book-outline icon-lg"></em></span> New Subject</div>
+                    <div class="card-header"><span class="nav-icon"><em class="icon-ios-book-outline icon-lg"></em></span> New Subject</div>
                     <div class="card-body">
 
                       <div class="form-group col-lg-12">
@@ -15,7 +15,7 @@
                       <div class="form-group col-lg-12">
                         <label class="control-label"><font style="color: red">*</font> Subject Title</label>
                         <input type="text" name="subject_title[]" class="form-control" maxlength="60" required="">
-                      </div>
+                      </div><br>
 
                       <div id="TextBoxesGroup"></div>
                       
@@ -53,10 +53,10 @@ $(document).ready(function(){
     var new_subject = $(document.createElement('div')).attr("id", 'new_subject' + counter);
     new_subject.after().html(
 
-      '<div class="card-footer"></div><br><div class="form-group col-lg-12">'+
+      '<hr/><br><div class="form-group col-lg-12">'+
         '<label class="control-label"><font style="color: red">*</font> Subject Title</label>'  +
         '<input type="text" name="subject_title[]" class="form-control" maxlength="60" required="">'+
-      '</div>'
+      '</div><br>'
 
     );
 

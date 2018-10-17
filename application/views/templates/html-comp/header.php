@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/bootstrap/dist/css/bootstrap.min.css'); ?>">
     <!-- Ionicons-->
     <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/ionicons/css/ionicons.css'); ?>">
+    <!-- fontastic icons -->
+    <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/fontastic/styless.css'); ?>">
     <!-- Material Colors-->
     <link rel="stylesheet" href="<?php echo base_url('application/assets/vendor/material-colors/dist/colors.css'); ?>">
     <!-- Dragula-->
@@ -45,16 +47,6 @@
 
     <!-- JQUERY DATETIME PICKER -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('application/assets/jquery/jquery.datetimepicker.css'); ?>">
-
-    <!-- Include SmartWizard CSS -->
-    <!-- <link rel="stylesheet" type="text/css" href="<?php //echo base_url('application/assets/smart-wizard-steps/dist/css/smart_wizard.css'); ?>"  /> -->
-    <!-- Optional SmartWizard theme -->
-    <!-- <link rel="stylesheet" type="text/css" href="<?php //echo base_url('application/assets/smart-wizard-steps/dist/css/smart_wizard_theme_circles.css'); ?>" />
-    <link rel="stylesheet" type="text/css" href="<?php //echo base_url('application/assets/smart-wizard-steps/dist/css/smart_wizard_theme_arrows.css'); ?>"  />
-    <link rel="stylesheet" type="text/css" href="<?php //echo base_url('application/assets/smart-wizard-steps/dist/css/smart_wizard_theme_dots.css'); ?>"  /> -->
-
-    <!-- DATE RANGE PICKER-->
-    <!-- <link rel="stylesheet" href="<?php //echo base_url('application/assets/vendor/date-range-picker/daterangepicker.css'); ?>"> -->
 
 
     <!-- Application styles-->
@@ -125,14 +117,6 @@
     <!-- JQUERY DATE TIME PICKER -->
     <script type="text/javascript" src="<?php echo base_url('application/assets/jquery/jquery.datetimepicker.full.js'); ?>"></script>
 
-    <!-- SMART WIZARD STEPS -->
-    <!-- <script src="<?php //echo base_url('application/assets/smart-wizard-steps/dist/js/jquery.smartWizard.min.js'); ?>"></script> -->
-
-    <!-- DATE RANGE PICKER-->
-    <!-- <script src="<?php //echo base_url('application/assets/vendor/date-range-picker/daterangepicker.js'); ?>"></script>
-    <script src="<?php //echo base_url('application/assets/vendor/date-range-picker/moment.min.js'); ?>"></script>
-    <script src="<?php //echo base_url('application/assets/vendor/date-range-picker/drapp.js'); ?>"></script>
- -->
     <!-- App script-->
     <script src="<?php echo base_url('application/assets/js/app.js'); ?>"></script>
 

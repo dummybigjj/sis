@@ -44,7 +44,7 @@ class Vocational_program extends CI_Controller{
      */
     public function vocational_programs(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'Vocational Program','icon'=>'ion-ios-list-outline');
+        $data['header'] = array('title'=>'Vocational Program','icon'=>'ios-list-outline');
         // Necessary page data
         $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a','');
         // Page headers and navigation
@@ -69,7 +69,7 @@ class Vocational_program extends CI_Controller{
      */
     public function new_vocational_program(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'New Vocational Program','icon'=>'ion-ios-list-outline');
+        $data['header'] = array('title'=>'New Vocational Program','icon'=>'ios-list-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');

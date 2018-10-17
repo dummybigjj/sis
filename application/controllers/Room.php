@@ -43,7 +43,7 @@ class Room extends CI_Controller{
      */
     public function rooms(){
     	$this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'Room','icon'=>'ion-ios-home-outline');
+        $data['header'] = array('title'=>'Room','icon'=>'ios-home-outline');
     	// Necessary page data
         $data['room'] = $this->room_model->getRooms('a','');
         // Page headers and navigation
@@ -68,7 +68,7 @@ class Room extends CI_Controller{
      */
     public function new_room(){
     	$this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'New Rooms','icon'=>'ion-ios-home-outline');
+        $data['header'] = array('title'=>'New Rooms','icon'=>'ios-home-outline');
     	// Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');

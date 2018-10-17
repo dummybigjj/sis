@@ -44,7 +44,7 @@ class Subject extends CI_Controller{
      */
     public function subjects(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'Subjects','icon'=>'ion-ios-book-outline');
+        $data['header'] = array('title'=>'Subjects','icon'=>'ios-book-outline');
         // Necessary page data
         $data['subject'] = $this->subject_model->getSubjects('a','');
         // Page headers and navigation
@@ -69,7 +69,7 @@ class Subject extends CI_Controller{
      */
     public function new_subject(){
         $this->crud->credibilityAuth(array('Administrator'));
-        $data['header'] = array('title'=>'New Subjects','icon'=>'ion-ios-book-outline');
+        $data['header'] = array('title'=>'New Subjects','icon'=>'ios-book-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');

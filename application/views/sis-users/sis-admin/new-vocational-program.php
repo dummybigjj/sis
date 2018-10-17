@@ -6,7 +6,7 @@
                 <!-- START panel-->
                 <form action="<?php echo site_url('vocational_program/vocational_program_save_registration'); ?>" method="post" accept-charset="utf-8">
                   <div class="card mb-3" id="cardDemo7">
-                    <div class="card-header"><span class="nav-icon"><em class="ion-ios-list-outline icon-lg"></em></span> New Vocational Program</div>
+                    <div class="card-header"><span class="nav-icon"><em class="icon-ios-list-outline icon-lg"></em></span> New Vocational Program</div>
                     <div class="card-body">
 
                       <div class="form-group col-lg-12">
@@ -19,7 +19,7 @@
                       <div class="form-group col-lg-12">
                         <label class="control-label"><font style="color: red">*</font> Acronym</label>
                         <input type="text" name="voc_program_acronym[]" class="form-control" maxlength="100" required="">
-                      </div>
+                      </div><br>
 
                       <div id="TextBoxesGroup"></div>
                       
@@ -57,7 +57,7 @@ $(document).ready(function(){
     var new_voc_program = $(document.createElement('div')).attr("id", 'new_voc_program' + counter);
     new_voc_program.after().html(
 
-      '<div class="card-footer"></div><br><div class="form-group col-lg-12">'+
+      '<hr/><br><div class="form-group col-lg-12">'+
         '<label class="control-label"><font style="color: red">*</font> Name</label>'  +
         '<input type="text" name="voc_program_name[]" class="form-control" maxlength="100" required="">'+
       '</div>'+
@@ -65,7 +65,7 @@ $(document).ready(function(){
       '<div class="form-group col-lg-12">'+
         '<label class="control-label"><font style="color: red">*</font> Acronym</label>'  +
         '<input type="text" name="voc_program_acronym[]" class="form-control" maxlength="100" required="">'+
-      '</div>'
+      '</div><br>'
 
     );
 
