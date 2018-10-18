@@ -60,7 +60,7 @@
                                   <td><?php echo $value['type_of_course']; ?></td>
                                   <td><?php echo !empty($value['voc_program_acronym'])?$value['voc_program_acronym']:$value['diploma_course_acronym']; ?></td>
                                   <td>
-                                    <a href="<?php echo site_url('student/edit_student/'.$value['student_id']); ?>" class="mb-4 btn btn-warning"><span class="nav-icon"><em class="ion-edit"></em></span> Edit</a>
+                                    <a href="<?php echo site_url('student/'.$value['student_id']); ?>" class="mb-4 btn btn-warning"><span class="nav-icon"><em class="ion-edit"></em></span> Edit</a>
                                     <a target="_blank" href="<?php echo site_url('student/student_printable/'.$value['student_id']); ?>" class="mb-4 btn btn-danger"><span class="nav-icon"><em class="icon-ios-printer-outline"></em></span> Print</a>
 
                                   </td>

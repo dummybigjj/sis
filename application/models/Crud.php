@@ -792,8 +792,10 @@ class Crud extends Cruds
 	 * @return array boolean or redirect to login
 	 */
 	public function credibilityAuth($designation = array()){
-		if(($this->session->userdata('isLoggedIn')==TRUE && in_array($this->session->userdata('u_designation'), $designation)) && $this->session->userdata('pass_reset_date')>date('Y-m-d H:i:s')){
+		if(($this->session->userdata('isLoggedIn')===TRUE && in_array($this->session->userdata('u_designation'), $designation)) && $this->session->userdata('pass_reset_date')>date('Y-m-d H:i:s')){
 			return TRUE;
+		}else if($this->session->userdata('isLoggedIn')===TRUE){
+			return redirect('error_401');
 		}
 		return redirect('login');
 	}

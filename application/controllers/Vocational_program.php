@@ -20,7 +20,7 @@ class Vocational_program extends CI_Controller{
      * @return render system template reference
      */
     public function template_reference(){
-        $data['header'] = array('title'=>'Dashboard','icon'=>'ion-ios-speedometer-outline');
+        $data['header'] = array('title'=>'Template Reference','icon'=>'ion-ios-speedometer-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
@@ -43,14 +43,18 @@ class Vocational_program extends CI_Controller{
      * @return render vocational programs table
      */
     public function vocational_programs(){
-        $this->crud->credibilityAuth(array('Administrator'));
+        $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Vocational Program','icon'=>'ios-list-outline');
         // Necessary page data
         $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a','');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
+        if($this->session->userdata('u_designation')=='Administrator'):
         $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        else:
+        $this->load->view('sis-users/sis-admin/admin-menu/registrar-menu');
+        endif;
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
@@ -68,13 +72,17 @@ class Vocational_program extends CI_Controller{
      * @return render create new vocational program
      */
     public function new_vocational_program(){
-        $this->crud->credibilityAuth(array('Administrator'));
+        $this->crud->credibilityAuth(array('Administrator','Registrar'));
         $data['header'] = array('title'=>'New Vocational Program','icon'=>'ios-list-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
+        if($this->session->userdata('u_designation')=='Administrator'):
         $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        else:
+        $this->load->view('sis-users/sis-admin/admin-menu/registrar-menu');
+        endif;
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents

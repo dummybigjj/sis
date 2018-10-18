@@ -11,23 +11,23 @@
               <div class="form-group col-lg-12">
               </div>
               <div class="form-group col-lg-12">
-                <label class="control-label" ><span class="nav-icon"><em class="ion-ios-compose-outline icon-lg"></em></span> Activity</label>
-                <input class="form-control" name="activity" readonly="" type="text">
+                <label class="control-label" ><span class="nav-icon"><em class="icon-ios-compose-outline icon-lg"></em></span> Activity</label>
+                <textarea class="form-control" name="activity" readonly=""></textarea>
               </div>
 
-              <div class="card-footer"></div>
+              <hr/>
 
               <div class="form-group col-lg-12">
-                <label class="control-label" ><span class="nav-icon"><em class="ion-ios-person-outline icon-lg"></em></span> Created By</label>
+                <label class="control-label" ><span class="nav-icon"><em class="icon-ios-person-outline icon-lg"></em></span> Created By</label>
                 <input class="form-control" name="name" readonly="" type="text">
                 <input class="form-control" name="email" readonly="" type="text">
                 <input class="form-control" name="designation" readonly="" type="text">
               </div>
 
-              <div class="card-footer"></div>
+              <hr/>
 
               <div class="form-group col-lg-12">
-                <label class="control-label" ><span class="nav-icon"><em class="ion-iphone icon-lg"></em></span> Device Information</label>
+                <label class="control-label" ><span class="nav-icon"><em class="icon-iphone icon-lg"></em></span> Device Information</label>
                 <input class="form-control" name="device_use" readonly="" type="text">
                 <input class="form-control" name="device_name" readonly="" type="text">
                 <input class="form-control" name="device_ip" readonly="" type="text">

@@ -12,6 +12,9 @@ class Admin extends CI_Controller{
         $this->load->model('admin_model');
         $this->load->model('vocational_program_model');
         $this->load->model('user_model');
+        if($this->session->userdata('u_designation')=='Program Head'):
+        $this->session->set_flashdata('warning','Be inform that you are not allowed to make any modification/changes on system data.');
+        endif;
     }
 
     /**
@@ -21,7 +24,7 @@ class Admin extends CI_Controller{
      * @return render system template reference
      */
     public function template_reference(){
-        $data['header'] = array('title'=>'Dashboard','icon'=>'ion-ios-speedometer-outline');
+        $data['header'] = array('title'=>'Template Reference','icon'=>'ion-ios-speedometer-outline');
         // Necessary data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
@@ -44,13 +47,17 @@ class Admin extends CI_Controller{
      * @return render admin dashboard
      */
     public function admin_dashboard(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
+        $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Dashboard','icon'=>'ios-speedometer-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
+        if($this->session->userdata('u_designation')=='Administrator'):
         $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        else:
+        $this->load->view('sis-users/sis-admin/admin-menu/registrar-menu');
+        endif;
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
@@ -109,34 +116,15 @@ class Admin extends CI_Controller{
     }
 
     /**
-     * attendance_report function.
+     * error_401 function.
      * 
      * @access public
-     * @return render admin attendance reporting
+     * @return render error 401 page
      */
-    public function attendance_report(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        // Subheader bar title and icon
-        $data['subheader'] = array('title'=>'Batch Year Reports','icon'=>'icon-padnote');
-        // Necessary page data
-        $data['batch_year']  = $this->crud->getData('','a','','tbl8');
-        $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a','');
-        // Page headers
-        $this->load->view('templates/header');
-        $this->load->view('templates/header-bar');
-        $this->load->view('oam-users/oam-admin/admin-menu/menu-subject-assigning');
-        $this->load->view('templates/content-inner');
-        $this->load->view('templates/subheader-bar',$data);
-        // Flash data messages
-        $this->load->view('templates/flashdata/flashdata-success');
-        $this->load->view('templates/flashdata/flashdata-warning');
-        $this->load->view('templates/flashdata/flashdata-danger');
-        // Page contents
-        $this->load->view('oam-users/oam-admin/admin-report',$data);
-        // Page modals
-        $this->load->view('oam-users/oam-admin/admin-modals/generate-report-modal',$data);
-        // Page footer
-        $this->load->view('templates/footer');
+    public function error_401(){
+        $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
+        $this->load->view('templates/html-comp/header');
+        $this->load->view('templates/error_page/error401');
     }
 
     /**

@@ -9,7 +9,7 @@
           <div class="modal-body">
             <form id="formeditUser">
               <div class="form-group col-lg-12">
-                <label class="control-label" ><span class="nav-icon"><em class="ion-ios-person-outline icon-lg"></em></span> Personal Information</label>
+                <label class="control-label" ><span class="nav-icon"><em class="icon-ios-person-outline icon-lg"></em></span> Personal Information</label>
               </div>
               <div class="form-group col-lg-12">
                 <input class="form-control" name="user_id" type="hidden">

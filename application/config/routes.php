@@ -66,7 +66,7 @@ $route['user_cp'] = 'user/user_cp';
 $route['user_profile'] = 'user/user_profile';
 
 // Admin routing rules
-$route['admin_dashboard'] 		= 'admin/admin_dashboard';
+$route['dashboard'] 			= 'admin/admin_dashboard';
 $route['admin_security']  		= 'admin/admin_security';
 $route['users'] 	  	    	= 'user/users';
 $route['user_registration']		= 'user/user_register';
@@ -81,6 +81,10 @@ $route['diploma_courses']		= 'diploma_course/diploma_courses';
 $route['new_diploma_course']	= 'diploma_course/new_diploma_course';
 $route['student_registration']	= 'student/student_registration';
 $route['students']				= 'student/students';
+$route['student/(:num)']		= 'student/student/$1';
+
+// Error page
+$route['error_401']				= 'admin/error_401';
 
 
 // ------------------------------------------------------------------- //

@@ -51,6 +51,70 @@ class Student_model extends CI_Model {
 	}
 
 	/**
+	 * getStudentSubjects function.
+	 * 
+	 * @access private
+	 * @param mixed $current_batch_year
+	 * @return associative array list of enrolled student on success.
+	 */
+	public function getStudentSubjects($condition,$return_type){
+		$select = '`tbl_id`, `subject`.`subject_title`, `time`, `room`.`room_name`, `day`, `student_subject`.`subject`, `student_subject`.`room`, `student_subject`.`created_by`, `student_subject`.`created`, `student_subject`.`updated_by`, `student_subject`.`modified`';
+		$join = array(
+			'`subject`'	=> '`student_subject`.`subject` = `subject`.`subject_id`',
+			'`room`'	=> '`student_subject`.`room` = `room`.`room_id`'
+		);
+		return $this->crud->getJoinDataWithSort($select,$return_type,$condition,$join,'`subject`.`subject_title` ASC','tbl9');
+	}
+
+	/**
+	 * insertOrUpdateStudentSubjects function.
+	 * 
+	 * @access public
+	 * @param associative array $subjects
+	 * @param associative array $student
+	 * @param int $student_id
+	 * @return boolean TRUE on success.
+	 */
+	public function insertOrUpdateStudentSubjects($subjects = array(),$student = array(),$student_id){
+		for ($i=0; $i < count($subjects['subject']); $i++) { 
+            $subjects_schedules = array(
+                'subject'   => $subjects['subject'][$i],
+                'day'       => $subjects['day'][$i],
+                'time'      => $subjects['time'][$i],
+                'room'      => $subjects['room'][$i]
+            );
+            if(array_key_exists($i, $subjects['tbl_id'])){
+                $subjects_schedules['updated_by'] = $this->session->userdata('u_fullname');
+                $this->crud->updateData($subjects_schedules,array('tbl_id'=>$subjects['tbl_id'][$i]),'tbl9');
+                // record updating of subjects in history logs
+                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated subjects for '.$student['student_no'],$this->session->userdata('u_id'));
+            }else{
+                $foreign_values = array('student_id'=>$student_id,'created_by'=>$this->session->userdata('u_fullname'));
+                $this->crud->setData($subjects_schedules,$foreign_values,'tbl9');
+                // record registration of students subjects and schedules in history logs
+                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created subjects for '.$student['student_no'],$this->session->userdata('u_id'));
+            }
+        }
+        return TRUE;
+	}
+
+	/**
+	 * isValidUniqueKey function.
+	 * 
+	 * @access public
+	 * @param associative array $condition
+	 * @param mixed $tbl
+	 * @return boolean TRUE on success.
+	 */
+	public function isValidUniqueKey($condition = array(),$tbl){
+		$verify = $this->crud->getData('','c',$condition,$tbl);
+		if($verify > 0){
+			return FALSE;
+		}
+		return TRUE;
+	}
+
+	/**
 	 * isStudentNumberValid function.
 	 * 
 	 * @access public
@@ -96,25 +160,6 @@ class Student_model extends CI_Model {
 	}
 
 	//------------------------------------------ Below is functions are deprecated ------------------------------------------//
-
-	/**
-	 * getEnrolledStudent function.
-	 * 
-	 * @access private
-	 * @param mixed $current_batch_year
-	 * @return associative array list of enrolled student on success.
-	 */
-	public function getEnrolledStudent($condition,$return_type){
-		$select = '`student_subject`.`tbl_id`, `student`.`student_id`, `student`.`student_no`, `student`.`arabic_name`, `subject`.`subject_title`, `subject_code`, `time`, `room`.`room_name`, `day`, `vocational_program`.`voc_program_acronym`, `batch_year`.`batch_name`, `student_subject`.`subject`, `student_subject`.`room`, `student_subject`.`vocational_program`, `student_subject`.`batch_year`, `student_subject`.`created_by`, `student_subject`.`created`, `student_subject`.`updated_by`, `student_subject`.`modified`';
-		$join = array(
-			'`student`'				=> '`student_subject`.`student_id` = `student`.`student_id`',
-			'`subject`'				=> '`student_subject`.`subject` = `subject`.`subject_id`',
-			'`room`'				=> '`student_subject`.`room` = `room`.`room_id`',
-			'`vocational_program`' 	=> '`student_subject`.`vocational_program` = `vocational_program`.`voc_program_id`',
-			'`batch_year`' 			=> '`student_subject`.`batch_year` = `batch_year`.`batch_year_id`'
-		);
-		return $this->crud->getJoinDataWithSort($select,$return_type,$condition,$join,'`subject`.`subject_title` ASC','tbl9');
-	}
 
 	/**
 	 * processStundentSchedule function.

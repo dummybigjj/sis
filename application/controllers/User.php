@@ -19,7 +19,7 @@ class User extends CI_Controller{
      * @return render system template reference
      */
     public function template_reference(){
-        $data['header'] = array('title'=>'Dashboard','icon'=>'ion-ios-speedometer-outline');
+        $data['header'] = array('title'=>'Template Reference','icon'=>'ion-ios-speedometer-outline');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -135,7 +135,11 @@ class User extends CI_Controller{
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
+        if($this->session->userdata('u_designation')=='Administrator'):
         $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        else:
+        $this->load->view('sis-users/sis-admin/admin-menu/registrar-menu');
+        endif;
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
@@ -203,13 +207,7 @@ class User extends CI_Controller{
                 $this->session->set_flashdata('warning','Your password has been expired. Change your password again.');
                 redirect('change_password');
             }else{
-                if($this->session->userdata('u_designation')=='Registrar'){
-                    redirect('admin_dashboard');
-                }else if($this->session->userdata('u_designation')=='Administrator'){
-                    redirect('admin_dashboard');
-                }else{
-                    redirect('program_head_dashboard');
-                }
+                redirect('dashboard');
             }
         }
         redirect('login');

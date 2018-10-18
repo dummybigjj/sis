@@ -21,7 +21,7 @@ class Subject extends CI_Controller{
      * @return render system template reference
      */
     public function template_reference(){
-        $data['header'] = array('title'=>'Dashboard','icon'=>'ion-ios-speedometer-outline');
+        $data['header'] = array('title'=>'Template Reference','icon'=>'ion-ios-speedometer-outline');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -43,14 +43,18 @@ class Subject extends CI_Controller{
      * @return render subjects table
      */
     public function subjects(){
-        $this->crud->credibilityAuth(array('Administrator'));
+        $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Subjects','icon'=>'ios-book-outline');
         // Necessary page data
         $data['subject'] = $this->subject_model->getSubjects('a','');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
+        if($this->session->userdata('u_designation')=='Administrator'):
         $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        else:
+        $this->load->view('sis-users/sis-admin/admin-menu/registrar-menu');
+        endif;
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
@@ -68,13 +72,17 @@ class Subject extends CI_Controller{
      * @return render subjects registration form
      */
     public function new_subject(){
-        $this->crud->credibilityAuth(array('Administrator'));
+        $this->crud->credibilityAuth(array('Administrator','Registrar'));
         $data['header'] = array('title'=>'New Subjects','icon'=>'ios-book-outline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
+        if($this->session->userdata('u_designation')=='Administrator'):
         $this->load->view('sis-users/sis-admin/admin-menu/menu');
+        else:
+        $this->load->view('sis-users/sis-admin/admin-menu/registrar-menu');
+        endif;
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents

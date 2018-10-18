@@ -21,7 +21,7 @@
                 <h6 class="dropdown-header">User menu</h6>
                 <a class="dropdown-item" href="<?php echo site_url('user_profile'); ?>"><i class="icon-man-people-streamline-user icon-lg text-primary"></i> Profile</a>
                 <div class="dropdown-divider" role="presentation"></div>
-                <a class="dropdown-item" href="<?php echo site_url('logout'); ?>"><i class="icon-logout icon-lg text-primary"></i>Logoff</a>
+                <a class="dropdown-item" href="<?php echo site_url('logout'); ?>"><i class="icon-power icon-lg text-primary"></i> Logout</a>
               </div>
             </li>
           </ul>
