@@ -144,9 +144,9 @@ class Student extends CI_Controller{
         // student data
         $student = array(
             'student_no'        => trim($this->input->post('student_no')),
-            'national_id'       => trim($this->input->post('national_id')),
+            'national_id'       => $this->input->post('national_id'),
             'email_address'     => trim($this->input->post('email_address')),
-            'mobile_no'         => trim($this->input->post('mobile_no')),
+            'mobile_no'         => $this->input->post('mobile_no'),
             'english_name'      => trim($this->input->post('english_name')),
             'arabic_name'       => trim($this->input->post('arabic_name')),
             'nationality'       => trim($this->input->post('nationality')),
@@ -157,7 +157,7 @@ class Student extends CI_Controller{
             'address'           => trim($this->input->post('address')),
             'date_of_birth'     => $this->input->post('dob'),
             'guardian_name'     => trim($this->input->post('guardian_name')),
-            'guardian_contact'  => trim($this->input->post('guardian_contact')),
+            'guardian_contact'  => $this->input->post('guardian_contact'),
             'student_created_by'=> $this->session->userdata('u_fullname')
         );
         // check type of course and set vocational or diploma course
@@ -271,9 +271,9 @@ class Student extends CI_Controller{
         // student data
         $student = array(
             'student_no'        => trim($this->input->post('student_no')),
-            'national_id'       => trim($this->input->post('national_id')),
+            'national_id'       => $this->input->post('national_id'),
             'email_address'     => trim($this->input->post('email_address')),
-            'mobile_no'         => trim($this->input->post('mobile_no')),
+            'mobile_no'         => $this->input->post('mobile_no'),
             'english_name'      => trim($this->input->post('english_name')),
             'arabic_name'       => trim($this->input->post('arabic_name')),
             'nationality'       => trim($this->input->post('nationality')),
@@ -284,8 +284,8 @@ class Student extends CI_Controller{
             'address'           => trim($this->input->post('address')),
             'date_of_birth'     => $this->input->post('dob'),
             'guardian_name'     => trim($this->input->post('guardian_name')),
-            'guardian_contact'  => trim($this->input->post('guardian_contact')),
-            'student_updated_by'        => $this->session->userdata('u_fullname')
+            'guardian_contact'  => $this->input->post('guardian_contact'),
+            'student_updated_by'=> $this->session->userdata('u_fullname')
         );
         // check type of course and set vocational or diploma course
         if($student['type_of_course']=='Vocational'){
@@ -380,57 +380,6 @@ class Student extends CI_Controller{
             $this->session->set_flashdata('success','Students has been activated');
         }
         redirect('students');
-    }
-
-    /**
-     * get_student function.
-     * 
-     * @access public
-     * @return process get student request by id
-     */
-    public function get_student($id = NULL){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data = $this->student_model->getStudents('s',array('student_id'=>$id));
-        echo json_encode($data);
-    }
-
-    /**
-     * student_update function.
-     * 
-     * @access public
-     * @return process update student request
-     */
-    public function student_update(){
-        $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $alert   = 'alert alert-success';
-        $msg     = 'Student has been updated!';
-        $stud_id = $this->input->post('student_id');
-        $data    = array(
-            'student_no'    => trim($this->input->post('student_no')),
-            'national_id'   => trim($this->input->post('national_id')),
-            'email_address' => trim($this->input->post('email_address')),
-            'mobile_no'     => trim($this->input->post('mobile_no')),
-            'english_name'  => trim($this->input->post('english_name')),
-            'arabic_name'   => trim($this->input->post('arabic_name')),
-            'nationality'   => trim($this->input->post('nationality'))
-        );
-        $condition = array('student_id !=' => $stud_id);
-        if(!empty($data['student_no']) && !empty($data['national_id']) && !empty($data['email_address']) && !empty($data['mobile_no'])){
-            if(($this->crud->isDataValid(array('student_no' => $data['student_no']),$condition,'tbl2')==TRUE) 
-                && ($this->crud->isDataValid(array('email_address' => $data['email_address']),$condition,'tbl2')==TRUE) 
-                && ($this->crud->isDataValid(array('mobile_no' => $data['mobile_no']),$condition,'tbl2')==TRUE)){
-                $cond = array('student_id'=>$stud_id);
-                $this->crud->updateData($data,$cond,'tbl2');
-                $this->user_model->recordLogs('Update Student Information',$this->session->userdata('u_id'));
-            }else{
-                $alert = 'alert alert-danger';
-                $msg   = 'Student has not been updated due to invalid input.';
-            }
-        }else{
-            $alert = 'alert alert-warning';
-            $msg   = 'Student has not been updated due to empty required fields.';
-        }
-        echo json_encode(array("status"=>TRUE,"msg"=>$msg,"class_add"=>$alert));
     }
 
     /**

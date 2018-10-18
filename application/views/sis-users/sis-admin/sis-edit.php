@@ -131,7 +131,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="national_id">National ID</label>
-                                                    <input type="text" class="form-control" id="national_id" name="national_id" data-mask="9999999999" placeholder="9999999999" value="<?php echo $student['national_id']; ?>">
+                                                    <input type="text" class="form-control" id="national_id" name="national_id" maxlength="10" data-mask="9999999999" placeholder="9999999999" value="<?php echo $student['national_id']; ?>">
                                                 </div>
                                             </div>
 

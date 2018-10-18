@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2018 at 09:10 AM
+-- Generation Time: Oct 18, 2018 at 09:32 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -429,7 +429,54 @@ INSERT INTO `history_logs` (`tbl_id`, `activity`, `created_by`, `device_use`, `d
 (280, 'Joey Minguillan Created subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:08:27'),
 (281, 'Joey Minguillan Created english proficiency rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:08:27'),
 (282, 'Joey Minguillan Created craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:08:27'),
-(283, 'Joey Minguillan Created core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:08:27');
+(283, 'Joey Minguillan Created core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:08:27'),
+(284, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:16:37'),
+(285, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:16:37'),
+(286, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:16:37'),
+(287, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:16:37'),
+(288, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:16:37'),
+(289, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:18:45'),
+(290, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:18:45'),
+(291, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:18:45'),
+(292, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:18:45'),
+(293, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:18:45'),
+(294, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:18'),
+(295, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:18'),
+(296, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:18'),
+(297, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:18'),
+(298, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:18'),
+(299, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:33'),
+(300, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:33'),
+(301, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:33'),
+(302, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:33'),
+(303, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:24:33'),
+(304, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:19'),
+(305, 'Joey Minguillan Updated subjects for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:19'),
+(306, 'Joey Minguillan Updated subjects for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:19'),
+(307, 'Joey Minguillan Updated eng. pro. rating for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:19'),
+(308, 'Joey Minguillan Updated craft rating and skill for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:19'),
+(309, 'Joey Minguillan Updated core rating and skill for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:19'),
+(310, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:53'),
+(311, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:53'),
+(312, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:53'),
+(313, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:53'),
+(314, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:25:53'),
+(315, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:28:38'),
+(316, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:28:39'),
+(317, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:28:39'),
+(318, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:28:39'),
+(319, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:28:39'),
+(320, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:30:34'),
+(321, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:30:34'),
+(322, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:30:34'),
+(323, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:30:34'),
+(324, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:30:34'),
+(325, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
+(326, 'Joey Minguillan Updated subjects for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
+(327, 'Joey Minguillan Updated subjects for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
+(328, 'Joey Minguillan Updated eng. pro. rating for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
+(329, 'Joey Minguillan Updated craft rating and skill for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
+(330, 'Joey Minguillan Updated core rating and skill for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35');
 
 -- --------------------------------------------------------
 
@@ -492,7 +539,7 @@ INSERT INTO `security_config` (`max_login_attempt`, `soft_lock`, `max_password_a
 CREATE TABLE `student` (
   `student_id` int(11) NOT NULL,
   `student_no` int(11) NOT NULL,
-  `national_id` int(11) DEFAULT NULL,
+  `national_id` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email_address` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mobile_no` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `english_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -521,12 +568,12 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_no`, `national_id`, `email_address`, `mobile_no`, `english_name`, `arabic_name`, `nationality`, `company`, `type_of_course`, `training_start`, `training_end`, `diploma_course`, `vocational_course`, `address`, `date_of_birth`, `guardian_name`, `guardian_contact`, `id_picture`, `student_status`, `student_created_by`, `student_updated_by`, `student_created`, `student_modified`) VALUES
-(1, 12345, 1235123154, 'james@gmail.com', '(977) 474-5044', 'James Reid', 'Abdul Jamilla', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-16', '2019-06-16', 1, NULL, '123 Habdulla Kabul', '2018-10-02', 'Meshkatic Jamila', '(977) 474-5044', '', '1', 'Joey Minguillan', '1', '2018-10-16 17:33:53', '2018-10-17 23:16:07'),
-(2, 14232, 1231234132, 'jericho@yahoo.com', '(977) 474-5044', 'Jericho Rosales', 'Jamidalla Habdullah', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-16', '2019-01-16', NULL, 1, '143 Rina Kabul', '2018-10-03', 'Jamidalla Habdullah Sr.', '(977) 474-5044', '', '1', 'Joey Minguillan', NULL, '2018-10-16 17:41:58', '2018-10-16 17:44:26'),
-(4, 14143, 1245412643, 'rayber@gmail.com', '(926) 451-6464', 'Rayber Crusz', 'Rayber Crusz', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-04-12', 2, NULL, 'Istanbuul', '2018-10-11', 'Rayber Crusz Sr.', '(921) 465-4566', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:04:16', '2018-10-16 18:04:16'),
-(5, 23463, 1256235575, 'jay@yahoo.com', '(921) 564-1214', 'Jay-r Cruz', 'Jay-r Cruz', 'Arabian', 'Meshkatic Assoc for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-05-10', 2, NULL, 'Istanbul', '2018-10-19', 'Jay-r Cruz Sr.', '(925) 165-4654', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
-(6, 15657, 2147483647, 'shamcy@gmail.com', '(971) 541-6546', 'Shamcy Supsup', 'Shamcy Supsup', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2018-10-15', 1, NULL, 'Istanbul', '2018-10-16', 'Shamie Supsup', '(985) 764-6546', '156571.jpg', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-16 22:00:32', '2018-10-18 15:05:40'),
-(7, 69678, 2147483647, 'gellal@gmail.com', '(923) 164-5165', 'Gellal Mystogan', 'Gellal Mystogan', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-18', '2019-01-18', NULL, 4, 'Jones Bridge', '2018-10-25', 'Gellal Mystogan Sr.', '(951) 265-4645', '69678.jpg', '1', 'Joey Minguillan', NULL, '2018-10-18 15:08:27', '2018-10-18 15:08:27');
+(1, 12345, '1235123154', 'james@gmail.com', '(977) 474-5044', 'James Reid', 'Abdul Jamilla', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-16', '2019-06-16', 1, NULL, '123 Habdulla Kabul', '2018-10-02', 'Meshkatic Jamila', '(977) 474-5044', '', '1', 'Joey Minguillan', '1', '2018-10-16 17:33:53', '2018-10-17 23:16:07'),
+(2, 14232, '1231234132', 'jericho@yahoo.com', '(977) 474-5044', 'Jericho Rosales', 'Jamidalla Habdullah', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-16', '2019-01-16', NULL, 1, '143 Rina Kabul', '2018-10-03', 'Jamidalla Habdullah Sr.', '(977) 474-5044', '', '1', 'Joey Minguillan', NULL, '2018-10-16 17:41:58', '2018-10-16 17:44:26'),
+(4, 14143, '1245412643', 'rayber@gmail.com', '(926) 451-6464', 'Rayber Crusz', 'Rayber Crusz', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-04-12', 2, NULL, 'Istanbuul', '2018-10-11', 'Rayber Crusz Sr.', '(921) 465-4566', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:04:16', '2018-10-16 18:04:16'),
+(5, 23463, '1256235575', 'jay@yahoo.com', '(921) 564-1214', 'Jay-r Cruz', 'Jay-r Cruz', 'Arabian', 'Meshkatic Assoc for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-05-10', 2, NULL, 'Istanbul', '2018-10-19', 'Jay-r Cruz Sr.', '(925) 165-4654', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
+(6, 15657, '9966322558', 'shamcy@gmail.com', '(971) 541-6546', 'Shamcy Supsup', 'Shamcy Supsup', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2018-10-15', 1, NULL, 'Istanbul', '2018-10-16', 'Shamie Supsup', '(985) 764-6546', '156571.jpg', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-16 22:00:32', '2018-10-18 15:31:35'),
+(7, 69678, '3216549874', 'gellal@gmail.com', '(923) 164-5165', 'Gellal Mystogan', 'Gellal Mystogan', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-18', '2019-01-18', NULL, 4, 'Jones Bridge', '2018-10-25', 'Gellal Mystogan Sr.', '(951) 265-4645', '69678.jpg', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 15:08:27', '2018-10-18 15:30:34');
 
 -- --------------------------------------------------------
 
@@ -558,7 +605,7 @@ INSERT INTO `student_subject` (`tbl_id`, `student_id`, `subject`, `subject_code`
 (3, 5, 3, '', '00:00:00', 3, '', 'Joey Minguillan', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
 (4, 6, 4, '', '14:30:00', 1, 'TUESDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-16 22:00:33', '2018-10-18 15:03:11'),
 (5, 6, 1, '', '08:00:00', 3, 'WEDNESDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 14:56:31', '2018-10-18 14:57:41'),
-(6, 7, 2, '', '14:30:00', 3, 'FRIDAY', 'Joey Minguillan', NULL, '2018-10-18 15:08:27', '2018-10-18 15:08:27');
+(6, 7, 2, '', '14:30:00', 3, 'FRIDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 15:08:27', '2018-10-18 15:16:37');
 
 -- --------------------------------------------------------
 
@@ -721,7 +768,7 @@ ALTER TABLE `diploma_course`
 -- AUTO_INCREMENT for table `history_logs`
 --
 ALTER TABLE `history_logs`
-  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=284;
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=331;
 
 --
 -- AUTO_INCREMENT for table `room`
