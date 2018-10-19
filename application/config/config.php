@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-date_default_timezone_set('Asia/Manila');
+date_default_timezone_set('Asia/Riyadh');
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -23,8 +23,8 @@ date_default_timezone_set('Asia/Manila');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/sis/';
-$config['site_url'] = 'http://localhost/sis/';
+$config['base_url'] = 'http://sis.uitcgroup.com/';
+$config['site_url'] = 'http://sis.uitcgroup.com/';
 
 /*
 |--------------------------------------------------------------------------

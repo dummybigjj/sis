@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2018 at 09:32 AM
+-- Generation Time: Oct 19, 2018 at 10:31 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -476,7 +476,15 @@ INSERT INTO `history_logs` (`tbl_id`, `activity`, `created_by`, `device_use`, `d
 (327, 'Joey Minguillan Updated subjects for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
 (328, 'Joey Minguillan Updated eng. pro. rating for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
 (329, 'Joey Minguillan Updated craft rating and skill for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
-(330, 'Joey Minguillan Updated core rating and skill for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35');
+(330, 'Joey Minguillan Updated core rating and skill for 15657', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-18 15:31:35'),
+(331, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:00:43'),
+(332, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:02:26'),
+(333, 'Joey Minguillan Created subjects for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:02:26'),
+(334, 'Joey Minguillan Updated eng. pro. rating for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:02:26'),
+(335, 'Joey Minguillan Updated craft rating and skill for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:02:26'),
+(336, 'Joey Minguillan Updated core rating and skill for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:02:27'),
+(337, 'Logout user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 13:43:18'),
+(338, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 13:43:25');
 
 -- --------------------------------------------------------
 
@@ -568,7 +576,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_no`, `national_id`, `email_address`, `mobile_no`, `english_name`, `arabic_name`, `nationality`, `company`, `type_of_course`, `training_start`, `training_end`, `diploma_course`, `vocational_course`, `address`, `date_of_birth`, `guardian_name`, `guardian_contact`, `id_picture`, `student_status`, `student_created_by`, `student_updated_by`, `student_created`, `student_modified`) VALUES
-(1, 12345, '1235123154', 'james@gmail.com', '(977) 474-5044', 'James Reid', 'Abdul Jamilla', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-16', '2019-06-16', 1, NULL, '123 Habdulla Kabul', '2018-10-02', 'Meshkatic Jamila', '(977) 474-5044', '', '1', 'Joey Minguillan', '1', '2018-10-16 17:33:53', '2018-10-17 23:16:07'),
+(1, 12345, '1235123154', 'james@gmail.com', '(977) 474-5044', 'James Reid', 'Abdul Jamilla', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-16', '2019-06-16', 3, NULL, '123 Habdulla Kabul', '2018-10-02', 'Meshkatic Jamila', '(977) 474-5044', '', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-16 17:33:53', '2018-10-19 12:02:26'),
 (2, 14232, '1231234132', 'jericho@yahoo.com', '(977) 474-5044', 'Jericho Rosales', 'Jamidalla Habdullah', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-16', '2019-01-16', NULL, 1, '143 Rina Kabul', '2018-10-03', 'Jamidalla Habdullah Sr.', '(977) 474-5044', '', '1', 'Joey Minguillan', NULL, '2018-10-16 17:41:58', '2018-10-16 17:44:26'),
 (4, 14143, '1245412643', 'rayber@gmail.com', '(926) 451-6464', 'Rayber Crusz', 'Rayber Crusz', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-04-12', 2, NULL, 'Istanbuul', '2018-10-11', 'Rayber Crusz Sr.', '(921) 465-4566', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:04:16', '2018-10-16 18:04:16'),
 (5, 23463, '1256235575', 'jay@yahoo.com', '(921) 564-1214', 'Jay-r Cruz', 'Jay-r Cruz', 'Arabian', 'Meshkatic Assoc for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-05-10', 2, NULL, 'Istanbul', '2018-10-19', 'Jay-r Cruz Sr.', '(925) 165-4654', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
@@ -605,7 +613,8 @@ INSERT INTO `student_subject` (`tbl_id`, `student_id`, `subject`, `subject_code`
 (3, 5, 3, '', '00:00:00', 3, '', 'Joey Minguillan', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
 (4, 6, 4, '', '14:30:00', 1, 'TUESDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-16 22:00:33', '2018-10-18 15:03:11'),
 (5, 6, 1, '', '08:00:00', 3, 'WEDNESDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 14:56:31', '2018-10-18 14:57:41'),
-(6, 7, 2, '', '14:30:00', 3, 'FRIDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 15:08:27', '2018-10-18 15:16:37');
+(6, 7, 2, '', '14:30:00', 3, 'FRIDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 15:08:27', '2018-10-18 15:16:37'),
+(7, 1, 4, '', '12:30:00', 4, 'SATURDAY', 'Joey Minguillan', NULL, '2018-10-19 12:02:26', '2018-10-19 12:02:26');
 
 -- --------------------------------------------------------
 
@@ -665,7 +674,7 @@ CREATE TABLE `user_credential` (
 --
 
 INSERT INTO `user_credential` (`user_id`, `u_full_name`, `u_email_address`, `u_password`, `designation`, `password_reset_date`, `login_attempt`, `locked_time`, `profile_pic`, `status`, `recent_login`, `device_name`, `device_ip_address`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Joey Minguillan', 'joey@gmail.com', '$2y$10$RBJH19w7dxfH1I47eC7Hce6uorVzuzUsvRFDQ9L/iof1h9tC0.mt.', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, '0611.jpg', '1', '2018-10-18 14:51:12', 'JUN-PC', '::1', 1, 1, '2018-09-04 12:28:46', '2018-10-18 14:51:12'),
+(1, 'Joey Minguillan', 'joey@gmail.com', '$2y$10$RBJH19w7dxfH1I47eC7Hce6uorVzuzUsvRFDQ9L/iof1h9tC0.mt.', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, '0611.jpg', '1', '2018-10-19 13:43:25', 'JUN-PC', '::1', 1, 1, '2018-09-04 12:28:46', '2018-10-19 13:43:25'),
 (2, 'Administrator Ako', 'admin@gmail.com', '$2y$10$81uoJHMTpPr7h31Wfcugve2rWwUQXO2Fh3Q4kjuFDuZU/nfcmrB8S', 'Administrator', '2018-12-04 13:33:35', NULL, NULL, '', '1', NULL, NULL, NULL, 1, 1, '2018-09-05 13:33:35', '2018-09-19 22:31:44'),
 (3, 'Reynan Sho', 'reynan@gmail.com', '$2y$10$lWYsyDuWhTtR4TL3tF8y/e/eUMO8TstSc.e0ouC9.McM4o.r09Jyi', 'Registrar', '2018-12-04 13:35:31', NULL, NULL, 'vince.png', '1', '2018-10-18 10:18:13', 'JUN-PC', '::1', 1, 3, '2018-09-05 13:35:31', '2018-10-18 10:18:13'),
 (4, 'Ricky Rivera', 'ricky@gmail.com', '$2y$10$Avxj/AmYe59ypXLTdQFYbu8zWa4Jqd4us0K4IK3LUGBMmGjUWBA2C', 'Program Head', '2019-01-16 10:26:21', NULL, NULL, 'avatar-1.jpg', '1', '2018-10-18 10:35:48', 'JUN-PC', '::1', 1, 4, '2018-10-18 10:26:21', '2018-10-18 10:35:48');
@@ -768,7 +777,7 @@ ALTER TABLE `diploma_course`
 -- AUTO_INCREMENT for table `history_logs`
 --
 ALTER TABLE `history_logs`
-  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=331;
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=339;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -786,7 +795,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_subject`
 --
 ALTER TABLE `student_subject`
-  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `subject`
