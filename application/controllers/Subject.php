@@ -44,7 +44,7 @@ class Subject extends CI_Controller{
      */
     public function subjects(){
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
-        $data['header'] = array('title'=>'Subject','icon'=>'ios-book-outline');
+        $data['header'] = array('title'=>'Subjects','icon'=>'ios-book-outline');
         // Necessary page data
         $data['subject'] = $this->subject_model->getSubjects('a','');
         // Page headers and navigation
