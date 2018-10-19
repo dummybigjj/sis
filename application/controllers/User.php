@@ -81,6 +81,7 @@ class User extends CI_Controller{
      */
     public function users(){
         $this->crud->credibilityAuth(array('Administrator'));
+        // $this->output->enable_profiler(TRUE);
         $data['header'] = array('title'=>'User','icon'=>'ios-person-outline');
         // Necessary page data here
         $data['users'] = $this->user_model->getUsers('a','');        
@@ -130,6 +131,7 @@ class User extends CI_Controller{
      */
     public function user_profile(){
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
+        // $this->output->enable_profiler(TRUE);
         $data['header'] = array('title'=>'User Profile','icon'=>'ios-person-outline');
         // Necessary page data
         // Page headers and navigation

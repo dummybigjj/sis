@@ -103,6 +103,7 @@ class Student extends CI_Controller{
     public function student($student_id = NULL){
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
+        // $this->output->enable_profiler(TRUE);
         // Necessary page data
         // student info
         $data['student'] = $this->student_model->getStudents('s',array('student_id'=>$student_id));
