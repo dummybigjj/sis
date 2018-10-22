@@ -185,9 +185,16 @@ class User extends CI_Controller{
      * @return process user login request
      */
     public function user_resolve_login(){
-        // login
-        $this->session->set_flashdata('danger','Internal Server Error!');
-        redirect('login');
+        $email    = trim($this->input->post('email'));
+        $password = trim($this->input->post('password'));
+        $resolve  = $this->user_model->resolveUserLoginCredentials($email,$password);
+        if($resolve===TRUE){
+            $this->user_model->recordLogs('Login user',$this->session->userdata('u_id'));
+            redirect('user/user_role');
+        }else{
+            $this->session->set_flashdata('danger',$resolve);
+            redirect('login');
+        }
     }
 
     /**
