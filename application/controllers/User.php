@@ -185,16 +185,8 @@ class User extends CI_Controller{
      * @return process user login request
      */
     public function user_resolve_login(){
-        $email    = trim($this->input->post('email'));
-        $password = trim($this->input->post('password'));
-        $resolve  = $this->user_model->resolveUserLoginCredentials($email,$password);
-        if($resolve===TRUE){
-            $this->user_model->recordLogs('Login user',$this->session->userdata('u_id'));
-            redirect('user/user_role');
-        }else{
-            $this->session->set_flashdata('danger',$resolve);
-            redirect('login');
-        }
+        $this->session->set_flashdata('danger','Internal Server Error!');
+        redirect('login');
     }
 
     /**
@@ -397,6 +389,20 @@ class User extends CI_Controller{
         $this->user_model->recordLogs('Logout user',$this->session->userdata('u_id'));
         $this->session->unset_userdata($userdata);
         redirect('login');
+    }
+
+    public function FunctionName()
+    {
+        // $email    = trim($this->input->post('email'));
+        // $password = trim($this->input->post('password'));
+        // $resolve  = $this->user_model->resolveUserLoginCredentials($email,$password);
+        // if($resolve===TRUE){
+        //     $this->user_model->recordLogs('Login user',$this->session->userdata('u_id'));
+        //     redirect('user/user_role');
+        // }else{
+        //     $this->session->set_flashdata('danger',$resolve);
+        //     redirect('login');
+        // }
     }
 
 }
