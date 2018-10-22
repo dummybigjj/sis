@@ -185,6 +185,7 @@ class User extends CI_Controller{
      * @return process user login request
      */
     public function user_resolve_login(){
+        // login
         $this->session->set_flashdata('danger','Internal Server Error!');
         redirect('login');
     }
