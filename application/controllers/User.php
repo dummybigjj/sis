@@ -185,6 +185,7 @@ class User extends CI_Controller{
      * @return process user login request
      */
     public function user_resolve_login(){
+        // login procedure
         $email    = trim($this->input->post('email'));
         $password = trim($this->input->post('password'));
         $resolve  = $this->user_model->resolveUserLoginCredentials($email,$password);
