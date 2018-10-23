@@ -145,8 +145,8 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="picture"><font color="red">*</font> Student Picture</label>
-                                                    <input type="file" class="form-control required" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
+                                                    <label for="picture">Student Picture</label>
+                                                    <input type="file" class="form-control" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
                                                     <small id="help_block_file" class="form-text text-muted">
                                                         image file accepts: .jpg, .jpeg, and .png<br>
                                                         recommended dimensions: 400px x 400px
@@ -383,12 +383,10 @@
                                                     <label for="eng_rating"><font color="red">*</font> Rating</label>
                                                     <select name="eng_rating" id="eng_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="Poor">Poor</option>
-                                                      <option value="Below Average">Below Average</option>
-                                                      <option value="Average">Average</option>
-                                                      <option value="Good">Good</option>
-                                                      <option value="Very Good">Very Good</option>
-                                                      <option value="Excellent">Excellent</option>
+                                                      <option value="Competent">Competent</option>
+                                                      <option value="Not Yet Competent">Not Yet Competent</option>
+                                                      <option value="Failed">Failed</option>
+                                                      <option value="Withdraw">Withdraw</option>
                                                     </select>
                                                 </div>
                                             </div><br>
@@ -396,10 +394,11 @@
                                             <div class="form-group col-sm-12">
                                                 <label><i class="fa fa-book"></i> Craft </label>
                                             </div>
+
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="craft_skill"><font color="red">*</font> Skill</label>
-                                                    <select name="craft_skill" id="craft_skill" class="form-control required" style="width: 100%">
+                                                    <label for="craft_skill"><font color="red">*</font> Skills</label>
+                                                    <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
                                                       <option></option>
                                                       <option value="1">1</option>
                                                       <option value="2">2</option>
@@ -414,25 +413,32 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="craft_rating"><font color="red">*</font> Rating</label>
-                                                    <select name="craft_rating" id="craft_rating" class="form-control required" style="width: 100%">
+                                                    <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="Poor">Poor</option>
-                                                      <option value="Below Average">Below Average</option>
-                                                      <option value="Average">Average</option>
-                                                      <option value="Good">Good</option>
-                                                      <option value="Very Good">Very Good</option>
-                                                      <option value="Excellent">Excellent</option>
+                                                      <option value="Competent">Competent</option>
+                                                      <option value="Not Yet Competent">Not Yet Competent</option>
+                                                      <option value="Failed">Failed</option>
+                                                      <option value="Withdraw">Withdraw</option>
                                                     </select>
                                                 </div>
                                             </div><br>
+                                            <div id="TextBoxesGroupCraft"></div>
+
+                                            <div class="col-lg-2">
+                                                <div class="btn-group">
+                                                    <button id="addButtonCraft" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
+                                                    <button id="removeButtonCraft" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
+                                                </div>
+                                            </div><hr>
 
                                             <div class="form-group col-sm-12">
                                                 <label><i class="fa fa-book"></i> Core </label>
                                             </div>
+
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="core_skill"><font color="red">*</font> Skill</label>
-                                                    <select name="core_skill" id="core_skill" class="form-control required" style="width: 100%">
+                                                    <label for="core_skill"><font color="red">*</font> Skills</label>
+                                                    <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
                                                       <option></option>
                                                       <option value="1">1</option>
                                                       <option value="2">2</option>
@@ -447,17 +453,24 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="core_rating"><font color="red">*</font> Rating</label>
-                                                    <select name="core_rating" id="core_rating" class="form-control required" style="width: 100%">
+                                                    <select name="core_rating[]" id="core_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="Poor">Poor</option>
-                                                      <option value="Below Average">Below Average</option>
-                                                      <option value="Average">Average</option>
-                                                      <option value="Good">Good</option>
-                                                      <option value="Very Good">Very Good</option>
-                                                      <option value="Excellent">Excellent</option>
+                                                      <option value="Competent">Competent</option>
+                                                      <option value="Not Yet Competent">Not Yet Competent</option>
+                                                      <option value="Failed">Failed</option>
+                                                      <option value="Withdraw">Withdraw</option>
                                                     </select>
                                                 </div>
+                                            </div><br>
+
+                                            <div id="TextBoxesGroupCore"></div>
+                                            <div class="col-lg-2">
+                                                <div class="btn-group">
+                                                    <button id="addButtonCore" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
+                                                    <button id="removeButtonCore" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
+                                                </div>
                                             </div>
+
 
                                         </div>
                                     </div>
@@ -583,6 +596,124 @@
           });
 
         });
+
+        // add craft skillss
+
+        $(document).ready(function(){
+          var counter = 1;
+          $("#addButtonCraft").click(function () {
+            if(counter>9){
+                alert("Only 9 forms are allowed");
+                return false;
+            }
+                
+            var new_craft = $(document.createElement('div')).attr("id", 'new_craft' + counter);
+            new_craft.after().html(
+
+                '<div class="form-group row col-lg-12">'+
+                    '<div class="col-lg-6">'+
+                        '<label for="craft_skill'+counter+'"><font color="red">*</font> Skill</label>'+
+                        '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
+                          '<option></option>'+
+                          '<option value="1">1</option>'+
+                          '<option value="2">2</option>'+
+                          '<option value="3">3</option>'+
+                          '<option value="4">4</option>'+
+                          '<option value="5">5</option>'+
+                          '<option value="6">6</option>'+
+                          '<option value="7">7</option>'+
+                          '<option value="8">8</option>'+
+                          '<option value="9">9</option>'+
+                        '</select>'+
+                    '</div>'+
+                    '<div class="col-lg-6">'+
+                        '<label for="craft_rating'+counter+'"><font color="red">*</font> Rating</label>'+
+                        '<select name="craft_rating[]" id="craft_rating'+counter+'" class="form-control required">'+
+                          '<option></option>'+
+                          '<option value="Competent">Competent</option>'+
+                          '<option value="Not Yet Competent">Not Yet Competent</option>'+
+                          '<option value="Failed">Failed</option>'+
+                          '<option value="Withdraw">Withdraw</option>'+
+                        '</select>'+
+                    '</div>'+
+                '</div><br>'
+
+            );
+
+            new_craft.appendTo("#TextBoxesGroupCraft");
+            counter++;
+          });
+
+          $("#removeButtonCraft").click(function (){
+            if(counter==1){
+              alert("No more forms to remove");
+              return false;
+            }
+            counter--;
+            $("#new_craft" + counter).remove();
+          });
+
+        });
+
+        // add core skills
+
+        $(document).ready(function(){
+          var counter = 1;
+          $("#addButtonCore").click(function () {
+            if(counter>9){
+                alert("Only 9 forms are allowed");
+                return false;
+            }
+                
+            var new_core = $(document.createElement('div')).attr("id", 'new_core' + counter);
+            new_core.after().html(
+
+                '<div class="form-group row col-lg-12">'+
+                    '<div class="col-lg-6">'+
+                        '<label for="core_skill'+counter+'"><font color="red">*</font> Skill</label>'+
+                        '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
+                          '<option></option>'+
+                          '<option value="1">1</option>'+
+                          '<option value="2">2</option>'+
+                          '<option value="3">3</option>'+
+                          '<option value="4">4</option>'+
+                          '<option value="5">5</option>'+
+                          '<option value="6">6</option>'+
+                          '<option value="7">7</option>'+
+                          '<option value="8">8</option>'+
+                          '<option value="9">9</option>'+
+                        '</select>'+
+                    '</div>'+
+                    '<div class="col-lg-6">'+
+                        '<label for="core_rating'+counter+'"><font color="red">*</font> Rating</label>'+
+                        '<select name="core_rating[]" id="core_rating'+counter+'" class="form-control required">'+
+                          '<option></option>'+
+                          '<option value="Competent">Competent</option>'+
+                          '<option value="Not Yet Competent">Not Yet Competent</option>'+
+                          '<option value="Failed">Failed</option>'+
+                          '<option value="Withdraw">Withdraw</option>'+
+                        '</select>'+
+                    '</div>'+
+                '</div><br>'
+
+            );
+
+            new_core.appendTo("#TextBoxesGroupCore");
+            counter++;
+          });
+
+          $("#removeButtonCore").click(function (){
+            if(counter==1){
+              alert("No more forms to remove");
+              return false;
+            }
+            counter--;
+            $("#new_core" + counter).remove();
+          });
+
+        });
+
+
     </script>
 
 </body>

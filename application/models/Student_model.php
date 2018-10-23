@@ -99,6 +99,56 @@ class Student_model extends CI_Model {
 	}
 
 	/**
+	 * insertOrUpdateStudentCraft function.
+	 * 
+	 * @access public
+	 * @param associative array $craft
+	 * @param int $student_id
+	 * @return boolean TRUE on success.
+	 */
+	public function insertOrUpdateStudentCraft($craft = array(),$student_id){
+		for ($i=0; $i < count($craft['craft_skill']); $i++) { 
+			$data = array(
+				'craft_rating' => $craft['craft_rating'][$i],
+				'craft_skill'  => $craft['craft_skill'][$i]
+			);
+			if(array_key_exists($i, $craft['craft_id'])){
+				$data['updated_by'] = $this->session->userdata('u_id');
+				$this->crud->updateData($data,array('craft_id'=>$craft['craft_id'][$i]),'tbl10');
+			}else{
+                $fk = array('student_id'=>$student_id);
+                $this->crud->setData($data,$fk,'tbl10');
+			}
+		}
+		return TRUE;
+	}
+
+	/**
+	 * insertOrUpdateStudentCore function.
+	 * 
+	 * @access public
+	 * @param associative array $craft
+	 * @param int $student_id
+	 * @return boolean TRUE on success.
+	 */
+	public function insertOrUpdateStudentCore($core = array(),$student_id){
+		for ($i=0; $i < count($core['core_skill']); $i++) { 
+			$data = array(
+				'core_rating' => $core['core_rating'][$i],
+				'core_skill'  => $core['core_skill'][$i]
+			);
+			if(array_key_exists($i, $core['core_id'])){
+				$data['updated_by'] = $this->session->userdata('u_id');
+				$this->crud->updateData($data,array('core_id'=>$core['core_id'][$i]),'tbl12');
+			}else{
+                $fk = array('student_id'=>$student_id);
+                $this->crud->setData($data,$fk,'tbl12');
+			}
+		}
+		return TRUE;
+	}
+
+	/**
 	 * isValidUniqueKey function.
 	 * 
 	 * @access public
@@ -159,101 +209,32 @@ class Student_model extends CI_Model {
 		return TRUE;
 	}
 
-	//------------------------------------------ Below is functions are deprecated ------------------------------------------//
-
 	/**
-	 * processStundentSchedule function.
+	 * transformScheduleRange function.
 	 * 
 	 * @access private
-	 * @param mixed $current_batch_year
-	 * @return boolean TRUE on success.
+	 * @param mixed $time
+	 * @return mixed time range on success.
 	 */
-	public function processStundentSchedule($schedule = array()){
-		$condition = array(
-			'room_id'		=>$schedule['room_id'],
-			'day'			=>$schedule['day'],
-			'time'			=>$schedule['time'],
-			'batch_year_id' =>$schedule['batch_year_id']
-		);
-		if($this->isScheduleValid($condition)==TRUE){
-			$this->crud->setData($schedule,'','tbl10');
-			$this->user_model->recordLogs('New Schedule has been created',$this->session->userdata('u_id'));
-			return TRUE;
-		}else{
-			// Expected result is FALSE
-			if($this->isScheduleValid($schedule)==FALSE){
-				return TRUE;
-			}
-		}
-		return FALSE;
-	}
-
-	/**
-	 * isScheduleValid function.
-	 * 
-	 * @access private
-	 * @param mixed $current_batch_year
-	 * @return boolean TRUE on valid.
-	 */
-	private function isScheduleValid($condition = array()){
-		if($this->crud->getData('','c',$condition,'tbl10') > 0){
-			return FALSE;
-		}
-		return TRUE;
-	}
-
-	/**
-	 * isSubjectValid function.
-	 * 
-	 * @access private
-	 * @param mixed $subejct
-	 * @return boolean TRUE on valid.
-	 */
-	public function isSubjectValid($subject = array()){
-		$condition = array(
-			'student_id'	=> $subject['student_id'],
-			'subject' 		=> $subject['subject'],
-			'subject_code'	=> $subject['subject_code'],
-			'batch_year'	=> $subject['batch_year']
-		);
-		$valid = $this->crud->getData('','c',$condition,'tbl9');
-		if($valid > 0){
-			return FALSE;
-		}
-		return TRUE;
-	}
-
-	/**
-	 * validateStudentsSubject function.
-	 * validate student subjects
-	 * 
-	 * @access public
-	 * @param array $students
-	 * @param associative array $subjects
-	 * @return array list of valid students.
-	 */
-	public function validateStudentsSubject($students = array(),$subjects = array()){
-		$new_students = array();
-		$ctr = 0;
-		$con = array(
-			'subject' 		=> $subjects['subject'],
-			'subject_code'	=> $subjects['subject_code'],
-			'batch_year'	=> $subjects['batch_year']
-		);
-		for ($i=0; $i < count($students); $i++) { 
-			$con['student_id'] = $students[$i];
-			$count = $this->crud->getData('','c',$con,'tbl9');
-			if($count > 0){
-				
+	public function transformScheduleRange($time){
+		$start_time = "";
+		$end_time	= "";
+		if($time<='12:00:00'){
+			$start_time = rtrim(rtrim($time,'0'),':').'AM';
+			if($time=='11:30:00'){
+				$end_time	= rtrim(rtrim(date('H:i:s', strtotime('+1 hour +30 minutes',strtotime($time))),'0'),':').'PM';
 			}else{
-				$new_students[$ctr] = $students[$i];
-				$ctr++;
+				$end_time	= rtrim(rtrim(date('H:i:s', strtotime('+1 hour +30 minutes',strtotime($time))),'0'),':').'AM';
 			}
+		}else{
+			if($time=='12:30:00'){
+				$start_time = rtrim(rtrim($time,'0'),':').'PM';
+			}else{
+				$start_time = rtrim(rtrim(date('H:i:s', strtotime('-12 hours',strtotime($time))),'0'),':').'PM';
+			}
+			$end_time	= rtrim(rtrim(date('H:i:s', strtotime('-10 hours -30 minutes',strtotime($time))),'0'),':').'PM';
 		}
-
-
-
-		return $new_students;
+		return $start_time." - ".$end_time;
 	}
 
 }

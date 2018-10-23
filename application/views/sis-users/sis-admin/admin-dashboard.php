@@ -11,7 +11,7 @@
                     <div class="cardbox cardbox-flat text-center">
                       <div class="cardbox-heading">Total Registered Students</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart1" data-percent="100"><span>100</span></div>
+                        <div class="easypie-chart" id="easypiechart1" data-percent="100"><span><?php echo $registered; ?></span></div>
                       </div>
                     </div>
                   </div>
@@ -19,7 +19,7 @@
                     <div class="cardbox cardbox-flat text-center">
                       <div class="cardbox-heading">Students in Diploma Course</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart2" data-percent="45"><span>45</span></div>
+                        <div class="easypie-chart" id="easypiechart2" data-percent="<?php echo 100-((($registered - $diploma)/$registered)*100); ?>"><span><?php echo $diploma; ?></span></div>
                       </div>
                     </div>
                   </div>
@@ -27,7 +27,7 @@
                     <div class="cardbox cardbox-flat text-center">
                       <div class="cardbox-heading">Students in Vocational Course</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart3" data-percent="25"><span>25</span></div>
+                        <div class="easypie-chart" id="easypiechart3" data-percent="<?php echo 100-((($registered - $vocational)/$registered)*100); ?>"><span><?php echo $vocational; ?></span></div>
                       </div>
                     </div>
                   </div>
@@ -35,7 +35,7 @@
                     <div class="cardbox cardbox-flat text-center">
                       <div class="cardbox-heading">Completed Students</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart4" data-percent="60"><span>60</span></div>
+                        <div class="easypie-chart" id="easypiechart4" data-percent="<?php echo 100-((($registered - $completed)/$registered)*100); ?>"><span><?php echo $completed; ?></span></div>
                       </div>
                     </div>
                   </div>
@@ -69,7 +69,7 @@
                             <td>Joey Miller</td>
                             <td>2018-09-01</td>
                             <td>Desktop/Workstation</td>
-                            <td>Jun-pc</td>
+                            <td>JOEY</td>
                             <td>192.168.254.107</td>
                           </tr>
                           <tr>
@@ -85,7 +85,7 @@
                             <td>Joey Miller</td>
                             <td>2018-09-01</td>
                             <td>Desktop/Workstation</td>
-                            <td>Jun-pc</td>
+                            <td>JOEY</td>
                             <td>192.168.254.107</td>
                           </tr>
                         </tbody>
@@ -116,7 +116,7 @@
                         <tbody>
                           <tr data-expanded="true">
                             <td>Joey Miller</td>
-                            <td>Jun-pc</td>
+                            <td>JOEY</td>
                             <td>Login</td>
                             <td>Desktop/Workstation</td>
                             <td>192.168.254.108</td>
@@ -124,7 +124,7 @@
                           </tr>
                           <tr>
                             <td>Joey Miller</td>
-                            <td>Jun-pc</td>
+                            <td>JOEY</td>
                             <td>Login</td>
                             <td>Desktop/Workstation</td>
                             <td>192.168.254.108</td>
@@ -132,7 +132,7 @@
                           </tr>
                           <tr>
                             <td>Joey Miller</td>
-                            <td>Jun-pc</td>
+                            <td>JOEY</td>
                             <td>Login</td>
                             <td>Desktop/Workstation</td>
                             <td>192.168.254.108</td>

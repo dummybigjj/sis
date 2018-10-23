@@ -50,6 +50,10 @@ class Admin extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Dashboard','icon'=>'ios-speedometer-outline');
         // Necessary page data
+        $data['registered'] = $this->crud->getData('','c',array('student_status'=>'1'),'tbl2');
+        $data['diploma']    = $this->crud->getData('','c',array('student_status'=>'1','type_of_course'=>'Diploma'),'tbl2');
+        $data['vocational'] = $this->crud->getData('','c',array('student_status'=>'1','type_of_course'=>'Vocational'),'tbl2');
+        $data['completed']  = $this->crud->getData('','c',array('student_status'=>'1','training_end <'=>date('Y-m-d')),'tbl2');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);

@@ -118,8 +118,8 @@ class Student extends CI_Controller{
         // rooms
         $data['rooms'] = $this->room_model->getRooms('a',array('status'=>'1'));
         // student skills
-        $data['craft'] = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl10');
-        $data['core']  = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl12');
+        $data['craft'] = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'craft_skill ASC','tbl10');
+        $data['core']  = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'core_skill ASC','tbl12');
         $data['eng']   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
         // Page headers and navigation
         $this->load->view('templates/html-comp/sis-header');
@@ -222,24 +222,15 @@ class Student extends CI_Controller{
                 $this->crud->setData($eng_pro,'','tbl8');
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created english proficiency rating for '.$student['student_no'],$this->session->userdata('u_id'));
 
-
                 // set craft rating and skill
-                $craft = array(
-                    'student_id'    => $insert,
-                    'craft_rating'  => $this->input->post('craft_rating'),
-                    'craft_skill'   => $this->input->post('craft_skill')
-                );
-                $this->crud->setData($craft,'','tbl10');
+                $craft = array('craft_id'=>'','craft_rating'=>$this->input->post('craft_rating'),'craft_skill'=>$this->input->post('craft_skill'));
+                $this->student_model->insertOrUpdateStudentCraft($craft,$insert);
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
 
 
                 // set core rating and skill
-                $core = array(
-                    'student_id'   => $insert,
-                    'core_rating'  => $this->input->post('core_rating'),
-                    'core_skill'   => $this->input->post('core_skill')
-                );
-                $this->crud->setData($core,'','tbl12');
+                $core = array('core_id'=>'','core_rating'=>$this->input->post('core_rating'),'core_skill'=>$this->input->post('core_skill'));
+                $this->student_model->insertOrUpdateStudentCore($core,$insert);
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
             }else{
                 $msg_type= 'danger';
@@ -340,12 +331,12 @@ class Student extends CI_Controller{
             $this->crud->updateData($eng_pro,array('student_id' => $student_id),'tbl8');
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated eng. pro. rating for '.$student['student_no'],$this->session->userdata('u_id'));
             // update craft rating and skill
-            $craft = array('craft_rating'=>$this->input->post('craft_rating'),'craft_skill'=>$this->input->post('craft_skill'));
-            $this->crud->updateData($craft,array('student_id'=>$student_id),'tbl10');
+            $craft = array('craft_rating'=>$this->input->post('craft_rating'),'craft_skill'=>$this->input->post('craft_skill'),'craft_id'=>$this->input->post('craft_id'));
+            $this->student_model->insertOrUpdateStudentCraft($craft,$student_id);
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
             // update core rating and skill
-            $core = array('core_rating'=>$this->input->post('core_rating'),'core_skill'=>$this->input->post('core_skill'));
-            $this->crud->updateData($core,array('student_id'=>$student_id),'tbl12');
+            $core = array('core_rating'=>$this->input->post('core_rating'),'core_skill'=>$this->input->post('core_skill'),'core_id'=>$this->input->post('core_id'));
+            $this->student_model->insertOrUpdateStudentCore($core,$student_id);
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
         }else{
             $msg_type= 'danger';
@@ -395,8 +386,9 @@ class Student extends CI_Controller{
         empty($student_id)?redirect('students'):TRUE;
         // get student info
         $student = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl2');
-        $student_craft = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl10');
-        $student_core  = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl12');
+        $student_subjects = $this->student_model->getStudentSubjects(array('student_id'=>$student_id),'a');
+        $student_craft = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'craft_skill ASC','tbl10');
+        $student_core  = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'core_skill ASC','tbl12');
         $student_pro   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
 
         // get student diploma or vocational course
@@ -538,6 +530,9 @@ class Student extends CI_Controller{
                             }else{
                                 $html .= '<td>'.$vocational['voc_program'].' ('.$vocational['voc_program_acronym'].') - '.date('F d, Y',strtotime($student['training_start'])).' to '.date('F d, Y',strtotime($student['training_end'])).'</td>';
                             }
+
+
+
         $html .='       </tr>
 
                         <tr style="font-size:12px;">
@@ -552,7 +547,7 @@ class Student extends CI_Controller{
                         </tr>
 
                         <tr style="font-size:20px;color:blue;">
-                            <td>Student Basic and Personal Details</td>
+                            <td>Personal Details</td>
                         </tr>
                         <tr>
                             <td cellspacing="1" style="width:100%;border-top:3px #000000 solid;"> </td>
@@ -569,50 +564,50 @@ class Student extends CI_Controller{
                                 <td>'.$student['national_id'].'</td>
                             </tr>
                             <tr>
-                                <td>Mobile No.:</td>
-                                <td>'.$student['mobile_no'].'</td>
-                            </tr>
-                            <tr>
-                                <td>Email:</td>
-                                <td style="color:blue;">'.$student['email_address'].'</td>
-                            </tr>
-                            <tr>
-                                <td>Nationality:</td>
-                                <td>'.$student['nationality'].'</td>
-                            </tr>
-
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
                                 <td>English Name:</td>
                                 <td>'.$student['english_name'].'</td>
-                            </tr>
-                            <tr>
-                                <td>Date of Birth:</td>
-                                <td>'.date('F d, Y',strtotime($student['date_of_birth'])).'</td>
                             </tr>
                             <tr>
                                 <td>Address:</td>
                                 <td>'.$student['address'].'</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Guardian:</td>
-                                <td>'.$student['guardian_name'].'</td>
-                            </tr>
-                            <tr>
-                                <td>Guardian Contact:</td>
-                                <td>'.$student['guardian_contact'].'</td>
-                            </tr>
-                        </table><br><br><br><br>
+                        </table><br><br><br>
 
+                        <table>
+                            <tr style="font-size:20px;color:blue;">
+                                <td>Subjects and schedules</td>
+                            </tr>
+                            <tr>
+                                <td cellspacing="1" style="width:100%;border-top:3px #000000 solid;"> </td>
+                            </tr>
+                        </table>
+
+                        <table border="0">
+                            <tr>
+                                <td><b>Subject</b></td>
+                                <td><b>Room</b></td>
+                                <td><b>Day</b></td>
+                                <td><b>Time</b></td>
+                            </tr>';
+
+                            for ($i=0; $i < count($student_subjects); $i++) { 
+                                $html .= '
+                                    <tr>
+                                        <td>'.$student_subjects[$i]['subject_title'].'</td>
+                                        <td>'.$student_subjects[$i]['room_name'].'</td>
+                                        <td>'.$student_subjects[$i]['day'].'</td>
+                                        <td>'.$this->student_model->transformScheduleRange($student_subjects[$i]['time']).'</td>
+                                    </tr>';
+                            }
+                            
+                        
+            $html .=   '</table>
+
+                        <br><br><br>
                         <table>
 
                             <tr style="font-size:20px;color:blue;">
-                                <td>Student Skills Accumulated</td>
+                                <td>Skills Accumulated</td>
                             </tr>
                             <tr>
                                 <td cellspacing="1" style="width:100%;border-top:3px #000000 solid;"> </td>
@@ -637,36 +632,37 @@ class Student extends CI_Controller{
                                 <td><b>Craft</b></td>
                             </tr>
                         </table>
-                        <table>
-                            <tr>
-                                <td  style="width:10%;">Rating:</td>
-                                <td>'.$student_craft['craft_rating'].'</td>
-                            </tr>
-                            <tr>
-                                <td>Skills:</td>
-                                <td>'.$student_craft['craft_skill'].'</td>
-                            </tr>
-                        </table><br><br>
+                        <table>';
+
+                        for ($i=0; $i < count($student_craft); $i++) { 
+                            $html .='<tr>
+                                    <td style="width:7%;">Skills:</td>
+                                    <td style="width:10%;">'.$student_craft[$i]['craft_skill'].'</td>
+                                    <td style="width:10%;">Rating:</td>
+                                    <td>'.$student_craft[$i]['craft_rating'].'</td>
+                                </tr>';
+                        }
+                        
+                $html .='</table><br><br>
 
                         <table>
                             <tr>
                                 <td><b>Core</b></td>
                             </tr>
                         </table>
-                        <table>
-                            <tr>
-                                <td  style="width:10%;">Rating:</td>
-                                <td>'.$student_core['core_rating'].'</td>
-                            </tr>
-                            <tr>
-                                <td>Skills:</td>
-                                <td>'.$student_core['core_skill'].'</td>
-                            </tr>
-                        </table>
+                        <table>';
 
+                            for ($i=0; $i < count($student_core); $i++) { 
+                            $html .='<tr>
+                                        <td style="width:7%;">Skills:</td>
+                                        <td style="width:10%;">'.$student_core[$i]['core_skill'].'</td>
+                                        <td style="width:10%;">Rating:</td>
+                                        <td>'.$student_core[$i]['core_rating'].'</td>
+                                    </tr>';
+                            }
+
+                $html .='</table>
                     </table>
-
-                    
 
                 </td>
                 <td style="width:25%;">
@@ -674,12 +670,39 @@ class Student extends CI_Controller{
                     <table>
                         <tr>
                             <td align="right">';
+                            $file_path = base_url('uploads/students_images/'.$student['id_picture']);
                             if(!empty($student['id_picture'])){
-                                $html .= '<img border="1" width="140px" height="140px" src="'.base_url('uploads/students_images/'.$student['id_picture']).'" >';
+                                $html .= '<img border="1" width="140px" height="140px" src="'.$file_path.'" >';
                             }else{
                                 $html .= '<img border="1" width="140px" height="140px" src="'.base_url('uploads/students_images/not-available.png').'" >';
                             }
         $html .='           </td>
+                        </tr>
+                        <tr align="right"><td></td></tr>
+                        <tr align="right">
+                            <td color="blue">'.$student['email_address'].'</td>
+                        </tr>
+                        <tr align="right">
+                            <td>'.date('F d, Y',strtotime($student['date_of_birth'])).'</td>
+                        </tr>
+                        <tr align="right">
+                            <td>'.$student['mobile_no'].'</td>
+                        </tr>
+                        <tr align="right">
+                            <td>'.$student['nationality'].'</td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr align="right">
+                            <td><b>Guardian</b></td>
+                        </tr>
+                        <tr align="right">
+                            <td>'.$student['guardian_name'].'</td>
+                        </tr>
+                        <tr align="right">
+                            <td>'.$student['guardian_contact'].'</td>
                         </tr>
                     </table>
 
