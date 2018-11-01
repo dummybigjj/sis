@@ -662,6 +662,26 @@ class Student extends CI_Controller{
                             }
 
                 $html .='</table>
+
+                    <br><br><br><br><br><br><br>
+                    <table>
+                        <tr>
+                            <td><b>Verified and Assessed by</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>________________________</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>Mustafa Hassan Al Sulayyil</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>Registrar</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>'.date('m/d/Y').'</b></td>
+                        </tr>
+                    </table>
+
                     </table>
 
                 </td>
@@ -710,12 +730,12 @@ class Student extends CI_Controller{
             </tr>
         </table><br>
 
+
+        
+
         ';
 
-
-
-
-        $html1 = '<p style="font-size:12px;">Printed by: '.$this->session->userdata('u_fullname').'</p>';
+        
      
         // Print text using writeHTMLCell()
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);

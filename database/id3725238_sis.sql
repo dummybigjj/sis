@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2018 at 10:31 AM
+-- Generation Time: Oct 24, 2018 at 07:43 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -29,8 +29,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `core` (
+  `core_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `core_rating` enum('Poor','Below Average','Average','Good','Very Good','Excellent') COLLATE utf8_unicode_ci NOT NULL,
+  `core_rating` enum('Competent','Not Yet Competent','Failed','Withdraw') COLLATE utf8_unicode_ci NOT NULL,
   `core_skill` enum('1','2','3','4','5','6','7','8','9') COLLATE utf8_unicode_ci NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -41,12 +42,18 @@ CREATE TABLE `core` (
 -- Dumping data for table `core`
 --
 
-INSERT INTO `core` (`student_id`, `core_rating`, `core_skill`, `updated_by`, `created`, `modified`) VALUES
-(2, 'Very Good', '8', NULL, '2018-10-16 17:41:58', '2018-10-16 17:41:58'),
-(4, 'Excellent', '9', NULL, '2018-10-16 18:04:16', '2018-10-16 18:04:16'),
-(5, 'Excellent', '9', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
-(6, 'Excellent', '9', NULL, '2018-10-16 22:00:33', '2018-10-18 15:05:40'),
-(7, 'Good', '5', NULL, '2018-10-18 15:08:27', '2018-10-18 15:08:27');
+INSERT INTO `core` (`core_id`, `student_id`, `core_rating`, `core_skill`, `updated_by`, `created`, `modified`) VALUES
+(1, 2, 'Competent', '8', NULL, '2018-10-16 17:41:58', '2018-10-23 14:12:26'),
+(2, 4, 'Competent', '9', NULL, '2018-10-16 18:04:16', '2018-10-23 14:12:29'),
+(3, 5, 'Competent', '9', NULL, '2018-10-16 18:10:50', '2018-10-23 14:12:33'),
+(4, 6, 'Not Yet Competent', '9', NULL, '2018-10-16 22:00:33', '2018-10-23 14:12:36'),
+(5, 7, 'Competent', '5', 1, '2018-10-18 15:08:27', '2018-10-23 16:09:14'),
+(6, 7, 'Not Yet Competent', '1', 1, '2018-10-23 16:09:14', '2018-10-23 16:11:38'),
+(7, 7, 'Not Yet Competent', '2', 1, '2018-10-23 16:11:38', '2018-10-23 16:13:11'),
+(8, 8, 'Competent', '1', 1, '2018-10-23 16:34:42', '2018-10-23 16:35:30'),
+(9, 8, 'Competent', '2', 1, '2018-10-23 16:34:42', '2018-10-23 16:35:31'),
+(10, 8, 'Not Yet Competent', '3', 1, '2018-10-23 16:35:31', '2018-10-23 18:01:34'),
+(11, 1, 'Competent', '1', NULL, '2018-10-24 13:41:09', '2018-10-24 13:41:09');
 
 -- --------------------------------------------------------
 
@@ -55,8 +62,9 @@ INSERT INTO `core` (`student_id`, `core_rating`, `core_skill`, `updated_by`, `cr
 --
 
 CREATE TABLE `craft` (
+  `craft_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `craft_rating` enum('Poor','Below Average','Average','Good','Very Good','Excellent') COLLATE utf8_unicode_ci NOT NULL,
+  `craft_rating` enum('Competent','Not Yet Competent','Failed','Withdraw') COLLATE utf8_unicode_ci NOT NULL,
   `craft_skill` enum('1','2','3','4','5','6','7','8','9') COLLATE utf8_unicode_ci NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -67,12 +75,18 @@ CREATE TABLE `craft` (
 -- Dumping data for table `craft`
 --
 
-INSERT INTO `craft` (`student_id`, `craft_rating`, `craft_skill`, `updated_by`, `created`, `modified`) VALUES
-(2, 'Good', '3', NULL, '2018-10-16 17:41:58', '2018-10-16 17:41:58'),
-(4, 'Very Good', '5', NULL, '2018-10-16 18:04:16', '2018-10-16 18:04:16'),
-(5, 'Very Good', '7', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
-(6, 'Excellent', '9', NULL, '2018-10-16 22:00:33', '2018-10-18 15:05:40'),
-(7, 'Good', '5', NULL, '2018-10-18 15:08:27', '2018-10-18 15:08:27');
+INSERT INTO `craft` (`craft_id`, `student_id`, `craft_rating`, `craft_skill`, `updated_by`, `created`, `modified`) VALUES
+(1, 2, 'Competent', '3', NULL, '2018-10-16 17:41:58', '2018-10-23 14:11:02'),
+(2, 4, 'Competent', '5', NULL, '2018-10-16 18:04:16', '2018-10-23 14:11:06'),
+(3, 5, 'Competent', '7', NULL, '2018-10-16 18:10:50', '2018-10-23 14:11:10'),
+(4, 6, 'Competent', '9', NULL, '2018-10-16 22:00:33', '2018-10-23 14:11:14'),
+(5, 7, 'Competent', '5', 1, '2018-10-18 15:08:27', '2018-10-23 16:09:14'),
+(6, 7, 'Competent', '1', 1, '2018-10-23 16:09:14', '2018-10-23 16:11:38'),
+(7, 7, 'Competent', '2', 1, '2018-10-23 16:11:38', '2018-10-23 16:12:57'),
+(8, 8, 'Competent', '1', 1, '2018-10-23 16:34:42', '2018-10-23 16:35:30'),
+(9, 8, 'Competent', '2', 1, '2018-10-23 16:34:42', '2018-10-23 16:35:30'),
+(10, 8, 'Not Yet Competent', '3', 1, '2018-10-23 16:35:30', '2018-10-23 18:01:34'),
+(11, 1, 'Competent', '1', NULL, '2018-10-24 13:41:09', '2018-10-24 13:41:09');
 
 -- --------------------------------------------------------
 
@@ -108,8 +122,9 @@ INSERT INTO `diploma_course` (`course_id`, `course_name`, `course_acronym`, `sta
 --
 
 CREATE TABLE `english_proficiency` (
+  `eng_pro_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `eng_rating` enum('Poor','Below Average','Average','Good','Very Good','Excellent') COLLATE utf8_unicode_ci NOT NULL,
+  `eng_rating` enum('Competent','Not Yet Competent','Failed','Withdraw') COLLATE utf8_unicode_ci NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -119,12 +134,13 @@ CREATE TABLE `english_proficiency` (
 -- Dumping data for table `english_proficiency`
 --
 
-INSERT INTO `english_proficiency` (`student_id`, `eng_rating`, `updated_by`, `created`, `modified`) VALUES
-(2, 'Below Average', NULL, '2018-10-16 17:41:58', '2018-10-16 17:41:58'),
-(4, 'Very Good', NULL, '2018-10-16 18:04:16', '2018-10-16 18:04:16'),
-(5, 'Excellent', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
-(6, 'Excellent', NULL, '2018-10-16 22:00:33', '2018-10-18 15:05:40'),
-(7, 'Good', NULL, '2018-10-18 15:08:27', '2018-10-18 15:08:27');
+INSERT INTO `english_proficiency` (`eng_pro_id`, `student_id`, `eng_rating`, `updated_by`, `created`, `modified`) VALUES
+(1, 2, 'Competent', NULL, '2018-10-16 17:41:58', '2018-10-23 14:12:49'),
+(2, 4, 'Not Yet Competent', NULL, '2018-10-16 18:04:16', '2018-10-23 14:12:53'),
+(3, 5, 'Withdraw', NULL, '2018-10-16 18:10:50', '2018-10-23 14:12:56'),
+(4, 6, 'Competent', NULL, '2018-10-16 22:00:33', '2018-10-23 14:13:00'),
+(5, 7, 'Competent', NULL, '2018-10-18 15:08:27', '2018-10-23 16:12:57'),
+(6, 8, 'Competent', NULL, '2018-10-23 16:34:42', '2018-10-23 16:34:42');
 
 -- --------------------------------------------------------
 
@@ -484,7 +500,64 @@ INSERT INTO `history_logs` (`tbl_id`, `activity`, `created_by`, `device_use`, `d
 (335, 'Joey Minguillan Updated craft rating and skill for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:02:26'),
 (336, 'Joey Minguillan Updated core rating and skill for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 12:02:27'),
 (337, 'Logout user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 13:43:18'),
-(338, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 13:43:25');
+(338, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-19 13:43:25'),
+(339, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 12:54:34'),
+(340, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:11:35'),
+(341, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:11:35'),
+(342, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:11:35'),
+(343, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:11:35'),
+(344, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:11:35'),
+(345, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:56:50'),
+(346, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:56:50'),
+(347, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 13:56:51'),
+(348, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:09:14'),
+(349, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:09:14'),
+(350, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:09:14'),
+(351, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:09:14'),
+(352, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:09:14'),
+(353, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:11:38'),
+(354, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:11:38'),
+(355, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:11:38'),
+(356, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:11:38'),
+(357, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:11:38'),
+(358, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:12:57'),
+(359, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:12:57'),
+(360, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:12:57'),
+(361, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:12:57'),
+(362, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:12:58'),
+(363, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:13:11'),
+(364, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:13:11'),
+(365, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:13:11'),
+(366, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:13:11'),
+(367, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:13:11'),
+(368, 'Joey Minguillan Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:34:42'),
+(369, 'Joey Minguillan Created subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:34:42'),
+(370, 'Joey Minguillan Created english proficiency rating for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:34:42'),
+(371, 'Joey Minguillan Created craft rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:34:42'),
+(372, 'Joey Minguillan Created core rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:34:42'),
+(373, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:35:30'),
+(374, 'Joey Minguillan Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:35:30'),
+(375, 'Joey Minguillan Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:35:30'),
+(376, 'Joey Minguillan Updated eng. pro. rating for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:35:30'),
+(377, 'Joey Minguillan Updated craft rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:35:30'),
+(378, 'Joey Minguillan Updated core rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 16:35:31'),
+(379, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 18:01:34'),
+(380, 'Joey Minguillan Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 18:01:34'),
+(381, 'Joey Minguillan Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 18:01:34'),
+(382, 'Joey Minguillan Updated eng. pro. rating for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 18:01:34'),
+(383, 'Joey Minguillan Updated craft rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 18:01:34'),
+(384, 'Joey Minguillan Updated core rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-23 18:01:34'),
+(385, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:36:06'),
+(386, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:36:33'),
+(387, 'Joey Minguillan Updated subjects for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:36:33'),
+(388, 'Joey Minguillan Updated eng. pro. rating for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:36:33'),
+(389, 'Joey Minguillan Updated craft rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:36:33'),
+(390, 'Joey Minguillan Updated core rating and skill for 69678', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:36:33'),
+(391, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:41:08'),
+(392, 'Joey Minguillan Updated subjects for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:41:09'),
+(393, 'Joey Minguillan Updated eng. pro. rating for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:41:09'),
+(394, 'Joey Minguillan Updated craft rating and skill for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:41:09'),
+(395, 'Joey Minguillan Updated core rating and skill for 12345', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-10-24 13:41:09');
 
 -- --------------------------------------------------------
 
@@ -581,7 +654,8 @@ INSERT INTO `student` (`student_id`, `student_no`, `national_id`, `email_address
 (4, 14143, '1245412643', 'rayber@gmail.com', '(926) 451-6464', 'Rayber Crusz', 'Rayber Crusz', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-04-12', 2, NULL, 'Istanbuul', '2018-10-11', 'Rayber Crusz Sr.', '(921) 465-4566', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:04:16', '2018-10-16 18:04:16'),
 (5, 23463, '1256235575', 'jay@yahoo.com', '(921) 564-1214', 'Jay-r Cruz', 'Jay-r Cruz', 'Arabian', 'Meshkatic Assoc for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-05-10', 2, NULL, 'Istanbul', '2018-10-19', 'Jay-r Cruz Sr.', '(925) 165-4654', '', '1', 'Joey Minguillan', NULL, '2018-10-16 18:10:50', '2018-10-16 18:10:50'),
 (6, 15657, '9966322558', 'shamcy@gmail.com', '(971) 541-6546', 'Shamcy Supsup', 'Shamcy Supsup', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2018-10-15', 1, NULL, 'Istanbul', '2018-10-16', 'Shamie Supsup', '(985) 764-6546', '156571.jpg', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-16 22:00:32', '2018-10-18 15:31:35'),
-(7, 69678, '3216549874', 'gellal@gmail.com', '(923) 164-5165', 'Gellal Mystogan', 'Gellal Mystogan', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-18', '2019-01-18', NULL, 4, 'Jones Bridge', '2018-10-25', 'Gellal Mystogan Sr.', '(951) 265-4645', '69678.jpg', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 15:08:27', '2018-10-18 15:30:34');
+(7, 69678, '3216549874', 'gellal@gmail.com', '(923) 164-5165', 'Gellal Mystogan', 'Gellal Mystogan', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-18', '2019-01-18', NULL, 4, 'Jones Bridge', '2018-10-25', 'Gellal Mystogan Sr.', '(951) 265-4645', '69678.jpg', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 15:08:27', '2018-10-18 15:30:34'),
+(8, 67857, '4785786754', 'jun.magayanes@gmail.com', '(932) 154-1651', 'Jun-Jun Magayanes', 'Jun-Jun Magayanes', 'Arabian', 'Global Reciprocal Colleges', 'Diploma', '2018-10-22', '2018-10-22', 1, NULL, 'Gulayan', '1997-08-05', 'Merlita Magayanes', '(921) 634-6546', '678571.jpg', '1', 'Joey Minguillan', 'Joey Minguillan', '2018-10-23 16:34:42', '2018-10-23 18:01:34');
 
 -- --------------------------------------------------------
 
@@ -614,7 +688,9 @@ INSERT INTO `student_subject` (`tbl_id`, `student_id`, `subject`, `subject_code`
 (4, 6, 4, '', '14:30:00', 1, 'TUESDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-16 22:00:33', '2018-10-18 15:03:11'),
 (5, 6, 1, '', '08:00:00', 3, 'WEDNESDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 14:56:31', '2018-10-18 14:57:41'),
 (6, 7, 2, '', '14:30:00', 3, 'FRIDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-18 15:08:27', '2018-10-18 15:16:37'),
-(7, 1, 4, '', '12:30:00', 4, 'SATURDAY', 'Joey Minguillan', NULL, '2018-10-19 12:02:26', '2018-10-19 12:02:26');
+(7, 1, 4, '', '12:30:00', 4, 'SATURDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-19 12:02:26', '2018-10-24 13:41:08'),
+(8, 8, 2, '', '10:00:00', 2, 'THURSDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-23 16:34:42', '2018-10-23 16:35:30'),
+(9, 8, 1, '', '10:00:00', 2, 'TUESDAY', 'Joey Minguillan', 'Joey Minguillan', '2018-10-23 16:34:42', '2018-10-23 16:35:30');
 
 -- --------------------------------------------------------
 
@@ -674,7 +750,7 @@ CREATE TABLE `user_credential` (
 --
 
 INSERT INTO `user_credential` (`user_id`, `u_full_name`, `u_email_address`, `u_password`, `designation`, `password_reset_date`, `login_attempt`, `locked_time`, `profile_pic`, `status`, `recent_login`, `device_name`, `device_ip_address`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Joey Minguillan', 'joey@gmail.com', '$2y$10$RBJH19w7dxfH1I47eC7Hce6uorVzuzUsvRFDQ9L/iof1h9tC0.mt.', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, '0611.jpg', '1', '2018-10-19 13:43:25', 'JUN-PC', '::1', 1, 1, '2018-09-04 12:28:46', '2018-10-19 13:43:25'),
+(1, 'Joey Minguillan', 'joey@gmail.com', '$2y$10$RBJH19w7dxfH1I47eC7Hce6uorVzuzUsvRFDQ9L/iof1h9tC0.mt.', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, '0611.jpg', '1', '2018-10-24 13:36:06', 'JUN-PC', '::1', 1, 1, '2018-09-04 12:28:46', '2018-10-24 13:36:06'),
 (2, 'Administrator Ako', 'admin@gmail.com', '$2y$10$81uoJHMTpPr7h31Wfcugve2rWwUQXO2Fh3Q4kjuFDuZU/nfcmrB8S', 'Administrator', '2018-12-04 13:33:35', NULL, NULL, '', '1', NULL, NULL, NULL, 1, 1, '2018-09-05 13:33:35', '2018-09-19 22:31:44'),
 (3, 'Reynan Sho', 'reynan@gmail.com', '$2y$10$lWYsyDuWhTtR4TL3tF8y/e/eUMO8TstSc.e0ouC9.McM4o.r09Jyi', 'Registrar', '2018-12-04 13:35:31', NULL, NULL, 'vince.png', '1', '2018-10-18 10:18:13', 'JUN-PC', '::1', 1, 3, '2018-09-05 13:35:31', '2018-10-18 10:18:13'),
 (4, 'Ricky Rivera', 'ricky@gmail.com', '$2y$10$Avxj/AmYe59ypXLTdQFYbu8zWa4Jqd4us0K4IK3LUGBMmGjUWBA2C', 'Program Head', '2019-01-16 10:26:21', NULL, NULL, 'avatar-1.jpg', '1', '2018-10-18 10:35:48', 'JUN-PC', '::1', 1, 4, '2018-10-18 10:26:21', '2018-10-18 10:35:48');
@@ -715,10 +791,28 @@ INSERT INTO `vocational_program` (`voc_program_id`, `voc_program`, `voc_program_
 --
 
 --
+-- Indexes for table `core`
+--
+ALTER TABLE `core`
+  ADD PRIMARY KEY (`core_id`);
+
+--
+-- Indexes for table `craft`
+--
+ALTER TABLE `craft`
+  ADD PRIMARY KEY (`craft_id`);
+
+--
 -- Indexes for table `diploma_course`
 --
 ALTER TABLE `diploma_course`
   ADD PRIMARY KEY (`course_id`);
+
+--
+-- Indexes for table `english_proficiency`
+--
+ALTER TABLE `english_proficiency`
+  ADD PRIMARY KEY (`eng_pro_id`);
 
 --
 -- Indexes for table `history_logs`
@@ -768,16 +862,34 @@ ALTER TABLE `vocational_program`
 --
 
 --
+-- AUTO_INCREMENT for table `core`
+--
+ALTER TABLE `core`
+  MODIFY `core_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `craft`
+--
+ALTER TABLE `craft`
+  MODIFY `craft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `diploma_course`
 --
 ALTER TABLE `diploma_course`
   MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `english_proficiency`
+--
+ALTER TABLE `english_proficiency`
+  MODIFY `eng_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `history_logs`
 --
 ALTER TABLE `history_logs`
-  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=339;
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=396;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -789,13 +901,13 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `student_subject`
 --
 ALTER TABLE `student_subject`
-  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `subject`

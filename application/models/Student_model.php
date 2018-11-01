@@ -210,6 +210,54 @@ class Student_model extends CI_Model {
 	}
 
 	/**
+	 * get_skills_not_taken function.
+	 * 
+	 * @access public
+	 * @param associative array $skills
+	 * @return array skills not yet taken on success.
+	 */
+	public function get_skills_not_taken($skills = array(),$unique_key)
+	{		
+		$skills_taken = $this->get_skills_taken($skills,$unique_key);
+		$to_be_taken = array();
+		$result = '';
+		for ($i=1; $i <= 9; $i++) { 
+			$ct = 0;
+			for ($a=0; $a < count($skills_taken); $a++) { 
+				if($skills_taken[$a]==$i){
+					$ct++;
+				}
+			}
+			if($ct==0)$to_be_taken[]=$i;
+		}
+		for ($i=0; $i < count($to_be_taken); $i++) { 
+			$result .= $to_be_taken[$i].' ';
+		}
+		return $result;
+	}
+
+	/**
+	 * get_skills_taken function.
+	 * 
+	 * @access private
+	 * @param associative array $skills
+	 * @return array skills taken on success.
+	 */
+	private function get_skills_taken($skills = array(),$unique_key)
+	{
+		$temp = '';
+		for ($i=0; $i < count($skills); $i++) { 
+			if(!empty($temp) && $skills[$i][$unique_key]!=$temp){
+				$skills_taken[] = $skills[$i][$unique_key];
+			}else{
+				$skills_taken[] = $skills[$i][$unique_key];
+			}
+			$temp = $skills[$i][$unique_key];
+		}
+		return $skills_taken;
+	}
+
+	/**
 	 * transformScheduleRange function.
 	 * 
 	 * @access private

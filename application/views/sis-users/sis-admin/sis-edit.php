@@ -435,6 +435,13 @@
                                                     </div><br>
                                                 <?php endfor; ?>
                                             <?php endif; ?>
+
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
+                                                    Skills haven't taken yet <?php echo $this->student_model->get_skills_not_taken($craft,'craft_skill'); ?>
+                                                </div>
+                                            </div>
+
                                             <div id="TextBoxesGroupCraft"></div>
 
                                             <div class="col-lg-2">
@@ -482,7 +489,11 @@
 
                                                 <?php endfor; ?>
                                             <?php endif; ?>
-
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
+                                                    Skills haven't taken yet <?php echo $this->student_model->get_skills_not_taken($core,'core_skill'); ?>
+                                                </div>
+                                            </div>
                                             <div id="TextBoxesGroupCore"></div>
                                             <div class="col-lg-2">
                                                 <div class="btn-group">
