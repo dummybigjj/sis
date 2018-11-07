@@ -145,16 +145,23 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
+                                                    <label for="civil_status">Civil Status</label>
+                                                    <input type="text" class="form-control" id="civil_status" name="civil_status" maxlength="100" placeholder="Single or Married">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label for="nationality"> Nationality</label>
+                                                    <input type="text" class="form-control" id="nationality" name="nationality" maxlength="100">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
                                                     <label for="picture">Student Picture</label>
                                                     <input type="file" class="form-control" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
                                                     <small id="help_block_file" class="form-text text-muted">
                                                         image file accepts: .jpg, .jpeg, and .png<br>
                                                         recommended dimensions: 400px x 400px
                                                     </small>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label for="nationality"> Nationality</label>
-                                                    <input type="text" class="form-control" id="nationality" name="nationality" maxlength="100">
                                                 </div>
                                             </div>
 
@@ -258,6 +265,18 @@
                                                         <?php endif; ?>
                                                     </select>
                                                 </div>
+
+                                                <div class="col-lg-6">
+                                                    <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
+                                                    <select name="student_remarks" id="student_remarks" class="form-control required">
+                                                      <option></option>
+                                                        <option value="Graduated">Graduated</option>
+                                                        <option value="Terminated">Terminated</option>
+                                                        <option value="Expulsion">Expulsion</option>
+                                                        <option value="Resigned">Resigned</option>
+                                                        <option value="Withdraw">Withdraw</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             
                                             <div class="col-12"><legend class="col-lg-11 h5"><i class="fa fa-user-o"></i> Training </legend><hr/></div>
@@ -330,7 +349,6 @@
                                                         <option value="SATURDAY">SATURDAY</option>
                                                         <option value="SUNDAY">SUNDAY</option>
                                                     </select>
-
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="time"><font color="red">*</font> Time</label>
@@ -385,58 +403,20 @@
                                                       <option></option>
                                                       <option value="Competent">Competent</option>
                                                       <option value="Not Yet Competent">Not Yet Competent</option>
-                                                      <option value="Failed">Failed</option>
-                                                      <option value="Withdraw">Withdraw</option>
-                                                    </select>
-                                                </div>
-                                            </div><br>
-
-                                            <div class="form-group col-sm-12">
-                                                <label><i class="fa fa-book"></i> Craft </label>
-                                            </div>
-
-                                            <div class="form-group row col-lg-12">
-                                                <div class="col-lg-6">
-                                                    <label for="craft_skill"><font color="red">*</font> Skills</label>
-                                                    <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
-                                                      <option></option>
-                                                      <option value="1">1</option>
-                                                      <option value="2">2</option>
-                                                      <option value="3">3</option>
-                                                      <option value="4">4</option>
-                                                      <option value="5">5</option>
-                                                      <option value="6">6</option>
-                                                      <option value="7">7</option>
-                                                      <option value="8">8</option>
-                                                      <option value="9">9</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label for="craft_rating"><font color="red">*</font> Rating</label>
-                                                    <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
-                                                      <option></option>
-                                                      <option value="Competent">Competent</option>
-                                                      <option value="Not Yet Competent">Not Yet Competent</option>
-                                                      <option value="Failed">Failed</option>
-                                                      <option value="Withdraw">Withdraw</option>
-                                                    </select>
+                                                    <label for="eng_completed">Completed</label>
+                                                    <input type="text" name="eng_completed" id="eng_completed" class="form-control dob">
                                                 </div>
                                             </div><br>
-                                            <div id="TextBoxesGroupCraft"></div>
-
-                                            <div class="col-lg-2">
-                                                <div class="btn-group">
-                                                    <button id="addButtonCraft" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
-                                                    <button id="removeButtonCraft" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
-                                                </div>
-                                            </div><hr>
 
                                             <div class="form-group col-sm-12">
                                                 <label><i class="fa fa-book"></i> Core </label>
                                             </div>
 
                                             <div class="form-group row col-lg-12">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <label for="core_skill"><font color="red">*</font> Skills</label>
                                                     <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
                                                       <option></option>
@@ -451,15 +431,17 @@
                                                       <option value="9">9</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <label for="core_rating"><font color="red">*</font> Rating</label>
                                                     <select name="core_rating[]" id="core_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
                                                       <option value="Competent">Competent</option>
                                                       <option value="Not Yet Competent">Not Yet Competent</option>
-                                                      <option value="Failed">Failed</option>
-                                                      <option value="Withdraw">Withdraw</option>
                                                     </select>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="core_completed">Completed</label>
+                                                    <input type="text" name="core_completed[]" id="core_completed" class="form-control dob">
                                                 </div>
                                             </div><br>
 
@@ -468,6 +450,49 @@
                                                 <div class="btn-group">
                                                     <button id="addButtonCore" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
                                                     <button id="removeButtonCore" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
+                                                </div>
+                                            </div><hr>
+
+
+                                            <div class="form-group col-sm-12">
+                                                <label><i class="fa fa-book"></i> Craft </label>
+                                            </div>
+
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <label for="craft_skill"><font color="red">*</font> Skills</label>
+                                                    <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
+                                                      <option></option>
+                                                      <option value="1">1</option>
+                                                      <option value="2">2</option>
+                                                      <option value="3">3</option>
+                                                      <option value="4">4</option>
+                                                      <option value="5">5</option>
+                                                      <option value="6">6</option>
+                                                      <option value="7">7</option>
+                                                      <option value="8">8</option>
+                                                      <option value="9">9</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="craft_rating"><font color="red">*</font> Rating</label>
+                                                    <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
+                                                      <option></option>
+                                                      <option value="Competent">Competent</option>
+                                                      <option value="Not Yet Competent">Not Yet Competent</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="craft_completed">Completed</label>
+                                                    <input type="text" name="craft_completed[]" id="craft_completed" class="form-control dob">
+                                                </div>
+                                            </div><br>
+                                            <div id="TextBoxesGroupCraft"></div>
+
+                                            <div class="col-lg-2">
+                                                <div class="btn-group">
+                                                    <button id="addButtonCraft" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
+                                                    <button id="removeButtonCraft" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
                                                 </div>
                                             </div>
 
@@ -611,7 +636,7 @@
             new_craft.after().html(
 
                 '<div class="form-group row col-lg-12">'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="craft_skill'+counter+'"><font color="red">*</font> Skill</label>'+
                         '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
                           '<option></option>'+
@@ -626,15 +651,17 @@
                           '<option value="9">9</option>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="craft_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="craft_rating[]" id="craft_rating'+counter+'" class="form-control required">'+
                           '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
-                          '<option value="Failed">Failed</option>'+
-                          '<option value="Withdraw">Withdraw</option>'+
                         '</select>'+
+                    '</div>'+
+                    '<div class="col-lg-4">'+
+                        '<label for="craft_completed'+counter+'">Completed</label>'+
+                        '<input type="text" name="craft_completed[]" id="craft_completed'+counter+'" class="form-control" data-mask="9999-99-99" placeholder="YYYY-MM-DD">'+
                     '</div>'+
                 '</div><br>'
 
@@ -669,7 +696,7 @@
             new_core.after().html(
 
                 '<div class="form-group row col-lg-12">'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="core_skill'+counter+'"><font color="red">*</font> Skill</label>'+
                         '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
                           '<option></option>'+
@@ -684,15 +711,17 @@
                           '<option value="9">9</option>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="core_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="core_rating[]" id="core_rating'+counter+'" class="form-control required">'+
                           '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
-                          '<option value="Failed">Failed</option>'+
-                          '<option value="Withdraw">Withdraw</option>'+
                         '</select>'+
+                    '</div>'+
+                    '<div class="col-lg-4">'+
+                        '<label for="core_completed'+counter+'">Completed</label>'+
+                        '<input type="text" name="core_completed[]" id="core_completed'+counter+'" class="form-control" data-mask="9999-99-99" placeholder="YYYY-MM-DD">'+
                     '</div>'+
                 '</div><br>'
 

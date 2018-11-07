@@ -159,6 +159,8 @@ class Student extends CI_Controller{
             'date_of_birth'     => $this->input->post('dob'),
             'guardian_name'     => trim($this->input->post('guardian_name')),
             'guardian_contact'  => $this->input->post('guardian_contact'),
+            'ramarks'           => $this->input->post('student_remarks'),
+            'civil_status'      => trim($this->input->post('civil_status')),
             'student_created_by'=> $this->session->userdata('u_fullname')
         );
         // check type of course and set vocational or diploma course
@@ -216,20 +218,21 @@ class Student extends CI_Controller{
 
                 // set english proficiency rating
                 $eng_pro = array(
-                    'student_id' => $insert,
-                    'eng_rating' => $this->input->post('eng_rating')
+                    'student_id'    => $insert,
+                    'eng_rating'    => $this->input->post('eng_rating'),
+                    'eng_completed' => $this->input->post('eng_completed')
                 );
                 $this->crud->setData($eng_pro,'','tbl8');
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created english proficiency rating for '.$student['student_no'],$this->session->userdata('u_id'));
 
                 // set craft rating and skill
-                $craft = array('craft_id'=>'','craft_rating'=>$this->input->post('craft_rating'),'craft_skill'=>$this->input->post('craft_skill'));
+                $craft = array('craft_id'=>'','craft_rating'=>$this->input->post('craft_rating'),'craft_skill'=>$this->input->post('craft_skill'),'craft_completed'=>$this->input->post('craft_completed'));
                 $this->student_model->insertOrUpdateStudentCraft($craft,$insert);
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
 
 
                 // set core rating and skill
-                $core = array('core_id'=>'','core_rating'=>$this->input->post('core_rating'),'core_skill'=>$this->input->post('core_skill'));
+                $core = array('core_id'=>'','core_rating'=>$this->input->post('core_rating'),'core_skill'=>$this->input->post('core_skill'),'core_completed'=>$this->input->post('core_completed'));
                 $this->student_model->insertOrUpdateStudentCore($core,$insert);
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
             }else{
@@ -277,6 +280,8 @@ class Student extends CI_Controller{
             'date_of_birth'     => $this->input->post('dob'),
             'guardian_name'     => trim($this->input->post('guardian_name')),
             'guardian_contact'  => $this->input->post('guardian_contact'),
+            'ramarks'           => $this->input->post('student_remarks'),
+            'civil_status'      => trim($this->input->post('civil_status')),
             'student_updated_by'=> $this->session->userdata('u_fullname')
         );
         // check type of course and set vocational or diploma course
@@ -327,15 +332,15 @@ class Student extends CI_Controller{
             // insert or update student subjects and schedules
             $this->student_model->insertOrUpdateStudentSubjects($subjects,$student,$student_id);
             // update english proficiency rating
-            $eng_pro = array('eng_rating' => $this->input->post('eng_rating'));
+            $eng_pro = array('eng_rating'=>$this->input->post('eng_rating'),'eng_completed'=>$this->input->post('eng_completed'));
             $this->crud->updateData($eng_pro,array('student_id' => $student_id),'tbl8');
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated eng. pro. rating for '.$student['student_no'],$this->session->userdata('u_id'));
             // update craft rating and skill
-            $craft = array('craft_rating'=>$this->input->post('craft_rating'),'craft_skill'=>$this->input->post('craft_skill'),'craft_id'=>$this->input->post('craft_id'));
+            $craft = array('craft_rating'=>$this->input->post('craft_rating'),'craft_skill'=>$this->input->post('craft_skill'),'craft_id'=>$this->input->post('craft_id'),'craft_completed'=>$this->input->post('craft_completed'));
             $this->student_model->insertOrUpdateStudentCraft($craft,$student_id);
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
             // update core rating and skill
-            $core = array('core_rating'=>$this->input->post('core_rating'),'core_skill'=>$this->input->post('core_skill'),'core_id'=>$this->input->post('core_id'));
+            $core = array('core_rating'=>$this->input->post('core_rating'),'core_skill'=>$this->input->post('core_skill'),'core_id'=>$this->input->post('core_id'),'core_completed'=>$this->input->post('core_completed'));
             $this->student_model->insertOrUpdateStudentCore($core,$student_id);
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
         }else{
@@ -728,14 +733,608 @@ class Student extends CI_Controller{
 
                 </td>
             </tr>
-        </table><br>
+        </table><br>';
 
+     
+        // Print text using writeHTMLCell()
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+        // $pdf->writeHTMLCell(0, 0, '', '', $html1, 0, 1, 0, true, '', true);
+        // ---------------------------------------------------------    
+     
+        // Close and output PDF document
+        // This method has several options, check the source code documentation for more information.
 
-        
+        // $pdf->Output('example_001.pdf', 'I');  // FOR PREVIEW PURPOSES  
+        return $pdf->Output('Student-Information-Sheet.pdf', 'I');   
+        // D FOR FORCE DOWNLOAD 
+     
+        //============================================================+
+        // END OF FILE
+        //============================================================+
+    }
+
+    /**
+     * student_printable function.
+     * 
+     * @access public
+     * @return render student information printable in pdf
+     */
+    public function student_printable1($student_id = NULL){
+        // user credentials authentication
+        $this->crud->credibilityAuth(array('Administrator','Registrar'));
+        empty($student_id)?redirect('students'):TRUE;
+        // get student info
+        $student = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl2');
+        $student_subjects = $this->student_model->getStudentSubjects(array('student_id'=>$student_id),'a');
+        $student_craft = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'craft_skill ASC','tbl10');
+        $student_core  = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'core_skill ASC','tbl12');
+        $student_pro   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
+
+        // get student diploma or vocational course
+        $diploma    = $this->crud->getData('','s',array('course_id'=>$student['diploma_course']),'tbl11');
+        $vocational = $this->crud->getData('','s',array('voc_program_id'=>$student['vocational_course']),'tbl6');
+
+        //============================================================+
+        // File name   : example_001.php
+        // Begin       : 2008-03-04
+        // Last Update : 2013-05-14
+        //
+        // Description : Example 001 for TCPDF class
+        //               Default Header and Footer
+        //
+        // Author: Nicola Asuni
+        //
+        // (c) Copyright:
+        //               Nicola Asuni
+        //               Tecnick.com LTD
+        //               www.tecnick.com
+        //               info@tecnick.com
+        //============================================================+
+     
+        /**
+        * Creates an example PDF TEST document using TCPDF
+        * @package com.tecnick.tcpdf
+        * @abstract TCPDF - Example: Default Header and Footer
+        * @author Nicola Asuni
+        * @since 2008-03-04
+        */
+     
+        // create new PDF document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);    
+     
+        // set document information
+        // $pdf->SetCreator(PDF_CREATOR);
+        // $pdf->SetAuthor('Nicola Asuni');
+        // $pdf->SetTitle('TCPDF Example 001');
+        // $pdf->SetSubject('TCPDF Tutorial');
+        // $pdf->SetKeywords('TCPDF, PDF, example, test, guide');   
+     
+        // set default header data
+        // $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
+        // $pdf->setFooterData(array(0,64,0), array(0,64,128)); 
+     
+        // set header and footer fonts
+        // $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        // $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
+     
+        // set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED); 
+     
+        // set margins
+        // $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        // $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        // $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);    
+     
+        // set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM); 
+     
+        // set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);  
+     
+        // set some language-dependent strings (optional)
+        if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+        }   
+     
+        // ---------------------------------------------------------    
+     
+        // set default font subsetting mode
+        $pdf->setFontSubsetting(true);   
+     
+        // Set font
+        // dejavusans is a UTF-8 Unicode font, if you only need to
+        // print standard ASCII chars, you can use core fonts like
+        // helvetica or times to reduce file size.
+        $pdf->SetFont('helvetica', '', 14, '', true); 
+
+        $pdf->SetPrintHeader(false);  
+     
+        // Add a page
+        // This method has several options, check the source code documentation for more information.
+        // The array() inside AddPage method defines the size of the page
+        // $pdf->AddPage('P','A4') for portrate || $pdf->AddPage('L','A4'); for Landscape
+        $pdf->AddPage('P','A4'); 
+     
+        // set text shadow effect
+        $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
+     
+        // Set some content to print
+        $html = '
+
+            <table border="0">
+                <tr>
+                    <td style="width:15%;" align="right">
+                        <img width="90px" height="90px" src="'.base_url('uploads/THIEP.png').'" >
+                    </td>
+                    <td style="width:80%;">
+                        <table border="0">
+                            <tr style="font-size:15px;color:#0D47A1" align="center">
+                                <td><b>TECHNICAL HIGHER INSTITUTE FOR ENGINEERING AND PETROLEUM</b></td>
+                            </tr>
+                            <tr style="font-size:13px;" align="center">
+                                <td> Ash Shulah, Dammam 31411 </td>
+                            </tr>
+                            <tr style="font-size:13px;" align="center">
+                                <td> Kingdom of Saudi Arabia </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            
+            <table border="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr style="font-size:25px;color:#0D47A1" align="center">
+                                <td cellspacing="1" style="border-bottom-color:#8B0000;"><b> STUDENT INFORMATION PROFILE </b></td>
+                            </tr>
+                            <tr>
+                                <td>  </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td style="width:78%;">
+                                    
+                                    <table style="font-size:12px;">
+                                        <tr style="font-size:15px;">
+                                            <td><b>'.$student['arabic_name'].'</b></td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:26%;">Training Course: </td>
+                                            <td style="width:74%;">';
+
+                                            if(!empty($diploma))
+                                            {
+                                                $html .= $diploma['course_name'];
+                                            }else
+                                            {
+                                                $html .= $vocational['voc_program'];
+                                            }
+
+                                $html .=   '</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Training Period: </td>
+                                            <td>'.date('F d, Y',strtotime($student['training_start'])).' to '.date('F d, Y',strtotime($student['training_end'])).'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Company: </td>
+                                            <td>'.$student['company'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Remarks: </td>
+                                            <td>'.$student['ramarks'].'</td>
+                                        </tr>
+                                    </table>
+
+                                </td>
+
+                                <td style="width:22%;" align="right">';
+                                    
+                                    $file_path = base_url('uploads/students_images/'.$student['id_picture']);
+                                    if(!empty($student['id_picture'])){
+                                        $html .= '<img border="1" width="110px" height="110px" src="'.$file_path.'" >';
+                                    }else{
+                                        $html .= '<img border="1" width="110px" height="110px" src="'.base_url('uploads/students_images/not-available.png').'" >';
+                                    }
+
+                $html .=        '</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" cellpadding="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td cellspacing="1" style="border-bottom-color:#8B0000;">  </td>
+                            </tr>
+                            <tr>
+                                <td>  </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td style="width:50%;">
+                                    
+                                    <table style="font-size:12px;">
+                                        <tr style="font-size:15px;color:#1E88E5;">
+                                            <td colspan="2"><b>Personal Information </b></td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:40%;">Student Number: </td>
+                                            <td style="width:60%;">'.$student['student_no'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>National ID: </td>
+                                            <td>'.$student['national_id'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address: </td>
+                                            <td>'.$student['address'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of Birth: </td>
+                                            <td>'.date('F d, Y',strtotime($student['date_of_birth'])).'</td>
+                                        </tr>
+                                    </table>
+
+                                </td>
+
+                                <td style="width:50%;">
+
+                                    <table style="font-size:12px;">
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:30%;">Email: </td>
+                                            <td style="width:70%;color:blue;">'.$student['email_address'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nationality: </td>
+                                            <td>'.$student['nationality'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobile No: </td>
+                                            <td>'.$student['mobile_no'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status: </td>
+                                            <td>'.$student['civil_status'].'</td>
+                                        </tr>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" cellpadding="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td cellspacing="1" style="border-bottom-color:#8B0000;">  </td>
+                            </tr>
+                            <tr>
+                                <td>  </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td>
+                                    
+                                    <table style="font-size:12px;width:100%;">
+                                        <tr style="font-size:15px;color:#1E88E5;">
+                                            <td colspan="4"><b>Present Subjects and Schedules </b></td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr style="color:#0D47A1">
+                                            <td style="width:25%;"><b>Subject </b></td>
+                                            <td style="width:25%;"><b>Room </b></td>
+                                            <td style="width:25%;"><b>Day </b></td>
+                                            <td style="width:25%;"><b>Time </b></td>
+                                        </tr>';
+
+                                        for ($i=0; $i < count($student_subjects); $i++) { 
+                                            $html .= '
+                                                <tr>
+                                                    <td>'.$student_subjects[$i]['subject_title'].'</td>
+                                                    <td>'.$student_subjects[$i]['room_name'].'</td>
+                                                    <td>'.$student_subjects[$i]['day'].'</td>
+                                                    <td>'.$this->student_model->transformScheduleRange($student_subjects[$i]['time']).'</td>
+                                                </tr>';
+                                        }
+
+                        $html .=    '</table>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" cellpadding="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td cellspacing="1" style="border-bottom-color:#8B0000;">  </td>
+                            </tr>
+                            <tr>
+                                <td>  </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td>
+                                    
+                                    <table style="font-size:12px;width:100%;">
+                                        <tr style="font-size:15px;color:#1E88E5;">
+                                            <td colspan="3"><b>Skills Completed </b></td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr style="color:#0D47A1">
+                                            <td style="width:35%;"><b>English </b></td>
+                                            <td style="width:35%;"><b>Rating </b></td>
+                                            <td style="width:30%;"><b>Completed </b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rating: </td>
+                                            <td>'.$student_pro['eng_rating'].'</td>
+                                            <td>'.$student_pro['eng_completed'].'</td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr style="color:#0D47A1">
+                                            <td><b>Core </b></td>
+                                            <td><b>Rating </b></td>
+                                            <td><b>Completed </b></td>
+                                        </tr>';
+
+                                        for ($i=0; $i < count($student_core); $i++) { 
+                                        $html .='<tr>
+                                                    <td>Core '.$student_core[$i]['core_skill'].'</td>
+                                                    <td>'.$student_core[$i]['core_rating'].'</td>
+                                                    <td>'.$student_core[$i]['core_completed'].'</td>
+                                                </tr>';
+                                        }
+
+                        $html .=    '   <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr style="color:#0D47A1">
+                                            <td><b>Craft </b></td>
+                                            <td><b>Rating </b></td>
+                                            <td><b>Completed </b></td>
+                                        </tr>';
+
+                                        for ($i=0; $i < count($student_craft); $i++) { 
+                                        $html .='<tr>
+                                                    <td>Core '.$student_craft[$i]['craft_skill'].'</td>
+                                                    <td>'.$student_craft[$i]['craft_rating'].'</td>
+                                                    <td>'.$student_craft[$i]['craft_completed'].'</td>
+                                                </tr>';
+                                        }
+
+                        $html .=    '</table>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table><br><br><br><br>
+
+            <table border="0">
+                <tr>
+                    <td style="width:8%;">
+
+                    </td>
+                    <td style="width:84%;">
+                        <table border="0">
+                            <tr>
+                                <td>
+                                    <table style="font-size:12px;width:100%;">
+                                        <tr>
+                                            <td><b>Certified True and Correct</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>MUSTAFA HASSAN AL SULAYYIL</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>REGISTRAR</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Noted and Approved by:</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>DR. FIRAS KASSEM</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Institute Manager</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr style="font-size:11px;">
+                                            <td><i>This Student Information Profile is not legal for employment or whatever legal purposes it may serve.</i></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:8%;">
+                        
+                    </td>
+                </tr>
+            </table>
 
         ';
 
-        
      
         // Print text using writeHTMLCell()
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);

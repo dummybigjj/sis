@@ -82,6 +82,5 @@
         $("form").attr('autocomplete', 'off');
         $('.dob').datetimepicker({
             format:'Y-m-d',
-            timepicker:false,
-            step:30
+            timepicker:false
         });

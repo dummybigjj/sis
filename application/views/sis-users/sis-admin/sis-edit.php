@@ -148,16 +148,23 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
+                                                    <label for="civil_status">Civil Status</label>
+                                                    <input type="text" class="form-control" id="civil_status" name="civil_status" maxlength="100" placeholder="Single or Married" value="<?php echo $student['civil_status']; ?>">
+                                                </div>
+                                                
+                                                <div class="col-lg-6">
+                                                    <label for="nationality"> Nationality</label>
+                                                    <input type="text" class="form-control" id="nationality" name="nationality" maxlength="100" value="<?php echo $student['nationality']; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
                                                     <label for="picture"> Student Picture</label>
                                                     <input type="file" class="form-control" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
                                                     <small id="help_block_file" class="form-text text-muted">
                                                         image file accepts: .jpg, .jpeg, and .png<br>
                                                         recommended dimensions: 400px x 400px
                                                     </small>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label for="nationality"> Nationality</label>
-                                                    <input type="text" class="form-control" id="nationality" name="nationality" maxlength="100" value="<?php echo $student['nationality']; ?>">
                                                 </div>
                                             </div>
 
@@ -255,6 +262,18 @@
                                                                 <option value="<?php echo $value['voc_program_id']; ?>" <?php echo (!empty($student['vocational_course']) && $student['vocational_course']==$value['voc_program_id'])?'selected':''; ?> ><?php echo $value['voc_program']; ?></option>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
+                                                    <select name="student_remarks" id="student_remarks" class="form-control required">
+                                                      <option></option>
+                                                        <option value="Graduated" <?php echo ($student['ramarks']=='Graduated')?'selected':''; ?> >Graduated</option>
+                                                        <option value="Terminated" <?php echo ($student['ramarks']=='Terminated')?'selected':''; ?> >Terminated</option>
+                                                        <option value="Expulsion" <?php echo ($student['ramarks']=='Expulsion')?'selected':''; ?> >Expulsion</option>
+                                                        <option value="Resigned" <?php echo ($student['ramarks']=='Resigned')?'selected':''; ?> >Resigned</option>
+                                                        <option value="Withdraw" <?php echo ($student['ramarks']=='Withdraw')?'selected':''; ?> >Withdraw</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -393,60 +412,13 @@
                                                       <option></option>
                                                       <option value="Competent" <?php echo ($eng['eng_rating']=='Competent')?'selected':''; ?> >Competent</option>
                                                       <option value="Not Yet Competent" <?php echo ($eng['eng_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
-                                                      <option value="Failed" <?php echo ($eng['eng_rating']=='Failed')?'selected':''; ?> >Failed</option>
-                                                      <option value="Withdraw" <?php echo ($eng['eng_rating']=='Withdraw')?'selected':''; ?> >Withdraw</option>
                                                     </select>
                                                 </div>
-                                            </div><br>
-
-                                            <div class="form-group col-sm-12">
-                                                <label><i class="fa fa-book"></i> Craft </label>
-                                            </div>
-
-                                            <?php if(!empty($craft)): ?>
-                                                <?php for ($i=0; $i < count($craft); $i++): ?>
-                                                    <div class="form-group row col-lg-12">
-                                                        <div class="col-lg-6">
-                                                            <label for="craft_skill"><font color="red">*</font> Skills</label>
-                                                            <input type="hidden" name="craft_id[]" value="<?php echo $craft[$i]['craft_id']; ?>">
-                                                            <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
-                                                              <option></option>
-                                                              <option value="1" <?php echo ($craft[$i]['craft_skill']=='1')?'selected':''; ?> >1</option>
-                                                              <option value="2" <?php echo ($craft[$i]['craft_skill']=='2')?'selected':''; ?> >2</option>
-                                                              <option value="3" <?php echo ($craft[$i]['craft_skill']=='3')?'selected':''; ?> >3</option>
-                                                              <option value="4" <?php echo ($craft[$i]['craft_skill']=='4')?'selected':''; ?> >4</option>
-                                                              <option value="5" <?php echo ($craft[$i]['craft_skill']=='5')?'selected':''; ?> >5</option>
-                                                              <option value="6" <?php echo ($craft[$i]['craft_skill']=='6')?'selected':''; ?> >6</option>
-                                                              <option value="7" <?php echo ($craft[$i]['craft_skill']=='7')?'selected':''; ?> >7</option>
-                                                              <option value="8" <?php echo ($craft[$i]['craft_skill']=='8')?'selected':''; ?> >8</option>
-                                                              <option value="9" <?php echo ($craft[$i]['craft_skill']=='9')?'selected':''; ?> >9</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label for="craft_rating"><font color="red">*</font> Rating</label>
-                                                            <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
-                                                              <option></option>
-                                                              <option value="Competent" <?php echo ($craft[$i]['craft_rating']=='Competent')?'selected':''; ?> >Competent</option>
-                                                              <option value="Not Yet Competent" <?php echo ($craft[$i]['craft_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
-                                                              <option value="Failed" <?php echo ($craft[$i]['craft_rating']=='Failed')?'selected':''; ?> >Failed</option>
-                                                              <option value="Withdraw" <?php echo ($craft[$i]['craft_rating']=='Withdraw')?'selected':''; ?> >Withdraw</option>
-                                                            </select>
-                                                        </div>
-                                                    </div><br>
-                                                <?php endfor; ?>
-                                            <?php endif; ?>
-                                            <div id="TextBoxesGroupCraft"></div>
-                                            <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    Skills haven't taken yet <?php echo $this->student_model->get_skills_not_taken($craft,'craft_skill'); ?>
+                                                    <label for="eng_completed">Completed</label>
+                                                    <input type="text" name="eng_completed" id="eng_completed" value="<?php echo $eng['eng_completed'] ?>" class="form-control dob">
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <div class="btn-group">
-                                                    <button id="addButtonCraft" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
-                                                    <button id="removeButtonCraft" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
-                                                </div>
-                                            </div><hr>
+                                            </div><br>
 
                                             <div class="form-group col-sm-12">
                                                 <label><i class="fa fa-book"></i> Core </label>
@@ -456,7 +428,7 @@
                                                 <?php for ($i=0; $i < count($core); $i++): ?>
 
                                                     <div class="form-group row col-lg-12">
-                                                        <div class="col-lg-6">
+                                                        <div class="col-lg-4">
                                                             <label for="core_skill"><font color="red">*</font> Skills</label>
                                                             <input type="hidden" name="core_id[]" value="<?php echo $core[$i]['core_id']; ?>">
                                                             <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
@@ -472,15 +444,17 @@
                                                               <option value="9" <?php echo ($core[$i]['core_skill']=='9')?'selected':''; ?> >9</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-lg-6">
+                                                        <div class="col-lg-4">
                                                             <label for="core_rating"><font color="red">*</font> Rating</label>
                                                             <select name="core_rating[]" id="core_rating" class="form-control required" style="width: 100%">
                                                               <option></option>
                                                               <option value="Competent" <?php echo ($core[$i]['core_rating']=='Competent')?'selected':''; ?> >Competent</option>
                                                               <option value="Not Yet Competent" <?php echo ($core[$i]['core_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
-                                                              <option value="Failed" <?php echo ($core[$i]['core_rating']=='Failed')?'selected':''; ?> >Failed</option>
-                                                              <option value="Withdraw" <?php echo ($core[$i]['core_rating']=='Withdraw')?'selected':''; ?> >Withdraw</option>
                                                             </select>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label for="core_completed">Completed</label>
+                                                            <input type="text" name="core_completed[]" id="core_completed" value="<?php echo $core[$i]['core_completed'] ?>" class="form-control dob">
                                                         </div>
                                                     </div><br>
 
@@ -490,13 +464,66 @@
                                             <div id="TextBoxesGroupCore"></div>
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    Skills haven't taken yet <?php echo $this->student_model->get_skills_not_taken($core,'core_skill'); ?>
+                                                    <?php $core_tk = $this->student_model->get_skills_not_taken($core,'core_skill'); ?>
+                                                    <?php echo (!empty($core_tk))?'Skills not yet'.$core_tk:''; ?>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="btn-group">
                                                     <button id="addButtonCore" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
                                                     <button id="removeButtonCore" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
+                                                </div>
+                                            </div><hr>
+
+                                            <div class="form-group col-sm-12">
+                                                <label><i class="fa fa-book"></i> Craft </label>
+                                            </div>
+
+                                            <?php if(!empty($craft)): ?>
+                                                <?php for ($i=0; $i < count($craft); $i++): ?>
+                                                    <div class="form-group row col-lg-12">
+                                                        <div class="col-lg-4">
+                                                            <label for="craft_skill"><font color="red">*</font> Skills</label>
+                                                            <input type="hidden" name="craft_id[]" value="<?php echo $craft[$i]['craft_id']; ?>">
+                                                            <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
+                                                              <option></option>
+                                                              <option value="1" <?php echo ($craft[$i]['craft_skill']=='1')?'selected':''; ?> >1</option>
+                                                              <option value="2" <?php echo ($craft[$i]['craft_skill']=='2')?'selected':''; ?> >2</option>
+                                                              <option value="3" <?php echo ($craft[$i]['craft_skill']=='3')?'selected':''; ?> >3</option>
+                                                              <option value="4" <?php echo ($craft[$i]['craft_skill']=='4')?'selected':''; ?> >4</option>
+                                                              <option value="5" <?php echo ($craft[$i]['craft_skill']=='5')?'selected':''; ?> >5</option>
+                                                              <option value="6" <?php echo ($craft[$i]['craft_skill']=='6')?'selected':''; ?> >6</option>
+                                                              <option value="7" <?php echo ($craft[$i]['craft_skill']=='7')?'selected':''; ?> >7</option>
+                                                              <option value="8" <?php echo ($craft[$i]['craft_skill']=='8')?'selected':''; ?> >8</option>
+                                                              <option value="9" <?php echo ($craft[$i]['craft_skill']=='9')?'selected':''; ?> >9</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label for="craft_rating"><font color="red">*</font> Rating</label>
+                                                            <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
+                                                              <option></option>
+                                                              <option value="Competent" <?php echo ($craft[$i]['craft_rating']=='Competent')?'selected':''; ?> >Competent</option>
+                                                              <option value="Not Yet Competent" <?php echo ($craft[$i]['craft_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label for="craft_completed">Completed</label>
+                                                            <input type="text" name="craft_completed[]" id="craft_completed" value="<?php echo $craft[$i]['craft_completed'] ?>" class="form-control dob">
+                                                        </div>
+                                                    </div><br>
+                                                <?php endfor; ?>
+                                            <?php endif; ?>
+                                            <div id="TextBoxesGroupCraft"></div>
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
+                                                    <?php $craft_tk = $this->student_model->get_skills_not_taken($craft,'craft_skill'); ?>
+                                                    <?php echo (!empty($craft_tk))?'Skills not yet'.$craft_tk:''; ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="btn-group">
+                                                    <button id="addButtonCraft" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
+                                                    <button id="removeButtonCraft" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
                                                 </div>
                                             </div>
 
@@ -641,7 +668,7 @@
             new_craft.after().html(
 
                 '<div class="form-group row col-lg-12">'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="craft_skill'+counter+'"><font color="red">*</font> Skill</label>'+
                         '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
                           '<option></option>'+
@@ -656,15 +683,17 @@
                           '<option value="9">9</option>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="craft_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="craft_rating[]" id="craft_rating'+counter+'" class="form-control required">'+
                           '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
-                          '<option value="Failed">Failed</option>'+
-                          '<option value="Withdraw">Withdraw</option>'+
                         '</select>'+
+                    '</div>'+
+                    '<div class="col-lg-4">'+
+                        '<label for="craft_completed'+counter+'">Completed</label>'+
+                        '<input type="text" name="craft_completed[]" id="craft_completed'+counter+'" class="form-control" data-mask="9999-99-99" placeholder="YYYY-MM-DD">'+
                     '</div>'+
                 '</div><br>'
 
@@ -699,7 +728,7 @@
             new_core.after().html(
 
                 '<div class="form-group row col-lg-12">'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="core_skill'+counter+'"><font color="red">*</font> Skill</label>'+
                         '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
                           '<option></option>'+
@@ -714,15 +743,17 @@
                           '<option value="9">9</option>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-6">'+
+                    '<div class="col-lg-4">'+
                         '<label for="core_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="core_rating[]" id="core_rating'+counter+'" class="form-control required">'+
                           '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
-                          '<option value="Failed">Failed</option>'+
-                          '<option value="Withdraw">Withdraw</option>'+
                         '</select>'+
+                    '</div>'+
+                    '<div class="col-lg-4">'+
+                        '<label for="core_completed'+counter+'">Completed</label>'+
+                        '<input type="text" name="core_completed[]" id="core_completed'+counter+'" class="form-control" data-mask="9999-99-99" placeholder="YYYY-MM-DD">'+
                     '</div>'+
                 '</div><br>'
 
@@ -741,6 +772,10 @@
             $("#new_core" + counter).remove();
           });
 
+        });
+
+        $('.dobs').datetimepicker({
+            format:'Y-m-d'
         });
 
     </script>
