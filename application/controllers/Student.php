@@ -385,7 +385,7 @@ class Student extends CI_Controller{
      * @access public
      * @return render student information printable in pdf
      */
-    public function student_printable($student_id = NULL){
+    public function student_printable1($student_id = NULL){
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         empty($student_id)?redirect('students'):TRUE;
@@ -759,7 +759,7 @@ class Student extends CI_Controller{
      * @access public
      * @return render student information printable in pdf
      */
-    public function student_printable1($student_id = NULL){
+    public function student_printable($student_id = NULL){
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         empty($student_id)?redirect('students'):TRUE;
