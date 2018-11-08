@@ -34,7 +34,7 @@
     </div>
 
     <div class="container">
-        <div class="row"> <h1> &nbsp </h1></div>
+        <div class="row justify-content-center border-top-0"><h1><a href="<?php echo site_url('students'); ?>"> Return Home <i class="fa fa-home"></i> </a></h1></div>
         
         <div class="row">
             
@@ -539,6 +539,7 @@
 
     <script src="<?php echo base_url('application/assets/js/custom.js'); ?>"></script>
     <script type="text/javascript">
+
         $(document).ready(function(){
           var counter = 1;
           $("#addButton").click(function () {

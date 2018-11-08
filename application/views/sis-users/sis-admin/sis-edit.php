@@ -34,7 +34,7 @@
     </div>
 
     <div class="container">
-        <div class="row"> <h1> &nbsp </h1></div>
+        <div class="row justify-content-center border-top-0"><h1><a href="<?php echo site_url('students'); ?>"> Return Home <i class="fa fa-home"></i> </a></h1></div>
         
         <div class="row">
             
@@ -121,7 +121,6 @@
                                                     <label for="english_name">English Name</label>
                                                     <input type="text" class="form-control" id="english_name" name="english_name" maxlength="100" value="<?php echo $student['english_name']; ?>">
                                                 </div>
-                                                
                                             </div>
 
                                             <div class="form-group row col-lg-12">
@@ -231,7 +230,6 @@
 
                                             <div class="form-group" style="display: none;">
                                                 <select class="form-control" id="type_of_course" name="type_of_course">
-                                                    <option></option>
                                                     <option value="Diploma" <?php echo ($student['type_of_course']=='Diploma')?'selected':''; ?> >Diploma</option>
                                                     <option value="Vocational" <?php echo ($student['type_of_course']=='Vocational')?'selected':''; ?>>Vocational</option>
                                                 </select>
@@ -268,7 +266,6 @@
                                                 <div class="col-lg-6">
                                                     <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
                                                     <select name="student_remarks" id="student_remarks" class="form-control required">
-                                                      <option></option>
                                                         <option value="Graduated" <?php echo ($student['ramarks']=='Graduated')?'selected':''; ?> >Graduated</option>
                                                         <option value="Terminated" <?php echo ($student['ramarks']=='Terminated')?'selected':''; ?> >Terminated</option>
                                                         <option value="Expulsion" <?php echo ($student['ramarks']=='Expulsion')?'selected':''; ?> >Expulsion</option>
@@ -317,7 +314,6 @@
                                                             <input type="hidden" name="tbl_id[]" value="<?php echo $sub_sched[$i]['tbl_id']; ?>">
                                                             <label for="subject<?php echo $i; ?>"><font color="red">*</font> Subject</label>
                                                             <select name="subject[]" id="subject<?php echo $i; ?>" class="form-control required select2" style="width: 100%">
-                                                              <option></option>
                                                                 <?php if(!empty($subjects)): ?>
                                                                     <?php foreach ($subjects as $value): ?>
                                                                         <option value="<?php echo $value['subject_id']; ?>" <?php echo ($sub_sched[$i]['subject']==$value['subject_id'])?'selected':''; ?> ><?php echo $value['subject_title']; ?></option>
@@ -328,7 +324,6 @@
                                                         <div class="col-lg-6">
                                                             <label for="room<?php echo $i ?>"><font color="red">*</font> Room</label>
                                                             <select name="room[]" id="room<?php echo $i ?>" class="form-control required select2" style="width: 100%">
-                                                              <option></option>
                                                                 <?php if(!empty($rooms)): ?>
                                                                     <?php foreach ($rooms as $value): ?>
                                                                         <option value="<?php echo $value['room_id']; ?>" <?php echo ($sub_sched[$i]['room']==$value['room_id'])?'selected':''; ?> ><?php echo $value['room_name']; ?></option>
@@ -342,7 +337,6 @@
                                                         <div class="col-lg-6">
                                                             <label for="day"><font color="red">*</font> Day</label>
                                                             <select name="day[]" id="day" class="form-control required">
-                                                              <option></option>
                                                                 <option value="MONDAY" <?php echo ($sub_sched[$i]['day']=='MONDAY')?'selected':''; ?> >MONDAY</option>
                                                                 <option value="TUESDAY" <?php echo ($sub_sched[$i]['day']=='TUESDAY')?'selected':''; ?>>TUESDAY</option>
                                                                 <option value="WEDNESDAY" <?php echo ($sub_sched[$i]['day']=='WEDNESDAY')?'selected':''; ?>>WEDNESDAY</option>
@@ -356,7 +350,6 @@
                                                         <div class="col-lg-6">
                                                             <label for="time"><font color="red">*</font> Time</label>
                                                             <select name="time[]" id="time" class="form-control required">
-                                                                <option> </option>
                                                                 <option value="08:00:00" <?php echo ($sub_sched[$i]['time']=='08:00:00')?'selected':''; ?> > 08:00AM - 09:30AM </option>
                                                                 <option value="10:00:00" <?php echo ($sub_sched[$i]['time']=='10:00:00')?'selected':''; ?> > 10:00AM - 11:30AM </option>
                                                                 <option value="12:30:00" <?php echo ($sub_sched[$i]['time']=='12:30:00')?'selected':''; ?> > 12:30PM - 02:00PM </option>
@@ -409,7 +402,6 @@
                                                 <div class="col-lg-6">
                                                     <label for="eng_rating"><font color="red">*</font> Rating</label>
                                                     <select name="eng_rating" id="eng_rating" class="form-control required" style="width: 100%">
-                                                      <option></option>
                                                       <option value="Competent" <?php echo ($eng['eng_rating']=='Competent')?'selected':''; ?> >Competent</option>
                                                       <option value="Not Yet Competent" <?php echo ($eng['eng_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
                                                     </select>
@@ -432,7 +424,6 @@
                                                             <label for="core_skill"><font color="red">*</font> Skills</label>
                                                             <input type="hidden" name="core_id[]" value="<?php echo $core[$i]['core_id']; ?>">
                                                             <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
-                                                              <option></option>
                                                               <option value="1" <?php echo ($core[$i]['core_skill']=='1')?'selected':''; ?> >1</option>
                                                               <option value="2" <?php echo ($core[$i]['core_skill']=='2')?'selected':''; ?> >2</option>
                                                               <option value="3" <?php echo ($core[$i]['core_skill']=='3')?'selected':''; ?> >3</option>
@@ -447,7 +438,6 @@
                                                         <div class="col-lg-4">
                                                             <label for="core_rating"><font color="red">*</font> Rating</label>
                                                             <select name="core_rating[]" id="core_rating" class="form-control required" style="width: 100%">
-                                                              <option></option>
                                                               <option value="Competent" <?php echo ($core[$i]['core_rating']=='Competent')?'selected':''; ?> >Competent</option>
                                                               <option value="Not Yet Competent" <?php echo ($core[$i]['core_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
                                                             </select>
@@ -486,7 +476,6 @@
                                                             <label for="craft_skill"><font color="red">*</font> Skills</label>
                                                             <input type="hidden" name="craft_id[]" value="<?php echo $craft[$i]['craft_id']; ?>">
                                                             <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
-                                                              <option></option>
                                                               <option value="1" <?php echo ($craft[$i]['craft_skill']=='1')?'selected':''; ?> >1</option>
                                                               <option value="2" <?php echo ($craft[$i]['craft_skill']=='2')?'selected':''; ?> >2</option>
                                                               <option value="3" <?php echo ($craft[$i]['craft_skill']=='3')?'selected':''; ?> >3</option>
@@ -501,7 +490,6 @@
                                                         <div class="col-lg-4">
                                                             <label for="craft_rating"><font color="red">*</font> Rating</label>
                                                             <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
-                                                              <option></option>
                                                               <option value="Competent" <?php echo ($craft[$i]['craft_rating']=='Competent')?'selected':''; ?> >Competent</option>
                                                               <option value="Not Yet Competent" <?php echo ($craft[$i]['craft_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
                                                             </select>
@@ -587,7 +575,6 @@
                     '<div class="col-lg-6">'+
                         '<label for="subject'+counter+'"><font color="red">*</font> Subject</label>'+
                         '<select name="subject[]" id="subject'+counter+'" class="form-control required select2" style="width: 100%">'+
-                            '<option></option>'+
                             '<?php if(!empty($subjects)): ?>'+
                                 '<?php foreach ($subjects as $value): ?>'+
                                     '<option value="<?php echo $value["subject_id"]; ?>"><?php echo $value["subject_title"]; ?></option>'+
@@ -598,7 +585,6 @@
                     '<div class="col-lg-6">'+
                         '<label for="room'+counter+'"><font color="red">*</font> Room</label>'+
                         '<select name="room[]" id="room'+counter+'" class="form-control required select2" style="width: 100%">'+
-                            '<option></option>'+
                             '<?php if(!empty($rooms)): ?>'+
                                 '<?php foreach ($rooms as $value): ?>'+
                                     '<option value="<?php echo $value["room_id"]; ?>"><?php echo $value["room_name"]; ?></option>'+
@@ -612,7 +598,6 @@
                     '<div class="col-lg-6">'+
                         '<label for="day'+counter+'"><font color="red">*</font> Day</label>'+
                         '<select name="day[]" id="day'+counter+'" class="form-control required">'+
-                          '<option></option>'+
                             '<option value="MONDAY">MONDAY</option>'+
                             '<option value="TUESDAY">TUESDAY</option>'+
                             '<option value="WEDNESDAY">WEDNESDAY</option>'+
@@ -626,7 +611,6 @@
                     '<div class="col-lg-6">'+
                         '<label for="time'+counter+'"><font color="red">*</font> Time</label>'+
                         '<select name="time[]" id="time'+counter+'" class="form-control required">'+
-                            '<option> </option>'+
                             '<option value="08:00:00"> 08:00AM - 09:30AM </option>'+
                             '<option value="10:00:00"> 10:00AM - 11:30AM </option>'+
                             '<option value="12:30:00"> 12:30PM - 02:00PM </option>'+
@@ -671,7 +655,6 @@
                     '<div class="col-lg-4">'+
                         '<label for="craft_skill'+counter+'"><font color="red">*</font> Skill</label>'+
                         '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
-                          '<option></option>'+
                           '<option value="1">1</option>'+
                           '<option value="2">2</option>'+
                           '<option value="3">3</option>'+
@@ -686,7 +669,6 @@
                     '<div class="col-lg-4">'+
                         '<label for="craft_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="craft_rating[]" id="craft_rating'+counter+'" class="form-control required">'+
-                          '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
                         '</select>'+
@@ -731,7 +713,6 @@
                     '<div class="col-lg-4">'+
                         '<label for="core_skill'+counter+'"><font color="red">*</font> Skill</label>'+
                         '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
-                          '<option></option>'+
                           '<option value="1">1</option>'+
                           '<option value="2">2</option>'+
                           '<option value="3">3</option>'+
@@ -746,7 +727,6 @@
                     '<div class="col-lg-4">'+
                         '<label for="core_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="core_rating[]" id="core_rating'+counter+'" class="form-control required">'+
-                          '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
                         '</select>'+
