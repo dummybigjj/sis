@@ -1090,81 +1090,89 @@ class Student extends CI_Controller{
                         
                     </td>
                 </tr>
-            </table>
+            </table>';
 
-            <table border="0">
-                <tr>
-                    <td style="width:8%;">
+        if($student['ramarks']!='Graduated'){
 
-                    </td>
-                    <td style="width:84%;">
-                        <table border="0">
-                            <tr>
-                                <td>
-                                    
-                                    <table style="font-size:12px;width:100%;">
-                                        <tr style="font-size:15px;color:#1E88E5;">
-                                            <td colspan="4"><b>Present Subjects and Schedules </b></td>
-                                            <td>  </td>
-                                            <td>  </td>
-                                            <td>  </td>
-                                        </tr>
-                                        <tr>
-                                            <td>  </td>
-                                            <td>  </td>
-                                            <td>  </td>
-                                            <td>  </td>
-                                        </tr>
-                                        <tr style="color:#0D47A1">
-                                            <td style="width:25%;"><b>Subject </b></td>
-                                            <td style="width:25%;"><b>Room </b></td>
-                                            <td style="width:25%;"><b>Day </b></td>
-                                            <td style="width:25%;"><b>Time </b></td>
-                                        </tr>';
+            $html .= '
+                <table border="0">
+                    <tr>
+                        <td style="width:8%;">
 
-                                        for ($i=0; $i < count($student_subjects); $i++) { 
-                                            $html .= '
-                                                <tr>
-                                                    <td>'.$student_subjects[$i]['subject_title'].'</td>
-                                                    <td>'.$student_subjects[$i]['room_name'].'</td>
-                                                    <td>'.$student_subjects[$i]['day'].'</td>
-                                                    <td>'.$this->student_model->transformScheduleRange($student_subjects[$i]['time']).'</td>
-                                                </tr>';
-                                        }
+                        </td>
+                        <td style="width:84%;">
+                            <table border="0">
+                                <tr>
+                                    <td>
+                                        
+                                        <table style="font-size:12px;width:100%;">
+                                            <tr style="font-size:15px;color:#1E88E5;">
+                                                <td colspan="4"><b>Present Subjects and Schedules </b></td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                            </tr>
+                                            <tr>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                            </tr>
+                                            <tr style="color:#0D47A1">
+                                                <td style="width:25%;"><b>Subject </b></td>
+                                                <td style="width:25%;"><b>Room </b></td>
+                                                <td style="width:25%;"><b>Day </b></td>
+                                                <td style="width:25%;"><b>Time </b></td>
+                                            </tr>';
 
-                        $html .=    '</table>
+                                            for ($i=0; $i < count($student_subjects); $i++) { 
+                                                $html .= '
+                                                    <tr>
+                                                        <td>'.$student_subjects[$i]['subject_title'].'</td>
+                                                        <td>'.$student_subjects[$i]['room_name'].'</td>
+                                                        <td>'.$student_subjects[$i]['day'].'</td>
+                                                        <td>'.$this->student_model->transformScheduleRange($student_subjects[$i]['time']).'</td>
+                                                    </tr>';
+                                            }
 
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="width:8%;">
-                        
-                    </td>
-                </tr>
-            </table>
+                            $html .=    '</table>
 
-            <table border="0" cellpadding="0">
-                <tr>
-                    <td style="width:8%;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:8%;">
+                            
+                        </td>
+                    </tr>
+                </table>
 
-                    </td>
-                    <td style="width:84%;">
-                        <table border="0">
-                            <tr>
-                                <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
-                            </tr>
-                            <tr>
-                                <td>  </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="width:8%;">
-                        
-                    </td>
-                </tr>
-            </table>
+                <table border="0" cellpadding="0">
+                    <tr>
+                        <td style="width:8%;">
 
+                        </td>
+                        <td style="width:84%;">
+                            <table border="0">
+                                <tr>
+                                    <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
+                                </tr>
+                                <tr>
+                                    <td>  </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:8%;">
+                            
+                        </td>
+                    </tr>
+                </table>';
+        
+        }
+
+        
+
+        $html .= '
             <table border="0">
                 <tr>
                     <td style="width:8%;">
