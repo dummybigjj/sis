@@ -891,7 +891,7 @@ class Student extends CI_Controller{
                     <td style="width:84%;">
                         <table border="0">
                             <tr style="font-size:25px;color:#0D47A1" align="center">
-                                <td cellspacing="1" style="border-bottom-color:#8B0000;"><b> STUDENT INFORMATION PROFILE </b></td>
+                                <td cellspacing="1" style="border-bottom:3px solid #8B0000;"><b> STUDENT INFORMATION PROFILE </b></td>
                             </tr>
                             <tr>
                                 <td>  </td>
@@ -980,7 +980,7 @@ class Student extends CI_Controller{
                     <td style="width:84%;">
                         <table border="0">
                             <tr>
-                                <td cellspacing="1" style="border-bottom-color:#8B0000;">  </td>
+                                <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
                             </tr>
                             <tr>
                                 <td>  </td>
@@ -1079,7 +1079,7 @@ class Student extends CI_Controller{
                     <td style="width:84%;">
                         <table border="0">
                             <tr>
-                                <td cellspacing="1" style="border-bottom-color:#8B0000;">  </td>
+                                <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
                             </tr>
                             <tr>
                                 <td>  </td>
@@ -1152,7 +1152,7 @@ class Student extends CI_Controller{
                     <td style="width:84%;">
                         <table border="0">
                             <tr>
-                                <td cellspacing="1" style="border-bottom-color:#8B0000;">  </td>
+                                <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
                             </tr>
                             <tr>
                                 <td>  </td>
