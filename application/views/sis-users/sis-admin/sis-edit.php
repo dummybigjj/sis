@@ -424,15 +424,16 @@
                                                             <label for="core_skill"><font color="red">*</font> Skills</label>
                                                             <input type="hidden" name="core_id[]" value="<?php echo $core[$i]['core_id']; ?>">
                                                             <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
-                                                              <option value="1" <?php echo ($core[$i]['core_skill']=='1')?'selected':''; ?> >1</option>
-                                                              <option value="2" <?php echo ($core[$i]['core_skill']=='2')?'selected':''; ?> >2</option>
-                                                              <option value="3" <?php echo ($core[$i]['core_skill']=='3')?'selected':''; ?> >3</option>
-                                                              <option value="4" <?php echo ($core[$i]['core_skill']=='4')?'selected':''; ?> >4</option>
-                                                              <option value="5" <?php echo ($core[$i]['core_skill']=='5')?'selected':''; ?> >5</option>
-                                                              <option value="6" <?php echo ($core[$i]['core_skill']=='6')?'selected':''; ?> >6</option>
-                                                              <option value="7" <?php echo ($core[$i]['core_skill']=='7')?'selected':''; ?> >7</option>
-                                                              <option value="8" <?php echo ($core[$i]['core_skill']=='8')?'selected':''; ?> >8</option>
-                                                              <option value="9" <?php echo ($core[$i]['core_skill']=='9')?'selected':''; ?> >9</option>
+                                                              <option value="1" <?php echo ($core[$i]['core_skill']=='1')?'selected':''; ?> >Core 1</option>
+                                                              <option value="2" <?php echo ($core[$i]['core_skill']=='2')?'selected':''; ?> >Core 2</option>
+                                                              <option value="3" <?php echo ($core[$i]['core_skill']=='3')?'selected':''; ?> >Core 3</option>
+                                                              <option value="4" <?php echo ($core[$i]['core_skill']=='4')?'selected':''; ?> >Core 4</option>
+                                                              <option value="5" <?php echo ($core[$i]['core_skill']=='5')?'selected':''; ?> >Core 5</option>
+                                                              <option value="6" <?php echo ($core[$i]['core_skill']=='6')?'selected':''; ?> >Core 6</option>
+                                                              <option value="7" <?php echo ($core[$i]['core_skill']=='7')?'selected':''; ?> >Core 7</option>
+                                                              <option value="8" <?php echo ($core[$i]['core_skill']=='8')?'selected':''; ?> >Core 8</option>
+                                                              <option value="9" <?php echo ($core[$i]['core_skill']=='9')?'selected':''; ?> >Core 9</option>
+                                                              <option value="10" <?php echo ($core[$i]['core_skill']=='10')?'selected':''; ?> >Core 10</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-4">
@@ -455,7 +456,7 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <?php $core_tk = $this->student_model->get_skills_not_taken($core,'core_skill'); ?>
-                                                    <?php echo (!empty($core_tk))?'Skills not yet'.$core_tk:''; ?>
+                                                    <?php echo (!empty($core_tk))?'Skills not yet taken '.$core_tk:''; ?>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2">
@@ -476,15 +477,18 @@
                                                             <label for="craft_skill"><font color="red">*</font> Skills</label>
                                                             <input type="hidden" name="craft_id[]" value="<?php echo $craft[$i]['craft_id']; ?>">
                                                             <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
-                                                              <option value="1" <?php echo ($craft[$i]['craft_skill']=='1')?'selected':''; ?> >1</option>
-                                                              <option value="2" <?php echo ($craft[$i]['craft_skill']=='2')?'selected':''; ?> >2</option>
-                                                              <option value="3" <?php echo ($craft[$i]['craft_skill']=='3')?'selected':''; ?> >3</option>
-                                                              <option value="4" <?php echo ($craft[$i]['craft_skill']=='4')?'selected':''; ?> >4</option>
-                                                              <option value="5" <?php echo ($craft[$i]['craft_skill']=='5')?'selected':''; ?> >5</option>
-                                                              <option value="6" <?php echo ($craft[$i]['craft_skill']=='6')?'selected':''; ?> >6</option>
-                                                              <option value="7" <?php echo ($craft[$i]['craft_skill']=='7')?'selected':''; ?> >7</option>
-                                                              <option value="8" <?php echo ($craft[$i]['craft_skill']=='8')?'selected':''; ?> >8</option>
-                                                              <option value="9" <?php echo ($craft[$i]['craft_skill']=='9')?'selected':''; ?> >9</option>
+                                                              <option value="1" <?php echo ($craft[$i]['craft_skill']=='1')?'selected':''; ?> >Craft 1</option>
+                                                              <option value="2" <?php echo ($craft[$i]['craft_skill']=='2')?'selected':''; ?> >Craft 2</option>
+                                                              <option value="3" <?php echo ($craft[$i]['craft_skill']=='3')?'selected':''; ?> >Craft 3</option>
+                                                              <option value="4" <?php echo ($craft[$i]['craft_skill']=='4')?'selected':''; ?> >Craft 4</option>
+                                                              <option value="5" <?php echo ($craft[$i]['craft_skill']=='5')?'selected':''; ?> >Craft 5</option>
+                                                              <option value="6" <?php echo ($craft[$i]['craft_skill']=='6')?'selected':''; ?> >Craft 6</option>
+                                                              <option value="7" <?php echo ($craft[$i]['craft_skill']=='7')?'selected':''; ?> >Craft 7</option>
+                                                              <option value="8" <?php echo ($craft[$i]['craft_skill']=='8')?'selected':''; ?> >Craft 8</option>
+                                                              <option value="9" <?php echo ($craft[$i]['craft_skill']=='9')?'selected':''; ?> >Craft 9</option>
+                                                              <option value="10" <?php echo ($craft[$i]['craft_skill']=='10')?'selected':''; ?> >Craft 10</option>
+                                                              <option value="11" <?php echo ($craft[$i]['craft_skill']=='11')?'selected':''; ?> >Craft 11</option>
+                                                              <option value="12" <?php echo ($craft[$i]['craft_skill']=='12')?'selected':''; ?> >Craft 12</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-4">
@@ -505,7 +509,7 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <?php $craft_tk = $this->student_model->get_skills_not_taken($craft,'craft_skill'); ?>
-                                                    <?php echo (!empty($craft_tk))?'Skills not yet'.$craft_tk:''; ?>
+                                                    <?php echo (!empty($craft_tk))?'Skills not yet taken '.$craft_tk:''; ?>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2">
@@ -653,17 +657,20 @@
 
                 '<div class="form-group row col-lg-12">'+
                     '<div class="col-lg-4">'+
-                        '<label for="craft_skill'+counter+'"><font color="red">*</font> Skill</label>'+
+                        '<label for="craft_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
-                          '<option value="1">1</option>'+
-                          '<option value="2">2</option>'+
-                          '<option value="3">3</option>'+
-                          '<option value="4">4</option>'+
-                          '<option value="5">5</option>'+
-                          '<option value="6">6</option>'+
-                          '<option value="7">7</option>'+
-                          '<option value="8">8</option>'+
-                          '<option value="9">9</option>'+
+                          '<option value="1">Craft 1</option>'+
+                          '<option value="2">Craft 2</option>'+
+                          '<option value="3">Craft 3</option>'+
+                          '<option value="4">Craft 4</option>'+
+                          '<option value="5">Craft 5</option>'+
+                          '<option value="6">Craft 6</option>'+
+                          '<option value="7">Craft 7</option>'+
+                          '<option value="8">Craft 8</option>'+
+                          '<option value="9">Craft 9</option>'+
+                          '<option value="10">Craft 10</option>'+
+                          '<option value="11">Craft 11</option>'+
+                          '<option value="12">Craft 12</option>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-lg-4">'+
@@ -711,17 +718,18 @@
 
                 '<div class="form-group row col-lg-12">'+
                     '<div class="col-lg-4">'+
-                        '<label for="core_skill'+counter+'"><font color="red">*</font> Skill</label>'+
+                        '<label for="core_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
-                          '<option value="1">1</option>'+
-                          '<option value="2">2</option>'+
-                          '<option value="3">3</option>'+
-                          '<option value="4">4</option>'+
-                          '<option value="5">5</option>'+
-                          '<option value="6">6</option>'+
-                          '<option value="7">7</option>'+
-                          '<option value="8">8</option>'+
-                          '<option value="9">9</option>'+
+                          '<option value="1">Core 1</option>'+
+                          '<option value="2">Core 2</option>'+
+                          '<option value="3">Core 3</option>'+
+                          '<option value="4">Core 4</option>'+
+                          '<option value="5">Core 5</option>'+
+                          '<option value="6">Core 6</option>'+
+                          '<option value="7">Core 7</option>'+
+                          '<option value="8">Core 8</option>'+
+                          '<option value="9">Core 9</option>'+
+                          '<option value="10">Core 10</option>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-lg-4">'+

@@ -1236,7 +1236,7 @@ class Student extends CI_Controller{
 
                                         for ($i=0; $i < count($student_craft); $i++) { 
                                         $html .='<tr>
-                                                    <td>Core '.$student_craft[$i]['craft_skill'].'</td>
+                                                    <td>Craft '.$student_craft[$i]['craft_skill'].'</td>
                                                     <td>'.$student_craft[$i]['craft_rating'].'</td>
                                                     <td>'.$student_craft[$i]['craft_completed'].'</td>
                                                 </tr>';

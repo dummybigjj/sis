@@ -420,15 +420,16 @@
                                                     <label for="core_skill"><font color="red">*</font> Skills</label>
                                                     <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="1">1</option>
-                                                      <option value="2">2</option>
-                                                      <option value="3">3</option>
-                                                      <option value="4">4</option>
-                                                      <option value="5">5</option>
-                                                      <option value="6">6</option>
-                                                      <option value="7">7</option>
-                                                      <option value="8">8</option>
-                                                      <option value="9">9</option>
+                                                      <option value="1">Core 1</option>
+                                                      <option value="2">Core 2</option>
+                                                      <option value="3">Core 3</option>
+                                                      <option value="4">Core 4</option>
+                                                      <option value="5">Core 5</option>
+                                                      <option value="6">Core 6</option>
+                                                      <option value="7">Core 7</option>
+                                                      <option value="8">Core 8</option>
+                                                      <option value="9">Core 9</option>
+                                                      <option value="10">Core 10</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -463,15 +464,18 @@
                                                     <label for="craft_skill"><font color="red">*</font> Skills</label>
                                                     <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
                                                       <option></option>
-                                                      <option value="1">1</option>
-                                                      <option value="2">2</option>
-                                                      <option value="3">3</option>
-                                                      <option value="4">4</option>
-                                                      <option value="5">5</option>
-                                                      <option value="6">6</option>
-                                                      <option value="7">7</option>
-                                                      <option value="8">8</option>
-                                                      <option value="9">9</option>
+                                                      <option value="1">Craft 1</option>
+                                                      <option value="2">Craft 2</option>
+                                                      <option value="3">Craft 3</option>
+                                                      <option value="4">Craft 4</option>
+                                                      <option value="5">Craft 5</option>
+                                                      <option value="6">Craft 6</option>
+                                                      <option value="7">Craft 7</option>
+                                                      <option value="8">Craft 8</option>
+                                                      <option value="9">Craft 9</option>
+                                                      <option value="10">Craft 10</option>
+                                                      <option value="11">Craft 11</option>
+                                                      <option value="12">Craft 12</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -638,18 +642,21 @@
 
                 '<div class="form-group row col-lg-12">'+
                     '<div class="col-lg-4">'+
-                        '<label for="craft_skill'+counter+'"><font color="red">*</font> Skill</label>'+
+                        '<label for="craft_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
                           '<option></option>'+
-                          '<option value="1">1</option>'+
-                          '<option value="2">2</option>'+
-                          '<option value="3">3</option>'+
-                          '<option value="4">4</option>'+
-                          '<option value="5">5</option>'+
-                          '<option value="6">6</option>'+
-                          '<option value="7">7</option>'+
-                          '<option value="8">8</option>'+
-                          '<option value="9">9</option>'+
+                          '<option value="1">Craft 1</option>'+
+                          '<option value="2">Craft 2</option>'+
+                          '<option value="3">Craft 3</option>'+
+                          '<option value="4">Craft 4</option>'+
+                          '<option value="5">Craft 5</option>'+
+                          '<option value="6">Craft 6</option>'+
+                          '<option value="7">Craft 7</option>'+
+                          '<option value="8">Craft 8</option>'+
+                          '<option value="9">Craft 9</option>'+
+                          '<option value="10">Craft 10</option>'+
+                          '<option value="11">Craft 11</option>'+
+                          '<option value="12">Craft 12</option>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-lg-4">'+
@@ -698,18 +705,19 @@
 
                 '<div class="form-group row col-lg-12">'+
                     '<div class="col-lg-4">'+
-                        '<label for="core_skill'+counter+'"><font color="red">*</font> Skill</label>'+
+                        '<label for="core_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
                           '<option></option>'+
-                          '<option value="1">1</option>'+
-                          '<option value="2">2</option>'+
-                          '<option value="3">3</option>'+
-                          '<option value="4">4</option>'+
-                          '<option value="5">5</option>'+
-                          '<option value="6">6</option>'+
-                          '<option value="7">7</option>'+
-                          '<option value="8">8</option>'+
-                          '<option value="9">9</option>'+
+                          '<option value="1">Core 1</option>'+
+                          '<option value="2">Core 2</option>'+
+                          '<option value="3">Core 3</option>'+
+                          '<option value="4">Core 4</option>'+
+                          '<option value="5">Core 5</option>'+
+                          '<option value="6">Core 6</option>'+
+                          '<option value="7">Core 7</option>'+
+                          '<option value="8">Core 8</option>'+
+                          '<option value="9">Core 9</option>'+
+                          '<option value="10">Core 10</option>'+
                         '</select>'+
                     '</div>'+
                     '<div class="col-lg-4">'+
