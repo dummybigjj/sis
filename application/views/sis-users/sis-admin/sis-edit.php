@@ -266,6 +266,7 @@
                                                 <div class="col-lg-6">
                                                     <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
                                                     <select name="student_remarks" id="student_remarks" class="form-control required">
+                                                        <option value="Ongoing" <?php echo ($student['ramarks']=='Ongoing')?'selected':''; ?> >Ongoing</option>
                                                         <option value="Graduated" <?php echo ($student['ramarks']=='Graduated')?'selected':''; ?> >Graduated</option>
                                                         <option value="Terminated" <?php echo ($student['ramarks']=='Terminated')?'selected':''; ?> >Terminated</option>
                                                         <option value="Expulsion" <?php echo ($student['ramarks']=='Expulsion')?'selected':''; ?> >Expulsion</option>

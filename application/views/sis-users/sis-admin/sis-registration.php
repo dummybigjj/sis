@@ -269,7 +269,8 @@
                                                 <div class="col-lg-6">
                                                     <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
                                                     <select name="student_remarks" id="student_remarks" class="form-control required">
-                                                      <option></option>
+                                                        <option></option>
+                                                        <option value="Ongoing">Ongoing</option>
                                                         <option value="Graduated">Graduated</option>
                                                         <option value="Terminated">Terminated</option>
                                                         <option value="Expulsion">Expulsion</option>

@@ -846,7 +846,8 @@ class Student extends CI_Controller{
         // dejavusans is a UTF-8 Unicode font, if you only need to
         // print standard ASCII chars, you can use core fonts like
         // helvetica or times to reduce file size.
-        $pdf->SetFont('helvetica', '', 14, '', true); 
+        // $pdf->SetFont('aealarabiya', '', 18, '', false); 
+        $pdf->SetFont('aealarabiya', '', 18);
 
         $pdf->SetPrintHeader(false);  
      
@@ -917,6 +918,10 @@ class Student extends CI_Controller{
                                     <table style="font-size:12px;">
                                         <tr style="font-size:15px;">
                                             <td><b>'.$student['arabic_name'].'</b></td>
+                                            <td>  </td>
+                                        </tr>
+                                        <tr style="font-size:15px;">
+                                            <td><b>'.$student['english_name'].'</b></td>
                                             <td>  </td>
                                         </tr>
                                         <tr>
@@ -1026,7 +1031,7 @@ class Student extends CI_Controller{
                                         </tr>
                                         <tr>
                                             <td>Date of Birth: </td>
-                                            <td>'.date('F d, Y',strtotime($student['date_of_birth'])).'</td>
+                                            <td>'.date('M d, Y',strtotime($student['date_of_birth'])).'</td>
                                         </tr>
                                     </table>
 
@@ -1202,7 +1207,7 @@ class Student extends CI_Controller{
                                         <tr>
                                             <td>Rating: </td>
                                             <td>'.$student_pro['eng_rating'].'</td>
-                                            <td>'.$student_pro['eng_completed'].'</td>
+                                            <td>'.date('M d, Y',strtotime($student_pro['eng_completed'])).'</td>
                                         </tr>
                                         <tr>
                                             <td>  </td>
@@ -1219,7 +1224,7 @@ class Student extends CI_Controller{
                                         $html .='<tr>
                                                     <td>Core '.$student_core[$i]['core_skill'].'</td>
                                                     <td>'.$student_core[$i]['core_rating'].'</td>
-                                                    <td>'.$student_core[$i]['core_completed'].'</td>
+                                                    <td>'.date('M d, Y',strtotime($student_core[$i]['core_completed'])).'</td>
                                                 </tr>';
                                         }
 
@@ -1238,7 +1243,7 @@ class Student extends CI_Controller{
                                         $html .='<tr>
                                                     <td>Craft '.$student_craft[$i]['craft_skill'].'</td>
                                                     <td>'.$student_craft[$i]['craft_rating'].'</td>
-                                                    <td>'.$student_craft[$i]['craft_completed'].'</td>
+                                                    <td>'.date('M d, Y',strtotime($student_craft[$i]['craft_completed'])).'</td>
                                                 </tr>';
                                         }
 
@@ -1295,9 +1300,6 @@ class Student extends CI_Controller{
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
                                             <td><b>Noted and Approved by:</b></td>
                                         </tr>
                                         <tr>
@@ -1327,8 +1329,8 @@ class Student extends CI_Controller{
                                         <tr>
                                             <td></td>
                                         </tr>
-                                        <tr style="font-size:11px;">
-                                            <td><i>This Student Information Profile is not legal for employment or whatever legal purposes it may serve.</i></td>
+                                        <tr style="font-size:11px;color:red;">
+                                            <td><i>***This Student Information Profile is not legal for employment or whatever legal purposes it may serve.***</i></td>
                                         </tr>
                                     </table>
                                 </td>
