@@ -160,6 +160,8 @@ class Student extends CI_Controller{
             'guardian_name'     => trim($this->input->post('guardian_name')),
             'guardian_contact'  => $this->input->post('guardian_contact'),
             'ramarks'           => $this->input->post('student_remarks'),
+            'date_graduated'    => $this->input->post('graduate'),
+            'comments'          => trim($this->input->post('comments')),
             'civil_status'      => trim($this->input->post('civil_status')),
             'student_created_by'=> $this->session->userdata('u_fullname')
         );
@@ -281,6 +283,8 @@ class Student extends CI_Controller{
             'guardian_name'     => trim($this->input->post('guardian_name')),
             'guardian_contact'  => $this->input->post('guardian_contact'),
             'ramarks'           => $this->input->post('student_remarks'),
+            'date_graduated'    => $this->input->post('graduate'),
+            'comments'          => trim($this->input->post('comments')),
             'civil_status'      => trim($this->input->post('civil_status')),
             'student_updated_by'=> $this->session->userdata('u_fullname')
         );
@@ -894,9 +898,6 @@ class Student extends CI_Controller{
                             <tr style="font-size:25px;color:#0D47A1" align="center">
                                 <td cellspacing="1" style="border-bottom:3px solid #8B0000;"><b> STUDENT INFORMATION PROFILE </b></td>
                             </tr>
-                            <tr>
-                                <td>  </td>
-                            </tr>
                         </table>
                     </td>
                     <td style="width:8%;">
@@ -916,7 +917,7 @@ class Student extends CI_Controller{
                                 <td style="width:78%;">
                                     
                                     <table style="font-size:12px;">
-                                        <tr style="font-size:15px;">
+                                        <tr style="font-size:15px;"><br>
                                             <td><b>'.$student['arabic_name'].'</b></td>
                                             <td>  </td>
                                         </tr>
@@ -953,8 +954,21 @@ class Student extends CI_Controller{
                                         <tr>
                                             <td>Remarks: </td>
                                             <td>'.$student['ramarks'].'</td>
-                                        </tr>
-                                    </table>
+                                        </tr>';
+
+                                        if($student['ramarks']=='Graduated'){
+                                            $html .= '
+
+                                            <tr>
+                                                <td>Date: </td>
+                                                <td>'.date('F d, Y',strtotime($student['date_graduated'])).'</td>
+                                            </tr>
+
+                                            ';
+                                        }
+
+
+                        $html .=    '</table>
 
                                 </td>
 
@@ -962,7 +976,7 @@ class Student extends CI_Controller{
                                     
                                     $file_path = base_url('uploads/students_images/'.$student['id_picture']);
                                     if(!empty($student['id_picture'])){
-                                        $html .= '<img border="1" width="110px" height="110px" src="'.$file_path.'" >';
+                                        $html .= '<br><br><img border="1" width="110px" height="110px" src="'.$file_path.'" >';
                                     }else{
                                         $html .= '<img border="1" width="110px" height="110px" src="'.base_url('uploads/students_images/not-available.png').'" >';
                                     }
@@ -970,6 +984,16 @@ class Student extends CI_Controller{
                 $html .=        '</td>
                             </tr>
                         </table>
+
+                        <table border="0" style="font-size:12px;">
+                            <tr>
+                                <td>Comment: </td>
+                            </tr>
+                            <tr>
+                                <td>'.$student['comments'].'</td>
+                            </tr>
+                        </table>
+
                     </td>
                     <td style="width:8%;">
                         
@@ -986,9 +1010,6 @@ class Student extends CI_Controller{
                         <table border="0">
                             <tr>
                                 <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
-                            </tr>
-                            <tr>
-                                <td>  </td>
                             </tr>
                         </table>
                     </td>
@@ -1009,7 +1030,7 @@ class Student extends CI_Controller{
                                 <td style="width:50%;">
                                     
                                     <table style="font-size:12px;">
-                                        <tr style="font-size:15px;color:#1E88E5;">
+                                        <tr style="font-size:15px;color:#1E88E5;"><br>
                                             <td colspan="2"><b>Personal Information </b></td>
                                             <td>  </td>
                                         </tr>
@@ -1040,8 +1061,8 @@ class Student extends CI_Controller{
                                 <td style="width:50%;">
 
                                     <table style="font-size:12px;">
-                                        <tr>
-                                            <td>  </td>
+                                        <tr style="font-size:15px;color:#1E88E5;"><br>
+                                            <td colspan="2">  </td>
                                             <td>  </td>
                                         </tr>
                                         <tr>
@@ -1068,7 +1089,19 @@ class Student extends CI_Controller{
 
                                 </td>
                             </tr>
+                        </table><br><br>
+
+                        <table border="0" style="font-size:12px;">
+                            <tr>
+                                <td>Contact Person in Case of Emergency: </td>
+                                <td>'.$student['guardian_name'].'</td>
+                            </tr>
+                            <tr>
+                                <td>Contact No.: </td>
+                                <td>'.$student['guardian_contact'].'</td>
+                            </tr>
                         </table>
+
                     </td>
                     <td style="width:8%;">
                         
@@ -1085,9 +1118,6 @@ class Student extends CI_Controller{
                         <table border="0">
                             <tr>
                                 <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
-                            </tr>
-                            <tr>
-                                <td>  </td>
                             </tr>
                         </table>
                     </td>
@@ -1111,7 +1141,7 @@ class Student extends CI_Controller{
                                     <td>
                                         
                                         <table style="font-size:12px;width:100%;">
-                                            <tr style="font-size:15px;color:#1E88E5;">
+                                            <tr style="font-size:15px;color:#1E88E5;"><br>
                                                 <td colspan="4"><b>Present Subjects and Schedules </b></td>
                                                 <td>  </td>
                                                 <td>  </td>
@@ -1162,9 +1192,6 @@ class Student extends CI_Controller{
                                 <tr>
                                     <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
                                 </tr>
-                                <tr>
-                                    <td>  </td>
-                                </tr>
                             </table>
                         </td>
                         <td style="width:8%;">
@@ -1189,7 +1216,7 @@ class Student extends CI_Controller{
                                 <td>
                                     
                                     <table style="font-size:12px;width:100%;">
-                                        <tr style="font-size:15px;color:#1E88E5;">
+                                        <tr style="font-size:15px;color:#1E88E5;"><br>
                                             <td colspan="3"><b>Skills Completed </b></td>
                                             <td>  </td>
                                             <td>  </td>
@@ -1265,75 +1292,69 @@ class Student extends CI_Controller{
 
                     </td>
                     <td style="width:84%;">
-                        <table border="0">
+                        <table border="0" style="font-size:12px;padding-left:-12;">
                             <tr>
-                                <td>
-                                    <table style="font-size:12px;width:100%;">
-                                        <tr>
-                                            <td><b>Certified True and Correct</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>MUSTAFA HASSAN AL SULAYYIL</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>REGISTRAR</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Noted and Approved by:</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>DR. FIRAS KASSEM</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Institute Manager</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr style="font-size:11px;color:red;">
-                                            <td><i>***This Student Information Profile is not legal for employment or whatever legal purposes it may serve.***</i></td>
-                                        </tr>
-                                    </table>
-                                </td>
+                                <td><b>Certified True and Correct</b></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><b>MUSTAFA HASSAN AL SULAYYIL</b></td>
+                            </tr>
+                            <tr>
+                                <td>REGISTRAR</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><b>Noted and Approved by:</b></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><b>DR. FIRAS KASSEM</b></td>
+                            </tr>
+                            <tr>
+                                <td>Institute Manager</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr style="font-size:11px;color:red;">
+                                <td><i>***This Student Information Profile is not legal for employment or whatever legal purposes it may serve.***</i></td>
                             </tr>
                         </table>
                     </td>

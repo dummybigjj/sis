@@ -209,6 +209,13 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-12">
+                                                    <label for="comments">Comments</label>
+                                                    <textarea class="form-control" id="comments" name="comments" maxlength="249" ><?php echo $student['comments']; ?></textarea>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <!-- END STEP CONTENT-->
@@ -265,7 +272,7 @@
 
                                                 <div class="col-lg-6">
                                                     <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
-                                                    <select name="student_remarks" id="student_remarks" class="form-control required">
+                                                    <select name="student_remarks" id="student_remarks" class="form-control required" onkeyup="is_graduated(this)" onkeydown="is_graduated(this)" onkeyup="is_graduated(this)" onmouseout="is_graduated(this)">
                                                         <option value="Ongoing" <?php echo ($student['ramarks']=='Ongoing')?'selected':''; ?> >Ongoing</option>
                                                         <option value="Graduated" <?php echo ($student['ramarks']=='Graduated')?'selected':''; ?> >Graduated</option>
                                                         <option value="Terminated" <?php echo ($student['ramarks']=='Terminated')?'selected':''; ?> >Terminated</option>
@@ -274,6 +281,12 @@
                                                         <option value="Withdraw" <?php echo ($student['ramarks']=='Withdraw')?'selected':''; ?> >Withdraw</option>
                                                     </select>
                                                 </div>
+
+                                                <div class="col-lg-6" id="graduated" style="display: none;">
+                                                    <label for="graduate"><font color="red">*</font> Date Graduated</label>
+                                                    <input type="text" class="form-control dob " id="graduate" name="graduate" value="<?php echo $student['date_graduated']; ?>">
+                                                </div>
+
                                             </div>
                                             
                                             <div class="col-12"><legend class="col-lg-11 h5"><i class="fa fa-user-o"></i> Training </legend><hr/></div>
@@ -561,7 +574,7 @@
         </footer>
     </div>
 
-    <script src="<?php echo base_url('application/assets/js/custom.js'); ?>"></script>
+    <script src="<?php echo base_url('application/assets/js/custom2.js'); ?>"></script>
     <script type="text/javascript">
 
         $(document).ready(function(){

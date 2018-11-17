@@ -24,6 +24,22 @@
 
         }
 
+        function is_graduated(that) {
+            if (that.value == "Graduated") {
+                // show field
+                document.getElementById("graduated").style.display = "";
+                // set date graduated to required
+                $("#graduate").addClass("required");
+            }else{
+                // hide field
+                document.getElementById("graduated").style.display = "none";
+                // reset graduated field value
+                document.getElementById("graduate").value = "";
+                // remove required class in graduated field
+                $("#graduate").removeClass("required");
+            }
+        }
+
         function courseCheck(that) {
           if(that.value == "Diploma") {
             // show field

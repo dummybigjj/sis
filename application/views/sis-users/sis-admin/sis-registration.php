@@ -207,6 +207,13 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-12">
+                                                    <label for="comments">Comments</label>
+                                                    <textarea class="form-control" id="comments" name="comments" maxlength="249" ></textarea>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <!-- END STEP CONTENT-->
@@ -268,7 +275,7 @@
 
                                                 <div class="col-lg-6">
                                                     <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
-                                                    <select name="student_remarks" id="student_remarks" class="form-control required">
+                                                    <select name="student_remarks" id="student_remarks" class="form-control required" onkeyup="is_graduated(this)" onkeydown="is_graduated(this)" onkeyup="is_graduated(this)" onmouseout="is_graduated(this)">
                                                         <option></option>
                                                         <option value="Ongoing">Ongoing</option>
                                                         <option value="Graduated">Graduated</option>
@@ -278,6 +285,12 @@
                                                         <option value="Withdraw">Withdraw</option>
                                                     </select>
                                                 </div>
+
+                                                <div class="col-lg-6" id="graduated" style="display: none;">
+                                                    <label for="graduate"><font color="red">*</font> Date Graduated</label>
+                                                    <input type="text" class="form-control dob " id="graduate" name="graduate">
+                                                </div>
+
                                             </div>
                                             
                                             <div class="col-12"><legend class="col-lg-11 h5"><i class="fa fa-user-o"></i> Training </legend><hr/></div>
@@ -542,7 +555,7 @@
         </footer>
     </div>
 
-    <script src="<?php echo base_url('application/assets/js/custom.js'); ?>"></script>
+    <script src="<?php echo base_url('application/assets/js/custom2.js'); ?>"></script>
     <script type="text/javascript">
 
         $(document).ready(function(){
