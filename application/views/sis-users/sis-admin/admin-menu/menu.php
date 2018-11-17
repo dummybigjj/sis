@@ -10,7 +10,7 @@
             <div class="sidebar-toolbar-content text-center">
               <a href="#">
                 <!-- <img class="rounded-circle thumb64" src="<?php //echo base_url('application/assets/img/user/01.jpg'); ?>" alt="Profile"> -->
-                <?php if(!empty(base_url('uploads/users_images/'.$this->session->userdata('profile_pic')))): ?>
+                <?php if(base_url('uploads/users_images/'.$this->session->userdata('profile_pic'))): ?>
                   <img class="rounded-circle thumb64" src="<?php echo base_url('uploads/users_images/'.$this->session->userdata('profile_pic')); ?>" alt="Profile">
                 <?php else: ?>
                   <img class="rounded-circle thumb64" src="<?php echo base_url('uploads/students_images/not-available.png'); ?>" alt="Profile">
