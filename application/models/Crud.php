@@ -701,6 +701,111 @@ class Crud extends Cruds
 	}
 
 	/**
+	 * count_table_rows function.
+	 * 
+	 * @access public
+	 * @param associative array $conditions
+	 * @param mixed $tbl
+	 * @return int count of table rows on success.
+	 */
+	public function count_table_rows($conditions,$tbl)
+	{
+		return $this->getData('','c',$conditions,$tbl);
+	}
+
+	/**
+	 * pagination_config function.
+	 * 
+	 * @access public
+	 * @param int $per_page
+	 * @param int $total_rows
+	 * @param string $url_name
+	 * @param int $uri_segment
+	 * @return pagination config on success.
+	 */
+	public function pagination_config($per_page,$total_rows,$url_name,$uri_segment){
+		// pagination config
+        $config = array();
+        $config["base_url"] = base_url() . $url_name;
+        $config["total_rows"] = $total_rows;
+        $config["per_page"] = $per_page;
+        $config["uri_segment"] = $uri_segment;
+
+        //config for bootstrap pagination class integration
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = '&laquo&laquo';
+        $config['last_link'] = '&raquo&raquo';
+        $config['first_tag_open'] = '<li class="paginate_button page-item previous page-link" id="example_previous">';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo';
+        $config['prev_tag_open'] = '<li class="paginate_button page-item previous page-link" id="example_previous">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo';
+        $config['next_tag_open'] = '<li class="paginate_button page-item next page-link" id="example_next">';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li class="paginate_button page-item next page-link" id="example_next">';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="paginate_button page-item active"><a href="#" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="paginate_button page-item page-link">';
+        $config['num_tag_close'] = '</li>';
+        return $config;
+	}
+
+	/**
+	 * get_paginated_data function.
+	 * 
+	 * @access public
+	 * @param mixed $select
+	 * @param associative array $condition
+	 * @param mixed $order
+	 * @param array $page
+	 * @param mixed $tbl
+	 * @return associative array data on query result, false on failure
+	 */
+	public function get_paginated_data($select,$conditions=array(),$tbl_join=array(),$order,$page,$tbl){
+		$con['conditions'] = $conditions;
+		$con['tbl_join']   = $tbl_join;
+		$getJoinData = $this->get_paginated_rows($con,$select,$order,$page,$tbl);
+		if($getJoinData){
+			return $getJoinData;
+		}
+		return FALSE;
+	}
+
+	/**
+	 * get_paginated_rows function.
+	 * 
+	 * @access private
+	 * @param associative array $params
+	 * @param string $select
+	 * @param mixed $order
+	 * @param array $page(limit,offset)
+	 * @param mixed $tbl
+	 * @return associative array data on query result, false on failure
+	 */
+	private function get_paginated_rows($params=array(),$select,$order,$page,$tbl){
+		!empty($select)?$this->db->select($select):$this->db->select('*');
+		$this->db->from($this->init_tbl[$tbl]);
+		if(array_key_exists("tbl_join", $params)){
+			foreach ($params["tbl_join"] as $key => $value) {
+				$this->db->join($key,$value);
+			}
+		}
+		if(array_key_exists("conditions", $params)){
+			if(!empty($params["conditions"])){
+				foreach ($params["conditions"] as $key => $value) {
+					$this->db->where($key,$value);
+				}
+			}
+		}
+		$this->db->order_by($order);
+		if(!empty($page))$this->db->limit($page[0],$page[1]);
+		return $this->db->get()->result_array();
+	}
+
+	/**
 	 * insertBatch function.
 	 * 
 	 * @access public

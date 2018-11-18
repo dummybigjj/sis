@@ -6,6 +6,8 @@ class Admin extends CI_Controller{
 
     function __construct(){
         parent::__construct();
+        $this->load->helper("url");
+        $this->load->library("pagination");
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('crud');
@@ -81,8 +83,20 @@ class Admin extends CI_Controller{
     public function admin_history(){
         $this->crud->credibilityAuth(array('Administrator'));
         $data['header'] = array('title'=>'History Logs','icon'=>'ios-loop');
+
+        // History table count
+        $data['count'] = $this->crud->count_table_rows('','tbl4');
+        // Set pagination config
+        $config = $this->crud->pagination_config(200,$data['count'],'history',2);
+        // initialize pagination
+        $this->pagination->initialize($config);
+        // set start query page
+        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        // paginiation links
+        $data["links"] = $this->pagination->create_links();
+
         // Necessary page data
-        $data['history']= $this->admin_model->getHistoryLogs('');
+        $data['history'] = $this->admin_model->get_history_logs('','`history_logs`.`created` DESC',$config["per_page"],$page);
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);

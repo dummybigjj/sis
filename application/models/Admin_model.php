@@ -11,6 +11,25 @@ class Admin_model extends CI_Model {
 	 * 
 	 * @access public
 	 * @param associative array $condition
+	 * @param int $limit
+	 * @param int $start
+	 * @return associative array on success.
+	 */
+	public function get_history_logs($condition = array(),$order,$limit,$start)
+	{
+		$select = '`tbl_id`, `activity`, `user_credential`.`u_full_name`, `user_credential`.`u_email_address`, `user_credential`.`designation`, `device_use`, `history_logs`.`device_name`, `history_logs`.`device_ip_address`, `history_logs`.`created`';
+		$join = array('`user_credential`'=>'`history_logs`.`created_by` = `user_credential`.`user_id`');
+		if(!empty($condition)){
+			return $this->crud->getJoinDataWithSort($select,'s',$condition,$join,$order,'tbl4');
+		}
+		return $this->crud->get_paginated_data($select,$condition,$join,$order,array($limit,$start),'tbl4');
+	}
+
+	/**
+	 * getHistoryLogs function.
+	 * 
+	 * @access public
+	 * @param associative array $condition
 	 * @return associative array on success.
 	 */
 	public function getHistoryLogs($condition = array()){

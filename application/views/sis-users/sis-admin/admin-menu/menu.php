@@ -37,7 +37,7 @@
                 <a href="<?php echo site_url('admin_security'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-gear-outline"></em></span><span>Security Config</span></a>
               </li>
               <li>
-                <a href="<?php echo site_url('admin_history'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-loop"></em></span><span>History</span></a>
+                <a href="<?php echo site_url('history'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-loop"></em></span><span>History</span></a>
               </li>
               <li>
                 <div class="sidebar-nav-heading"></div>
