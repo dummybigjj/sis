@@ -17,6 +17,8 @@ class Cruds extends CI_Model {
 			'tbl10'=> 'craft',
 			'tbl11'=> 'diploma_course',
 			'tbl12'=> 'core',
+			'tbl13'=> 'core_item',
+			'tbl14'=> 'craft_item'
 		);
 		$this->init_returnType = array(
 			'c' => 'count',
@@ -293,7 +295,7 @@ class Cruds extends CI_Model {
 		$this->db->from($this->init_tbl[$tbl]);
 		if(array_key_exists("tbl_join", $params)){
 			foreach ($params["tbl_join"] as $key => $value) {
-				$this->db->join($key,$value);
+				$this->db->join($key,$value,'left');
 			}
 		}
 		if(array_key_exists("conditions", $params)){
@@ -826,49 +828,18 @@ class Crud extends Cruds
 	            }
             }
         }
-        // remove an array from $arr_data with empty "$keys" value
-        $arr = $this->removeEmptyKeyValue($keys, $arr_data);
-        // add array keys
-        for ($i=0; $i < count($arr); $i++) { 
+        for ($i=0; $i < count($arr_data); $i++) { 
         	if(!empty($fk)){
 				foreach($fk as $key => $val) {
-					$arr[$i][$key] = $val;
+					$arr_data[$i][$key] = $val;
 				}
 			}
         }
         // insert batch
-		if(!empty($arr)){
-			return $this->basicInsertBatch($arr,$tbl);
+		if(!empty($arr_data)){
+			return $this->basicInsertBatch($arr_data,$tbl);
 		}
 		return FALSE;
-	}
-
-	/**
-	 * removeEmptyKeyValue function.
-	 * remove an array from associative array with empty "$keys" value
-	 * 
-	 * @access public
-	 * @param associative array $array
-	 * @param associative array $arr_data
-	 * @return associative array on success.
-	 */
-	public function removeEmptyKeyValue($keys = array(),$arr_data = array()){
-		// remove invalid array
-        for ($i=0; $i < count($keys); $i++) { 
-        	for ($a=0; $a < count($arr_data); $a++) { 
-        		if(empty($arr_data[$a][$keys[$i]])){
-        			$arr_data[$a] = '';
-        		}
-        	}
-        }
-        // create new array
-        $arr = array();
-        for ($i=0; $i < count($arr_data); $i++) { 
-        	if(is_array($arr_data[$i])){
-        		$arr[] = $arr_data[$i];
-        	}
-        }
-        return $arr;
 	}
 
 	/**

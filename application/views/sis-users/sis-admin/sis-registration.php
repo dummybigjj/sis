@@ -84,7 +84,25 @@
                             <a href="#0">
                                 <span class="number"></span>
                                 <span class="desc">
-                                    <label>Student</label>
+                                    <label>English</label>
+                                    <span> Proficiency</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li data-target="step-6">
+                            <a href="#0">
+                                <span class="number"></span>
+                                <span class="desc">
+                                    <label>Core</label>
+                                    <span> Skills</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li data-target="step-7">
+                            <a href="#0">
+                                <span class="number"></span>
+                                <span class="desc">
+                                    <label>Craft</label>
                                     <span> Skills</span>
                                 </span>
                             </a>
@@ -403,6 +421,7 @@
                                     <!-- BEGIN STEP CONTENT-->
                                     <div class="tsf-step-content col-lg-12" style="width: 100%;">
                                         <div class="col-lg-12">
+
                                             <div class="form-group col-sm-12">
                                                 <label><i class="fa fa-question-circle-o"></i> Fields with (<font color="red">*</font>) are required. </label>
                                             </div>
@@ -411,7 +430,7 @@
                                                 <label><i class="fa fa-book"></i> English Proficiency </label>
                                             </div>
                                             <div class="form-group row col-lg-12">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <label for="eng_rating"><font color="red">*</font> Rating</label>
                                                     <select name="eng_rating" id="eng_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
@@ -419,34 +438,47 @@
                                                       <option value="Not Yet Competent">Not Yet Competent</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <label for="eng_completed">Completed</label>
                                                     <input type="text" name="eng_completed" id="eng_completed" class="form-control dob">
                                                 </div>
+                                                <div class="col-lg-4">
+                                                    <label for="eng_grade">Grade</label>
+                                                    <input type="text" name="eng_grade" id="eng_grade" onkeypress="validate(event)" maxlength="3" class="form-control">
+                                                </div>
                                             </div><br>
 
+                                        </div>
+                                    </div>
+                                    <!-- END STEP CONTENT-->
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!-- END STEP 5-->
+                        <!-- BEGIN STEP 6-->
+                        <div class="tsf-step step-6">
+                            <fieldset>
+                                <div class="col-12"><legend class="col-lg-12"><i class="fa fa-user-o"></i> Core Skills</legend><hr/></div>
+                                <div class="row">
+                                    <!-- BEGIN STEP CONTENT-->
+                                    <div class="tsf-step-content col-lg-12" style="width: 100%;">
+                                        <div class="col-lg-12">
                                             <div class="form-group col-sm-12">
-                                                <label><i class="fa fa-book"></i> Core </label>
+                                                <label><i class="fa fa-question-circle-o"></i> Fields with (<font color="red">*</font>) are required. </label>
                                             </div>
 
                                             <div class="form-group row col-lg-12">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <label for="core_skill"><font color="red">*</font> Skills</label>
                                                     <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
-                                                      <option></option>
-                                                      <option value="1">Core 1</option>
-                                                      <option value="2">Core 2</option>
-                                                      <option value="3">Core 3</option>
-                                                      <option value="4">Core 4</option>
-                                                      <option value="5">Core 5</option>
-                                                      <option value="6">Core 6</option>
-                                                      <option value="7">Core 7</option>
-                                                      <option value="8">Core 8</option>
-                                                      <option value="9">Core 9</option>
-                                                      <option value="10">Core 10</option>
+                                                        <?php if(!empty($core)): ?>
+                                                            <?php foreach ($core as $value): ?>
+                                                                <option value="<?php echo $value['core_item_id'] ?>"><?php echo $value['core_code']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <label for="core_rating"><font color="red">*</font> Rating</label>
                                                     <select name="core_rating[]" id="core_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
@@ -454,9 +486,13 @@
                                                       <option value="Not Yet Competent">Not Yet Competent</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <label for="core_completed">Completed</label>
                                                     <input type="text" name="core_completed[]" id="core_completed" class="form-control dob">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label for="core_grade">Grade</label>
+                                                    <input type="text" name="core_grade[]" id="core_grade" onkeypress="validate(event)" maxlength="3" class="form-control">
                                                 </div>
                                             </div><br>
 
@@ -466,33 +502,39 @@
                                                     <button id="addButtonCore" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
                                                     <button id="removeButtonCore" type="button" class="btn btn-outline-danger"><i class="fa fa-times fa-lg" style="color: red"></i> Remove </button>
                                                 </div>
-                                            </div><hr>
+                                            </div>
 
-
+                                        </div>
+                                    </div>
+                                    <!-- END STEP CONTENT-->
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!-- END STEP 6-->
+                        <!-- BEGIN STEP 7-->
+                        <div class="tsf-step step-7">
+                            <fieldset>
+                                <div class="col-12"><legend class="col-lg-12"><i class="fa fa-user-o"></i> Craft Skills</legend><hr/></div>
+                                <div class="row">
+                                    <!-- BEGIN STEP CONTENT-->
+                                    <div class="tsf-step-content col-lg-12" style="width: 100%;">
+                                        <div class="col-lg-12">
                                             <div class="form-group col-sm-12">
-                                                <label><i class="fa fa-book"></i> Craft </label>
+                                                <label><i class="fa fa-question-circle-o"></i> Fields with (<font color="red">*</font>) are required. </label>
                                             </div>
 
                                             <div class="form-group row col-lg-12">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <label for="craft_skill"><font color="red">*</font> Skills</label>
                                                     <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
-                                                      <option></option>
-                                                      <option value="1">Craft 1</option>
-                                                      <option value="2">Craft 2</option>
-                                                      <option value="3">Craft 3</option>
-                                                      <option value="4">Craft 4</option>
-                                                      <option value="5">Craft 5</option>
-                                                      <option value="6">Craft 6</option>
-                                                      <option value="7">Craft 7</option>
-                                                      <option value="8">Craft 8</option>
-                                                      <option value="9">Craft 9</option>
-                                                      <option value="10">Craft 10</option>
-                                                      <option value="11">Craft 11</option>
-                                                      <option value="12">Craft 12</option>
+                                                        <?php if(!empty($craft)): ?>
+                                                            <?php foreach ($craft as $value): ?>
+                                                                <option value="<?php echo $value['craft_item_id'] ?>"><?php echo $value['craft_code']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <label for="craft_rating"><font color="red">*</font> Rating</label>
                                                     <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
                                                       <option></option>
@@ -500,9 +542,13 @@
                                                       <option value="Not Yet Competent">Not Yet Competent</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <label for="craft_completed">Completed</label>
                                                     <input type="text" name="craft_completed[]" id="craft_completed" class="form-control dob">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label for="craft_grade">Grade</label>
+                                                    <input type="text" name="craft_grade[]" id="craft_grade" onkeypress="validate(event)" maxlength="3" class="form-control">
                                                 </div>
                                             </div><br>
                                             <div id="TextBoxesGroupCraft"></div>
@@ -514,14 +560,13 @@
                                                 </div>
                                             </div>
 
-
                                         </div>
                                     </div>
                                     <!-- END STEP CONTENT-->
                                 </div>
                             </fieldset>
                         </div>
-                        <!-- END STEP 5-->
+                        <!-- END STEP 7-->
                     </form>
                     <!-- END CONTENT-->
                     <!-- BEGIN CONTROLS-->
@@ -555,7 +600,7 @@
         </footer>
     </div>
 
-    <script src="<?php echo base_url('application/assets/js/custom2.js'); ?>"></script>
+    <script src="<?php echo base_url('application/assets/js/custom.js'); ?>"></script>
     <script type="text/javascript">
 
         $(document).ready(function(){
@@ -655,35 +700,30 @@
             new_craft.after().html(
 
                 '<div class="form-group row col-lg-12">'+
-                    '<div class="col-lg-4">'+
+                    '<div class="col-lg-3">'+
                         '<label for="craft_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
-                          '<option></option>'+
-                          '<option value="1">Craft 1</option>'+
-                          '<option value="2">Craft 2</option>'+
-                          '<option value="3">Craft 3</option>'+
-                          '<option value="4">Craft 4</option>'+
-                          '<option value="5">Craft 5</option>'+
-                          '<option value="6">Craft 6</option>'+
-                          '<option value="7">Craft 7</option>'+
-                          '<option value="8">Craft 8</option>'+
-                          '<option value="9">Craft 9</option>'+
-                          '<option value="10">Craft 10</option>'+
-                          '<option value="11">Craft 11</option>'+
-                          '<option value="12">Craft 12</option>'+
+                            '<?php if(!empty($craft)): ?>'+
+                                '<?php foreach ($craft as $value): ?>'+
+                                    '<option value="<?php echo $value['craft_item_id']; ?>"><?php echo $value['craft_code']; ?></option>'+
+                                '<?php endforeach; ?>'+
+                            '<?php endif; ?>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-4">'+
+                    '<div class="col-lg-3">'+
                         '<label for="craft_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="craft_rating[]" id="craft_rating'+counter+'" class="form-control required">'+
-                          '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-4">'+
+                    '<div class="col-lg-3">'+
                         '<label for="craft_completed'+counter+'">Completed</label>'+
                         '<input type="text" name="craft_completed[]" id="craft_completed'+counter+'" class="form-control" data-mask="9999-99-99" placeholder="YYYY-MM-DD">'+
+                    '</div>'+
+                    '<div class="col-lg-3">'+
+                        '<label for="craft_grade'+counter+'">Grade</label>'+
+                        '<input type="text" name="craft_grade[]" id="craft_grade'+counter+'" onkeypress="validate(event)" class="form-control" maxlength="3">'+
                     '</div>'+
                 '</div><br>'
 
@@ -718,33 +758,30 @@
             new_core.after().html(
 
                 '<div class="form-group row col-lg-12">'+
-                    '<div class="col-lg-4">'+
+                    '<div class="col-lg-3">'+
                         '<label for="core_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
-                          '<option></option>'+
-                          '<option value="1">Core 1</option>'+
-                          '<option value="2">Core 2</option>'+
-                          '<option value="3">Core 3</option>'+
-                          '<option value="4">Core 4</option>'+
-                          '<option value="5">Core 5</option>'+
-                          '<option value="6">Core 6</option>'+
-                          '<option value="7">Core 7</option>'+
-                          '<option value="8">Core 8</option>'+
-                          '<option value="9">Core 9</option>'+
-                          '<option value="10">Core 10</option>'+
+                            '<?php if(!empty($core)): ?>'+
+                                '<?php foreach ($core as $value): ?>'+
+                                    '<option value="<?php echo $value['core_item_id']; ?>"><?php echo $value['core_code']; ?></option>'+
+                                '<?php endforeach; ?>'+
+                            '<?php endif; ?>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-4">'+
+                    '<div class="col-lg-3">'+
                         '<label for="core_rating'+counter+'"><font color="red">*</font> Rating</label>'+
                         '<select name="core_rating[]" id="core_rating'+counter+'" class="form-control required">'+
-                          '<option></option>'+
                           '<option value="Competent">Competent</option>'+
                           '<option value="Not Yet Competent">Not Yet Competent</option>'+
                         '</select>'+
                     '</div>'+
-                    '<div class="col-lg-4">'+
+                    '<div class="col-lg-3">'+
                         '<label for="core_completed'+counter+'">Completed</label>'+
                         '<input type="text" name="core_completed[]" id="core_completed'+counter+'" class="form-control" data-mask="9999-99-99" placeholder="YYYY-MM-DD">'+
+                    '</div>'+
+                    '<div class="col-lg-3">'+
+                        '<label for="core_grade'+counter+'">Grade</label>'+
+                        '<input type="text" name="core_grade[]" id="core_grade'+counter+'" onkeypress="validate(event)" class="form-control" maxlength="3">'+
                     '</div>'+
                 '</div><br>'
 

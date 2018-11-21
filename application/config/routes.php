@@ -68,18 +68,31 @@ $route['user_profile'] = 'user/user_profile';
 // Admin routing rules
 $route['dashboard'] 			= 'admin/admin_dashboard';
 $route['admin_security']  		= 'admin/admin_security';
+
 $route['users'] 	  	    	= 'user/users';
 $route['user_registration']		= 'user/user_register';
+
 $route['history']	  			= 'admin/admin_history';
 $route['history/(:num)']		= 'admin/admin_history/$1';
+
 $route['vocational_programs']	= 'vocational_program/vocational_programs';
 $route['new_vocational_program']= 'vocational_program/new_vocational_program';
+
 $route['subjects']				= 'subject/subjects';
 $route['new_subject']			= 'subject/new_subject';
+
+$route['craft']					= 'craft/craft';
+$route['new_craft']				= 'craft/new_craft';
+
+$route['core']					= 'core/core';
+$route['new_core']				= 'core/new_core';
+
 $route['rooms']				 	= 'room/rooms';
 $route['new_room']		 		= 'room/new_room';
+
 $route['diploma_courses']		= 'diploma_course/diploma_courses';
 $route['new_diploma_course']	= 'diploma_course/new_diploma_course';
+
 $route['student_registration']	= 'student/student_registration';
 $route['students']				= 'student/students';
 $route['student/(:num)']		= 'student/student/$1';

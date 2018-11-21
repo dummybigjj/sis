@@ -150,8 +150,8 @@ class User_model extends CI_Model {
 	 * @return associative array list or single user on success.
 	 */
 	public function getUsers($return_type,$conditons = array()){
-		$data = $this->crud->getData('',$return_type,$conditons,'tbl1');
-		return $this->getUsersCreator($data);
+		return $this->crud->getData('',$return_type,$conditons,'tbl1');
+		// return $this->getUsersCreator($data);
 	}
 
 	/**

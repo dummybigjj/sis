@@ -46,7 +46,7 @@ class Vocational_program extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Vocational Program','icon'=>'ios-list-outline');
         // Necessary page data
-        $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a','');
+        $data['voc_program'] = $this->vocational_program_model->get_vocational_program('a','');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -105,9 +105,8 @@ class Vocational_program extends CI_Controller{
             'voc_program'         => $this->input->post('voc_program_name'),
             'voc_program_acronym' => $this->input->post('voc_program_acronym')
         );
-        $new_data = $this->crud->insertBatchvalidateAndRemoveDuplicateData($data,'','voc_program_acronym','','tbl6');
-        $insert   = $this->crud->setDataBatch($new_data,array('created_by'=>$this->session->userdata('u_id')),'tbl6');
-        if($insert){
+        $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl6');
+        if($insert_batch){
             $this->user_model->recordLogs('Create new Vocatonal Program(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success', 'New Vocatonal Program(s) has been created!.');
             redirect('new_vocational_program');
@@ -128,13 +127,13 @@ class Vocational_program extends CI_Controller{
         if($this->input->post('deactivate')){
             // Deactivate vocational program
             $data = array('voc_program_id'=>$this->input->post('voc_program_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_id')),'voc_program_id','tbl6');
+            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_email')),'voc_program_id','tbl6');
             $this->user_model->recordLogs('Deactivate Vocatonal Program(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Vocatonal Program(s) has been deactivated');
         }else if($this->input->post('activate')){
             // Activate vocational program
             $data = array('voc_program_id'=>$this->input->post('voc_program_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_id')),'voc_program_id','tbl6');
+            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'voc_program_id','tbl6');
             $this->user_model->recordLogs('Activate Vocatonal Program(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Vocatonal Program(s) has been activated');
         }
@@ -150,7 +149,7 @@ class Vocational_program extends CI_Controller{
      */
     public function get_vocational_program($id = NULL){
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data = $this->vocational_program_model->getVocationalPrograms('s',array('voc_program_id'=>$id));
+        $data = $this->vocational_program_model->get_vocational_program('s',array('voc_program_id'=>$id));
         echo json_encode($data);
     }
 
@@ -168,7 +167,7 @@ class Vocational_program extends CI_Controller{
         $data   = array(
             'voc_program' => trim($this->input->post('voc_program')),
             'voc_program_acronym' => trim($this->input->post('voc_program_acronym')),
-            'updated_by' => $this->session->userdata('u_id')
+            'updated_by' => $this->session->userdata('u_email')
         );
         $cond = array('voc_program_id'=>$voc_id);
         if(!empty($data['voc_program']) && !empty($data['voc_program_acronym'])){

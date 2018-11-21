@@ -7,6 +7,19 @@ class Subject_model extends CI_Model {
 	}
 
 	/**
+	 * get_subject function.
+	 * 
+	 * @access public
+	 * @param char $return_type
+	 * @param associative array $conditions
+	 * @return associative array list or single subject on success.
+	 */
+	public function get_subject($return_type,$condition)
+	{
+		return $this->crud->getData('',$return_type,$condition,'tbl7');
+	}
+
+	/**
 	 * getSubjects function.
 	 * 
 	 * @access public

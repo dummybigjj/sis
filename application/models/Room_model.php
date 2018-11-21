@@ -7,6 +7,19 @@ class Room_model extends CI_Model {
 	}
 
 	/**
+	 * get_room function.
+	 * 
+	 * @access public
+	 * @param char $return_type
+	 * @param associative array $conditions
+	 * @return associative array list or single room on success.
+	 */
+	public function get_room($return_type,$condition)
+	{
+		return $this->crud->getData('',$return_type,$condition,'tbl5');
+	}
+
+	/**
 	 * getRooms function.
 	 * 
 	 * @access public

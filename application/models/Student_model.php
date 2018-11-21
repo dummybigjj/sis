@@ -84,12 +84,12 @@ class Student_model extends CI_Model {
                 'room'      => $subjects['room'][$i]
             );
             if(array_key_exists($i, $subjects['tbl_id'])){
-                $subjects_schedules['updated_by'] = $this->session->userdata('u_fullname');
+                $subjects_schedules['updated_by'] = $this->session->userdata('u_email');
                 $this->crud->updateData($subjects_schedules,array('tbl_id'=>$subjects['tbl_id'][$i]),'tbl9');
                 // record updating of subjects in history logs
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated subjects for '.$student['student_no'],$this->session->userdata('u_id'));
             }else{
-                $foreign_values = array('student_id'=>$student_id,'created_by'=>$this->session->userdata('u_fullname'));
+                $foreign_values = array('student_id'=>$student_id,'created_by'=>$this->session->userdata('u_email'));
                 $this->crud->setData($subjects_schedules,$foreign_values,'tbl9');
                 // record registration of students subjects and schedules in history logs
                 $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created subjects for '.$student['student_no'],$this->session->userdata('u_id'));
@@ -111,16 +111,22 @@ class Student_model extends CI_Model {
 		for ($i=0; $i < count($craft['craft_skill']); $i++) 
 		{ 
 			$data = array(
-				'craft_rating' 	 => $craft['craft_rating'][$i],
-				'craft_skill'  	 => $craft['craft_skill'][$i]
+				'craft_rating' => $craft['craft_rating'][$i],
+				'craft_skill'  => $craft['craft_skill'][$i]
 			);
+			// ----------------------
 			if(array_key_exists($i, $craft['craft_completed']) && !empty($craft['craft_completed'][$i]))
 			{
 				$data['craft_completed'] = $craft['craft_completed'][$i];
 			}
-			if(array_key_exists($i, $craft['craft_id']))
+			if(array_key_exists($i, $craft['grade']) && !empty($craft['grade'][$i]))
 			{
-				$data['updated_by'] = $this->session->userdata('u_id');
+				$data['grade'] = $craft['grade'][$i];
+			}
+			// ----------------------
+			if(is_array($craft['craft_id']) && array_key_exists($i, $craft['craft_id']))
+			{
+				$data['updated_by'] = $this->session->userdata('u_email');
 				$this->crud->updateData($data,array('craft_id'=>$craft['craft_id'][$i]),'tbl10');
 			}else
 			{
@@ -152,14 +158,20 @@ class Student_model extends CI_Model {
 		for ($i=0; $i < count($core['core_skill']); $i++) 
 		{ 
 			$data = array(
-				'core_rating' 	=> $core['core_rating'][$i],
-				'core_skill'  	=> $core['core_skill'][$i]
+				'core_rating' => $core['core_rating'][$i],
+				'core_skill'  => $core['core_skill'][$i]
 			);
+			// ----------------
 			if(array_key_exists($i, $core['core_completed']) && !empty($core['core_completed'][$i]))
 			{
 				$data['core_completed'] = $core['core_completed'][$i];
 			}
-			if(array_key_exists($i, $core['core_id']))
+			if(array_key_exists($i, $core['grade']) && !empty($core['grade'][$i]))
+			{
+				$data['grade'] = $core['grade'][$i];
+			}
+			// ----------------
+			if(is_array($core['core_id']) && array_key_exists($i, $core['core_id']))
 			{
 				$data['updated_by'] = $this->session->userdata('u_id');
 				$this->crud->updateData($data,array('core_id'=>$core['core_id'][$i]),'tbl12');
@@ -241,52 +253,22 @@ class Student_model extends CI_Model {
 		return TRUE;
 	}
 
-	/**
-	 * get_skills_not_taken function.
-	 * 
-	 * @access public
-	 * @param associative array $skills
-	 * @return array skills not yet taken on success.
-	 */
-	public function get_skills_not_taken($skills = array(),$unique_key)
-	{		
-		$skills_taken = $this->get_skills_taken($skills,$unique_key);
-		$to_be_taken = array();
+	public function get_skills_not_taken($skills_taken, $skills_taken_u_key, $skills, $skills_u_key, $skills_pk)
+	{
 		$result = '';
-		for ($i=1; $i <= 9; $i++) { 
-			$ct = 0;
+		for ($i=0; $i < count($skills); $i++) { 
+			$ct=0;
 			for ($a=0; $a < count($skills_taken); $a++) { 
-				if($skills_taken[$a]==$i){
+				if($skills[$i][$skills_u_key]==$skills_taken[$a][$skills_taken_u_key]){
 					$ct++;
+					break;
 				}
 			}
-			if($ct==0)$to_be_taken[]=$i;
-		}
-		for ($i=0; $i < count($to_be_taken); $i++) { 
-			$result .= $to_be_taken[$i].' ';
+			if($ct==0){
+				$result .= $skills[$i][$skills_pk].' ';
+			}
 		}
 		return $result;
-	}
-
-	/**
-	 * get_skills_taken function.
-	 * 
-	 * @access private
-	 * @param associative array $skills
-	 * @return array skills taken on success.
-	 */
-	private function get_skills_taken($skills = array(),$unique_key)
-	{
-		$temp = '';
-		for ($i=0; $i < count($skills); $i++) { 
-			if(!empty($temp) && $skills[$i][$unique_key]!=$temp){
-				$skills_taken[] = $skills[$i][$unique_key];
-			}else{
-				$skills_taken[] = $skills[$i][$unique_key];
-			}
-			$temp = $skills[$i][$unique_key];
-		}
-		return $skills_taken;
 	}
 
 	/**

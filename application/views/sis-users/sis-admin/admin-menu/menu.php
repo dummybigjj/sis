@@ -63,6 +63,15 @@
               <li>
                 <a href="<?php echo site_url('rooms'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-home-outline"></em></span><span>Room</span></a>
               </li>
+              <li>
+                <div class="sidebar-nav-heading"></div>
+              </li>
+              <li>
+                <a href="<?php echo site_url('craft') ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="icon-notebook-streamline"></em></span><span>Craft</span></a>
+              </li>
+              <li>
+                <a href="<?php echo site_url('core') ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="icon-notebook-streamline"></em></span><span>Core</span></a>
+              </li>
 
             </ul>
           </nav>

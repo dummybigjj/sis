@@ -47,7 +47,7 @@ class Diploma_course extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header']  = array('title'=>'Diploma Course','icon'=>'ios-paper-outline');
         // Necessary page data
-        $data['courses'] = $this->diploma_course_model->getDiplomaCourses('a','');
+        $data['courses'] = $this->diploma_course_model->get_diploma_course('a','');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -106,9 +106,8 @@ class Diploma_course extends CI_Controller{
             'course_name'    => $this->input->post('course_name'),
             'course_acronym' => $this->input->post('course_acronym')
         );
-        $new_data = $this->crud->insertBatchvalidateAndRemoveDuplicateData($data,'','course_acronym','','tbl11');
-        $insert   = $this->crud->setDataBatch($new_data,array('created_by'=>$this->session->userdata('u_id')),'tbl11');
-        if($insert){
+        $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl11');
+        if($insert_batch){
             $this->user_model->recordLogs('Create New Diploma Course(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success', 'New Diploma Course(s) has been created!.');
             redirect('new_diploma_course');
@@ -129,13 +128,13 @@ class Diploma_course extends CI_Controller{
         if($this->input->post('deactivate')){
             // Deactivate diploma course
             $data = array('course_id'=>$this->input->post('course_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_id')),'course_id','tbl11');
+            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_email')),'course_id','tbl11');
             $this->user_model->recordLogs('Deactivate Diploma Course(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Diploma Course(s) has been deactivated');
         }else if($this->input->post('activate')){
             // Activate diploma course
             $data = array('course_id'=>$this->input->post('course_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_id')),'course_id','tbl11');
+            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'course_id','tbl11');
             $this->user_model->recordLogs('Activate Diploma Course(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Diploma Course(s) has been activated');
         }
@@ -151,7 +150,7 @@ class Diploma_course extends CI_Controller{
      */
     public function get_diploma_course($course_id = NULL){
     	$this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data = $this->diploma_course_model->getDiplomaCourses('s',array('course_id'=>$course_id));
+        $data = $this->diploma_course_model->get_diploma_course('s',array('course_id'=>$course_id));
         echo json_encode($data);
     }
 
@@ -169,7 +168,7 @@ class Diploma_course extends CI_Controller{
         $data   = array(
             'course_name' 	 => trim($this->input->post('course_name')),
             'course_acronym' => trim($this->input->post('course_acronym')),
-            'updated_by' 	 => $this->session->userdata('u_id')
+            'updated_by' 	 => $this->session->userdata('u_email')
         );
         $cond = array('course_id'=>$course_id);
         if(!empty($data['course_name']) && !empty($data['course_acronym'])){

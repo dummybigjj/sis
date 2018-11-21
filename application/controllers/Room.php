@@ -45,7 +45,7 @@ class Room extends CI_Controller{
     	$this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Room','icon'=>'ios-home-outline');
     	// Necessary page data
-        $data['room'] = $this->room_model->getRooms('a','');
+        $data['room'] = $this->room_model->get_room('a','');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -101,9 +101,8 @@ class Room extends CI_Controller{
     public function room_save_registration(){
     	$this->crud->credibilityAuth(array('Administrator','Registrar'));
     	$data = array('room_name' => $this->input->post('room_name'));
-    	$new_ = $this->crud->insertBatchvalidateAndRemoveDuplicateData($data,'','room_name','','tbl5');
-    	$insert = $this->crud->setDataBatch($new_,array('created_by'=>$this->session->userdata('u_id')),'tbl5');
-        if($insert){
+        $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl5');
+        if($insert_batch){
             $this->user_model->recordLogs('Create new room(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success', 'New room(s) has been created!.');
             redirect('new_room');
@@ -124,13 +123,13 @@ class Room extends CI_Controller{
         if($this->input->post('deactivate')){
             // Deactivate room
             $data = array('room_id'=>$this->input->post('room_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_id')),'room_id','tbl5');
+            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_email')),'room_id','tbl5');
             $this->user_model->recordLogs('Deactivate rooms',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Room(s) has been deactivated');
         }else if($this->input->post('activate')){
             // Deactivate room
             $data = array('room_id'=>$this->input->post('room_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_id')),'room_id','tbl5');
+            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'room_id','tbl5');
             $this->user_model->recordLogs('Activate rooms',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Room(s) has been activated');
         }
@@ -145,7 +144,7 @@ class Room extends CI_Controller{
      */
     public function get_room($id = NULL){
     	$this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data = $this->room_model->getRooms('s',array('room_id'=>$id));
+        $data = $this->room_model->get_room('s',array('room_id'=>$id));
         echo json_encode($data);
     }
 
@@ -163,7 +162,7 @@ class Room extends CI_Controller{
         $room_id = $this->input->post('room_id');
         if(!empty($room)){
         	if(empty($this->crud->getData('','s',array('room_name'=>$room,'room_id !='=>$room_id),'tbl5'))){
-	        	$data = array('room_name'=>$room,'updated_by'=>$this->session->userdata('u_id'));
+	        	$data = array('room_name'=>$room,'updated_by'=>$this->session->userdata('u_email'));
 	        	$cond = array('room_id'=>$room_id);
 	        	$this->crud->updateData($data,$cond,'tbl5');
 	        	$this->user_model->recordLogs('Update room name',$this->session->userdata('u_id'));

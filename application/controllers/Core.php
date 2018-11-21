@@ -2,16 +2,15 @@
 /**
  * User Management class created by CodexWorld
  */
-class Subject extends CI_Controller{
+class Core extends CI_Controller{
 
     function __construct(){
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('crud');
-        $this->load->model('subject_model');
+        $this->load->model('core_model');
         $this->load->model('user_model');
-        $this->load->model('room_model');
     }
 
     /**
@@ -37,16 +36,16 @@ class Subject extends CI_Controller{
     }
 
     /**
-     * subjects function.
+     * core function.
      * 
      * @access public
-     * @return render subjects table
+     * @return render core table view
      */
-    public function subjects(){
+    public function core(){
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
-        $data['header'] = array('title'=>'Subjects','icon'=>'ios-book-outline');
+        $data['header'] = array('title'=>'Core','icon'=>'notebook-streamline');
         // Necessary page data
-        $data['subject'] = $this->subject_model->get_subject('a','');
+        $data['core'] = $this->core_model->get_core('a','');
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -58,22 +57,22 @@ class Subject extends CI_Controller{
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
-        $this->load->view('sis-users/sis-admin/subject',$data);
+        $this->load->view('sis-users/sis-admin/core',$data);
         // Page modals
-        $this->load->view('sis-users/sis-admin/admin-modals/edit-subject');        
+        $this->load->view('sis-users/sis-admin/admin-modals/edit-core');        
         // Page footer
         $this->load->view('templates/html-comp/footer');
     }
 
     /**
-     * new_subject function.
+     * new_core function.
      * 
      * @access public
-     * @return render subjects registration form
+     * @return render core registration form
      */
-    public function new_subject(){
+    public function new_core(){
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data['header'] = array('title'=>'New Subjects','icon'=>'ios-book-outline');
+        $data['header'] = array('title'=>'New Core','icon'=>'notebook-streamline');
         // Necessary page data
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
@@ -86,7 +85,7 @@ class Subject extends CI_Controller{
         // Flash data messages
         $this->load->view('templates/html-comp/flashdata');
         // Page contents
-        $this->load->view('sis-users/sis-admin/new-subject');
+        $this->load->view('sis-users/sis-admin/new-core');
         // Page modals
         // your modal view here
         // Page footer
@@ -94,86 +93,91 @@ class Subject extends CI_Controller{
     }
 
     /**
-     * subject_save_registration function.
+     * core_save_registration function.
      * 
      * @access public
-     * @return process save subjects registration request.
+     * @return process save core registration request.
      */
-    public function subject_save_registration(){
+    public function core_save_registration(){
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data = array('subject_title' => $this->input->post('subject_title'));
-        $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl7');
+        $data = array(
+            'core_code'   => $this->input->post('core_code'),
+            'description' => $this->input->post('description')
+        );
+        $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl13');
         if($insert_batch){
-            $this->user_model->recordLogs('Create new subject(s)',$this->session->userdata('u_id'));
-            $this->session->set_flashdata('success', 'New subject(s) has been created!.');
-            redirect('new_subject');
+            $this->user_model->recordLogs('Create new core(s)',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success', 'New core(s) has been created!.');
+            redirect('new_core');
         }else{
             $this->session->set_flashdata('danger', 'Error occured!.');
-            redirect('new_subject');
+            redirect('new_core');
         }
     }
 
     /**
-     * subject_activate_deactivate function.
+     * core_activate_deactivate function.
      * 
      * @access public
-     * @return process subject activation or deactivation request
+     * @return process core activation or deactivation request
      */
-    public function subject_activate_deactivate(){
+    public function core_activate_deactivate(){
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         if($this->input->post('deactivate')){
-            // Deactivate subjects
-            $data = array('subject_id'=>$this->input->post('subject_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_email')),'subject_id','tbl7');
-            $this->user_model->recordLogs('Deactivate subjects',$this->session->userdata('u_id'));
-            $this->session->set_flashdata('success','Subject(s) has been deactivated');
+            // Deactivate core
+            $data = array('core_item_id'=>$this->input->post('core_item_id'));
+            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_email')),'core_item_id','tbl13');
+            $this->user_model->recordLogs('Deactivate Core',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Core(s) has been deactivated');
         }else if($this->input->post('activate')){
-            // Activate subjects
-            $data = array('subject_id'=>$this->input->post('subject_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'subject_id','tbl7');
-            $this->user_model->recordLogs('Activate subjects',$this->session->userdata('u_id'));
-            $this->session->set_flashdata('success','Subject(s) has been activated');
+            // Activate core
+            $data = array('core_item_id'=>$this->input->post('core_item_id'));
+            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'core_item_id','tbl13');
+            $this->user_model->recordLogs('Activate Core',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Core(s) has been activated');
         }
-        redirect('subjects');
+        redirect('core');
     }
 
     /**
-     * get_subject function.
+     * get_core function.
      * 
      * @access public
-     * @return process get subject request by id
+     * @return process get core request by id
      */
-    public function get_subject($id = NULL){
+    public function get_core($id = NULL){
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $data = $this->subject_model->get_subject('s',array('subject_id'=>$id));
+        $data = $this->core_model->get_core('s',array('core_item_id'=>$id));
         echo json_encode($data);
     }
 
     /**
-     * subject_update function.
+     * core_update function.
      * 
      * @access public
-     * @return process subject update request
+     * @return process core update request
      */
-    public function subject_update(){
+    public function core_update(){
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        $alert   = 'alert alert-success';
-        $msg     = 'Subject has been updated!';
-        $subject = trim($this->input->post('subject_title'));
-        $sub_id  = $this->input->post('subject_id');
-        if(!empty($subject)){
-            if(empty($this->crud->getData('','s',array('subject_title'=>$subject,'subject_id !='=>$sub_id),'tbl7'))){
-                $data = array('subject_title'=>$subject,'updated_by'=>$this->session->userdata('u_email'));
-                $cond = array('subject_id'=>$sub_id);
-                $this->crud->updateData($data,$cond,'tbl7');
-                $this->user_model->recordLogs('Update subject title',$this->session->userdata('u_id'));
+        $alert = 'alert alert-success';
+        $msg   = 'Core has been updated!';
+        $data  = array(
+            'core_code'   => trim($this->input->post('core_code')),
+            'description' => trim($this->input->post('description')),
+            'updated_by'  => $this->session->userdata('u_email')
+        );
+        $core_id = $this->input->post('core_item_id');
+        if(!empty($data['core_code'])){
+            if(empty($this->crud->getData('','s',array('core_code'=>$data['core_code'],'core_item_id !='=>$core_id),'tbl13'))){
+                $this->crud->updateData($data,array('core_item_id'=>$core_id),'tbl13');
+                $this->user_model->recordLogs('Update Core',$this->session->userdata('u_id'));
             }else{
                 $alert = 'alert alert-danger';
-                $msg   = 'Subject has not been updated due to invalid subject title.';
+                $msg   = 'Core has not been updated due to invalid core code.';
             }
         }else{
             $alert = 'alert alert-warning';
-            $msg   = 'Subject has not been updated due to empty required fields.';
+            $msg   = 'Error occured due to empty required fields.';
         }
         echo json_encode(array("status"=>TRUE,"msg"=>$msg,"class_add"=>$alert));
     }

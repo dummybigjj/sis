@@ -7,6 +7,18 @@ class Diploma_course_model extends CI_Model {
 	}
 
 	/**
+	 * get_diploma_course function.
+	 * 
+	 * @access public
+	 * @param char $return_type
+	 * @param associative array $conditions
+	 * @return associative array list or single diploma course on success.
+	 */
+	public function get_diploma_course($return_type,$condition){
+		return $this->crud->getData('',$return_type,$condition,'tbl11');
+	}
+
+	/**
 	 * getDiplomaCourses function.
 	 * 
 	 * @access public

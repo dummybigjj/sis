@@ -7,6 +7,19 @@ class Vocational_program_model extends CI_Model {
 	}
 
 	/**
+	 * get_vocational_programs function.
+	 * 
+	 * @access public
+	 * @param char $return_type
+	 * @param associative array $conditions
+	 * @return associative array list or single vocational program on success.
+	 */
+	public function get_vocational_program($return_type,$condition)
+	{
+		return $this->crud->getData('',$return_type,$condition,'tbl6');
+	}
+
+	/**
 	 * getVocationalPrograms function.
 	 * 
 	 * @access public

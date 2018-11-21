@@ -167,9 +167,8 @@ class User extends CI_Controller{
             'u_password'     => $password,
             'designation'    => $this->input->post('designation')
         );
-        $new_data = $this->crud->insertBatchvalidateAndRemoveDuplicateData($data,'','u_email_address','','tbl1');
-        $insert   = $this->crud->setDataBatch($new_data,array('password_reset_date'=>$reset_date,'created_by'=>$this->session->userdata('u_id')),'tbl1');
-        if($insert){
+        $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl1');
+        if($insert_batch){
             $this->user_model->recordLogs('Register users',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success', 'Users has been registered!.');
         }else{
@@ -261,7 +260,7 @@ class User extends CI_Controller{
             $user_data = array(
                 'u_full_name'     => $name,
                 'u_email_address' => $email,
-                'updated_by'      => $this->session->userdata('u_id')
+                'updated_by'      => $this->session->userdata('u_email')
             );
 
             // upload profile picture
@@ -332,7 +331,7 @@ class User extends CI_Controller{
             'u_full_name'     => trim($this->input->post('name')),
             'u_email_address' => trim($this->input->post('email')),
             'designation'     => trim($this->input->post('designation')),
-            'updated_by'      => $this->session->userdata('u_id')
+            'updated_by'      => $this->session->userdata('u_email')
         );
         $cond = array('user_id' => $user_id);
         if(!empty($data['u_email_address']) && !empty($data['u_full_name']) && !empty($data['designation'])){
@@ -362,13 +361,13 @@ class User extends CI_Controller{
         if($this->input->post('deactivate')){
             // Deactivate users
             $data = array('user_id'=>$this->input->post('user_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_id')),'user_id','tbl1');
+            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_email')),'user_id','tbl1');
             $this->user_model->recordLogs('Deactivate users',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','User(s) has been deactivated');
         }else if($this->input->post('activate')){
             // Deactivate users
             $data = array('user_id'=>$this->input->post('user_id'));
-            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_id')),'user_id','tbl1');
+            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'user_id','tbl1');
             $this->user_model->recordLogs('Activate users',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','User(s) has been activated');
         }

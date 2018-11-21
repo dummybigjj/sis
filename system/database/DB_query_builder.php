@@ -121,6 +121,16 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	 */
 	protected $qb_keys			= array();
 
+	// Script to add "ON UPDATE DUPLICATE KEY UPDATE"
+	// updates 11/21/2018
+	/**
+	 * QB updated fields
+	 *
+	 * @var	array
+	 */
+	protected $qb_update_fields			= array();
+	// Script to add "ON UPDATE DUPLICATE KEY UPDATE"
+
 	/**
 	 * QB LIMIT data
 	 *
@@ -1510,7 +1520,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 		$affected_rows = 0;
 		for ($i = 0, $total = count($this->qb_set); $i < $total; $i += $batch_size)
 		{
-			if ($this->query($this->_insert_batch($this->protect_identifiers($table, TRUE, $escape, FALSE), $this->qb_keys, array_slice($this->qb_set, $i, $batch_size))))
+			if ($this->query($this->_insert_batch($this->protect_identifiers($table, TRUE, $escape, FALSE), $this->qb_keys, $this->qb_update_fields, array_slice($this->qb_set, $i, $batch_size))))
 			{
 				$affected_rows += $this->affected_rows();
 			}
@@ -1532,9 +1542,13 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	 * @param	array	$values	INSERT values
 	 * @return	string
 	 */
-	protected function _insert_batch($table, $keys, $values)
-	{
-		return 'INSERT INTO '.$table.' ('.implode(', ', $keys).') VALUES '.implode(', ', $values);
+	// Original Parameters _insert_batch($table, $keys, $values)
+	protected function _insert_batch($table, $keys, $update_fields, $values)
+	{	
+		// The script below is the orinal script from CI
+		// return 'INSERT INTO '.$table.' ('.implode(', ', $keys).') VALUES '.implode(', ', $values);
+		// The script below is the modified script to include "ON DUPLICATE KEY UPDATE"
+		return 'INSERT INTO '.$table.' ('.implode(', ', $keys).') VALUES '.implode(', ', $values)." ON DUPLICATE KEY UPDATE ".implode(', ', $update_fields);
 	}
 
 	// --------------------------------------------------------------------
@@ -1591,6 +1605,14 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 		{
 			$this->qb_keys[] = $this->protect_identifiers($k, FALSE, $escape);
 		}
+
+		// Script to add "ON UPDATE DUPLICATE KEY UPDATE"
+		// updates 11/21/2018
+		foreach ($keys as $k)
+		{
+			$this->qb_update_fields[] = $k.'=VALUES('.$k.')';
+		}
+		// Script to add "ON UPDATE DUPLICATE KEY UPDATE"
 
 		return $this;
 	}
@@ -2796,6 +2818,10 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 			'qb_where'	=> array(),
 			'qb_orderby'	=> array(),
 			'qb_keys'	=> array(),
+			// Script to add "ON UPDATE DUPLICATE KEY UPDATE"
+			// updates 11/21/2018
+			'qb_update_fields'	=> array(),
+			// Script to add "ON UPDATE DUPLICATE KEY UPDATE"
 			'qb_limit'	=> FALSE
 		));
 	}
