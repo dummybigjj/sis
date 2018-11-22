@@ -29,7 +29,7 @@ class Craft_model extends CI_Model {
 	 */
 	public function get_craft_skills($return_type,$condition)
 	{
-		$select  = '`craft_rating`, `craft_item`.`craft_code`, `craft_completed`, `grade`';
+		$select  = '`craft_rating`, `craft_item`.`craft_code`, `craft_item`.`description`, `craft_completed`, `grade`';
 		$tbljoin = array('`craft_item`'=>'`craft`.`craft_skill` = `craft_item`.`craft_item_id`');
 		return $this->crud->getJoinData($select,$return_type,$condition,$tbljoin,'tbl10');
 	}

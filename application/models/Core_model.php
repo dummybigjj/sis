@@ -29,7 +29,7 @@ class Core_model extends CI_Model {
 	 */
 	public function get_core_skills($return_type,$condition)
 	{
-		$select  = '`core_rating`, `core_item`.`core_code`, `core_completed`, `grade`';
+		$select  = '`core_rating`, `core_item`.`core_code`, `core_item`.`description`, `core_completed`, `grade`';
 		$tbljoin = array('`core_item`'=>'`core`.`core_skill` = `core_item`.`core_item_id`');
 		return $this->crud->getJoinData($select,$return_type,$condition,$tbljoin,'tbl12');
 	}

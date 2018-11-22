@@ -1275,14 +1275,16 @@ class Student extends CI_Controller{
                                             <td>  </td>
                                         </tr>
                                         <tr style="color:#0D47A1">
-                                            <td style="width:35%;"><b>English </b></td>
-                                            <td style="width:25%;"><b>Rating </b></td>
-                                            <td style="width:20%;"><b>Grade </b></td>
-                                            <td style="width:20%;"><b>Completed </b></td>
+                                            <td style="width:15%;"><b>English </b></td>
+                                            <td style="width:40%;"><b> </b></td>
+                                            <td style="width:20%;"><b>Rating </b></td>
+                                            <td style="width:10%;"><b>Grade </b></td>
+                                            <td style="width:15%;"><b>Completed </b></td>
                                         </tr>
                                         <tr>
                                             <td>Rating: </td>
                                             <td>'.$student_pro['eng_rating'].'</td>
+                                            <td>  </td>
                                             <td>'.$student_pro['grade'].'</td>
                                             <td>'.date('M d, Y',strtotime($student_pro['eng_completed'])).'</td>
                                         </tr>
@@ -1293,6 +1295,7 @@ class Student extends CI_Controller{
                                         </tr>
                                         <tr style="color:#0D47A1">
                                             <td><b>Core </b></td>
+                                            <td><b>Description </b></td>
                                             <td><b>Rating </b></td>
                                             <td><b>Grade </b></td>
                                             <td><b>Completed </b></td>
@@ -1301,6 +1304,7 @@ class Student extends CI_Controller{
                                         for ($i=0; $i < count($student_core); $i++) { 
                                         $html .='<tr>
                                                     <td>'.$student_core[$i]['core_code'].'</td>
+                                                    <td>'.$student_core[$i]['description'].'</td>
                                                     <td>'.$student_core[$i]['core_rating'].'</td>
                                                     <td>'.$student_core[$i]['grade'].'</td>
                                                     <td>'.date('M d, Y',strtotime($student_core[$i]['core_completed'])).'</td>
@@ -1314,6 +1318,7 @@ class Student extends CI_Controller{
                                         </tr>
                                         <tr style="color:#0D47A1">
                                             <td><b>Craft </b></td>
+                                            <td><b>Description </b></td>
                                             <td><b>Rating </b></td>
                                             <td><b>Grade </b></td>
                                             <td><b>Completed </b></td>
@@ -1322,6 +1327,7 @@ class Student extends CI_Controller{
                                         for ($i=0; $i < count($student_craft); $i++) { 
                                         $html .='<tr>
                                                     <td>'.$student_craft[$i]['craft_code'].'</td>
+                                                    <td>'.$student_craft[$i]['description'].'</td>
                                                     <td>'.$student_craft[$i]['craft_rating'].'</td>
                                                     <td>'.$student_craft[$i]['grade'].'</td>
                                                     <td>'.date('M d, Y',strtotime($student_craft[$i]['craft_completed'])).'</td>
