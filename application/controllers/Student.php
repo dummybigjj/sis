@@ -1300,7 +1300,7 @@ class Student extends CI_Controller{
 
                                         for ($i=0; $i < count($student_core); $i++) { 
                                         $html .='<tr>
-                                                    <td>Core '.$student_core[$i]['core_code'].'</td>
+                                                    <td>'.$student_core[$i]['core_code'].'</td>
                                                     <td>'.$student_core[$i]['core_rating'].'</td>
                                                     <td>'.$student_core[$i]['grade'].'</td>
                                                     <td>'.date('M d, Y',strtotime($student_core[$i]['core_completed'])).'</td>
@@ -1321,7 +1321,7 @@ class Student extends CI_Controller{
 
                                         for ($i=0; $i < count($student_craft); $i++) { 
                                         $html .='<tr>
-                                                    <td>Craft '.$student_craft[$i]['craft_code'].'</td>
+                                                    <td>'.$student_craft[$i]['craft_code'].'</td>
                                                     <td>'.$student_craft[$i]['craft_rating'].'</td>
                                                     <td>'.$student_craft[$i]['grade'].'</td>
                                                     <td>'.date('M d, Y',strtotime($student_craft[$i]['craft_completed'])).'</td>
