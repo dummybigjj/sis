@@ -126,7 +126,7 @@ class Student_model extends CI_Model {
 			// ----------------------
 			if(is_array($craft['craft_id']) && array_key_exists($i, $craft['craft_id']))
 			{
-				$data['updated_by'] = $this->session->userdata('u_email');
+				$data['updated_by'] = $this->session->userdata('u_id');
 				$this->crud->updateData($data,array('craft_id'=>$craft['craft_id'][$i]),'tbl10');
 			}else
 			{
