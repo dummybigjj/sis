@@ -3,46 +3,71 @@
 
             <div class="cardbox">
               <div class="cardbox-heading">
-                <div class="cardbox-title">Students</div>
+                <div class="cardbox-title">Knob Charts</div>
               </div>
+
               <div class="cardbox-body">
+
                 <div class="row">
-                  <div class="col-xl-3 col-sm-6">
+                  <div class="col-xl-2 col-sm-6">
                     <div class="cardbox cardbox-flat text-center">
-                      <div class="cardbox-heading">Total Registered Students</div>
+                      <div class="cardbox-heading">Registered Students</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart1" data-percent="100"><span><?php echo $registered; ?></span></div>
+                        <div class="easypie-chart" id="easypiechart1" data-percent="100"><span><?php echo (!$registered==0)?$registered:''; ?></span></div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-xl-3 col-sm-6">
+                  <div class="col-xl-2 col-sm-6">
                     <div class="cardbox cardbox-flat text-center">
-                      <div class="cardbox-heading">Students in Diploma Course</div>
+                      <div class="cardbox-heading">Graduated Students</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart2" data-percent="<?php echo 100-((($registered - $diploma)/$registered)*100); ?>"><span><?php echo $diploma; ?></span></div>
+                        <div class="easypie-chart" id="easypiechart2" data-percent="<?php echo ($registered!=0)?100-((($registered - $graduated)/$registered)*100):0; ?>"><span><?php echo $graduated; ?></span></div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-xl-3 col-sm-6">
+                  <div class="col-xl-2 col-sm-6">
                     <div class="cardbox cardbox-flat text-center">
-                      <div class="cardbox-heading">Students in Vocational Course</div>
+                      <div class="cardbox-heading">On-going Students</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart3" data-percent="<?php echo 100-((($registered - $vocational)/$registered)*100); ?>"><span><?php echo $vocational; ?></span></div>
+                        <div class="easypie-chart" id="easypiechart3" data-percent="<?php echo ($registered!=0)?100-((($registered - $ongoing)/$registered)*100):0; ?>"><span><?php echo $ongoing; ?></span></div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-xl-3 col-sm-6">
+
+                  <div class="col-xl-2 col-sm-6">
                     <div class="cardbox cardbox-flat text-center">
-                      <div class="cardbox-heading">Completed Students</div>
+                      <div class="cardbox-heading">Terminated Students</div>
                       <div class="cardbox-body text-center">
-                        <div class="easypie-chart" id="easypiechart4" data-percent="<?php echo 100-((($registered - $completed)/$registered)*100); ?>"><span><?php echo $completed; ?></span></div>
+                        <!-- <div class="easypie-chart" id="knob-chart1" data-percent=""><span><?php //echo $terminated; ?></span></div> -->
+                        <input id="knob-chart1" type="text" value="<?php echo ($registered!=0)?100-((($registered - $terminated)/$registered)*100):0; ?>" data-max="<?php echo $registered; ?>">
                       </div>
                     </div>
                   </div>
+                  <div class="col-xl-2 col-sm-6">
+                    <div class="cardbox cardbox-flat text-center">
+                      <div class="cardbox-heading">Resigned Students</div>
+                      <div class="cardbox-body text-center">
+                        <!-- <div class="easypie-chart" id="knob-chart3" data-percent=""><span><?php //echo $resigned; ?></span></div> -->
+                        <input id="knob-chart3" type="text" value="<?php echo ($registered!=0)?100-((($registered - $resigned)/$registered)*100):0; ?>" data-max="<?php echo $registered; ?>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-sm-6">
+                    <div class="cardbox cardbox-flat text-center">
+                      <div class="cardbox-heading">Withdraw Students</div>
+                      <div class="cardbox-body text-center">
+                        <!-- <div class="easypie-chart" id="knob-chart4" data-percent=""><span><?php //echo $withdraw; ?></span></div> -->
+                        <input id="knob-chart4" type="text" value="<?php echo ($registered!=0)?100-((($registered - $withdraw)/$registered)*100):0; ?>" data-max="<?php echo $registered; ?>">
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
               </div>
             </div>
 
+            <?php if($this->session->userdata('u_designation')=='Administrator'): ?>
             <div class="row">
 
               <div class="col-xl-6">
@@ -145,7 +170,8 @@
                 </div>
               </div>
 
-              
             </div>
+            <?php endif; ?>
+
           </div>
         </section>

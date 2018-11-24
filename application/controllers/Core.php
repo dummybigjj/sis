@@ -11,6 +11,7 @@ class Core extends CI_Controller{
         $this->load->model('crud');
         $this->load->model('core_model');
         $this->load->model('user_model');
+        $this->load->model('vocational_program_model');
     }
 
     /**
@@ -45,7 +46,9 @@ class Core extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Core','icon'=>'notebook-streamline');
         // Necessary page data
-        $data['core'] = $this->core_model->get_core('a','');
+        $data['core']   = $this->core_model->get_core('a','');
+        // Vocational Courses
+        $data['course'] = $this->vocational_program_model->get_vocational_program('a',array('status'=>'1'));
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -74,6 +77,8 @@ class Core extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         $data['header'] = array('title'=>'New Core','icon'=>'notebook-streamline');
         // Necessary page data
+        // Vocational Courses
+        $data['course'] = $this->vocational_program_model->get_vocational_program('a',array('status'=>'1'));
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -102,7 +107,8 @@ class Core extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         $data = array(
             'core_code'   => $this->input->post('core_code'),
-            'description' => $this->input->post('description')
+            'description' => $this->input->post('description'),
+            'voc_program' => $this->input->post('voc_program')
         );
         $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl13');
         if($insert_batch){
@@ -135,6 +141,12 @@ class Core extends CI_Controller{
             $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'core_item_id','tbl13');
             $this->user_model->recordLogs('Activate Core',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Core(s) has been activated');
+        }else if($this->input->post('delete')){
+            // Delete Core
+            $data = array('core_item_id'=>$this->input->post('core_item_id'));
+            $this->core_model->delete_core($data);
+            $this->user_model->recordLogs('Delete Core',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Core(s) has been deleted');
         }
         redirect('core');
     }
@@ -164,6 +176,7 @@ class Core extends CI_Controller{
         $data  = array(
             'core_code'   => trim($this->input->post('core_code')),
             'description' => trim($this->input->post('description')),
+            'voc_program' => $this->input->post('voc_program'),
             'updated_by'  => $this->session->userdata('u_email')
         );
         $core_id = $this->input->post('core_item_id');

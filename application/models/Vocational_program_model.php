@@ -20,6 +20,24 @@ class Vocational_program_model extends CI_Model {
 	}
 
 	/**
+	 * delete_vocational_program function.
+	 * 
+	 * @access public
+	 * @param associative array $data
+	 * @return boolean TRUE on success.
+	 */
+	public function delete_vocational_program($data = array())
+	{
+		if(!empty($data)){
+			for ($i=0; $i < count($data); $i++) { 
+				$this->crud->deleteData(array('voc_program_id'=>$data['voc_program_id'][$i]),'tbl6');
+			}
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	/**
 	 * getVocationalPrograms function.
 	 * 
 	 * @access public

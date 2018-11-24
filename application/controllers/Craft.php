@@ -11,6 +11,7 @@ class Craft extends CI_Controller{
         $this->load->model('crud');
         $this->load->model('craft_model');
         $this->load->model('user_model');
+        $this->load->model('vocational_program_model');
     }
 
     /**
@@ -46,6 +47,8 @@ class Craft extends CI_Controller{
         $data['header'] = array('title'=>'Craft','icon'=>'notebook-streamline');
         // Necessary page data
         $data['craft'] = $this->craft_model->get_craft('a','');
+        // Vocational Courses
+        $data['course']= $this->vocational_program_model->get_vocational_program('a',array('status'=>'1'));
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -74,6 +77,8 @@ class Craft extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         $data['header'] = array('title'=>'New Craft','icon'=>'notebook-streamline');
         // Necessary page data
+        // Vocational Courses
+        $data['course']= $this->vocational_program_model->get_vocational_program('a',array('status'=>'1'));
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -102,7 +107,8 @@ class Craft extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         $data = array(
             'craft_code'  => $this->input->post('craft_code'),
-            'description' => $this->input->post('description')
+            'description' => $this->input->post('description'),
+            'voc_program' => $this->input->post('voc_program')
         );
         $insert_batch = $this->crud->insertBatch($data,'',array('created_by'=>$this->session->userdata('u_email')),'tbl14');
         if($insert_batch){
@@ -135,6 +141,12 @@ class Craft extends CI_Controller{
             $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'craft_item_id','tbl14');
             $this->user_model->recordLogs('Activate Craft',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Craft(s) has been activated');
+        }else if($this->input->post('delete')){
+            // Delete craft
+            $data = array('craft_item_id'=>$this->input->post('craft_item_id'));
+            $this->craft_model->delete_craft($data);
+            $this->user_model->recordLogs('Delete Craft',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Craft(s) has been deleted');
         }
         redirect('craft');
     }
@@ -164,6 +176,7 @@ class Craft extends CI_Controller{
         $data  = array(
             'craft_code'  => trim($this->input->post('craft_code')),
             'description' => trim($this->input->post('description')),
+            'voc_program' => $this->input->post('voc_program'),
             'updated_by'  => $this->session->userdata('u_email')
         );
         $craft_id = $this->input->post('craft_item_id');

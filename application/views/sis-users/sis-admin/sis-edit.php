@@ -57,8 +57,8 @@
                             <a href="#0">
                                 <span class="number"></span>
                                 <span class="desc">
-                                    <label>Student</label>
-                                    <span> other details</span>
+                                    <label>Guardian</label>
+                                    <span> and other details</span>
                                 </span>
                             </a>
                         </li>
@@ -67,20 +67,11 @@
                                 <span class="number"></span>
                                 <span class="desc">
                                     <label>Course</label>
-                                    <span> details</span>
+                                    <span> information</span>
                                 </span>
                             </a>
                         </li>
                         <li data-target="step-4">
-                            <a href="#0">
-                                <span class="number"></span>
-                                <span class="desc">
-                                    <label>Subjects and </label>
-                                    <span> Schedules</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li data-target="step-5">
                             <a href="#0">
                                 <span class="number"></span>
                                 <span class="desc">
@@ -89,7 +80,7 @@
                                 </span>
                             </a>
                         </li>
-                        <li data-target="step-6">
+                        <li data-target="step-5">
                             <a href="#0">
                                 <span class="number"></span>
                                 <span class="desc">
@@ -98,7 +89,7 @@
                                 </span>
                             </a>
                         </li>
-                        <li data-target="step-7">
+                        <li data-target="step-6">
                             <a href="#0">
                                 <span class="number"></span>
                                 <span class="desc">
@@ -166,15 +157,21 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="civil_status">Civil Status</label>
-                                                    <input type="text" class="form-control" id="civil_status" name="civil_status" maxlength="100" placeholder="Single or Married" value="<?php echo $student['civil_status']; ?>">
+                                                    <select name="civil_status" class="form-control" id="civil_status">
+                                                        <option value="Single" <?php echo ($student['civil_status']=='Single')?'selected':''; ?>>Single</option>
+                                                        <option value="Married" <?php echo ($student['civil_status']=='Married')?'selected':''; ?>>Married</option>
+                                                    </select>
                                                 </div>
-                                                
                                                 <div class="col-lg-6">
                                                     <label for="nationality"> Nationality</label>
                                                     <input type="text" class="form-control" id="nationality" name="nationality" maxlength="100" value="<?php echo $student['nationality']; ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group row col-lg-12">
+                                                <div class="col-lg-6">
+                                                    <label for="dob">Date of Birth</label>
+                                                    <input type="text" class="form-control dob " id="dob" name="dob" value="<?php echo $student['date_of_birth']; ?>" maxlength="30">
+                                                </div>
                                                 <div class="col-lg-6">
                                                     <label for="picture"> Student Picture</label>
                                                     <input type="file" class="form-control" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
@@ -195,7 +192,7 @@
                         <!-- BEGIN STEP 2-->
                         <div class="tsf-step step-2">
                             <fieldset>
-                                <div class="col-12"><legend class="col-lg-12"><i class="fa fa-user-o"></i> Other Details</legend><hr/></div>
+                                <div class="col-12"><legend class="col-lg-12"><i class="fa fa-user-o"></i> Guardian and Other Details</legend><hr/></div>
                                 <div class="row">
                                     <!-- BEGIN STEP CONTENT-->
                                     <div class="tsf-step-content col-lg-12" style="width: 100%;">
@@ -221,15 +218,11 @@
                                                     <label for="guardian_contact">Guardian Contact No.</label>
                                                     <input type="text" class="form-control " id="guardian_contact" name="guardian_contact" data-mask="(999) 999-9999" placeholder="(999) 999-9999" value="<?php echo $student['guardian_contact']; ?>">
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <label for="dob">Date of Birth</label>
-                                                    <input type="text" class="form-control dob " id="dob" name="dob" maxlength="30" value="<?php echo $student['date_of_birth']; ?>">
-                                                </div>
                                             </div>
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-12">
-                                                    <label for="comments">Comments</label>
+                                                    <label for="comments">Comment(s) about student</label>
                                                     <textarea class="form-control" id="comments" name="comments" maxlength="249" ><?php echo $student['comments']; ?></textarea>
                                                 </div>
                                             </div>
@@ -253,41 +246,25 @@
                                                 <label><i class="fa fa-question-circle-o"></i> Fields with (<font color="red">*</font>) are required. </label>
                                             </div>
 
-                                            <div class="form-group" style="display: none;">
-                                                <select class="form-control" id="type_of_course" name="type_of_course">
-                                                    <option value="Diploma" <?php echo ($student['type_of_course']=='Diploma')?'selected':''; ?> >Diploma</option>
-                                                    <option value="Vocational" <?php echo ($student['type_of_course']=='Vocational')?'selected':''; ?>>Vocational</option>
-                                                </select>
-                                            </div>
-
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="company"><font color="red">*</font> Company</label>
                                                     <input type="text" class="form-control required" id="company" name="company" maxlength="100" value="<?php echo $student['company']; ?>">
                                                 </div>
-                                                <div class="col-lg-6" id="diploma_course_field" style="display: <?php echo ($student['type_of_course']=='Diploma')?'':'none'; ?>;">
-                                                    <label for="diploma_course"><font color="red">*</font> Diploma Course</label>
-                                                    <select class="form-control select2-search " id="diploma_course" name="diploma_course" style="width: 100%">
-                                                        <option></option>
-                                                        <?php if(!empty($diploma)): ?>
-                                                            <?php foreach ($diploma as $value): ?>
-                                                                <option value="<?php echo $value['course_id']; ?>" <?php echo (!empty($student['diploma_course']) && $student['diploma_course']==$value['course_id'])?'selected':''; ?> ><?php echo $value['course_name']; ?></option>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-6" id="vocational_course_field" style="display: <?php echo ($student['type_of_course']=='Vocational')?'':'none'; ?>;">
+                                                <div class="col-lg-6" id="vocational_course_field" >
                                                     <label for="vocational_course"><font color="red">*</font> Vocational Course</label>
                                                     <select class="form-control select2-search " id="vocational_course" name="vocational_course" style="width: 100%">
                                                         <option></option>
                                                         <?php if(!empty($voc_program)): ?>
                                                             <?php foreach ($voc_program as $value): ?>
-                                                                <option value="<?php echo $value['voc_program_id']; ?>" <?php echo (!empty($student['vocational_course']) && $student['vocational_course']==$value['voc_program_id'])?'selected':''; ?> ><?php echo $value['voc_program']; ?></option>
+                                                                <option value="<?php echo $value['voc_program_acronym']; ?>" <?php echo ($student['vocational_course']==$value['voc_program_acronym'])?'selected':''; ?> ><?php echo $value['voc_program']; ?></option>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
                                                     </select>
                                                 </div>
+                                            </div>
 
+                                            <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="student_remarks"><font color="red">*</font> Remarks/Status</label>
                                                     <select name="student_remarks" id="student_remarks" class="form-control required" onkeyup="is_graduated(this)" onkeydown="is_graduated(this)" onkeyup="is_graduated(this)" onmouseout="is_graduated(this)">
@@ -304,7 +281,6 @@
                                                     <label for="graduate"><font color="red">*</font> Date Graduated</label>
                                                     <input type="text" class="form-control dob " id="graduate" name="graduate" value="<?php echo $student['date_graduated']; ?>">
                                                 </div>
-
                                             </div>
                                             
                                             <div class="col-12"><legend class="col-lg-11 h5"><i class="fa fa-user-o"></i> Training </legend><hr/></div>
@@ -329,94 +305,6 @@
                         <!-- END STEP 3-->
                         <!-- BEGIN STEP 4-->
                         <div class="tsf-step step-4">
-                            <fieldset>
-                                <div class="col-12"><legend class="col-lg-12"><i class="fa fa-file-text-o"></i> Subjects and Schedules </legend><hr/></div>
-                                <div class="row">
-                                    <!-- BEGIN STEP CONTENT-->
-                                    <div class="tsf-step-content col-lg-12" style="width: 100%;">
-                                        <div class="col-lg-12">
-                                            <div class="form-group col-sm-12">
-                                                <label><i class="fa fa-question-circle-o"></i> Fields with (<font color="red">*</font>) are required. </label>
-                                            </div>
-
-                                            <?php if(!empty($sub_sched)): ?>
-                                                <?php for ($i=0; $i < count($sub_sched); $i++): ?>
-                                                    <div class="form-group row col-lg-12">
-                                                        <div class="col-lg-6">
-                                                            <input type="hidden" name="tbl_id[]" value="<?php echo $sub_sched[$i]['tbl_id']; ?>">
-                                                            <label for="subject<?php echo $i; ?>"><font color="red">*</font> Subject</label>
-                                                            <select name="subject[]" id="subject<?php echo $i; ?>" class="form-control required select2" style="width: 100%">
-                                                                <?php if(!empty($subjects)): ?>
-                                                                    <?php foreach ($subjects as $value): ?>
-                                                                        <option value="<?php echo $value['subject_id']; ?>" <?php echo ($sub_sched[$i]['subject']==$value['subject_id'])?'selected':''; ?> ><?php echo $value['subject_title']; ?></option>
-                                                                    <?php endforeach; ?>
-                                                                <?php endif; ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label for="room<?php echo $i ?>"><font color="red">*</font> Room</label>
-                                                            <select name="room[]" id="room<?php echo $i ?>" class="form-control required select2" style="width: 100%">
-                                                                <?php if(!empty($rooms)): ?>
-                                                                    <?php foreach ($rooms as $value): ?>
-                                                                        <option value="<?php echo $value['room_id']; ?>" <?php echo ($sub_sched[$i]['room']==$value['room_id'])?'selected':''; ?> ><?php echo $value['room_name']; ?></option>
-                                                                    <?php endforeach; ?>
-                                                                <?php endif; ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row col-lg-12">
-                                                        <div class="col-lg-6">
-                                                            <label for="day"><font color="red">*</font> Day</label>
-                                                            <select name="day[]" id="day" class="form-control required">
-                                                                <option value="MONDAY" <?php echo ($sub_sched[$i]['day']=='MONDAY')?'selected':''; ?> >MONDAY</option>
-                                                                <option value="TUESDAY" <?php echo ($sub_sched[$i]['day']=='TUESDAY')?'selected':''; ?>>TUESDAY</option>
-                                                                <option value="WEDNESDAY" <?php echo ($sub_sched[$i]['day']=='WEDNESDAY')?'selected':''; ?>>WEDNESDAY</option>
-                                                                <option value="THURSDAY" <?php echo ($sub_sched[$i]['day']=='THURSDAY')?'selected':''; ?>>THURSDAY</option>
-                                                                <option value="FRIDAY" <?php echo ($sub_sched[$i]['day']=='FRIDAY')?'selected':''; ?>>FRIDAY</option>
-                                                                <option value="SATURDAY" <?php echo ($sub_sched[$i]['day']=='SATURDAY')?'selected':''; ?>>SATURDAY</option>
-                                                                <option value="SUNDAY" <?php echo ($sub_sched[$i]['day']=='SUNDAY')?'selected':''; ?>>SUNDAY</option>
-                                                            </select>
-
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label for="time"><font color="red">*</font> Time</label>
-                                                            <select name="time[]" id="time" class="form-control required">
-                                                                <option value="08:00:00" <?php echo ($sub_sched[$i]['time']=='08:00:00')?'selected':''; ?> > 08:00AM - 09:30AM </option>
-                                                                <option value="10:00:00" <?php echo ($sub_sched[$i]['time']=='10:00:00')?'selected':''; ?> > 10:00AM - 11:30AM </option>
-                                                                <option value="12:30:00" <?php echo ($sub_sched[$i]['time']=='12:30:00')?'selected':''; ?> > 12:30PM - 02:00PM </option>
-                                                                <option value="14:30:00" <?php echo ($sub_sched[$i]['time']=='14:30:00')?'selected':''; ?> > 02:30PM - 04:00PM </option>
-                                                                <option value="16:30:00" <?php echo ($sub_sched[$i]['time']=='16:30:00')?'selected':''; ?> > 04:30PM - 06:00PM </option>
-                                                                <option value="18:30:00" <?php echo ($sub_sched[$i]['time']=='18:30:00')?'selected':''; ?> > 06:30PM - 08:00PM </option>
-                                                            </select>
-                                                        </div>
-                                                    </div><br>
-                                                <?php endfor; ?>
-                                            <?php else: ?>
-                                                <p align="center"> No subjects and schedules found. You can add "Subjects and Schedules" by clicking "Add" button below </p>
-                                            <?php endif; ?>
-
-
-
-                                            <div id="TextBoxesGroup"></div>
-                                            <div class="col-12"><hr/></div>
-
-                                            <div class="form-group col-md-12">
-                                                <div class="btn-group" style="float: right;">
-                                                    <button id="addButton" type="button" class="btn btn-success">&nbsp&nbsp&nbsp<i class="fa fa-plus-square-o"></i> Add&nbsp&nbsp&nbsp</button>
-                                                    <button id="removeButton" type="button" class="btn btn-danger"><i class="fa fa-times"></i> Remove</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- END STEP CONTENT-->
-                                </div>
-                            </fieldset>
-                        </div>
-                        <!-- END STEP 4-->
-                        <!-- BEGIN STEP 5-->
-                        <div class="tsf-step step-5">
                             <fieldset>
                                 <div class="col-12"><legend class="col-lg-12"><i class="fa fa-th-list"></i> English Proficiency</legend><hr/></div>
                                 <div class="row">
@@ -454,9 +342,9 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <!-- END STEP 5-->
-                        <!-- BEGIN STEP 6-->
-                        <div class="tsf-step step-6">
+                        <!-- END STEP 4-->
+                        <!-- BEGIN STEP 5-->
+                        <div class="tsf-step step-5">
                             <fieldset>
                                 <div class="col-12"><legend class="col-lg-12"><i class="fa fa-user-o"></i> Core Skills</legend><hr/></div>
                                 <div class="row">
@@ -522,9 +410,9 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <!-- END STEP 6-->
-                        <!-- BEGIN STEP 7-->
-                        <div class="tsf-step step-7">
+                        <!-- END STEP 5-->
+                        <!-- BEGIN STEP 6-->
+                        <div class="tsf-step step-6">
                             <fieldset>
                                 <div class="col-12"><legend class="col-lg-12"><i class="fa fa-user-o"></i> Craft Skills</legend><hr/></div>
                                 <div class="row">
@@ -587,7 +475,7 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <!-- END STEP 7-->
+                        <!-- END STEP 6-->
                     </form>
                     <!-- END CONTENT-->
                     <!-- BEGIN CONTROLS-->

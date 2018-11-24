@@ -34,7 +34,6 @@
                               <th>Active</th>
                               <th data-priority="3">Student No.</th>
                               <th>Name</th>
-                              <th>Type of Course</th>
                               <th>Course</th>
                               <th>Action</th>
                             </tr>
@@ -57,8 +56,7 @@
                                   </td>
                                   <td><?php echo $value['student_no']; ?></td>
                                   <td><?php echo !empty($value['arabic_name'])?$value['arabic_name']:$value['english_name']; ?></td>
-                                  <td><?php echo $value['type_of_course']; ?></td>
-                                  <td><?php echo !empty($value['voc_program_acronym'])?$value['voc_program_acronym']:$value['diploma_course_acronym']; ?></td>
+                                  <td><?php echo $value['vocational_course']; ?></td>
                                   <td>
                                     <a target="_blank" href="<?php echo site_url('student/'.$value['student_id']); ?>" class="mb-4 btn btn-warning"><span class="nav-icon"><em class="ion-edit"></em></span> Edit</a>
                                     <a target="_blank" href="<?php echo site_url('student/student_printable/'.$value['student_id']); ?>" class="mb-4 btn btn-danger"><span class="nav-icon"><em class="icon-ios-printer-outline"></em></span> Print</a>

@@ -18,6 +18,16 @@
                 <label class="control-label"><font style="color: red">*</font> Description</label>
                 <textarea name="description" class="form-control" maxlength="100"></textarea>
               </div>
+              <div class="form-group col-lg-12">
+                <label class="control-label"><font style="color: red">*</font> Vocational Program</label>
+                <select name="voc_program" class="form-control" required="">
+                  <?php if(!empty($course)): ?>
+                    <?php foreach ($course as $value): ?>
+                      <option value="<?php echo $value['voc_program_acronym']; ?>"><?php echo $value['voc_program']; ?></option>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
+                </select>
+              </div>
             </form>
           </div>
           <div class="modal-footer col-lg-12">

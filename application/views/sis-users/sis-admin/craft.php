@@ -1,6 +1,11 @@
 
         <section class="section-container no-padding-top">
           <div class="container-fluid">
+
+            <div class="alert alert-warning mb-3">
+              <span class="nav-icon"><em class="icon-ios-information-outline icon-lg"></em></span> Deletion/Removal of Craft will affect related data such as "Student Skills". Affected data will be deleted/removed permanently also.
+            </div>
+
             <div class="row">
 
               <form action="<?php echo site_url('craft/craft_activate_deactivate'); ?>" method="post" accept-charset="utf-8">
@@ -9,9 +14,12 @@
                     <div class="cardbox-heading">
                       <div class="cardbox-header">Craft table</div><small> &nbsp&nbsp </small>
                       <div class="cardbox-title">
-                        <div class="btn-group" style="float: right;">
-                          <input type="submit" class="mb-4 btn btn-success" name="activate" disabled="" value="Activate">
-                          <input type="submit" class="mb-4 btn btn-dangers" name="deactivate" disabled="" value="Deativate">
+                        <div style="float: right;">
+                          <input type="submit" class="mb-4 btn btn-danger" name="delete" disabled="" value="Delete">
+                          <div class="btn-group">
+                            <input type="submit" class="mb-4 btn btn-success" name="activate" disabled="" value="Activate">
+                            <input type="submit" class="mb-4 btn btn-secondary" name="deactivate" disabled="" value="Deativate">
+                          </div>
                         </div>
                         <a href="<?php echo site_url('new_craft'); ?>" class="mb-4 btn btn-primary"><span class="nav-icon"><em class="ion-ios-plus-outline"></em></span> Add Craft</a>
                       </div>
@@ -31,10 +39,10 @@
                               </th>
                               <th>Active</th>
                               <th data-priority="3">Craft Code</th>
+                              <th>Course</th>
                               <th>Created by</th>
                               <th>Updated by</th>
                               <th>Created</th>
-                              <th>Modified</th>
                               <th>Action</th>
                             </tr>
                           </thead>
@@ -55,10 +63,10 @@
                                     <?php echo ($value['status']=='1')?'<div class="badge badge-success">TRUE</div>':'<div class="badge badge-danger">FALSE</div>'; ?>
                                   </td>
                                   <td><?php echo $value['craft_code']; ?></td>
+                                  <td><?php echo $value['voc_program']; ?></td>
                                   <td><?php echo $value['created_by']; ?></td>
                                   <td><?php echo $value['updated_by']; ?></td>
                                   <td><?php echo $value['created']; ?></td>
-                                  <td><?php echo $value['modified']; ?></td>
                                   <td>
                                     <button type="button" class="mb-4 btn btn-warning" onclick="edit_craft(<?php echo $value['craft_item_id'];?>)"><span class="nav-icon"><em class="ion-edit"></em></span> Edit</button>
                                   </td>
@@ -112,6 +120,7 @@ function edit_craft(id){
         $('[name="craft_item_id"]').val(data.craft_item_id);
         $('[name="craft_code"]').val(data.craft_code);
         $('[name="description"]').val(data.description);
+        $('[name="voc_program"]').val(data.voc_program);
         //SHOW MODAL
         $('#editCraft').modal('show');
         $('.modal-title').text('Edit Craft');

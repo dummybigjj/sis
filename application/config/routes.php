@@ -96,6 +96,7 @@ $route['new_diploma_course']	= 'diploma_course/new_diploma_course';
 $route['student_registration']	= 'student/student_registration';
 $route['students']				= 'student/students';
 $route['student/(:num)']		= 'student/student/$1';
+$route['student_skills/(:num)'] = 'student/student_skills/$1';
 
 // Error page
 $route['error_401']				= 'admin/error_401';

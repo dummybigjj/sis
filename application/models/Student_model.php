@@ -16,86 +16,8 @@ class Student_model extends CI_Model {
 	 * @return associative array list or single student on success.
 	 */
 	public function getStudents($return_type,$condition){
-		$data = $this->crud->getDataWithSort('',$return_type,$condition,'arabic_name ASC','tbl2');
-		return $this->getDiplomaAndVocationalCourse($data);
-	}
-
-	/**
-	 * getDiplomaAndVocationalCourse function.
-	 * 
-	 * @access private
-	 * @param associative array $students
-	 * @return associative array list or single student on success.
-	 */
-	private function getDiplomaAndVocationalCourse($students = array()){
-		if(!empty($students)){
-			if(array_key_exists('student_id', $students)){
-				$voc_program 	= $this->crud->getData('voc_program,voc_program_acronym','s',array('voc_program_id'=>$students['vocational_course']),'tbl6');
-				$diploma_course = $this->crud->getData('course_name,course_acronym','s',array('course_id'=>$students['diploma_course']),'tbl11');
-				$students['voc_program'] = $voc_program['voc_program'];
-				$students['voc_program_acronym'] = $voc_program['voc_program_acronym'];
-				$students['diploma_course_name'] = $diploma_course['course_name'];
-				$students['diploma_course_acronym'] = $diploma_course['course_acronym'];
-			}else{
-				for ($i=0; $i < count($students); $i++) { 
-					$voc_program 	= $this->crud->getData('voc_program,voc_program_acronym','s',array('voc_program_id'=>$students[$i]['vocational_course']),'tbl6');
-					$diploma_course = $this->crud->getData('course_name,course_acronym','s',array('course_id'=>$students[$i]['diploma_course']),'tbl11');
-					$students[$i]['voc_program'] = $voc_program['voc_program'];
-					$students[$i]['voc_program_acronym'] = $voc_program['voc_program_acronym'];
-					$students[$i]['diploma_course_name'] = $diploma_course['course_name'];
-					$students[$i]['diploma_course_acronym'] = $diploma_course['course_acronym'];
-				}
-			}
-		}
-		return $students;
-	}
-
-	/**
-	 * getStudentSubjects function.
-	 * 
-	 * @access private
-	 * @param mixed $current_batch_year
-	 * @return associative array list of enrolled student on success.
-	 */
-	public function getStudentSubjects($condition,$return_type){
-		$select = '`tbl_id`, `subject`.`subject_title`, `time`, `room`.`room_name`, `day`, `student_subject`.`subject`, `student_subject`.`room`, `student_subject`.`created_by`, `student_subject`.`created`, `student_subject`.`updated_by`, `student_subject`.`modified`';
-		$join = array(
-			'`subject`'	=> '`student_subject`.`subject` = `subject`.`subject_id`',
-			'`room`'	=> '`student_subject`.`room` = `room`.`room_id`'
-		);
-		return $this->crud->getJoinDataWithSort($select,$return_type,$condition,$join,'`subject`.`subject_title` ASC','tbl9');
-	}
-
-	/**
-	 * insertOrUpdateStudentSubjects function.
-	 * 
-	 * @access public
-	 * @param associative array $subjects
-	 * @param associative array $student
-	 * @param int $student_id
-	 * @return boolean TRUE on success.
-	 */
-	public function insertOrUpdateStudentSubjects($subjects = array(),$student = array(),$student_id){
-		for ($i=0; $i < count($subjects['subject']); $i++) { 
-            $subjects_schedules = array(
-                'subject'   => $subjects['subject'][$i],
-                'day'       => $subjects['day'][$i],
-                'time'      => $subjects['time'][$i],
-                'room'      => $subjects['room'][$i]
-            );
-            if(array_key_exists($i, $subjects['tbl_id'])){
-                $subjects_schedules['updated_by'] = $this->session->userdata('u_email');
-                $this->crud->updateData($subjects_schedules,array('tbl_id'=>$subjects['tbl_id'][$i]),'tbl9');
-                // record updating of subjects in history logs
-                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated subjects for '.$student['student_no'],$this->session->userdata('u_id'));
-            }else{
-                $foreign_values = array('student_id'=>$student_id,'created_by'=>$this->session->userdata('u_email'));
-                $this->crud->setData($subjects_schedules,$foreign_values,'tbl9');
-                // record registration of students subjects and schedules in history logs
-                $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created subjects for '.$student['student_no'],$this->session->userdata('u_id'));
-            }
-        }
-        return TRUE;
+		return $this->crud->getDataWithSort('',$return_type,$condition,'arabic_name ASC','tbl2');
+		// return $this->getDiplomaAndVocationalCourse($data);
 	}
 
 	/**
@@ -271,32 +193,32 @@ class Student_model extends CI_Model {
 		return $result;
 	}
 
-	/**
-	 * transformScheduleRange function.
-	 * 
-	 * @access private
-	 * @param mixed $time
-	 * @return mixed time range on success.
-	 */
-	public function transformScheduleRange($time){
-		$start_time = "";
-		$end_time	= "";
-		if($time<='12:00:00'){
-			$start_time = rtrim(rtrim($time,'0'),':').'AM';
-			if($time=='11:30:00'){
-				$end_time	= rtrim(rtrim(date('H:i:s', strtotime('+1 hour +30 minutes',strtotime($time))),'0'),':').'PM';
-			}else{
-				$end_time	= rtrim(rtrim(date('H:i:s', strtotime('+1 hour +30 minutes',strtotime($time))),'0'),':').'AM';
-			}
-		}else{
-			if($time=='12:30:00'){
-				$start_time = rtrim(rtrim($time,'0'),':').'PM';
-			}else{
-				$start_time = rtrim(rtrim(date('H:i:s', strtotime('-12 hours',strtotime($time))),'0'),':').'PM';
-			}
-			$end_time	= rtrim(rtrim(date('H:i:s', strtotime('-10 hours -30 minutes',strtotime($time))),'0'),':').'PM';
-		}
-		return $start_time." - ".$end_time;
-	}
+	// /**
+	//  * transformScheduleRange function.
+	//  * 
+	//  * @access private
+	//  * @param mixed $time
+	//  * @return mixed time range on success.
+	//  */
+	// public function transformScheduleRange($time){
+	// 	$start_time = "";
+	// 	$end_time	= "";
+	// 	if($time<='12:00:00'){
+	// 		$start_time = rtrim(rtrim($time,'0'),':').'AM';
+	// 		if($time=='11:30:00'){
+	// 			$end_time	= rtrim(rtrim(date('H:i:s', strtotime('+1 hour +30 minutes',strtotime($time))),'0'),':').'PM';
+	// 		}else{
+	// 			$end_time	= rtrim(rtrim(date('H:i:s', strtotime('+1 hour +30 minutes',strtotime($time))),'0'),':').'AM';
+	// 		}
+	// 	}else{
+	// 		if($time=='12:30:00'){
+	// 			$start_time = rtrim(rtrim($time,'0'),':').'PM';
+	// 		}else{
+	// 			$start_time = rtrim(rtrim(date('H:i:s', strtotime('-12 hours',strtotime($time))),'0'),':').'PM';
+	// 		}
+	// 		$end_time	= rtrim(rtrim(date('H:i:s', strtotime('-10 hours -30 minutes',strtotime($time))),'0'),':').'PM';
+	// 	}
+	// 	return $start_time." - ".$end_time;
+	// }
 
 }

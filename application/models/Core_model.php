@@ -34,4 +34,22 @@ class Core_model extends CI_Model {
 		return $this->crud->getJoinData($select,$return_type,$condition,$tbljoin,'tbl12');
 	}
 
+	/**
+	 * delete_core function.
+	 * 
+	 * @access public
+	 * @param associative array $data
+	 * @return boolean TRUE on success.
+	 */
+	public function delete_core($data = array())
+	{
+		if(!empty($data)){
+			for ($i=0; $i < count($data); $i++) { 
+				$this->crud->deleteData(array('core_item_id'=>$data['core_item_id'][$i]),'tbl13');
+			}
+			return TRUE;
+		}
+		return FALSE;
+	}
+
 }

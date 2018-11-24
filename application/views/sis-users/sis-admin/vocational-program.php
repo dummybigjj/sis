@@ -1,6 +1,11 @@
 
         <section class="section-container no-padding-top">
           <div class="container-fluid">
+
+            <div class="alert alert-warning mb-3">
+              <span class="nav-icon"><em class="icon-ios-information-outline icon-lg"></em></span> Deletion/Removal of Vocational Program will affect related data such as "Student". Affected data will be deleted/removed permanently also.
+            </div>
+
             <div class="row">
 
               <form action="<?php echo site_url('vocational_program/vocational_program_activate_deactivate'); ?>" method="post" accept-charset="utf-8">
@@ -10,10 +15,14 @@
                     <div class="cardbox-heading">
                       <div class="cardbox-header">Vocational Program table</div><small> &nbsp&nbsp </small>
                       <div class="cardbox-title">
-                        <div class="btn-group" style="float: right;">
-                          <input type="submit" class="mb-4 btn btn-success" name="activate" disabled="" value="Activate">
-                          <input type="submit" class="mb-4 btn btn-dangers" name="deactivate" disabled="" value="Deativate">
+                        <div style="float: right;">
+                          <input type="submit" class="mb-4 btn btn-danger" name="delete" disabled="" value="Delete">
+                          <div class="btn-group">
+                            <input type="submit" class="mb-4 btn btn-success" name="activate" disabled="" value="Activate">
+                            <input type="submit" class="mb-4 btn btn-secondary" name="deactivate" disabled="" value="Deativate">
+                          </div>
                         </div>
+                        
                         <a href="<?php echo site_url('new_vocational_program'); ?>" class="mb-4 btn btn-primary"><span class="nav-icon"><em class="ion-ios-plus-outline"></em></span> Add Vocational Program</a>
                       </div>
                     </div>

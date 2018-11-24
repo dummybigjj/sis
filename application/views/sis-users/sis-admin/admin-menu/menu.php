@@ -51,21 +51,21 @@
               <li>
                 <div class="sidebar-nav-heading">CONFIG ITEMS</div>
               </li>
-              <li>
-                <a href="<?php echo site_url('diploma_courses') ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-paper-outline"></em></span><span>Diploma</span></a>
-              </li>
+              <!-- <li>
+                <a href="<?php //echo site_url('diploma_courses') ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-paper-outline"></em></span><span>Diploma</span></a>
+              </li> -->
               <li>
                 <a href="<?php echo site_url('vocational_programs'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-list-outline"></em></span><span>Vocational</span></a>
               </li>
-              <li>
-                <a href="<?php echo site_url('subjects'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-book-outline"></em></span><span>Subject</span></a>
+              <!-- <li>
+                <a href="<?php //echo site_url('subjects'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-book-outline"></em></span><span>Subject</span></a>
               </li>
               <li>
-                <a href="<?php echo site_url('rooms'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-home-outline"></em></span><span>Room</span></a>
+                <a href="<?php //echo site_url('rooms'); ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="ion-ios-home-outline"></em></span><span>Room</span></a>
               </li>
               <li>
                 <div class="sidebar-nav-heading"></div>
-              </li>
+              </li> -->
               <li>
                 <a href="<?php echo site_url('craft') ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="icon-notebook-streamline"></em></span><span>Craft</span></a>
               </li>

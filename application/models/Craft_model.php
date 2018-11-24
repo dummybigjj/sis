@@ -34,4 +34,22 @@ class Craft_model extends CI_Model {
 		return $this->crud->getJoinData($select,$return_type,$condition,$tbljoin,'tbl10');
 	}
 
+	/**
+	 * delete_craft function.
+	 * 
+	 * @access public
+	 * @param associative array $data
+	 * @return boolean TRUE on success.
+	 */
+	public function delete_craft($data = array())
+	{
+		if(!empty($data)){
+			for ($i=0; $i < count($data); $i++) { 
+				$this->crud->deleteData(array('craft_item_id'=>$data['craft_item_id'][$i]),'tbl14');
+			}
+			return TRUE;
+		}
+		return FALSE;
+	}
+
 }

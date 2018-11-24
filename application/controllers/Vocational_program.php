@@ -137,6 +137,13 @@ class Vocational_program extends CI_Controller{
             $this->user_model->recordLogs('Activate Vocatonal Program(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Vocatonal Program(s) has been activated');
         }
+        else if($this->input->post('delete')){
+            // Delete vocational program
+            $data = array('voc_program_id'=>$this->input->post('voc_program_id'));
+            $this->vocational_program_model->delete_vocational_program($data);
+            $this->user_model->recordLogs('Delete Vocatonal Program(s)',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Vocatonal Program(s) has been deleted');
+        }
         redirect('vocational_programs');
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2018 at 07:49 PM
+-- Generation Time: Nov 21, 2018 at 03:43 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -45,15 +45,36 @@ CREATE TABLE `core` (
 --
 
 INSERT INTO `core` (`core_id`, `student_id`, `core_rating`, `core_skill`, `core_completed`, `grade`, `updated_by`, `created`, `modified`) VALUES
-(1, 1, 'Competent', 1, '2018-11-14', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(2, 1, 'Competent', 2, '2018-11-14', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(3, 1, 'Competent', 3, '2018-11-14', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(4, 2, 'Competent', 1, '2018-11-27', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(5, 2, 'Competent', 2, '2018-11-27', 95, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(6, 1, 'Competent', 11, '2018-11-14', 100, 1, '2018-11-25 02:26:20', '2018-11-25 02:27:31'),
-(7, 3, 'Competent', 4, '2018-11-13', 95, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(8, 3, 'Competent', 5, '2018-11-13', 100, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(9, 3, 'Competent', 6, '2018-11-13', 100, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45');
+(1, 2, 'Competent', 8, NULL, NULL, NULL, '2018-10-16 17:41:58', '2018-10-23 14:12:26'),
+(2, 4, 'Competent', 9, NULL, NULL, NULL, '2018-10-16 18:04:16', '2018-10-23 14:12:29'),
+(3, 5, 'Competent', 9, NULL, NULL, NULL, '2018-10-16 18:10:50', '2018-10-23 14:12:33'),
+(4, 6, 'Competent', 9, '2018-11-20', 100, 1, '2018-10-16 22:00:33', '2018-11-21 17:52:16'),
+(5, 7, 'Competent', 5, '2018-11-07', NULL, 1, '2018-10-18 15:08:27', '2018-11-07 20:55:38'),
+(6, 7, 'Competent', 1, '2018-11-04', NULL, 1, '2018-10-23 16:09:14', '2018-11-08 12:25:03'),
+(7, 7, 'Competent', 2, '2018-11-06', NULL, 1, '2018-10-23 16:11:38', '2018-11-07 21:15:52'),
+(8, 8, 'Competent', 1, NULL, NULL, 1, '2018-10-23 16:34:42', '2018-10-23 16:35:30'),
+(9, 8, 'Competent', 2, NULL, NULL, 1, '2018-10-23 16:34:42', '2018-10-23 16:35:31'),
+(10, 8, 'Not Yet Competent', 3, NULL, NULL, 1, '2018-10-23 16:35:31', '2018-10-23 18:01:34'),
+(11, 1, 'Competent', 1, NULL, NULL, NULL, '2018-10-24 13:41:09', '2018-10-24 13:41:09'),
+(12, 7, 'Competent', 3, '2018-11-05', NULL, 1, '2018-11-07 21:21:32', '2018-11-08 14:32:22'),
+(13, 7, 'Competent', 4, '2018-11-08', NULL, 1, '2018-11-07 21:21:32', '2018-11-07 21:26:33'),
+(14, 7, 'Not Yet Competent', 6, NULL, NULL, 1, '2018-11-07 21:28:40', '2018-11-07 21:30:22'),
+(15, 7, 'Competent', 7, '2018-11-09', NULL, 1, '2018-11-07 21:30:22', '2018-11-07 22:41:38'),
+(16, 7, 'Not Yet Competent', 8, NULL, NULL, 1, '2018-11-07 22:46:54', '2018-11-07 22:56:38'),
+(17, 7, 'Not Yet Competent', 9, NULL, NULL, 1, '2018-11-07 22:46:54', '2018-11-07 22:56:38'),
+(18, 9, 'Competent', 1, '2018-11-08', NULL, 1, '2018-11-07 23:14:27', '2018-11-07 23:16:12'),
+(19, 9, 'Competent', 2, '2018-11-11', NULL, 1, '2018-11-07 23:16:12', '2018-11-08 03:23:02'),
+(20, 9, 'Competent', 4, '2018-11-11', NULL, 1, '2018-11-08 03:22:21', '2018-11-08 03:23:02'),
+(21, 10, 'Competent', 2, '2018-11-06', NULL, NULL, '2018-11-08 03:46:25', '2018-11-08 03:46:25'),
+(22, 6, 'Competent', 1, '2018-11-20', 100, 1, '2018-11-08 21:41:49', '2018-11-21 17:52:16'),
+(23, 6, 'Not Yet Competent', 3, NULL, NULL, 1, '2018-11-09 18:20:46', '2018-11-21 19:57:40'),
+(24, 6, 'Not Yet Competent', 10, '2018-11-20', 75, 1, '2018-11-09 18:32:28', '2018-11-21 20:01:07'),
+(25, 6, 'Competent', 2, '2018-11-21', 85, NULL, '2018-11-21 20:03:41', '2018-11-21 20:03:41'),
+(26, 11, 'Competent', 1, '2018-11-07', 90, NULL, '2018-11-21 20:30:35', '2018-11-21 20:30:35'),
+(27, 11, 'Competent', 2, '2018-11-07', 90, NULL, '2018-11-21 20:30:35', '2018-11-21 20:30:35'),
+(28, 11, 'Not Yet Competent', 3, NULL, NULL, NULL, '2018-11-21 20:30:35', '2018-11-21 20:30:35'),
+(29, 11, 'Competent', 4, '2018-11-07', 85, NULL, '2018-11-21 20:30:35', '2018-11-21 20:30:35'),
+(30, 12, 'Competent', 1, '2018-11-20', 90, 1, '2018-11-21 20:39:07', '2018-11-21 20:39:50');
 
 -- --------------------------------------------------------
 
@@ -65,7 +86,6 @@ CREATE TABLE `core_item` (
   `core_item_id` int(11) NOT NULL,
   `core_code` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `voc_program` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
   `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -77,17 +97,17 @@ CREATE TABLE `core_item` (
 -- Dumping data for table `core_item`
 --
 
-INSERT INTO `core_item` (`core_item_id`, `core_code`, `description`, `voc_program`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Core 101', 'Basic Safety', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-20 12:06:36', '2018-11-25 01:50:40'),
-(2, 'Core 102', 'Introduction to Construction Math', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 13:09:53', '2018-11-25 01:50:50'),
-(3, 'Core 103', 'Introduction to Hand Tools', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 13:33:10', '2018-11-25 01:50:58'),
-(4, 'Core 104', 'Introduction to Power Tools', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-25 02:43:18'),
-(5, 'Core 105', 'Introduction to Construction Drawings', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-25 02:43:31'),
-(6, 'Core 106', 'This is Core 106', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-25 02:43:38'),
-(7, 'Core 107', 'Basic Communication Skills', 'PREPG1', '1', 'admin@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-24 16:12:30'),
-(8, 'Core 108', 'Basic Employability Skills', 'PREPG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-24 16:12:30'),
-(9, 'Core 109', 'Introduction to Materials Handling', 'PREPG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-24 16:12:30'),
-(11, 'Cor 101 Welding', 'Basic Safety', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-24 23:02:48', '2018-11-25 02:32:43');
+INSERT INTO `core_item` (`core_item_id`, `core_code`, `description`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'Core 101', 'Basic Safety', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-20 12:06:36', '2018-11-21 17:05:26'),
+(2, 'Core 102', 'Introduction to Construction Math', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 13:09:53', '2018-11-21 17:05:43'),
+(3, 'Core 103', 'Introduction to Hand Tools', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 13:33:10', '2018-11-21 17:05:57'),
+(4, 'Core 104', 'Introduction to Power Tools', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-21 17:06:14'),
+(5, 'Core 105', 'Introduction to Construction Drawings', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-21 17:06:29'),
+(6, 'Core 106', 'This is Core 106', '1', 'joey@gmail.com', NULL, '2018-11-21 16:16:11', '2018-11-21 16:17:53'),
+(7, 'Core 107', 'Basic Communication Skills', '1', 'admin@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-21 17:06:44'),
+(8, 'Core 108', 'Basic Employability Skills', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-21 17:06:52'),
+(9, 'Core 109', 'Introduction to Materials Handling', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-21 17:07:03'),
+(10, 'Core 110', 'This is Core 110', '1', 'joey@gmail.com', NULL, '2018-11-21 16:17:29', '2018-11-21 16:18:20');
 
 -- --------------------------------------------------------
 
@@ -112,16 +132,32 @@ CREATE TABLE `craft` (
 --
 
 INSERT INTO `craft` (`craft_id`, `student_id`, `craft_rating`, `craft_skill`, `craft_completed`, `grade`, `updated_by`, `created`, `modified`) VALUES
-(1, 1, 'Competent', 1, '2018-11-15', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(2, 1, 'Competent', 2, '2018-11-15', 85, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(3, 2, 'Competent', 1, '2018-11-06', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(4, 2, 'Competent', 2, '2018-11-06', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(5, 1, 'Not Yet Competent', 3, NULL, 75, 1, '2018-11-25 02:26:20', '2018-11-25 02:27:31'),
-(6, 1, 'Competent', 4, '2018-11-15', 85, 1, '2018-11-25 02:26:20', '2018-11-25 02:27:31'),
-(7, 3, 'Competent', 5, '2018-11-13', 100, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(8, 3, 'Competent', 6, '2018-11-13', 85, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(9, 3, 'Competent', 7, '2018-11-13', 85, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(10, 3, 'Competent', 12, '2018-11-13', 85, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45');
+(1, 2, 'Competent', 3, NULL, NULL, NULL, '2018-10-16 17:41:58', '2018-10-23 14:11:02'),
+(2, 4, 'Competent', 5, NULL, NULL, NULL, '2018-10-16 18:04:16', '2018-10-23 14:11:06'),
+(3, 5, 'Competent', 7, NULL, NULL, NULL, '2018-10-16 18:10:50', '2018-10-23 14:11:10'),
+(4, 6, 'Competent', 9, '2018-11-06', 100, 1, '2018-10-16 22:00:33', '2018-11-21 17:52:16'),
+(5, 7, 'Competent', 5, '2018-11-09', NULL, 1, '2018-10-18 15:08:27', '2018-11-07 20:56:32'),
+(6, 7, 'Competent', 1, '2018-08-07', NULL, 1, '2018-10-23 16:09:14', '2018-11-07 22:46:54'),
+(7, 7, 'Competent', 2, '2018-11-08', NULL, 1, '2018-10-23 16:11:38', '2018-11-07 20:55:55'),
+(8, 8, 'Competent', 1, NULL, NULL, 1, '2018-10-23 16:34:42', '2018-10-23 16:35:30'),
+(9, 8, 'Competent', 2, NULL, NULL, 1, '2018-10-23 16:34:42', '2018-10-23 16:35:30'),
+(10, 8, 'Not Yet Competent', 3, NULL, NULL, 1, '2018-10-23 16:35:30', '2018-10-23 18:01:34'),
+(11, 1, 'Competent', 1, NULL, NULL, NULL, '2018-10-24 13:41:09', '2018-10-24 13:41:09'),
+(12, 7, 'Not Yet Competent', 3, NULL, NULL, 1, '2018-11-07 21:26:33', '2018-11-07 21:28:39'),
+(13, 7, 'Competent', 4, '2018-11-10', NULL, 1, '2018-11-07 21:26:33', '2018-11-07 21:28:39'),
+(14, 9, 'Competent', 1, '2018-11-07', NULL, 1, '2018-11-07 23:14:27', '2018-11-07 23:16:12'),
+(15, 9, 'Competent', 2, '2018-11-11', NULL, 1, '2018-11-07 23:16:12', '2018-11-08 03:23:02'),
+(16, 9, 'Competent', 4, '2018-11-11', NULL, 1, '2018-11-08 03:22:21', '2018-11-08 03:23:02'),
+(17, 10, 'Not Yet Competent', 2, NULL, NULL, NULL, '2018-11-08 03:46:25', '2018-11-08 03:46:25'),
+(18, 6, 'Competent', 1, '2018-11-20', NULL, 1, '2018-11-08 21:41:49', '2018-11-21 19:57:54'),
+(19, 6, 'Competent', 12, '2018-11-20', 100, 1, '2018-11-09 18:32:28', '2018-11-21 17:52:16'),
+(20, 6, 'Competent', 2, '2018-11-21', 90, 1, '2018-11-21 20:02:20', '2018-11-21 20:03:41'),
+(21, 11, 'Not Yet Competent', 1, NULL, NULL, NULL, '2018-11-21 20:30:35', '2018-11-21 20:30:35'),
+(22, 11, 'Competent', 2, '2018-11-07', 90, NULL, '2018-11-21 20:30:35', '2018-11-21 20:30:35'),
+(23, 12, 'Competent', 1, '2018-11-12', 85, 1, '2018-11-21 20:39:07', '2018-11-21 20:39:49'),
+(24, 12, 'Competent', 2, '2018-11-12', 90, 1, '2018-11-21 20:39:07', '2018-11-21 20:39:49'),
+(25, 12, 'Not Yet Competent', 3, NULL, NULL, 1, '2018-11-21 20:39:07', '2018-11-21 20:39:49'),
+(26, 12, 'Competent', 5, '2018-11-12', 90, 1, '2018-11-21 20:39:07', '2018-11-21 20:39:49');
 
 -- --------------------------------------------------------
 
@@ -133,7 +169,6 @@ CREATE TABLE `craft_item` (
   `craft_item_id` int(11) NOT NULL,
   `craft_code` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `voc_program` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
   `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Reference table is "user_credential"',
   `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Reference table is "user_credential"',
@@ -145,18 +180,46 @@ CREATE TABLE `craft_item` (
 -- Dumping data for table `craft_item`
 --
 
-INSERT INTO `craft_item` (`craft_item_id`, `craft_code`, `description`, `voc_program`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'PF 101', 'Orientation to the Trade', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 09:07:03', '2018-11-25 01:51:15'),
-(2, 'PF 102', 'Pipefitting Hand Tools', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 11:49:56', '2018-11-25 01:51:26'),
-(3, 'PF 103', 'Pipefitting Power Tools', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 12:06:34', '2018-11-25 01:51:32'),
-(4, 'PF 201', 'Piping System', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 12:48:55', '2018-11-25 01:51:39'),
-(5, 'PF 202', 'Drawing and Detail Sheets', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-25 02:42:48'),
-(6, 'PF 203', 'Identifying and Installing Valves', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-25 02:42:55'),
-(7, 'PF 204', 'Pipefitting Trade Math', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-25 02:43:04'),
-(8, 'PF 205', 'Threaded Pipe Fabrication', 'PREPG1', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-24 16:20:51'),
-(9, 'PF 206', 'Socket Pipe Fabrication', 'PREPG1', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-24 16:20:51'),
-(12, 'FSY 122', 'Working from Elevations', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-24 22:54:47'),
-(14, 'FSY 104', 'This is FSY 104', 'SCAFF', '1', 'joey@gmail.com', NULL, '2018-11-24 22:48:20', '2018-11-24 22:48:20');
+INSERT INTO `craft_item` (`craft_item_id`, `craft_code`, `description`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'PF 101', 'Orientation to the Trade', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 09:07:03', '2018-11-21 17:07:41'),
+(2, 'PF 102', 'Pipefitting Hand Tools', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 11:49:56', '2018-11-21 17:07:48'),
+(3, 'PF 103', 'Pipefitting Power Tools', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 12:06:34', '2018-11-21 17:07:57'),
+(4, 'PF 201', 'Piping System', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 12:48:55', '2018-11-21 17:08:10'),
+(5, 'PF 202', 'Drawing and Detail Sheets', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:10:50'),
+(6, 'PF 203', 'Identifying and Installing Valves', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:10:53'),
+(7, 'PF 204', 'Pipefitting Trade Math', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:10:57'),
+(8, 'PF 205', 'Threaded Pipe Fabrication', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:00'),
+(9, 'PF 206', 'Socket Pipe Fabrication', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:02'),
+(10, 'PF 207', 'Butt Weld Pipe Fabrication', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:06'),
+(11, 'PF 303', 'Standards and Specifications', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:10'),
+(12, 'PF 306', 'Introduction to above ground pipe installation', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diploma_course`
+--
+
+CREATE TABLE `diploma_course` (
+  `course_id` int(11) NOT NULL,
+  `course_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `course_acronym` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `diploma_course`
+--
+
+INSERT INTO `diploma_course` (`course_id`, `course_name`, `course_acronym`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'Civil Technology Managements', 'CTM', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-07 00:37:45', '2018-11-21 21:37:37'),
+(2, 'Native Drug Testings', 'NDT', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-07 00:37:45', '2018-11-21 21:36:51'),
+(3, 'Automotive', 'AU', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-07 00:57:01', '2018-11-21 21:36:43'),
+(4, 'Electrician', 'EE', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-10-18 09:37:48', '2018-11-21 21:36:43');
 
 -- --------------------------------------------------------
 
@@ -170,7 +233,7 @@ CREATE TABLE `english_proficiency` (
   `eng_rating` enum('Competent','Not Yet Competent') COLLATE utf8_unicode_ci NOT NULL,
   `eng_completed` date DEFAULT NULL,
   `grade` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -180,9 +243,16 @@ CREATE TABLE `english_proficiency` (
 --
 
 INSERT INTO `english_proficiency` (`eng_pro_id`, `student_id`, `eng_rating`, `eng_completed`, `grade`, `updated_by`, `created`, `modified`) VALUES
-(1, 1, 'Competent', '2018-11-12', 100, NULL, '2018-11-25 01:53:22', '2018-11-25 01:53:22'),
-(2, 2, 'Competent', '2018-11-15', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(3, 3, 'Not Yet Competent', '0000-00-00', 75, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45');
+(1, 2, 'Competent', NULL, NULL, NULL, '2018-10-16 17:41:58', '2018-10-23 14:12:49'),
+(2, 4, 'Not Yet Competent', NULL, NULL, NULL, '2018-10-16 18:04:16', '2018-10-23 14:12:53'),
+(3, 5, 'Not Yet Competent', NULL, NULL, NULL, '2018-10-16 18:10:50', '2018-11-07 20:21:06'),
+(4, 6, 'Competent', '2018-11-01', 90, NULL, '2018-10-16 22:00:33', '2018-11-21 20:03:41'),
+(5, 7, 'Competent', '2018-11-01', NULL, NULL, '2018-10-18 15:08:27', '2018-11-07 20:57:21'),
+(6, 8, 'Competent', NULL, NULL, NULL, '2018-10-23 16:34:42', '2018-10-23 16:34:42'),
+(7, 9, 'Competent', '2018-11-07', NULL, NULL, '2018-11-07 23:14:26', '2018-11-07 23:16:25'),
+(8, 10, 'Competent', '2018-11-13', NULL, NULL, '2018-11-08 03:46:25', '2018-11-08 03:46:25'),
+(9, 11, 'Competent', '2018-11-19', 85, NULL, '2018-11-21 20:30:35', '2018-11-21 20:30:35'),
+(10, 12, 'Competent', '2018-11-11', 85, NULL, '2018-11-21 20:39:06', '2018-11-21 20:39:49');
 
 -- --------------------------------------------------------
 
@@ -980,121 +1050,38 @@ INSERT INTO `history_logs` (`tbl_id`, `activity`, `created_by`, `device_use`, `d
 (772, 'Update user information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:20:57'),
 (773, 'Deactivate users', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:21:12'),
 (774, 'Activate users', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:21:16'),
-(775, 'Register users', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:22:13'),
-(776, 'Update user information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 23:01:34'),
-(777, 'Update user information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 23:03:30'),
-(778, 'Update user information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 23:03:38'),
-(779, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 16:52:55'),
-(780, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(781, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(782, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(783, 'Joey Minguillans Updated eng. pro. rating for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(784, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:48'),
-(785, 'Joey Minguillans Created subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:48'),
-(786, 'Joey Minguillans Created english proficiency rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:48'),
-(787, 'Joey Minguillans Created craft rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:49'),
-(788, 'Joey Minguillans Created core rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:49'),
-(789, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(790, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(791, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(792, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(793, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(794, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(795, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(796, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(797, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(798, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(799, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(800, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(801, 'Joey Minguillans Updated craft rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(802, 'Joey Minguillans Updated core rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(803, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(804, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(805, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(806, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(807, 'Joey Minguillans Updated craft rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(808, 'Joey Minguillans Updated core rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(809, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:14:51'),
-(810, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(811, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(812, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(813, 'Joey Minguillans Updated eng. pro. rating for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(814, 'Joey Minguillans Updated craft rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:54'),
-(815, 'Joey Minguillans Updated core rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:54'),
-(816, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 15:00:06'),
-(817, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 21:41:30'),
-(818, 'Create new craft(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:48:20'),
-(819, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:52:58'),
-(820, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:53:58'),
-(821, 'Create new craft(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:54:35'),
-(822, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:54:47'),
-(823, 'Create new core(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:02:48'),
-(824, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:05:53'),
-(825, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:06:04'),
-(826, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:55:12'),
-(827, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:57:19'),
-(828, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:58:32'),
-(829, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:36:50'),
-(830, 'Deactivate Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:38:13'),
-(831, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:38:18'),
-(832, 'Activate Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:38:22'),
-(833, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:39:59'),
-(834, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:40:08'),
-(835, 'Activate Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:05'),
-(836, 'Delete Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:30'),
-(837, 'Deactivate Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:50'),
-(838, 'Activate Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:54'),
-(839, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:52:47'),
-(840, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:53:05'),
-(841, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:53:12'),
-(842, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:53:32'),
-(843, 'Delete Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:57:45'),
-(844, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:47:06'),
-(845, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:50:40'),
-(846, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:50:50'),
-(847, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:50:58'),
-(848, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:15'),
-(849, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:26'),
-(850, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:32'),
-(851, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:39'),
-(852, 'Joey Minguillans Created english proficiency rating for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:53:22'),
-(853, 'Joey Minguillans Created craft rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:53:23'),
-(854, 'Joey Minguillans Created core rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:53:23'),
-(855, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:57:44'),
-(856, 'Joey Minguillans Created english proficiency rating for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:59:25'),
-(857, 'Joey Minguillans Created craft rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:59:25'),
-(858, 'Joey Minguillans Created core rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:59:25'),
-(859, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:02:59'),
-(860, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:03:08'),
-(861, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:19'),
-(862, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:20'),
-(863, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:20'),
-(864, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:20'),
-(865, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(866, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(867, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(868, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(869, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:32:43'),
-(870, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(871, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(872, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(873, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(874, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(875, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(876, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(877, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(878, 'Joey Minguillans Deactivate Students', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:38:15'),
-(879, 'Joey Minguillans Activate Students', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:38:19'),
-(880, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:41:26'),
-(881, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:42:48'),
-(882, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:42:55'),
-(883, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:04'),
-(884, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:18'),
-(885, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:31'),
-(886, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:38'),
-(887, 'Joey Minguillans Created english proficiency rating for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:44:45'),
-(888, 'Joey Minguillans Created craft rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:44:45'),
-(889, 'Joey Minguillans Created core rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:44:45');
+(775, 'Register users', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:22:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `room_id` int(11) NOT NULL,
+  `room_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`room_id`, `room_name`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'Hall 1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 11:12:06', '2018-11-21 22:10:33'),
+(2, 'Hall 2', '1', 'joey@gmail.com', NULL, '2018-08-22 11:14:01', '2018-11-21 22:07:23'),
+(3, 'Hall 3', '1', 'joey@gmail.com', NULL, '2018-08-22 11:14:01', '2018-11-21 22:07:25'),
+(4, 'Hall 4', '1', 'joey@gmail.com', NULL, '2018-08-22 11:14:01', '2018-11-21 22:07:27'),
+(5, 'Hall 5', '1', 'joey@gmail.com', NULL, '2018-08-22 12:23:55', '2018-11-21 22:07:30'),
+(6, 'Hall 6', '1', 'joey@gmail.com', NULL, '2018-08-22 15:51:13', '2018-11-21 22:07:32'),
+(7, 'Hall 7', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-06 23:49:24', '2018-11-21 22:10:58'),
+(8, 'Hall 8', '1', 'joey@gmail.com', NULL, '2018-09-06 23:49:24', '2018-11-21 22:07:38'),
+(9, 'Computer Laboratory', '1', 'joey@gmail.com', NULL, '2018-10-18 09:50:48', '2018-11-21 22:07:41');
 
 -- --------------------------------------------------------
 
@@ -1133,9 +1120,11 @@ CREATE TABLE `student` (
   `arabic_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nationality` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   `company` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type_of_course` enum('Vocational','Diploma') COLLATE utf8_unicode_ci NOT NULL,
   `training_start` date NOT NULL,
   `training_end` date NOT NULL,
-  `vocational_course` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `diploma_course` int(11) DEFAULT NULL,
+  `vocational_course` int(11) DEFAULT NULL,
   `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `date_of_birth` date NOT NULL,
   `guardian_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -1156,10 +1145,93 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `student_no`, `national_id`, `email_address`, `mobile_no`, `english_name`, `arabic_name`, `nationality`, `company`, `training_start`, `training_end`, `vocational_course`, `address`, `date_of_birth`, `guardian_name`, `guardian_contact`, `id_picture`, `civil_status`, `ramarks`, `date_graduated`, `comments`, `student_status`, `student_created_by`, `student_updated_by`, `student_created`, `student_modified`) VALUES
-(1, 45734, '6573625272', 'abdallah@gmail.com', '(552) 467-4651', 'ABDALLAH FAIZ SULTAN ALABOD', 'ABDALLAH FAIZ SULTAN ALABOD', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', '2018-11-11', '2019-11-11', 'WG1', '#145 Dammam Kingdom of Saudi Arabia', '2018-11-07', 'ABDALLAH FAIZ SULTAN ALABOD SR', '(523) 574-1265', '45734.jpg', 'Single', 'Graduated', '2018-11-14', 'Very polite and respectful to teachers', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-25 01:47:06', '2018-11-25 02:38:19'),
-(2, 6523, '5005356288', 'ala@gmail.com', '(532) 456-5465', 'ALA ABDULLAH ALI ALKHABBAZ', 'ALA ABDULLAH ALI ALKHABBAZ', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', '2018-11-15', '2018-11-15', 'WG1', '#152 Dammam Kingdom of Saudi', '2019-02-04', 'ALA ABDULLAH ALI ALKHABBAZ SR', '(564) 566-5418', '06523.jpg', 'Single', 'Graduated', '2018-11-15', 'Smart kid and very confident', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-25 01:57:44', '2018-11-25 02:38:19'),
-(3, 26701, '7894345213', 'ali@gmail.com', '(525) 545-6161', 'ALI JASIM SALIM ALMUZARRA', 'ALI JASIM SALIM ALMUZARRA', 'Arabian', 'Malibu Nights', '2018-11-11', '2019-11-11', 'SCAFF', '#142 Dammam Saudi Arabia', '2018-11-12', 'ALI JASIM SALIM ALMUZARRA SR', '(215) 461-4416', '26701.jpg', 'Single', 'Ongoing', NULL, 'Disrespectful to teacher and very hard headed', '1', 'joey@gmail.com', NULL, '2018-11-25 02:41:26', '2018-11-25 02:41:26');
+INSERT INTO `student` (`student_id`, `student_no`, `national_id`, `email_address`, `mobile_no`, `english_name`, `arabic_name`, `nationality`, `company`, `type_of_course`, `training_start`, `training_end`, `diploma_course`, `vocational_course`, `address`, `date_of_birth`, `guardian_name`, `guardian_contact`, `id_picture`, `civil_status`, `ramarks`, `date_graduated`, `comments`, `student_status`, `student_created_by`, `student_updated_by`, `student_created`, `student_modified`) VALUES
+(1, 12345, '1235123154', 'james@gmail.com', '(977) 474-5044', 'James Reid', 'Abdul Jamilla', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-16', '2019-06-16', 3, NULL, '123 Habdulla Kabul', '2018-10-02', 'Meshkatic Jamila', '(977) 474-5044', '', NULL, 'Graduated', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-10-16 17:33:53', '2018-11-21 22:40:52'),
+(2, 14232, '1231234132', 'jericho@yahoo.com', '(977) 474-5044', 'Jericho Rosales', 'Jamidalla Habdullah', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-16', '2019-01-16', NULL, 1, '143 Rina Kabul', '2018-10-03', 'Jamidalla Habdullah Sr.', '(977) 474-5044', '', NULL, 'Graduated', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-10-16 17:41:58', '2018-11-21 22:40:52'),
+(4, 14143, '1245412643', 'rayber@gmail.com', '(926) 451-6464', 'Rayber Crusz', 'Rayber Crusz', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-04-12', 2, NULL, 'Istanbuul', '2018-10-11', 'Rayber Crusz Sr.', '(921) 465-4566', '', NULL, 'Graduated', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-10-16 18:04:16', '2018-11-21 22:40:52'),
+(5, 23463, '1256235575', 'jay@yahoo.com', '(921) 564-1214', 'Jay-r Cruz', 'Jay-r Cruz', 'Arabian', 'Meshkatic Assoc for Engineering and Petroleum', 'Diploma', '2018-10-15', '2019-05-10', 2, NULL, 'Istanbul', '2018-10-19', 'Jay-r Cruz Sr.', '(925) 165-4654', '', NULL, 'Graduated', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-10-16 18:10:50', '2018-11-21 22:40:52'),
+(6, 15657, '9966322558', 'shamcy@gmail.com', '(971) 541-6546', 'Shamcy Supsup', 'سيبببشسضقىةا ببلا  الللسيي', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Diploma', '2018-10-15', '2018-10-15', 1, NULL, 'Istanbul', '2018-10-16', 'Shamie Supsup', '(985) 764-6546', '156571.jpg', 'Single', 'Ongoing', '0000-00-00', 'Madaldal', '1', 'joey@gmail.com', NULL, '2018-10-16 22:00:32', '2018-11-21 22:40:52'),
+(7, 69678, '3216549874', 'gellal@gmail.com', '(923) 164-5165', 'Gellal Mystogan', 'Gellal Mystogan', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', 'Vocational', '2018-10-18', '2019-01-18', NULL, 4, 'Jones Bridge', '2018-10-25', 'Gellal Mystogan Sr.', '(951) 265-4645', '69678.jpg', 'Single', 'Graduated', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-10-18 15:08:27', '2018-11-21 22:40:52'),
+(8, 67857, '4785786754', 'jun.magayanes@gmail.com', '(932) 154-1651', 'Jun-Jun Magayanes', 'Jun-Jun Magayanes', 'Arabian', 'Global Reciprocal Colleges', 'Diploma', '2018-10-22', '2018-10-22', 1, NULL, 'Gulayan', '1997-08-05', 'Merlita Magayanes', '(921) 634-6546', '678571.jpg', NULL, 'Graduated', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-10-23 16:34:42', '2018-11-21 22:40:52'),
+(9, 98778, '9878973434', 'natsu@gmail.com', '(921) 634-3212', 'Natsu Dragneel', 'Natsu Dragneel', 'Fairy tale', 'THIEP', 'Diploma', '2018-11-11', '2018-11-11', 3, NULL, 'Absaida', '2018-11-13', 'Dragneel the Dragon', '(934) 731-2561', '98778.png', 'Single', 'Withdraw', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-11-07 23:14:26', '2018-11-21 22:40:52'),
+(10, 83456, '3564165564', 'rio@gmail.com', '(923) 145-4106', 'Rio Delrio', 'Rio Delrio', 'Fuertorican', 'China Bank', 'Diploma', '2018-11-11', '2018-11-11', 4, NULL, 'Fuertorico Absol', '2018-11-20', 'Rio Delrio Sr.', '(936) 216-5451', '83456.png', 'Single', 'Graduated', NULL, NULL, '1', 'joey@gmail.com', NULL, '2018-11-08 03:46:25', '2018-11-21 22:40:29'),
+(11, 65234, '3512341635', 'jacki@gmail.com', '(965) 246-5415', 'Jacki Chen', 'Jacki Chen', 'Chinese', 'Kitetsu Corp', 'Diploma', '2018-11-21', '2019-04-23', 2, NULL, '#561 Shanghai with egg', '2018-11-07', 'Jacki Chen Sr.', '(925) 165-4516', '65234.jpg', 'Single', 'Ongoing', '0000-00-00', 'Smart girl', '1', 'joey@gmail.com', NULL, '2018-11-21 20:30:35', '2018-11-21 22:40:29'),
+(12, 65421, '6524345543', 'richard@gmail.com', '(923) 463-4165', 'Richard Dy', 'Richard Dy', 'Filipino', 'Global Reciprocal Colleges', 'Diploma', '2018-11-20', '2019-05-11', 3, NULL, '#512 Amorsolo Caloocan', '2018-11-14', 'Richard Dy Sr.', '(923) 451-6615', '65421.jpg', 'Single', 'Ongoing', '0000-00-00', 'Very noisy and lack of attention', '1', 'joey@gmail.com', NULL, '2018-11-21 20:39:06', '2018-11-21 22:40:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_subject`
+--
+
+CREATE TABLE `student_subject` (
+  `tbl_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `subject` int(11) NOT NULL,
+  `subject_code` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `time` time NOT NULL,
+  `room` int(11) NOT NULL,
+  `day` enum('MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student_subject`
+--
+
+INSERT INTO `student_subject` (`tbl_id`, `student_id`, `subject`, `subject_code`, `time`, `room`, `day`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 2, 1, '', '10:00:00', 2, 'MONDAY', 'joey@gmail.com', NULL, '2018-10-16 17:41:58', '2018-11-21 22:35:39'),
+(2, 4, 1, '', '12:30:00', 2, 'TUESDAY', 'joey@gmail.com', NULL, '2018-10-16 18:04:16', '2018-11-21 22:35:39'),
+(4, 6, 4, '', '14:30:00', 1, 'TUESDAY', 'joey@gmail.com', NULL, '2018-10-16 22:00:33', '2018-11-21 22:36:14'),
+(5, 6, 1, '', '08:00:00', 3, 'WEDNESDAY', 'joey@gmail.com', NULL, '2018-10-18 14:56:31', '2018-11-21 22:36:14'),
+(6, 7, 2, '', '14:30:00', 3, 'FRIDAY', 'joey@gmail.com', NULL, '2018-10-18 15:08:27', '2018-11-21 22:36:14'),
+(7, 1, 4, '', '12:30:00', 4, 'SATURDAY', 'joey@gmail.com', NULL, '2018-10-19 12:02:26', '2018-11-21 22:36:14'),
+(8, 8, 2, '', '10:00:00', 2, 'THURSDAY', 'joey@gmail.com', NULL, '2018-10-23 16:34:42', '2018-11-21 22:36:14'),
+(9, 8, 1, '', '10:00:00', 2, 'TUESDAY', 'joey@gmail.com', NULL, '2018-10-23 16:34:42', '2018-11-21 22:36:14'),
+(10, 9, 3, '', '12:30:00', 4, 'THURSDAY', 'joey@gmail.com', NULL, '2018-11-07 23:14:26', '2018-11-21 22:36:14'),
+(11, 9, 1, '', '08:00:00', 2, 'THURSDAY', 'joey@gmail.com', NULL, '2018-11-08 03:22:21', '2018-11-21 22:36:14'),
+(12, 9, 4, '', '08:00:00', 2, 'TUESDAY', 'joey@gmail.com', NULL, '2018-11-08 03:22:21', '2018-11-21 22:36:14'),
+(13, 9, 5, '', '14:30:00', 5, 'FRIDAY', 'joey@gmail.com', NULL, '2018-11-08 03:22:21', '2018-11-21 22:36:14'),
+(14, 10, 2, '', '12:30:00', 1, 'WEDNESDAY', 'joey@gmail.com', NULL, '2018-11-08 03:46:25', '2018-11-21 22:35:39'),
+(15, 10, 4, '', '16:30:00', 3, 'FRIDAY', 'joey@gmail.com', NULL, '2018-11-08 03:46:25', '2018-11-21 22:35:39'),
+(16, 10, 2, '', '10:00:00', 3, 'THURSDAY', 'joey@gmail.com', NULL, '2018-11-08 03:46:25', '2018-11-21 22:35:39'),
+(17, 11, 2, '', '10:00:00', 1, 'TUESDAY', 'joey@gmail.com', NULL, '2018-11-21 20:30:35', '2018-11-21 22:35:39'),
+(18, 11, 4, '', '14:30:00', 7, 'FRIDAY', 'joey@gmail.com', NULL, '2018-11-21 20:30:35', '2018-11-21 22:35:39'),
+(19, 11, 3, '', '12:30:00', 3, 'WEDNESDAY', 'joey@gmail.com', NULL, '2018-11-21 20:30:35', '2018-11-21 22:35:39'),
+(20, 12, 1, '', '08:00:00', 1, 'MONDAY', 'joey@gmail.com', NULL, '2018-11-21 20:39:06', '2018-11-21 22:36:14'),
+(21, 12, 3, '', '08:00:00', 1, 'WEDNESDAY', 'joey@gmail.com', NULL, '2018-11-21 20:39:06', '2018-11-21 22:36:14'),
+(22, 12, 3, '', '10:00:00', 2, 'FRIDAY', 'joey@gmail.com', NULL, '2018-11-21 20:39:06', '2018-11-21 22:36:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject`
+--
+
+CREATE TABLE `subject` (
+  `subject_id` int(11) NOT NULL,
+  `subject_title` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`subject_id`, `subject_title`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'ENGLISH', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 16:02:19', '2018-11-21 22:02:10'),
+(2, 'SCIENCE', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 16:02:19', '2018-11-21 22:01:51'),
+(3, 'ENGINEERING', '1', 'joey@gmail.com', NULL, '2018-08-24 00:25:46', '2018-11-21 21:56:35'),
+(4, 'MATHEMATICS', '1', 'joey@gmail.com', NULL, '2018-09-06 23:09:18', '2018-11-21 21:56:37'),
+(5, 'LOGIC', '1', 'joey@gmail.com', NULL, '2018-09-06 23:09:18', '2018-11-21 21:56:40'),
+(6, 'COLLEGE ALGEBRA', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 22:02:10', '2018-11-21 22:02:35');
 
 -- --------------------------------------------------------
 
@@ -1192,7 +1264,7 @@ CREATE TABLE `user_credential` (
 --
 
 INSERT INTO `user_credential` (`user_id`, `u_full_name`, `u_email_address`, `u_password`, `designation`, `password_reset_date`, `login_attempt`, `locked_time`, `profile_pic`, `status`, `recent_login`, `device_name`, `device_ip_address`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Joey Minguillans', 'joey@gmail.com', '$2y$10$RBJH19w7dxfH1I47eC7Hce6uorVzuzUsvRFDQ9L/iof1h9tC0.mt.', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, '0611.jpg', '1', '2018-11-24 21:41:30', 'JUN-PC', '::1', NULL, 'joey@gmail.com', '2018-09-04 12:28:46', '2018-11-24 21:41:30'),
+(1, 'Joey Minguillan', 'joey@gmail.com', '$2y$10$RBJH19w7dxfH1I47eC7Hce6uorVzuzUsvRFDQ9L/iof1h9tC0.mt.', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, '0611.jpg', '1', '2018-11-21 16:22:18', 'JUN-PC', '::1', NULL, 'joey@gmail.com', '2018-09-04 12:28:46', '2018-11-21 22:21:16'),
 (2, 'Administrator Akows', 'admin@gmail.com', '$2y$10$81uoJHMTpPr7h31Wfcugve2rWwUQXO2Fh3Q4kjuFDuZU/nfcmrB8S', 'Administrator', '2018-12-04 13:33:35', NULL, NULL, '', '1', NULL, NULL, NULL, 'joey@gmail.com', 'joey@gmail.com', '2018-09-05 13:33:35', '2018-11-21 22:20:57'),
 (3, 'Reynans Shows', 'reynan@gmail.com', '$2y$10$KqNV72nIaj.WfXH8odKm5egpP6AnSH3cNfkCsQUnUBsAweUcAbeLK', 'Registrar', '2018-12-04 13:35:31', NULL, NULL, 'vince.png', '1', '2018-10-18 10:18:13', 'JUN-PC', '::1', 'joey@gmail.com', NULL, '2018-09-05 13:35:31', '2018-11-21 22:22:13'),
 (4, 'Ricky Rivera', 'ricky@gmail.com', '$2y$10$Avxj/AmYe59ypXLTdQFYbu8zWa4Jqd4us0K4IK3LUGBMmGjUWBA2C', 'Program Head', '2019-01-16 10:26:21', NULL, NULL, 'avatar-1.jpg', '1', '2018-10-18 10:35:48', 'JUN-PC', '::1', 'joey@gmail.com', NULL, '2018-10-18 10:26:21', '2018-11-21 22:14:23');
@@ -1219,11 +1291,14 @@ CREATE TABLE `vocational_program` (
 --
 
 INSERT INTO `vocational_program` (`voc_program_id`, `voc_program`, `voc_program_acronym`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Preparatory G1', 'PREPG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 13:30:45', '2018-11-25 00:38:22'),
-(4, 'Welding G1', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 15:36:07', '2018-11-25 02:03:08'),
+(1, 'Preparatory G1', 'PREPG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 13:30:45', '2018-11-21 21:51:46'),
+(2, 'Preparatory G2', 'PREPG2', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 13:32:02', '2018-11-21 21:51:07'),
+(3, 'Preparatory G3', 'PREPG3', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 13:32:02', '2018-11-21 21:51:07'),
+(4, 'Welding G1', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 15:36:07', '2018-11-21 21:51:07'),
 (5, 'Welding G2', 'WG2', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 15:36:07', '2018-11-21 21:51:07'),
 (6, 'Scaffolding', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-06 21:15:43', '2018-11-21 21:51:07'),
-(7, 'Welding G3', 'WG3', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-06 21:15:43', '2018-11-25 00:53:32');
+(7, 'Welding G3', 'WG3', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-06 21:15:43', '2018-11-21 21:51:07'),
+(8, 'BS Tire Vulcanizing', 'BSTV', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-10-18 09:44:31', '2018-11-21 21:51:07');
 
 --
 -- Indexes for dumped tables
@@ -1245,8 +1320,7 @@ ALTER TABLE `core_item`
   ADD PRIMARY KEY (`core_item_id`),
   ADD UNIQUE KEY `core_code` (`core_code`),
   ADD KEY `Core on update "created_by" FK` (`created_by`),
-  ADD KEY `Core on update "updated_by" FK` (`updated_by`),
-  ADD KEY `Core on update/delete "voc_program" FK` (`voc_program`);
+  ADD KEY `Core on update "updated_by" FK` (`updated_by`);
 
 --
 -- Indexes for table `craft`
@@ -1264,22 +1338,37 @@ ALTER TABLE `craft_item`
   ADD PRIMARY KEY (`craft_item_id`),
   ADD UNIQUE KEY `craft_code` (`craft_code`),
   ADD KEY `Craft On update "created_by" FK` (`created_by`),
-  ADD KEY `Craft On update "updated_by" FK` (`updated_by`),
-  ADD KEY `Craft on update/delete "voc_program" FK` (`voc_program`);
+  ADD KEY `Craft On update "updated_by" FK` (`updated_by`);
+
+--
+-- Indexes for table `diploma_course`
+--
+ALTER TABLE `diploma_course`
+  ADD PRIMARY KEY (`course_id`),
+  ADD UNIQUE KEY `course_acronym` (`course_acronym`),
+  ADD KEY `Diploma on update "created_by" FK` (`created_by`),
+  ADD KEY `Diploma on update "updated_by" FK` (`updated_by`);
 
 --
 -- Indexes for table `english_proficiency`
 --
 ALTER TABLE `english_proficiency`
-  ADD PRIMARY KEY (`eng_pro_id`),
-  ADD KEY `Eng pro on update/delete "student_id" FK` (`student_id`);
+  ADD PRIMARY KEY (`eng_pro_id`);
 
 --
 -- Indexes for table `history_logs`
 --
 ALTER TABLE `history_logs`
-  ADD PRIMARY KEY (`tbl_id`),
-  ADD KEY `History on update/delete "created_by" FK` (`created_by`);
+  ADD PRIMARY KEY (`tbl_id`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`room_id`),
+  ADD UNIQUE KEY `room_name` (`room_name`),
+  ADD KEY `Room on update "created_by" FK` (`created_by`),
+  ADD KEY `Room on update "updated_by" FK` (`updated_by`);
 
 --
 -- Indexes for table `student`
@@ -1288,8 +1377,24 @@ ALTER TABLE `student`
   ADD PRIMARY KEY (`student_id`),
   ADD UNIQUE KEY `student_no` (`student_no`),
   ADD KEY `Student on update "student_created_by" FK` (`student_created_by`),
-  ADD KEY `Student on update "student_updated_by" FK` (`student_updated_by`),
-  ADD KEY `Student on update "vocational_course" FK` (`vocational_course`);
+  ADD KEY `Student on update "student_updated_by" FK` (`student_updated_by`);
+
+--
+-- Indexes for table `student_subject`
+--
+ALTER TABLE `student_subject`
+  ADD PRIMARY KEY (`tbl_id`),
+  ADD KEY `Student subject on update "created_by" FK` (`created_by`),
+  ADD KEY `Student subject on update "updated_by" FK` (`updated_by`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`subject_id`),
+  ADD UNIQUE KEY `subject_title` (`subject_title`),
+  ADD KEY `Subject on update "created_by" FK` (`created_by`),
+  ADD KEY `Subject on update "updated_by" FK` (`updated_by`);
 
 --
 -- Indexes for table `user_credential`
@@ -1307,7 +1412,6 @@ ALTER TABLE `vocational_program`
   ADD PRIMARY KEY (`voc_program_id`),
   ADD UNIQUE KEY `voc_program_acronym` (`voc_program_acronym`),
   ADD UNIQUE KEY `voc_program_acronym_2` (`voc_program_acronym`),
-  ADD UNIQUE KEY `voc_program_acronym_3` (`voc_program_acronym`),
   ADD KEY `Vocational on update "created_by" FK` (`created_by`),
   ADD KEY `Vocational on update "updated_by" FK` (`updated_by`);
 
@@ -1319,55 +1423,79 @@ ALTER TABLE `vocational_program`
 -- AUTO_INCREMENT for table `core`
 --
 ALTER TABLE `core`
-  MODIFY `core_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `core_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `core_item`
 --
 ALTER TABLE `core_item`
-  MODIFY `core_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `core_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `craft`
 --
 ALTER TABLE `craft`
-  MODIFY `craft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `craft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `craft_item`
 --
 ALTER TABLE `craft_item`
-  MODIFY `craft_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `craft_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `diploma_course`
+--
+ALTER TABLE `diploma_course`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `english_proficiency`
 --
 ALTER TABLE `english_proficiency`
-  MODIFY `eng_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `eng_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `history_logs`
 --
 ALTER TABLE `history_logs`
-  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=890;
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=776;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `student_subject`
+--
+ALTER TABLE `student_subject`
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_credential`
 --
 ALTER TABLE `user_credential`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vocational_program`
 --
 ALTER TABLE `vocational_program`
-  MODIFY `voc_program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `voc_program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -1386,8 +1514,7 @@ ALTER TABLE `core`
 --
 ALTER TABLE `core_item`
   ADD CONSTRAINT `Core on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Core on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Core on update/delete "voc_program" FK` FOREIGN KEY (`voc_program`) REFERENCES `vocational_program` (`voc_program_acronym`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Core on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `craft`
@@ -1402,28 +1529,49 @@ ALTER TABLE `craft`
 --
 ALTER TABLE `craft_item`
   ADD CONSTRAINT `Craft On update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Craft On update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Craft on update/delete "voc_program" FK` FOREIGN KEY (`voc_program`) REFERENCES `vocational_program` (`voc_program_acronym`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Craft On update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `english_proficiency`
+-- Constraints for table `diploma_course`
 --
-ALTER TABLE `english_proficiency`
-  ADD CONSTRAINT `Eng pro on update/delete "student_id" FK` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `diploma_course`
+  ADD CONSTRAINT `Diploma on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Diploma on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `history_logs`
+-- Constraints for table `room`
 --
-ALTER TABLE `history_logs`
-  ADD CONSTRAINT `History on update/delete "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `room`
+  ADD CONSTRAINT `Room on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Room on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `Student on update "student_created_by" FK` FOREIGN KEY (`student_created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Student on update "student_updated_by" FK` FOREIGN KEY (`student_updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Student on update "vocational_course" FK` FOREIGN KEY (`vocational_course`) REFERENCES `vocational_program` (`voc_program_acronym`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `Student on update "student_updated_by" FK` FOREIGN KEY (`student_updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student_subject`
+--
+ALTER TABLE `student_subject`
+  ADD CONSTRAINT `Student subject on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Student subject on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `subject`
+--
+ALTER TABLE `subject`
+  ADD CONSTRAINT `Subject on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Subject on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_credential`
+--
+ALTER TABLE `user_credential`
+  ADD CONSTRAINT `User on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `User on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vocational_program`

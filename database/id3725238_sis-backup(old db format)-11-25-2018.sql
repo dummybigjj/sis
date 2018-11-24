@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 24, 2018 at 07:49 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 5.6.32
+-- Host: localhost:3306
+-- Generation Time: Nov 24, 2018 at 11:52 AM
+-- Server version: 5.6.39-cll-lve
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,15 +45,7 @@ CREATE TABLE `core` (
 --
 
 INSERT INTO `core` (`core_id`, `student_id`, `core_rating`, `core_skill`, `core_completed`, `grade`, `updated_by`, `created`, `modified`) VALUES
-(1, 1, 'Competent', 1, '2018-11-14', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(2, 1, 'Competent', 2, '2018-11-14', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(3, 1, 'Competent', 3, '2018-11-14', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(4, 2, 'Competent', 1, '2018-11-27', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(5, 2, 'Competent', 2, '2018-11-27', 95, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(6, 1, 'Competent', 11, '2018-11-14', 100, 1, '2018-11-25 02:26:20', '2018-11-25 02:27:31'),
-(7, 3, 'Competent', 4, '2018-11-13', 95, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(8, 3, 'Competent', 5, '2018-11-13', 100, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(9, 3, 'Competent', 6, '2018-11-13', 100, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45');
+(32, 13, 'Competent', 1, '2018-11-12', 85, 1, '2018-11-24 00:06:27', '2018-11-24 00:09:03');
 
 -- --------------------------------------------------------
 
@@ -65,7 +57,6 @@ CREATE TABLE `core_item` (
   `core_item_id` int(11) NOT NULL,
   `core_code` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `voc_program` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
   `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -77,17 +68,17 @@ CREATE TABLE `core_item` (
 -- Dumping data for table `core_item`
 --
 
-INSERT INTO `core_item` (`core_item_id`, `core_code`, `description`, `voc_program`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Core 101', 'Basic Safety', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-20 12:06:36', '2018-11-25 01:50:40'),
-(2, 'Core 102', 'Introduction to Construction Math', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 13:09:53', '2018-11-25 01:50:50'),
-(3, 'Core 103', 'Introduction to Hand Tools', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 13:33:10', '2018-11-25 01:50:58'),
-(4, 'Core 104', 'Introduction to Power Tools', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-25 02:43:18'),
-(5, 'Core 105', 'Introduction to Construction Drawings', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-25 02:43:31'),
-(6, 'Core 106', 'This is Core 106', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-25 02:43:38'),
-(7, 'Core 107', 'Basic Communication Skills', 'PREPG1', '1', 'admin@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-24 16:12:30'),
-(8, 'Core 108', 'Basic Employability Skills', 'PREPG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-24 16:12:30'),
-(9, 'Core 109', 'Introduction to Materials Handling', 'PREPG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 16:16:11', '2018-11-24 16:12:30'),
-(11, 'Cor 101 Welding', 'Basic Safety', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-24 23:02:48', '2018-11-25 02:32:43');
+INSERT INTO `core_item` (`core_item_id`, `core_code`, `description`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'Core 101', 'Basic Safety', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-20 12:06:36', '2018-11-21 17:05:26'),
+(2, 'Core 102', 'Introduction to Construction Math', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 13:09:53', '2018-11-21 17:05:43'),
+(3, 'Core 103', 'Introduction to Hand Tools', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 13:33:10', '2018-11-21 17:05:57'),
+(4, 'Core 104', 'Introduction to Power Tools', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 16:16:11', '2018-11-21 17:06:14'),
+(5, 'Core 105', 'Introduction to Construction Drawings', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 16:16:11', '2018-11-21 17:06:29'),
+(6, 'Core 106', 'This is Core 106', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 16:16:11', '2018-11-21 16:17:53'),
+(7, 'Core 107', 'Basic Communication Skills', '1', 'mustafa@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 16:16:11', '2018-11-21 17:06:44'),
+(8, 'Core 108', 'Basic Employability Skills', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 16:16:11', '2018-11-21 17:06:52'),
+(9, 'Core 109', 'Introduction to Materials Handling', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 16:16:11', '2018-11-21 17:07:03'),
+(10, 'Core 110', 'This is Core 110', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 16:17:29', '2018-11-21 16:18:20');
 
 -- --------------------------------------------------------
 
@@ -112,16 +103,7 @@ CREATE TABLE `craft` (
 --
 
 INSERT INTO `craft` (`craft_id`, `student_id`, `craft_rating`, `craft_skill`, `craft_completed`, `grade`, `updated_by`, `created`, `modified`) VALUES
-(1, 1, 'Competent', 1, '2018-11-15', 100, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(2, 1, 'Competent', 2, '2018-11-15', 85, 1, '2018-11-25 01:53:23', '2018-11-25 02:26:20'),
-(3, 2, 'Competent', 1, '2018-11-06', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(4, 2, 'Competent', 2, '2018-11-06', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(5, 1, 'Not Yet Competent', 3, NULL, 75, 1, '2018-11-25 02:26:20', '2018-11-25 02:27:31'),
-(6, 1, 'Competent', 4, '2018-11-15', 85, 1, '2018-11-25 02:26:20', '2018-11-25 02:27:31'),
-(7, 3, 'Competent', 5, '2018-11-13', 100, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(8, 3, 'Competent', 6, '2018-11-13', 85, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(9, 3, 'Competent', 7, '2018-11-13', 85, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45'),
-(10, 3, 'Competent', 12, '2018-11-13', 85, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45');
+(29, 13, 'Competent', 1, '2018-11-15', 85, 1, '2018-11-24 00:06:27', '2018-11-24 00:09:03');
 
 -- --------------------------------------------------------
 
@@ -133,7 +115,6 @@ CREATE TABLE `craft_item` (
   `craft_item_id` int(11) NOT NULL,
   `craft_code` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `voc_program` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
   `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Reference table is "user_credential"',
   `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Reference table is "user_credential"',
@@ -145,18 +126,36 @@ CREATE TABLE `craft_item` (
 -- Dumping data for table `craft_item`
 --
 
-INSERT INTO `craft_item` (`craft_item_id`, `craft_code`, `description`, `voc_program`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'PF 101', 'Orientation to the Trade', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 09:07:03', '2018-11-25 01:51:15'),
-(2, 'PF 102', 'Pipefitting Hand Tools', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 11:49:56', '2018-11-25 01:51:26'),
-(3, 'PF 103', 'Pipefitting Power Tools', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 12:06:34', '2018-11-25 01:51:32'),
-(4, 'PF 201', 'Piping System', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 12:48:55', '2018-11-25 01:51:39'),
-(5, 'PF 202', 'Drawing and Detail Sheets', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-25 02:42:48'),
-(6, 'PF 203', 'Identifying and Installing Valves', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-25 02:42:55'),
-(7, 'PF 204', 'Pipefitting Trade Math', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-25 02:43:04'),
-(8, 'PF 205', 'Threaded Pipe Fabrication', 'PREPG1', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-24 16:20:51'),
-(9, 'PF 206', 'Socket Pipe Fabrication', 'PREPG1', '1', 'joey@gmail.com', NULL, '2018-11-21 17:09:31', '2018-11-24 16:20:51'),
-(12, 'FSY 122', 'Working from Elevations', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-21 17:09:31', '2018-11-24 22:54:47'),
-(14, 'FSY 104', 'This is FSY 104', 'SCAFF', '1', 'joey@gmail.com', NULL, '2018-11-24 22:48:20', '2018-11-24 22:48:20');
+INSERT INTO `craft_item` (`craft_item_id`, `craft_code`, `description`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'PF 101', 'Orientation to the Trade', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 09:07:03', '2018-11-21 17:07:41'),
+(2, 'PF 102', 'Pipefitting Hand Tools', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 11:49:56', '2018-11-21 17:07:48'),
+(3, 'PF 103', 'Pipefitting Power Tools', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 12:06:34', '2018-11-21 17:07:57'),
+(4, 'PF 201', 'Piping System', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-21 12:48:55', '2018-11-21 17:08:10'),
+(5, 'PF 202', 'Drawing and Detail Sheets', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:10:50'),
+(6, 'PF 203', 'Identifying and Installing Valves', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:10:53'),
+(7, 'PF 204', 'Pipefitting Trade Math', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:10:57'),
+(8, 'PF 205', 'Threaded Pipe Fabrication', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:00'),
+(9, 'PF 206', 'Socket Pipe Fabrication', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:02'),
+(10, 'PF 207', 'Butt Weld Pipe Fabrication', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:06'),
+(11, 'PF 303', 'Standards and Specifications', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:10'),
+(12, 'PF 306', 'Introduction to above ground pipe installation', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-21 17:09:31', '2018-11-21 17:11:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diploma_course`
+--
+
+CREATE TABLE `diploma_course` (
+  `course_id` int(11) NOT NULL,
+  `course_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `course_acronym` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -170,7 +169,7 @@ CREATE TABLE `english_proficiency` (
   `eng_rating` enum('Competent','Not Yet Competent') COLLATE utf8_unicode_ci NOT NULL,
   `eng_completed` date DEFAULT NULL,
   `grade` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -180,9 +179,7 @@ CREATE TABLE `english_proficiency` (
 --
 
 INSERT INTO `english_proficiency` (`eng_pro_id`, `student_id`, `eng_rating`, `eng_completed`, `grade`, `updated_by`, `created`, `modified`) VALUES
-(1, 1, 'Competent', '2018-11-12', 100, NULL, '2018-11-25 01:53:22', '2018-11-25 01:53:22'),
-(2, 2, 'Competent', '2018-11-15', 100, NULL, '2018-11-25 01:59:25', '2018-11-25 01:59:25'),
-(3, 3, 'Not Yet Competent', '0000-00-00', 75, NULL, '2018-11-25 02:44:45', '2018-11-25 02:44:45');
+(11, 13, 'Competent', '2018-11-07', 90, NULL, '2018-11-24 00:06:27', '2018-11-24 00:06:27');
 
 -- --------------------------------------------------------
 
@@ -981,120 +978,134 @@ INSERT INTO `history_logs` (`tbl_id`, `activity`, `created_by`, `device_use`, `d
 (773, 'Deactivate users', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:21:12'),
 (774, 'Activate users', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:21:16'),
 (775, 'Register users', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 22:22:13'),
-(776, 'Update user information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 23:01:34'),
-(777, 'Update user information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 23:03:30'),
-(778, 'Update user information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-21 23:03:38'),
-(779, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 16:52:55'),
-(780, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(781, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(782, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(783, 'Joey Minguillans Updated eng. pro. rating for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:10:09'),
-(784, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:48'),
-(785, 'Joey Minguillans Created subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:48'),
-(786, 'Joey Minguillans Created english proficiency rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:48'),
-(787, 'Joey Minguillans Created craft rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:49'),
-(788, 'Joey Minguillans Created core rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:15:49'),
-(789, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(790, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(791, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(792, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:16:36'),
-(793, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(794, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(795, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(796, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:18:14'),
-(797, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(798, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(799, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(800, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(801, 'Joey Minguillans Updated craft rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(802, 'Joey Minguillans Updated core rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:38'),
-(803, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(804, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(805, 'Joey Minguillans Updated subjects for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(806, 'Joey Minguillans Updated eng. pro. rating for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(807, 'Joey Minguillans Updated craft rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(808, 'Joey Minguillans Updated core rating and skill for 51234', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 18:19:54'),
-(809, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:14:51'),
-(810, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(811, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(812, 'Joey Minguillans Updated subjects for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(813, 'Joey Minguillans Updated eng. pro. rating for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:53'),
-(814, 'Joey Minguillans Updated craft rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:54'),
-(815, 'Joey Minguillans Updated core rating and skill for 67857', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-22 21:15:54'),
-(816, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 15:00:06'),
-(817, 'Login user', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 21:41:30'),
-(818, 'Create new craft(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:48:20'),
-(819, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:52:58'),
-(820, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:53:58'),
-(821, 'Create new craft(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:54:35'),
-(822, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 22:54:47'),
-(823, 'Create new core(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:02:48'),
-(824, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:05:53'),
-(825, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:06:04'),
-(826, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:55:12'),
-(827, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:57:19'),
-(828, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-24 23:58:32'),
-(829, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:36:50'),
-(830, 'Deactivate Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:38:13'),
-(831, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:38:18'),
-(832, 'Activate Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:38:22'),
-(833, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:39:59'),
-(834, 'Delete Vocatonal Program(s)', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:40:08'),
-(835, 'Activate Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:05'),
-(836, 'Delete Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:30'),
-(837, 'Deactivate Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:50'),
-(838, 'Activate Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:51:54'),
-(839, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:52:47'),
-(840, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:53:05'),
-(841, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:53:12'),
-(842, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:53:32'),
-(843, 'Delete Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 00:57:45'),
-(844, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:47:06'),
-(845, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:50:40'),
-(846, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:50:50'),
-(847, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:50:58'),
-(848, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:15'),
-(849, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:26'),
-(850, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:32'),
-(851, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:51:39'),
-(852, 'Joey Minguillans Created english proficiency rating for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:53:22'),
-(853, 'Joey Minguillans Created craft rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:53:23'),
-(854, 'Joey Minguillans Created core rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:53:23'),
-(855, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:57:44'),
-(856, 'Joey Minguillans Created english proficiency rating for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:59:25'),
-(857, 'Joey Minguillans Created craft rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:59:25'),
-(858, 'Joey Minguillans Created core rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 01:59:25'),
-(859, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:02:59'),
-(860, 'Update Vocatonal Program', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:03:08'),
-(861, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:19'),
-(862, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:20'),
-(863, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:20'),
-(864, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:26:20'),
-(865, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(866, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(867, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(868, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:27:31'),
-(869, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:32:43'),
-(870, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(871, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(872, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(873, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:33:46'),
-(874, 'Joey Minguillans Update Student Information', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(875, 'Joey Minguillans Updated eng. pro. rating for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(876, 'Joey Minguillans Updated craft rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(877, 'Joey Minguillans Updated core rating and skill for 45734', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:37:40'),
-(878, 'Joey Minguillans Deactivate Students', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:38:15'),
-(879, 'Joey Minguillans Activate Students', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:38:19'),
-(880, 'Joey Minguillans Register student', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:41:26'),
-(881, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:42:48'),
-(882, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:42:55'),
-(883, 'Update Craft', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:04'),
-(884, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:18'),
-(885, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:31'),
-(886, 'Update Core', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:43:38'),
-(887, 'Joey Minguillans Created english proficiency rating for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:44:45'),
-(888, 'Joey Minguillans Created craft rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:44:45'),
-(889, 'Joey Minguillans Created core rating and skill for ', 1, 'Desktop/Workstation', 'JUN-PC', '::1', '2018-11-25 02:44:45');
+(776, 'Joey Miller D. Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:57:03'),
+(777, 'Joey Miller D. Minguillan Updated subjects for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:57:03'),
+(778, 'Joey Miller D. Minguillan Updated eng. pro. rating for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:57:03'),
+(779, 'Joey Miller D. Minguillan Updated craft rating and skill for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:57:03'),
+(780, 'Joey Miller D. Minguillan Updated core rating and skill for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:57:03'),
+(781, 'Joey Miller D. Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:58:57'),
+(782, 'Joey Miller D. Minguillan Updated subjects for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:58:57'),
+(783, 'Joey Miller D. Minguillan Updated eng. pro. rating for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:58:57'),
+(784, 'Joey Miller D. Minguillan Updated craft rating and skill for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:58:57'),
+(785, 'Joey Miller D. Minguillan Updated core rating and skill for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:58:57'),
+(786, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 07:59:57'),
+(787, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:00:27'),
+(788, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:00:46'),
+(789, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:00:59'),
+(790, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:04:36'),
+(791, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:04:48'),
+(792, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:04:58'),
+(793, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:05:09'),
+(794, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 08:05:34'),
+(795, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:07:19'),
+(796, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:09:03'),
+(797, 'Update user information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:09:16'),
+(798, 'Create New Diploma Course(s)', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:10:04'),
+(799, 'Create New Diploma Course(s)', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:10:32'),
+(800, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:29'),
+(801, 'Joey Minguillan Created subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:29'),
+(802, 'Joey Minguillan Created subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:29'),
+(803, 'Joey Minguillan Updated eng. pro. rating for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:29'),
+(804, 'Joey Minguillan Updated craft rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:29'),
+(805, 'Joey Minguillan Updated core rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:29'),
+(806, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:52'),
+(807, 'Joey Minguillan Updated subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:52'),
+(808, 'Joey Minguillan Updated subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:52'),
+(809, 'Joey Minguillan Updated eng. pro. rating for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:52'),
+(810, 'Joey Minguillan Updated craft rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:52'),
+(811, 'Joey Minguillan Updated core rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:29:52'),
+(812, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:30'),
+(813, 'Joey Minguillan Updated subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:30'),
+(814, 'Joey Minguillan Updated subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:30'),
+(815, 'Joey Minguillan Updated eng. pro. rating for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:30'),
+(816, 'Joey Minguillan Updated craft rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:30'),
+(817, 'Joey Minguillan Updated core rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:30'),
+(818, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:49'),
+(819, 'Joey Minguillan Updated subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:49'),
+(820, 'Joey Minguillan Updated subjects for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:49'),
+(821, 'Joey Minguillan Updated eng. pro. rating for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:49'),
+(822, 'Joey Minguillan Updated craft rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:49'),
+(823, 'Joey Minguillan Updated core rating and skill for 23463', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '110.54.236.20', '2018-11-21 20:30:49'),
+(824, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 22:58:03'),
+(825, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:00:37'),
+(826, 'Joey Minguillan Updated subjects for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:00:37'),
+(827, 'Joey Minguillan Updated eng. pro. rating for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:00:37'),
+(828, 'Joey Minguillan Updated craft rating and skill for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:00:37'),
+(829, 'Joey Minguillan Updated core rating and skill for 12345', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:00:37'),
+(830, 'Update user profile', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:26:35'),
+(831, 'Logout user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:26:41'),
+(832, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:27:06'),
+(833, 'Logout user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:31:50'),
+(834, 'Login user', 2, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:32:02'),
+(835, 'Update user profile', 2, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:32:35'),
+(836, 'Logout user', 2, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:32:40'),
+(837, 'Login user', 2, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:32:52'),
+(838, 'Logout user', 2, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:32:58'),
+(839, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:33:31'),
+(840, 'Logout user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:35:40'),
+(841, 'Login user', 3, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:36:28'),
+(842, 'Update user profile', 3, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:37:09'),
+(843, 'Logout user', 3, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:37:17'),
+(844, 'Login user', 4, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:38:53'),
+(845, 'Update user profile', 4, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:39:36'),
+(846, 'Logout user', 4, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:39:43'),
+(847, 'Login user', 4, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:39:54'),
+(848, 'Logout user', 4, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-21 23:40:05'),
+(849, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-22 02:08:21'),
+(850, 'Logout user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', '2018-11-22 02:42:09'),
+(851, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 22:57:49'),
+(852, 'Register users', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 22:58:33'),
+(853, 'Logout user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 22:58:44'),
+(854, 'Login user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 22:58:57'),
+(855, 'User change password', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 22:59:20'),
+(856, 'Logout user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 22:59:20'),
+(857, 'Login user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 22:59:34'),
+(858, 'Update Vocatonal Program', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 23:00:45'),
+(859, 'Logout user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 23:02:55'),
+(860, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 23:03:20'),
+(861, 'Create new room(s)', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-23 23:56:57'),
+(862, 'Joey Minguillan Register student', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:06:27'),
+(863, 'Joey Minguillan Created subjects for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:06:27'),
+(864, 'Joey Minguillan Created english proficiency rating for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:06:27'),
+(865, 'Joey Minguillan Created craft rating and skill for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:06:27'),
+(866, 'Joey Minguillan Created core rating and skill for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:06:27'),
+(867, 'Joey Minguillan Update Student Information', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:09:03'),
+(868, 'Joey Minguillan Updated subjects for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:09:03'),
+(869, 'Joey Minguillan Updated eng. pro. rating for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:09:03'),
+(870, 'Joey Minguillan Updated craft rating and skill for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:09:03');
+INSERT INTO `history_logs` (`tbl_id`, `activity`, `created_by`, `device_use`, `device_name`, `device_ip_address`, `created`) VALUES
+(871, 'Joey Minguillan Updated core rating and skill for 22222', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:09:03'),
+(872, 'Logout user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:34:48'),
+(873, 'Login user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:38:28'),
+(874, 'Logout user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:39:14'),
+(875, 'Login user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:39:27'),
+(876, 'Logout user', 6, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 00:47:39'),
+(877, 'Login user', 1, 'Mobile Device', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 01:49:51'),
+(878, 'Login user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 02:36:26'),
+(879, 'Logout user', 1, 'Desktop/Workstation', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', '2018-11-24 02:36:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `room_id` int(11) NOT NULL,
+  `room_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`room_id`, `room_name`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(12, 'Room 5', '1', 'jaded_miller@yahoo.com', NULL, '2018-11-23 23:56:57', '2018-11-23 23:56:57');
 
 -- --------------------------------------------------------
 
@@ -1133,9 +1144,11 @@ CREATE TABLE `student` (
   `arabic_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nationality` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   `company` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type_of_course` enum('Vocational','Diploma') COLLATE utf8_unicode_ci NOT NULL,
   `training_start` date NOT NULL,
   `training_end` date NOT NULL,
-  `vocational_course` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `diploma_course` int(11) DEFAULT NULL,
+  `vocational_course` int(11) DEFAULT NULL,
   `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `date_of_birth` date NOT NULL,
   `guardian_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -1156,10 +1169,58 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `student_no`, `national_id`, `email_address`, `mobile_no`, `english_name`, `arabic_name`, `nationality`, `company`, `training_start`, `training_end`, `vocational_course`, `address`, `date_of_birth`, `guardian_name`, `guardian_contact`, `id_picture`, `civil_status`, `ramarks`, `date_graduated`, `comments`, `student_status`, `student_created_by`, `student_updated_by`, `student_created`, `student_modified`) VALUES
-(1, 45734, '6573625272', 'abdallah@gmail.com', '(552) 467-4651', 'ABDALLAH FAIZ SULTAN ALABOD', 'ABDALLAH FAIZ SULTAN ALABOD', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', '2018-11-11', '2019-11-11', 'WG1', '#145 Dammam Kingdom of Saudi Arabia', '2018-11-07', 'ABDALLAH FAIZ SULTAN ALABOD SR', '(523) 574-1265', '45734.jpg', 'Single', 'Graduated', '2018-11-14', 'Very polite and respectful to teachers', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-25 01:47:06', '2018-11-25 02:38:19'),
-(2, 6523, '5005356288', 'ala@gmail.com', '(532) 456-5465', 'ALA ABDULLAH ALI ALKHABBAZ', 'ALA ABDULLAH ALI ALKHABBAZ', 'Arabian', 'Technical Higher Institute for Engineering and Petroleum', '2018-11-15', '2018-11-15', 'WG1', '#152 Dammam Kingdom of Saudi', '2019-02-04', 'ALA ABDULLAH ALI ALKHABBAZ SR', '(564) 566-5418', '06523.jpg', 'Single', 'Graduated', '2018-11-15', 'Smart kid and very confident', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-11-25 01:57:44', '2018-11-25 02:38:19'),
-(3, 26701, '7894345213', 'ali@gmail.com', '(525) 545-6161', 'ALI JASIM SALIM ALMUZARRA', 'ALI JASIM SALIM ALMUZARRA', 'Arabian', 'Malibu Nights', '2018-11-11', '2019-11-11', 'SCAFF', '#142 Dammam Saudi Arabia', '2018-11-12', 'ALI JASIM SALIM ALMUZARRA SR', '(215) 461-4416', '26701.jpg', 'Single', 'Ongoing', NULL, 'Disrespectful to teacher and very hard headed', '1', 'joey@gmail.com', NULL, '2018-11-25 02:41:26', '2018-11-25 02:41:26');
+INSERT INTO `student` (`student_id`, `student_no`, `national_id`, `email_address`, `mobile_no`, `english_name`, `arabic_name`, `nationality`, `company`, `type_of_course`, `training_start`, `training_end`, `diploma_course`, `vocational_course`, `address`, `date_of_birth`, `guardian_name`, `guardian_contact`, `id_picture`, `civil_status`, `ramarks`, `date_graduated`, `comments`, `student_status`, `student_created_by`, `student_updated_by`, `student_created`, `student_modified`) VALUES
+(13, 22222, '1111111111', 's@yahoo.com', '(111) 111-1111', 'asdfadsf', 'sdafasdfasdf', 'Arab', 'sdfsdg', 'Vocational', '0000-00-00', '0000-00-00', NULL, 1, '', '2018-10-24', 'asdfadfasdfasdfasdfadsf', '(222) 222-2222', '', 'asdffasdfasdf', 'Ongoing', '0000-00-00', '', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-24 00:06:27', '2018-11-24 00:09:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_subject`
+--
+
+CREATE TABLE `student_subject` (
+  `tbl_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `subject` int(11) NOT NULL,
+  `subject_code` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `time` time NOT NULL,
+  `room` int(11) NOT NULL,
+  `day` enum('MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student_subject`
+--
+
+INSERT INTO `student_subject` (`tbl_id`, `student_id`, `subject`, `subject_code`, `time`, `room`, `day`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(25, 13, 1, '', '10:00:00', 12, 'MONDAY', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-11-24 00:06:27', '2018-11-24 00:09:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject`
+--
+
+CREATE TABLE `subject` (
+  `subject_id` int(11) NOT NULL,
+  `subject_title` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`subject_id`, `subject_title`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
+(1, 'ENGLISH', '1', 'jaded_miller@yahoo.com', 'jaded_miller@yahoo.com', '2018-08-22 16:02:19', '2018-11-21 22:02:10');
 
 -- --------------------------------------------------------
 
@@ -1192,10 +1253,11 @@ CREATE TABLE `user_credential` (
 --
 
 INSERT INTO `user_credential` (`user_id`, `u_full_name`, `u_email_address`, `u_password`, `designation`, `password_reset_date`, `login_attempt`, `locked_time`, `profile_pic`, `status`, `recent_login`, `device_name`, `device_ip_address`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Joey Minguillans', 'joey@gmail.com', '$2y$10$RBJH19w7dxfH1I47eC7Hce6uorVzuzUsvRFDQ9L/iof1h9tC0.mt.', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, '0611.jpg', '1', '2018-11-24 21:41:30', 'JUN-PC', '::1', NULL, 'joey@gmail.com', '2018-09-04 12:28:46', '2018-11-24 21:41:30'),
-(2, 'Administrator Akows', 'admin@gmail.com', '$2y$10$81uoJHMTpPr7h31Wfcugve2rWwUQXO2Fh3Q4kjuFDuZU/nfcmrB8S', 'Administrator', '2018-12-04 13:33:35', NULL, NULL, '', '1', NULL, NULL, NULL, 'joey@gmail.com', 'joey@gmail.com', '2018-09-05 13:33:35', '2018-11-21 22:20:57'),
-(3, 'Reynans Shows', 'reynan@gmail.com', '$2y$10$KqNV72nIaj.WfXH8odKm5egpP6AnSH3cNfkCsQUnUBsAweUcAbeLK', 'Registrar', '2018-12-04 13:35:31', NULL, NULL, 'vince.png', '1', '2018-10-18 10:18:13', 'JUN-PC', '::1', 'joey@gmail.com', NULL, '2018-09-05 13:35:31', '2018-11-21 22:22:13'),
-(4, 'Ricky Rivera', 'ricky@gmail.com', '$2y$10$Avxj/AmYe59ypXLTdQFYbu8zWa4Jqd4us0K4IK3LUGBMmGjUWBA2C', 'Program Head', '2019-01-16 10:26:21', NULL, NULL, 'avatar-1.jpg', '1', '2018-10-18 10:35:48', 'JUN-PC', '::1', 'joey@gmail.com', NULL, '2018-10-18 10:26:21', '2018-11-21 22:14:23');
+(1, 'Joey Minguillan', 'jaded_miller@yahoo.com', '$2y$10$dS39rrC59DCjIt2X667yc.blwSHXt/Xm7VDNi.eJiEDvppybsCAn6', 'Administrator', '2018-12-06 12:46:24', NULL, NULL, 'cv_pic1.png', '1', '2018-11-24 12:36:26', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', NULL, 'joey@gmail.com', '2018-09-04 12:28:46', '2018-11-24 02:36:26'),
+(2, 'Engr. Mustafa T. Alghazal', 'mustafa@yahoo.com', '$2y$10$.9lIkcrGXqACOQzQz0p0zu0oyjFueg5vNqHzavEB1XE7EfR.NIMdS', 'Administrator', '2018-12-04 13:33:35', NULL, NULL, '', '1', '2018-11-22 09:32:52', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', 'joey@gmail.com', 'admin@gmail.com', '2018-09-05 13:33:35', '2018-11-21 23:32:52'),
+(3, 'Mustafa Al Hassan Sulayyil', 'sulayyil@yahoo.com', '$2y$10$klTyYqypcSjYjxIuI5pZKeimSsjJasKXAOGV2NatrUmy6FBtTZjnW', 'Registrar', '2018-12-04 13:35:31', NULL, NULL, 'vince.png', '1', '2018-11-22 09:36:28', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', 'joey@gmail.com', 'reynan@gmail.com', '2018-09-05 13:35:31', '2018-11-21 23:37:09'),
+(4, 'Dr. Firas Kassem', 'kassem@yahoo.com', '$2y$10$1qOI4KOLtJD866DtslhjpOheYnCyAhWhO6ktL63KYQwBQcSPv3XHq', 'Program Head', '2019-01-16 10:26:21', NULL, NULL, 'avatar-1.jpg', '1', '2018-11-22 09:39:54', 'a2plvcpnl122567.prod.iad2.secureserver.net', '51.223.53.133', 'joey@gmail.com', 'ricky@gmail.com', '2018-10-18 10:26:21', '2018-11-21 23:39:54'),
+(6, 'Joey', 'joey@yahoo.com', '$2y$10$RqJe2wA3p13dCwxMaQpeq.KfptxMVj05ZGbhfqSzpT.DAk.8lcbqK', 'Registrar', '2019-02-22 08:59:20', NULL, NULL, '', '1', '2018-11-24 10:39:27', 'a2plvcpnl122567.prod.iad2.secureserver.net', '5.156.159.50', 'jaded_miller@yahoo.com', NULL, '2018-11-23 22:58:33', '2018-11-24 00:39:27');
 
 -- --------------------------------------------------------
 
@@ -1219,11 +1281,7 @@ CREATE TABLE `vocational_program` (
 --
 
 INSERT INTO `vocational_program` (`voc_program_id`, `voc_program`, `voc_program_acronym`, `status`, `created_by`, `updated_by`, `created`, `modified`) VALUES
-(1, 'Preparatory G1', 'PREPG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 13:30:45', '2018-11-25 00:38:22'),
-(4, 'Welding G1', 'WG1', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 15:36:07', '2018-11-25 02:03:08'),
-(5, 'Welding G2', 'WG2', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-08-22 15:36:07', '2018-11-21 21:51:07'),
-(6, 'Scaffolding', 'SCAFF', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-06 21:15:43', '2018-11-21 21:51:07'),
-(7, 'Welding G3', 'WG3', '1', 'joey@gmail.com', 'joey@gmail.com', '2018-09-06 21:15:43', '2018-11-25 00:53:32');
+(1, 'ENGLISH PROFICIENCY', 'ENG_PROF', '1', 'jaded_miller@yahoo.com', 'joey@yahoo.com', '2018-08-22 13:30:45', '2018-11-23 23:00:45');
 
 --
 -- Indexes for dumped tables
@@ -1245,8 +1303,7 @@ ALTER TABLE `core_item`
   ADD PRIMARY KEY (`core_item_id`),
   ADD UNIQUE KEY `core_code` (`core_code`),
   ADD KEY `Core on update "created_by" FK` (`created_by`),
-  ADD KEY `Core on update "updated_by" FK` (`updated_by`),
-  ADD KEY `Core on update/delete "voc_program" FK` (`voc_program`);
+  ADD KEY `Core on update "updated_by" FK` (`updated_by`);
 
 --
 -- Indexes for table `craft`
@@ -1264,8 +1321,16 @@ ALTER TABLE `craft_item`
   ADD PRIMARY KEY (`craft_item_id`),
   ADD UNIQUE KEY `craft_code` (`craft_code`),
   ADD KEY `Craft On update "created_by" FK` (`created_by`),
-  ADD KEY `Craft On update "updated_by" FK` (`updated_by`),
-  ADD KEY `Craft on update/delete "voc_program" FK` (`voc_program`);
+  ADD KEY `Craft On update "updated_by" FK` (`updated_by`);
+
+--
+-- Indexes for table `diploma_course`
+--
+ALTER TABLE `diploma_course`
+  ADD PRIMARY KEY (`course_id`),
+  ADD UNIQUE KEY `course_acronym` (`course_acronym`),
+  ADD KEY `Diploma on update "created_by" FK` (`created_by`),
+  ADD KEY `Diploma on update "updated_by" FK` (`updated_by`);
 
 --
 -- Indexes for table `english_proficiency`
@@ -1282,14 +1347,40 @@ ALTER TABLE `history_logs`
   ADD KEY `History on update/delete "created_by" FK` (`created_by`);
 
 --
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`room_id`),
+  ADD UNIQUE KEY `room_name` (`room_name`),
+  ADD KEY `Room on update "created_by" FK` (`created_by`),
+  ADD KEY `Room on update "updated_by" FK` (`updated_by`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`student_id`),
   ADD UNIQUE KEY `student_no` (`student_no`),
   ADD KEY `Student on update "student_created_by" FK` (`student_created_by`),
-  ADD KEY `Student on update "student_updated_by" FK` (`student_updated_by`),
-  ADD KEY `Student on update "vocational_course" FK` (`vocational_course`);
+  ADD KEY `Student on update "student_updated_by" FK` (`student_updated_by`);
+
+--
+-- Indexes for table `student_subject`
+--
+ALTER TABLE `student_subject`
+  ADD PRIMARY KEY (`tbl_id`),
+  ADD KEY `Student subject on update "created_by" FK` (`created_by`),
+  ADD KEY `Student subject on update "updated_by" FK` (`updated_by`),
+  ADD KEY `Student subject on update/delete "student_id" FK` (`student_id`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`subject_id`),
+  ADD UNIQUE KEY `subject_title` (`subject_title`),
+  ADD KEY `Subject on update "created_by" FK` (`created_by`),
+  ADD KEY `Subject on update "updated_by" FK` (`updated_by`);
 
 --
 -- Indexes for table `user_credential`
@@ -1307,7 +1398,6 @@ ALTER TABLE `vocational_program`
   ADD PRIMARY KEY (`voc_program_id`),
   ADD UNIQUE KEY `voc_program_acronym` (`voc_program_acronym`),
   ADD UNIQUE KEY `voc_program_acronym_2` (`voc_program_acronym`),
-  ADD UNIQUE KEY `voc_program_acronym_3` (`voc_program_acronym`),
   ADD KEY `Vocational on update "created_by" FK` (`created_by`),
   ADD KEY `Vocational on update "updated_by" FK` (`updated_by`);
 
@@ -1319,55 +1409,79 @@ ALTER TABLE `vocational_program`
 -- AUTO_INCREMENT for table `core`
 --
 ALTER TABLE `core`
-  MODIFY `core_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `core_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `core_item`
 --
 ALTER TABLE `core_item`
-  MODIFY `core_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `core_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `craft`
 --
 ALTER TABLE `craft`
-  MODIFY `craft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `craft_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `craft_item`
 --
 ALTER TABLE `craft_item`
-  MODIFY `craft_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `craft_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `diploma_course`
+--
+ALTER TABLE `diploma_course`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `english_proficiency`
 --
 ALTER TABLE `english_proficiency`
-  MODIFY `eng_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `eng_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `history_logs`
 --
 ALTER TABLE `history_logs`
-  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=890;
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=880;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `student_subject`
+--
+ALTER TABLE `student_subject`
+  MODIFY `tbl_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_credential`
 --
 ALTER TABLE `user_credential`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vocational_program`
 --
 ALTER TABLE `vocational_program`
-  MODIFY `voc_program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `voc_program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -1386,8 +1500,7 @@ ALTER TABLE `core`
 --
 ALTER TABLE `core_item`
   ADD CONSTRAINT `Core on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Core on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Core on update/delete "voc_program" FK` FOREIGN KEY (`voc_program`) REFERENCES `vocational_program` (`voc_program_acronym`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Core on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `craft`
@@ -1402,8 +1515,14 @@ ALTER TABLE `craft`
 --
 ALTER TABLE `craft_item`
   ADD CONSTRAINT `Craft On update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Craft On update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Craft on update/delete "voc_program" FK` FOREIGN KEY (`voc_program`) REFERENCES `vocational_program` (`voc_program_acronym`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Craft On update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `diploma_course`
+--
+ALTER TABLE `diploma_course`
+  ADD CONSTRAINT `Diploma on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Diploma on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `english_proficiency`
@@ -1418,12 +1537,33 @@ ALTER TABLE `history_logs`
   ADD CONSTRAINT `History on update/delete "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `room`
+--
+ALTER TABLE `room`
+  ADD CONSTRAINT `Room on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Room on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `Student on update "student_created_by" FK` FOREIGN KEY (`student_created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Student on update "student_updated_by" FK` FOREIGN KEY (`student_updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Student on update "vocational_course" FK` FOREIGN KEY (`vocational_course`) REFERENCES `vocational_program` (`voc_program_acronym`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `Student on update "student_updated_by" FK` FOREIGN KEY (`student_updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student_subject`
+--
+ALTER TABLE `student_subject`
+  ADD CONSTRAINT `Student subject on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Student subject on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Student subject on update/delete "student_id" FK` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `subject`
+--
+ALTER TABLE `subject`
+  ADD CONSTRAINT `Subject on update "created_by" FK` FOREIGN KEY (`created_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Subject on update "updated_by" FK` FOREIGN KEY (`updated_by`) REFERENCES `user_credential` (`u_email_address`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vocational_program`
