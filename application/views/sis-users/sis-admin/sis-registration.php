@@ -226,7 +226,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="vocational_course"><font color="red">*</font> Vocational Course</label>
-                                                    <select class="form-control select2-search " id="vocational_course" name="vocational_course" style="width: 100%">
+                                                    <select class="form-control required select2-search " id="vocational_course" name="vocational_course" style="width: 100%">
                                                         <option></option>
                                                         <?php if(!empty($voc_program)): ?>
                                                             <?php foreach ($voc_program as $value): ?>

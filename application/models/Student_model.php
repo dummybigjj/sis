@@ -21,6 +21,24 @@ class Student_model extends CI_Model {
 	}
 
 	/**
+	 * delete_student function.
+	 * 
+	 * @access public
+	 * @param associative array $data
+	 * @return boolean TRUE on success.
+	 */
+	public function delete_student($data = array())
+	{
+		if(!empty($data)){
+			for ($i=0; $i < count($data); $i++) { 
+				$this->crud->deleteData(array('student_id'=>$data['student_id'][$i]),'tbl2');
+			}
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	/**
 	 * insertOrUpdateStudentCraft function.
 	 * 
 	 * @access public

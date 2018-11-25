@@ -1,6 +1,11 @@
 
         <section class="section-container no-padding-top">
           <div class="container-fluid">
+
+            <div class="alert alert-warning mb-3">
+              <span class="nav-icon"><em class="icon-ios-information-outline icon-lg"></em></span> Deletion/Removal of Students will permanently removed all student personal data and other related records.
+            </div>
+
             <div class="row">
 
               <form action="<?php echo site_url('student/student_activate_deactivate'); ?>" method="post" accept-charset="utf-8">
@@ -10,10 +15,14 @@
                     <div class="cardbox-heading">
                       <div class="cardbox-header">Students table</div><small> &nbsp&nbsp </small>
                       <div class="cardbox-title">
-                        <div class="btn-group" style="float: right;">
-                          <input type="submit" class="mb-4 btn btn-success" name="activate" disabled="" value="Activate">
-                          <input type="submit" class="mb-4 btn btn-dangers" name="deactivate" disabled="" value="Deativate">
+                        <div style="float: right;">
+                          <input type="submit" class="mb-4 btn btn-danger" name="delete" disabled="" value="Delete">
+                          <div class="btn-group">
+                            <input type="submit" class="mb-4 btn btn-success" name="activate" disabled="" value="Activate">
+                            <input type="submit" class="mb-4 btn btn-secondary" name="deactivate" disabled="" value="Deativate">
+                          </div>
                         </div>
+                        
                         <a target="_blank" href="<?php echo site_url('student_registration'); ?>" class="mb-4 btn btn-primary"><span class="nav-icon"><em class="icon-ios-personadd-outline"></em></span> Register Student</a>
                       </div>
                     </div>

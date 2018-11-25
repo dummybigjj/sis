@@ -431,6 +431,12 @@ class Student extends CI_Controller{
             $this->crud->updateDataBatch($data,array('student_status'=>'1','student_updated_by'=>$this->session->userdata('u_email')),'student_id','tbl2');
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Activate Students',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Students has been activated');
+        }else if($this->input->post('delete')){
+            // Delete student
+            $data = array('student_id'=>$this->input->post('student_id'));
+            $this->student_model->delete_student($data);
+            $this->user_model->recordLogs($this->session->userdata('u_fullname').' Deleted/Removed Student(s)',$this->session->userdata('u_id'));
+            $this->session->set_flashdata('success','Student(s) has been deleted/removed');
         }
         redirect('students');
     }
@@ -1231,7 +1237,13 @@ class Student extends CI_Controller{
                                                     <td>'.$student_core[$i]['description'].'</td>
                                                     <td> '.$student_core[$i]['core_rating'].'</td>
                                                     <td> '.$student_core[$i]['grade'].'</td>
-                                                    <td>'.date('M d, Y',strtotime($student_core[$i]['core_completed'])).'</td>
+                                                    <td>';
+                                                        if(!empty($student_core[$i]['core_completed'])){
+                                                            $html .= date('M d, Y',strtotime($student_core[$i]['core_completed']));
+                                                        }else{
+                                                            $html .= '';
+                                                        }
+                                                    $html .='</td>
                                                 </tr>';
                                         }
 
@@ -1254,7 +1266,13 @@ class Student extends CI_Controller{
                                                     <td>'.$student_craft[$i]['description'].'</td>
                                                     <td> '.$student_craft[$i]['craft_rating'].'</td>
                                                     <td> '.$student_craft[$i]['grade'].'</td>
-                                                    <td>'.date('M d, Y',strtotime($student_craft[$i]['craft_completed'])).'</td>
+                                                    <td>';
+                                                        if(!empty($student_craft[$i]['craft_completed'])){
+                                                            $html .= date('M d, Y',strtotime($student_craft[$i]['craft_completed']));
+                                                        }else{
+                                                            $html .= '';
+                                                        }
+                                                    $html .='</td>
                                                 </tr>';
                                         }
 
