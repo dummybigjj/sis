@@ -86,10 +86,6 @@ class Student extends CI_Controller{
         // Necessary page data
         // vocational programs
         $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
-        // core
-        $data['core']  = $this->core_model->get_core('a',array('status'=>'1'));
-        // craft
-        $data['craft'] = $this->craft_model->get_craft('a',array('status'=>'1'));
         // Page headers and navigation
         $this->load->view('templates/html-comp/sis-header');
         // Flash data messages
@@ -120,7 +116,7 @@ class Student extends CI_Controller{
         empty($data['student'])?redirect('students'):TRUE;
 
         // core
-        $data['core']  = $this->core_model->get_core('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
+        $data['core']  = $this->core_model->get_core('a',array('status'=>'1'));
         // craft
         $data['craft'] = $this->craft_model->get_craft('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
 
@@ -150,7 +146,7 @@ class Student extends CI_Controller{
         // vocational programs
         $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
         // core
-        $data['cores']  = $this->core_model->get_core('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
+        $data['cores']  = $this->core_model->get_core('a',array('status'=>'1'));
         // craft
         $data['crafts'] = $this->craft_model->get_craft('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
         // student skills
@@ -1205,15 +1201,15 @@ class Student extends CI_Controller{
                                         <tr style="color:#0D47A1">
                                             <td style="width:15%;"><b>English </b></td>
                                             <td style="width:40%;"><b> </b></td>
-                                            <td style="width:20%;"><b>Rating </b></td>
-                                            <td style="width:10%;"><b>Grade </b></td>
+                                            <td style="width:20%;"><b> Rating </b></td>
+                                            <td style="width:10%;"><b> Grade </b></td>
                                             <td style="width:15%;"><b>Completed </b></td>
                                         </tr>
                                         <tr>
                                             <td>Rating: </td>
                                             <td>  </td>
-                                            <td>'.$student_pro['eng_rating'].'</td>
-                                            <td>'.$student_pro['grade'].'</td>
+                                            <td> '.$student_pro['eng_rating'].'</td>
+                                            <td> '.$student_pro['grade'].'</td>
                                             <td>'.date('M d, Y',strtotime($student_pro['eng_completed'])).'</td>
                                         </tr>
                                         <tr>
@@ -1224,8 +1220,8 @@ class Student extends CI_Controller{
                                         <tr style="color:#0D47A1">
                                             <td><b>Core </b></td>
                                             <td><b>Description </b></td>
-                                            <td><b>Rating </b></td>
-                                            <td><b>Grade </b></td>
+                                            <td><b> Rating </b></td>
+                                            <td><b> Grade </b></td>
                                             <td><b>Completed </b></td>
                                         </tr>';
 
@@ -1233,8 +1229,8 @@ class Student extends CI_Controller{
                                         $html .='<tr>
                                                     <td>'.$student_core[$i]['core_code'].'</td>
                                                     <td>'.$student_core[$i]['description'].'</td>
-                                                    <td>'.$student_core[$i]['core_rating'].'</td>
-                                                    <td>'.$student_core[$i]['grade'].'</td>
+                                                    <td> '.$student_core[$i]['core_rating'].'</td>
+                                                    <td> '.$student_core[$i]['grade'].'</td>
                                                     <td>'.date('M d, Y',strtotime($student_core[$i]['core_completed'])).'</td>
                                                 </tr>';
                                         }
@@ -1247,8 +1243,8 @@ class Student extends CI_Controller{
                                         <tr style="color:#0D47A1">
                                             <td><b>Craft </b></td>
                                             <td><b>Description </b></td>
-                                            <td><b>Rating </b></td>
-                                            <td><b>Grade </b></td>
+                                            <td><b> Rating </b></td>
+                                            <td><b> Grade </b></td>
                                             <td><b>Completed </b></td>
                                         </tr>';
 
@@ -1256,8 +1252,8 @@ class Student extends CI_Controller{
                                         $html .='<tr>
                                                     <td>'.$student_craft[$i]['craft_code'].'</td>
                                                     <td>'.$student_craft[$i]['description'].'</td>
-                                                    <td>'.$student_craft[$i]['craft_rating'].'</td>
-                                                    <td>'.$student_craft[$i]['grade'].'</td>
+                                                    <td> '.$student_craft[$i]['craft_rating'].'</td>
+                                                    <td> '.$student_craft[$i]['grade'].'</td>
                                                     <td>'.date('M d, Y',strtotime($student_craft[$i]['craft_completed'])).'</td>
                                                 </tr>';
                                         }
