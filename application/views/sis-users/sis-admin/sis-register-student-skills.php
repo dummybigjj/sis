@@ -137,8 +137,8 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-3">
-                                                    <label for="core_skill"><font color="red">*</font> Skills</label>
-                                                    <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
+                                                    <label for="core_skill">Skills</label>
+                                                    <select name="core_skill[]" id="core_skill" class="form-control " style="width: 100%">
                                                         <?php if(!empty($core)): ?>
                                                             <?php foreach ($core as $value): ?>
                                                                 <option value="<?php echo $value['core_item_id'] ?>"><?php echo $value['core_code']; ?></option>
@@ -147,8 +147,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <label for="core_rating"><font color="red">*</font> Rating</label>
-                                                    <select name="core_rating[]" id="core_rating" class="form-control required" style="width: 100%">
+                                                    <label for="core_rating">Rating</label>
+                                                    <select name="core_rating[]" id="core_rating" class="form-control " style="width: 100%">
                                                       <option></option>
                                                       <option value="Competent">Competent</option>
                                                       <option value="Not Yet Competent">Not Yet Competent</option>
@@ -193,8 +193,8 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-3">
-                                                    <label for="craft_skill"><font color="red">*</font> Skills</label>
-                                                    <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
+                                                    <label for="craft_skill">Skills</label>
+                                                    <select name="craft_skill[]" id="craft_skill" class="form-control " style="width: 100%">
                                                         <?php if(!empty($craft)): ?>
                                                             <?php foreach ($craft as $value): ?>
                                                                 <option value="<?php echo $value['craft_item_id'] ?>"><?php echo $value['craft_code']; ?></option>
@@ -203,8 +203,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <label for="craft_rating"><font color="red">*</font> Rating</label>
-                                                    <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
+                                                    <label for="craft_rating">Rating</label>
+                                                    <select name="craft_rating[]" id="craft_rating" class="form-control " style="width: 100%">
                                                       <option></option>
                                                       <option value="Competent">Competent</option>
                                                       <option value="Not Yet Competent">Not Yet Competent</option>
