@@ -345,8 +345,8 @@ class Student extends CI_Controller{
         }
         $verify_student_no  = $this->student_model->isValidUniqueKey(array('student_no'=>$student['student_no'],'student_id !='=>$student_id),'tbl2');
         $verify_national_id = $this->student_model->isValidUniqueKey(array('national_id'=>$student['national_id'],'student_id !='=>$student_id),'tbl2');
-        $verify_email       = $this->student_model->isValidUniqueKey(array('email_address'=>$student['email_address'],'student_id !='=>$student_id),'tbl2');
-        if($verify_student_no===TRUE && $verify_national_id===TRUE && $verify_email===TRUE){
+        // $verify_email       = $this->student_model->isValidUniqueKey(array('email_address'=>$student['email_address'],'student_id !='=>$student_id),'tbl2');
+        if($verify_student_no===TRUE && $verify_national_id===TRUE){
 
             // upload student image
             // Check whether user upload picture
