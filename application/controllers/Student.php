@@ -197,15 +197,21 @@ class Student extends CI_Controller{
             'student_created_by'=> $this->session->userdata('u_email')
         );
         // check if remarks is Graduated
-        if($student['ramarks']=='Graduated'){
+        if($student['ramarks']=='Graduated')
+        {
             $student['date_graduated'] = $this->input->post('graduate');
-        }else{
+        }else
+        {
             $student['date_graduated'] = NULL;
         }
         $verify_student_no  = $this->student_model->isValidUniqueKey(array('student_no'=>$student['student_no']),'tbl2');
         $verify_national_id = $this->student_model->isValidUniqueKey(array('national_id'=>$student['national_id']),'tbl2');
-        $verify_email       = $this->student_model->isValidUniqueKey(array('email_address'=>$student['email_address']),'tbl2');
-        if($verify_student_no===TRUE && $verify_national_id===TRUE && $verify_email===TRUE){
+        // if(!empty($this->input->post('email_address')))
+        // {
+        //     $student['email_address'] = trim($this->input->post('email_address'));
+        //     $verify_email = $this->student_model->isValidUniqueKey(array('email_address'=>$student['email_address']),'tbl2');
+        // }
+        if($verify_student_no===TRUE && $verify_national_id===TRUE){
             // upload student image
             // Check whether user upload picture
             if(!empty($_FILES['picture']['name'])){
