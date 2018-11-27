@@ -117,7 +117,7 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="email_address"><font color="red">*</font> Email</label>
+                                                    <label for="email_address">Email</label>
                                                     <input type="email" class="form-control " id="email_address" name="email_address" maxlength="100">
                                                 </div>
                                                 <div class="col-lg-6">
