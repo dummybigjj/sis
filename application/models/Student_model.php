@@ -47,38 +47,41 @@ class Student_model extends CI_Model {
 	 * @return boolean TRUE on success.
 	 */
 	public function insertOrUpdateStudentCraft($craft = array(),$student_id)
-	{
-		for ($i=0; $i < count($craft['craft_skill']); $i++) 
-		{ 
-			$data = array(
-				'craft_rating' => $craft['craft_rating'][$i],
-				'craft_skill'  => $craft['craft_skill'][$i]
-			);
-			// ----------------------
-			if(array_key_exists($i, $craft['craft_completed']) && !empty($craft['craft_completed'][$i]))
-			{
-				$data['craft_completed'] = $craft['craft_completed'][$i];
-			}
-			if(array_key_exists($i, $craft['grade']) && !empty($craft['grade'][$i]))
-			{
-				$data['grade'] = $craft['grade'][$i];
-			}
-			// ----------------------
-			if(is_array($craft['craft_id']) && array_key_exists($i, $craft['craft_id']))
-			{
-				$data['updated_by'] = $this->session->userdata('u_id');
-				$this->crud->updateData($data,array('craft_id'=>$craft['craft_id'][$i]),'tbl10');
-			}else
-			{
-				$condition = array('craft_skill'=>$data['craft_skill'],'student_id'=>$student_id);
-				$is_valid  = $this->crud->getData('','c',$condition,'tbl10');
-				if($is_valid>0)
+	{	
+		if(!empty($craft))
+		{
+			for ($i=0; $i < count($craft['craft_skill']); $i++) 
+			{ 
+				$data = array(
+					'craft_rating' => $craft['craft_rating'][$i],
+					'craft_skill'  => $craft['craft_skill'][$i]
+				);
+				// ----------------------
+				if(array_key_exists($i, $craft['craft_completed']) && !empty($craft['craft_completed'][$i]))
 				{
-					// do nothing
+					$data['craft_completed'] = $craft['craft_completed'][$i];
+				}
+				if(array_key_exists($i, $craft['grade']) && !empty($craft['grade'][$i]))
+				{
+					$data['grade'] = $craft['grade'][$i];
+				}
+				// ----------------------
+				if(is_array($craft['craft_id']) && array_key_exists($i, $craft['craft_id']))
+				{
+					$data['updated_by'] = $this->session->userdata('u_id');
+					$this->crud->updateData($data,array('craft_id'=>$craft['craft_id'][$i]),'tbl10');
 				}else
 				{
-					$fk = array('student_id'=>$student_id);
-                	$this->crud->setData($data,$fk,'tbl10');
+					$condition = array('craft_skill'=>$data['craft_skill'],'student_id'=>$student_id);
+					$is_valid  = $this->crud->getData('','c',$condition,'tbl10');
+					if($is_valid>0)
+					{
+						// do nothing
+					}else
+					{
+						$fk = array('student_id'=>$student_id);
+	                	$this->crud->setData($data,$fk,'tbl10');
+					}
 				}
 			}
 		}
@@ -95,37 +98,40 @@ class Student_model extends CI_Model {
 	 */
 	public function insertOrUpdateStudentCore($core = array(),$student_id)
 	{
-		for ($i=0; $i < count($core['core_skill']); $i++) 
-		{ 
-			$data = array(
-				'core_rating' => $core['core_rating'][$i],
-				'core_skill'  => $core['core_skill'][$i]
-			);
-			// ----------------
-			if(array_key_exists($i, $core['core_completed']) && !empty($core['core_completed'][$i]))
-			{
-				$data['core_completed'] = $core['core_completed'][$i];
-			}
-			if(array_key_exists($i, $core['grade']) && !empty($core['grade'][$i]))
-			{
-				$data['grade'] = $core['grade'][$i];
-			}
-			// ----------------
-			if(is_array($core['core_id']) && array_key_exists($i, $core['core_id']))
-			{
-				$data['updated_by'] = $this->session->userdata('u_id');
-				$this->crud->updateData($data,array('core_id'=>$core['core_id'][$i]),'tbl12');
-			}else
-			{
-				$condition = array('core_skill'=>$data['core_skill'],'student_id'=>$student_id);
-				$is_valid  = $this->crud->getData('','c',$condition,'tbl12');
-				if($is_valid>0)
+		if(!empty($core))
+		{
+			for ($i=0; $i < count($core['core_skill']); $i++) 
+			{ 
+				$data = array(
+					'core_rating' => $core['core_rating'][$i],
+					'core_skill'  => $core['core_skill'][$i]
+				);
+				// ----------------
+				if(array_key_exists($i, $core['core_completed']) && !empty($core['core_completed'][$i]))
 				{
-					// do nothing
+					$data['core_completed'] = $core['core_completed'][$i];
+				}
+				if(array_key_exists($i, $core['grade']) && !empty($core['grade'][$i]))
+				{
+					$data['grade'] = $core['grade'][$i];
+				}
+				// ----------------
+				if(is_array($core['core_id']) && array_key_exists($i, $core['core_id']))
+				{
+					$data['updated_by'] = $this->session->userdata('u_id');
+					$this->crud->updateData($data,array('core_id'=>$core['core_id'][$i]),'tbl12');
 				}else
 				{
-					$fk = array('student_id'=>$student_id);
-                	$this->crud->setData($data,$fk,'tbl12');
+					$condition = array('core_skill'=>$data['core_skill'],'student_id'=>$student_id);
+					$is_valid  = $this->crud->getData('','c',$condition,'tbl12');
+					if($is_valid>0)
+					{
+						// do nothing
+					}else
+					{
+						$fk = array('student_id'=>$student_id);
+	                	$this->crud->setData($data,$fk,'tbl12');
+					}
 				}
 			}
 		}
