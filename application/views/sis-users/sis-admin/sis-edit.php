@@ -145,8 +145,8 @@
 
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
-                                                    <label for="email_address"><font color="red">*</font> Email</label>
-                                                    <input type="email" class="form-control required" id="email_address" name="email_address" maxlength="100" value="<?php echo $student['email_address']; ?>">
+                                                    <label for="email_address">Email</label>
+                                                    <input type="email" class="form-control " id="email_address" name="email_address" maxlength="100" value="<?php echo $student['email_address']; ?>">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="mobile_no">Mobile No.</label>
@@ -360,9 +360,9 @@
 
                                                     <div class="form-group row col-lg-12">
                                                         <div class="col-lg-3">
-                                                            <label for="core_skill"><font color="red">*</font> Skills</label>
+                                                            <label for="core_skill">Skills</label>
                                                             <input type="hidden" name="core_id[]" value="<?php echo $core[$i]['core_id']; ?>">
-                                                            <select name="core_skill[]" id="core_skill" class="form-control required" style="width: 100%">
+                                                            <select name="core_skill[]" id="core_skill" class="form-control " style="width: 100%">
                                                                 <?php if(!empty($cores)): ?>
                                                                     <?php foreach ($cores as $value): ?>
                                                                         <option value="<?php echo $value['core_item_id'] ?>" <?php echo ($core[$i]['core_skill']==$value['core_item_id'])?'selected':''; ?> ><?php echo $value['core_code']; ?></option>
@@ -371,8 +371,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label for="core_rating"><font color="red">*</font> Rating</label>
-                                                            <select name="core_rating[]" id="core_rating" class="form-control required" style="width: 100%">
+                                                            <label for="core_rating">Rating</label>
+                                                            <select name="core_rating[]" id="core_rating" class="form-control " style="width: 100%">
                                                               <option value="Competent" <?php echo ($core[$i]['core_rating']=='Competent')?'selected':''; ?> >Competent</option>
                                                               <option value="Not Yet Competent" <?php echo ($core[$i]['core_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
                                                             </select>
@@ -427,9 +427,9 @@
                                                 <?php for ($i=0; $i < count($craft); $i++): ?>
                                                     <div class="form-group row col-lg-12">
                                                         <div class="col-lg-3">
-                                                            <label for="craft_skill"><font color="red">*</font> Skills</label>
+                                                            <label for="craft_skill">Skills</label>
                                                             <input type="hidden" name="craft_id[]" value="<?php echo $craft[$i]['craft_id']; ?>">
-                                                            <select name="craft_skill[]" id="craft_skill" class="form-control required" style="width: 100%">
+                                                            <select name="craft_skill[]" id="craft_skill" class="form-control " style="width: 100%">
                                                                 <?php if(!empty($crafts)): ?>
                                                                     <?php foreach ($crafts as $value): ?>
                                                                         <option value="<?php echo $value['craft_item_id'] ?>" <?php echo ($craft[$i]['craft_skill']==$value['craft_item_id'])?'selected':''; ?> ><?php echo $value['craft_code']; ?></option>
@@ -438,8 +438,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label for="craft_rating"><font color="red">*</font> Rating</label>
-                                                            <select name="craft_rating[]" id="craft_rating" class="form-control required" style="width: 100%">
+                                                            <label for="craft_rating">Rating</label>
+                                                            <select name="craft_rating[]" id="craft_rating" class="form-control " style="width: 100%">
                                                               <option value="Competent" <?php echo ($craft[$i]['craft_rating']=='Competent')?'selected':''; ?> >Competent</option>
                                                               <option value="Not Yet Competent" <?php echo ($craft[$i]['craft_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
                                                             </select>
