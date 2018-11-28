@@ -1222,7 +1222,13 @@ class Student extends CI_Controller{
                                             <td>  </td>
                                             <td> '.$student_pro['eng_rating'].'</td>
                                             <td> '.$student_pro['grade'].'</td>
-                                            <td>'.date('M d, Y',strtotime($student_pro['eng_completed'])).'</td>
+                                            <td>';
+                                                    if(!empty($student_pro['eng_completed'])){
+                                                        $html .= date('M d, Y',strtotime($student_pro['eng_completed']));
+                                                    }else{
+                                                        $html .= '';
+                                                    }
+                                                $html .='</td>
                                         </tr>
                                         <tr>
                                             <td>  </td>
