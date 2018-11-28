@@ -52,7 +52,7 @@ class Admin extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));
         $data['header'] = array('title'=>'Dashboard','icon'=>'ios-speedometer-outline');
         // Necessary page data
-        $data['registered'] = $this->crud->getData('','c',array('student_status'=>'1'),'tbl2');
+        $data['registered'] = $this->crud->getData('','c',array('status'=>'1'),'tbl2');
         $data['graduated']  = $this->crud->getData('','c',array('ramarks'=>'Graduated'),'tbl2');
         $data['ongoing']    = $this->crud->getData('','c',array('ramarks'=>'Ongoing'),'tbl2');
         $data['terminated'] = $this->crud->getData('','c',array('ramarks'=>'Terminated'),'tbl2');

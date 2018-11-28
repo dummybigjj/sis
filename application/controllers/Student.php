@@ -8,6 +8,8 @@ class Student extends CI_Controller{
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->helper("url");
+        $this->load->library("pagination");
         $this->load->model('crud');
         $this->load->model('user_model');
         $this->load->model('student_model');
@@ -52,9 +54,21 @@ class Student extends CI_Controller{
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar','Program Head'));   
         // Header bar title and icon
-        $data['header'] = array('title'=>'Students','icon'=>'ios-people-outline');
+        $data['header'] = array('title'=>'Student','icon'=>'ios-people-outline');
+
+        // History table count
+        $data['count'] = $this->crud->count_table_rows('','tbl2');
+        // Set pagination config
+        $config = $this->crud->pagination_config(200,$data['count'],'students',2);
+        // initialize pagination
+        $this->pagination->initialize($config);
+        // set start query page
+        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        // paginiation links
+        $data["links"] = $this->pagination->create_links();
+
         // Necessary page data
-        $data['students']  = $this->student_model->getStudents('a','');
+        $data['students']  = $this->student_model->get_students('','arabic_name ASC',$config["per_page"],$page);
         // Page headers
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -68,8 +82,6 @@ class Student extends CI_Controller{
         // Page contents
         $this->load->view('sis-users/sis-admin/students',$data);
         // Page modals
-        // $this->load->view('oam-users/oam-admin/admin-modals/view-student-modal');
-        // $this->load->view('oam-users/oam-admin/admin-modals/edit-student-modal');
         // Page footer
         $this->load->view('templates/html-comp/footer');
     }
@@ -107,13 +119,13 @@ class Student extends CI_Controller{
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         // check if student_id is not empty
-        empty($student_id)?redirect('students'):TRUE;
+        empty($student_id)?redirect('student'):TRUE;
 
         // Necessary page data
         // Student info
         $data['student'] = $this->student_model->getStudents('s',array('student_id'=>$student_id));
         // check if student info is not empty
-        empty($data['student'])?redirect('students'):TRUE;
+        empty($data['student'])?redirect('student'):TRUE;
 
         // core
         $data['core']  = $this->core_model->get_core('a',array('status'=>'1'));
@@ -194,7 +206,7 @@ class Student extends CI_Controller{
             'ramarks'           => $this->input->post('student_remarks'),
             'comments'          => trim($this->input->post('comments')),
             'civil_status'      => trim($this->input->post('civil_status')),
-            'student_created_by'=> $this->session->userdata('u_email')
+            'created_by'        => $this->session->userdata('u_email')
         );
         // check if remarks is Graduated
         if($student['ramarks']=='Graduated')
@@ -335,7 +347,7 @@ class Student extends CI_Controller{
             'ramarks'           => $this->input->post('student_remarks'),
             'comments'          => trim($this->input->post('comments')),
             'civil_status'      => trim($this->input->post('civil_status')),
-            'student_updated_by'=> $this->session->userdata('u_email')
+            'updated_by'        => $this->session->userdata('u_email')
         );
         // check if remarks is Graduated
         if($student['ramarks']=='Graduated'){
@@ -380,7 +392,8 @@ class Student extends CI_Controller{
                 'eng_completed' =>$this->input->post('eng_completed')
             );
             if(!empty($this->input->post('eng_grade')))$eng_pro['grade'] = $this->input->post('eng_grade');
-            $this->crud->updateData($eng_pro,array('student_id' => $student_id),'tbl8');
+            $this->student_model->insert_update_student_eng_pro($eng_pro,$student_id);
+            // $this->crud->updateData($eng_pro,array('student_id' => $student_id),'tbl8');
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated eng. pro. rating for '.$student['student_no'],$this->session->userdata('u_id'));
             
             // update craft rating and skill
@@ -444,7 +457,7 @@ class Student extends CI_Controller{
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Deleted/Removed Student(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Student(s) has been deleted/removed');
         }
-        redirect('students');
+        redirect('student');
     }
 
     /**
@@ -456,7 +469,7 @@ class Student extends CI_Controller{
     public function student_printable1($student_id = NULL){
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        empty($student_id)?redirect('students'):TRUE;
+        empty($student_id)?redirect('student'):TRUE;
         // get student info
         $student = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl2');
         $student_subjects = $this->student_model->getStudentSubjects(array('student_id'=>$student_id),'a');
@@ -830,15 +843,17 @@ class Student extends CI_Controller{
     public function student_printable($student_id = NULL){
         // user credentials authentication
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
-        empty($student_id)?redirect('students'):TRUE;
+        empty($student_id)?redirect('student'):TRUE;
         // get student info
         $student = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl2');
         $student_craft = $this->craft_model->get_craft_skills('a',array('student_id'=>$student_id));
         $student_core  = $this->core_model->get_core_skills('a',array('student_id'=>$student_id));
         $student_pro   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
-
+        // get stident subjects and schedules
+        $condition = array('student_id'=>$student_id,'is_active'=>'true');
+        $student_subjects = $this->student_model->get_student_subject($condition,'','a');
         // get student diploma or vocational course
-        $vocational = $this->crud->getData('','s',array('voc_program_id'=>$student['vocational_course']),'tbl6');
+        $vocational = $this->crud->getData('','s',array('voc_program_acronym'=>$student['vocational_course']),'tbl6');
 
         //============================================================+
         // File name   : example_001.php
@@ -992,15 +1007,7 @@ class Student extends CI_Controller{
                                         <tr>
                                             <td style="width:26%;">Training Course: </td>
                                             <td style="width:74%;">';
-
-                                            if(!empty($diploma))
-                                            {
-                                                $html .= $diploma['course_name'];
-                                            }else
-                                            {
                                                 $html .= $vocational['voc_program'];
-                                            }
-
                                 $html .=   '</td>
                                         </tr>
                                         <tr>
@@ -1186,6 +1193,79 @@ class Student extends CI_Controller{
                     </td>
                 </tr>
             </table>';
+
+            if($student['ramarks']=='Graduated')
+            {
+                $html .= '
+                    <table border="0">
+                        <tr>
+                            <td style="width:8%;">
+
+                            </td>
+                            <td style="width:84%;">
+                                <table border="0">
+                                    <tr>
+                                        <td>
+                                            
+                                            <table style="font-size:12px;width:100%;">
+                                                <tr style="font-size:15px;color:#1E88E5;"><br>
+                                                    <td colspan="3"><b>Present Subjects and Schedules </b></td>
+                                                    <td>  </td>
+                                                    <td>  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>  </td>
+                                                    <td>  </td>
+                                                    <td>  </td>
+                                                </tr>
+                                                <tr style="color:#0D47A1">
+                                                    <td style="width:25%;"><b>Subject</b></td>
+                                                    <td style="width:40%;"><b>Subject Code</b></td>
+                                                    <td style="width:10%;"><b>Room</b></td>
+                                                    <td style="width:15%;"><b>Day</b></td>
+                                                    <td style="width:10%;"><b>Time</b></td>
+                                                </tr>';
+
+                                                for ($i=0; $i < count($student_subjects); $i++) { 
+                                                $html .='<tr>
+                                                            <td>'.$student_subjects[$i]['subject_title'].'</td>
+                                                            <td>'.$student_subjects[$i]['subject_code'].'</td>
+                                                            <td>'.$student_subjects[$i]['room_name'].'</td>
+                                                            <td>'.$student_subjects[$i]['day'].'</td>
+                                                            <td>'.$student_subjects[$i]['time'].'</td>
+                                                        </tr>';
+                                                }
+
+                                $html .=    '</table>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:8%;">
+                                
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" cellpadding="0">
+                        <tr>
+                            <td style="width:8%;">
+
+                            </td>
+                            <td style="width:84%;">
+                                <table border="0">
+                                    <tr>
+                                        <td cellspacing="1" style="border-bottom:3px solid #8B0000;">  </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:8%;">
+                                
+                            </td>
+                        </tr>
+                    </table>';
+            }
         
 
         $html .= '

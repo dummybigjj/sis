@@ -147,7 +147,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="picture">Student Picture</label>
-                                                    <input type="file" class="form-control" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" aria-describedby="help_block_file">
+                                                    <input type="file" class="form-control" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" capture aria-describedby="help_block_file">
                                                     <small id="help_block_file" class="form-text text-muted">
                                                         image file accepts: .jpg, .jpeg, and .png<br>
                                                         recommended dimensions: 400px x 400px

@@ -95,6 +95,7 @@ $route['new_diploma_course']	= 'diploma_course/new_diploma_course';
 
 $route['student_registration']	= 'student/student_registration';
 $route['students']				= 'student/students';
+$route['students/(:num)']		= 'student/students/$1';
 $route['student/(:num)']		= 'student/student/$1';
 $route['student_skills/(:num)'] = 'student/student_skills/$1';
 

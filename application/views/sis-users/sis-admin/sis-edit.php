@@ -257,7 +257,7 @@
                                                         <option></option>
                                                         <?php if(!empty($voc_program)): ?>
                                                             <?php foreach ($voc_program as $value): ?>
-                                                                <option value="<?php echo $value['voc_program_acronym']; ?>" <?php echo ($student['vocational_course']==$value['voc_program_acronym'])?'selected':''; ?> ><?php echo $value['voc_program']; ?></option>
+                                                                <option value="<?php echo $value['voc_program_acronym']; ?>" <?php echo ($student['vocational_course']==$value['voc_program_acronym'])?'selected':''; ?> ><?php echo $value['voc_program'].' - '.$value['voc_program_acronym']; ?></option>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
                                                     </select>

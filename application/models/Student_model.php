@@ -17,7 +17,40 @@ class Student_model extends CI_Model {
 	 */
 	public function getStudents($return_type,$condition){
 		return $this->crud->getDataWithSort('',$return_type,$condition,'arabic_name ASC','tbl2');
-		// return $this->getDiplomaAndVocationalCourse($data);
+	}
+
+	/**
+	 * get_students function.
+	 * 
+	 * @access public
+	 * @param associative array $condition
+	 * @param string $order
+	 * @param int $limit
+	 * @param int $start
+	 * @return associative array list or single student on success.
+	 */
+	public function get_students($condition = array(),$order,$limit,$start)
+	{
+		return $this->crud->get_paginated_data('',$condition,'',$order,array($limit,$start),'tbl2');
+	}
+
+	/**
+	 * get_student_subject function.
+	 * 
+	 * @access public
+	 * @param associative array $condition
+	 * @param string $order
+	 * @param char $return_type
+	 * @return associative array list or single student subjects and schedules on success.
+	 */
+	public function get_student_subject($condition = array(),$order,$return_type)
+	{
+		$select = '`student_subject`.`tbl_id`, `student_subject`.`student_id`, `subject`.`subject_title`, `subject_code`, `time`, `room`.`room_name`, `day`, `student_subject`.`subject`, `student_subject`.`room`, `student_subject`.`created_by`, `student_subject`.`created`, `student_subject`.`updated_by`, `student_subject`.`modified`';
+		$join = array(
+			'`subject`'	=> '`student_subject`.`subject` = `subject`.`subject_id`',
+			'`room`'	=> '`student_subject`.`room` = `room`.`room_id`'
+		);
+		return $this->crud->getJoinDataWithSort($select,$return_type,$condition,$join,$order,'tbl9');
 	}
 
 	/**
@@ -36,6 +69,27 @@ class Student_model extends CI_Model {
 			return TRUE;
 		}
 		return FALSE;
+	}
+
+	public function insert_update_student_eng_pro($data = array(),$student_id)
+	{
+		if(!empty($data))
+		{
+			// check if student have already english proficiency skills
+			$count = 0;
+			$count = $this->crud->getData('','c',array('student_id'=>$student_id),'tbl8');
+			if($count==0)
+			{
+				// insert student new english pro skills
+				$this->crud->setData($data,array('student_id' => $student_id),'tbl8');
+			}
+			else
+			{
+				// update student english pro skills
+            	$this->crud->updateData($data,array('student_id' => $student_id),'tbl8');
+			}
+		}
+		return TRUE;
 	}
 
 	/**

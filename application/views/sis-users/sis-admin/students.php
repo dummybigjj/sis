@@ -61,7 +61,7 @@
                                     </div>
                                   </td>
                                   <td>
-                                    <?php echo ($value['student_status']=='1')?'<div class="badge badge-success">TRUE</div>':'<div class="badge badge-danger">FALSE</div>'; ?>
+                                    <?php echo ($value['status']=='1')?'<div class="badge badge-success">TRUE</div>':'<div class="badge badge-danger">FALSE</div>'; ?>
                                   </td>
                                   <td><?php echo $value['student_no']; ?></td>
                                   <td><?php echo !empty($value['arabic_name'])?$value['arabic_name']:$value['english_name']; ?></td>
@@ -81,6 +81,23 @@
                     </div>
 
                   </div>
+                  
+                  <?php if($count>200): ?>
+                    <small id="example_paginate" class="form-text text-muted d-flex justify-content-center h6">Use Pagination links below to Navigate Query Results.</small>
+                    <div class="dataTables_paginate paging_simple_numbers d-flex justify-content-center" id="example_paginate">
+                      <?php echo $links; ?>
+                    </div>
+                    <?php if(!empty($this->uri->segment(2))): ?>
+                      <small id="example_paginate" class="form-text text-muted d-flex justify-content-center">
+                        Showing <?php echo $this->uri->segment(2).' to '.($this->uri->segment(2) + 200).' of '.$count.' query results.'; ?>
+                      </small>
+                    <?php else: ?>
+                      <small id="example_paginate" class="form-text text-muted d-flex justify-content-center">
+                        Showing <?php echo '1'.' to '.'200'.' of '.$count.' query results.'; ?>
+                      </small>
+                    <?php endif; ?>
+                  <?php endif; ?>
+                  
                 </div>
               </form>
               
