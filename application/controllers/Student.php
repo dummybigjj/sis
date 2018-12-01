@@ -1303,7 +1303,7 @@ class Student extends CI_Controller{
                                             <td> '.$student_pro['eng_rating'].'</td>
                                             <td> '.$student_pro['grade'].'</td>
                                             <td>';
-                                                    if(!empty($student_pro['eng_completed']) || $student_pro['eng_completed']=='00-00-0000'){
+                                                    if(!empty($student_pro['eng_completed']) || $student_pro['eng_completed']=='0000-00-00'){
                                                         $html .= date('M d, Y',strtotime($student_pro['eng_completed']));
                                                     }else{
                                                         $html .= '';
