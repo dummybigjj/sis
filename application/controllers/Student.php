@@ -1224,8 +1224,8 @@ class Student extends CI_Controller{
                                                 </tr>
                                                 <tr style="color:#0D47A1">
                                                     <td style="width:25%;"><b>Subject</b></td>
-                                                    <td style="width:40%;"><b>Subject Code</b></td>
-                                                    <td style="width:10%;"><b>Room</b></td>
+                                                    <td style="width:35%;"><b>Subject Code</b></td>
+                                                    <td style="width:15%;"><b>Room</b></td>
                                                     <td style="width:15%;"><b>Day</b></td>
                                                     <td style="width:10%;"><b>Time</b></td>
                                                 </tr>';
