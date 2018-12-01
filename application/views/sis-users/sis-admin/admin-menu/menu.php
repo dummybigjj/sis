@@ -67,6 +67,9 @@
                 <div class="sidebar-nav-heading"></div>
               </li> -->
               <li>
+                <a href="<?php echo site_url('company') ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="icon-notebook-streamline"></em></span><span>Company</span></a>
+              </li>
+              <li>
                 <a href="<?php echo site_url('craft') ?>"><span class="float-right nav-label"></span><span class="nav-icon"><em class="icon-notebook-streamline"></em></span><span>Craft</span></a>
               </li>
               <li>

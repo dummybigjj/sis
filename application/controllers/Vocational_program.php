@@ -139,8 +139,7 @@ class Vocational_program extends CI_Controller{
         }
         else if($this->input->post('delete')){
             // Delete vocational program
-            $data = array('voc_program_id'=>$this->input->post('voc_program_id'));
-            $this->vocational_program_model->delete_vocational_program($data);
+            $this->vocational_program_model->delete_vocational_program($this->input->post('voc_program_id'));
             $this->user_model->recordLogs('Delete Vocatonal Program(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Vocatonal Program(s) has been deleted');
         }

@@ -30,7 +30,7 @@ class Vocational_program_model extends CI_Model {
 	{
 		if(!empty($data)){
 			for ($i=0; $i < count($data); $i++) { 
-				$this->crud->deleteData(array('voc_program_id'=>$data['voc_program_id'][$i]),'tbl6');
+				$this->crud->deleteData(array('voc_program_id'=>$data[$i]),'tbl6');
 			}
 			return TRUE;
 		}

@@ -249,7 +249,14 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="company"><font color="red">*</font> Company</label>
-                                                    <input type="text" class="form-control required" id="company" name="company" maxlength="100" value="<?php echo $student['company']; ?>">
+                                                    <select class="form-control required select2-search " id="company" name="company" style="width: 100%">
+                                                        <option></option>
+                                                        <?php if(!empty($company)): ?>
+                                                            <?php foreach ($company as $value): ?>
+                                                                <option value="<?php echo $value['company_name']; ?>" <?php echo ($value['company_name']==$student['company'])?'selected':''; ?> ><?php echo $value['company_name']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </select>
                                                 </div>
                                                 <div class="col-lg-6" id="vocational_course_field" >
                                                     <label for="vocational_course"><font color="red">*</font> Vocational Course</label>

@@ -45,7 +45,7 @@ class Craft_model extends CI_Model {
 	{
 		if(!empty($data)){
 			for ($i=0; $i < count($data); $i++) { 
-				$this->crud->deleteData(array('craft_item_id'=>$data['craft_item_id'][$i]),'tbl14');
+				$this->crud->deleteData(array('craft_item_id'=>$data[$i]),'tbl14');
 			}
 			return TRUE;
 		}

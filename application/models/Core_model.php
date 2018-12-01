@@ -45,7 +45,7 @@ class Core_model extends CI_Model {
 	{
 		if(!empty($data)){
 			for ($i=0; $i < count($data); $i++) { 
-				$this->crud->deleteData(array('core_item_id'=>$data['core_item_id'][$i]),'tbl13');
+				$this->crud->deleteData(array('core_item_id'=>$data[$i]),'tbl13');
 			}
 			return TRUE;
 		}

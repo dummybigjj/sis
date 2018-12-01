@@ -143,8 +143,7 @@ class Craft extends CI_Controller{
             $this->session->set_flashdata('success','Craft(s) has been activated');
         }else if($this->input->post('delete')){
             // Delete craft
-            $data = array('craft_item_id'=>$this->input->post('craft_item_id'));
-            $this->craft_model->delete_craft($data);
+            $this->craft_model->delete_craft($this->input->post('craft_item_id'));
             $this->user_model->recordLogs('Delete Craft',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Craft(s) has been deleted');
         }

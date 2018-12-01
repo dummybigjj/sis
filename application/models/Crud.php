@@ -18,7 +18,8 @@ class Cruds extends CI_Model {
 			'tbl11'=> 'diploma_course',
 			'tbl12'=> 'core',
 			'tbl13'=> 'core_item',
-			'tbl14'=> 'craft_item'
+			'tbl14'=> 'craft_item',
+			'tbl15'=> 'company'
 		);
 		$this->init_returnType = array(
 			'c' => 'count',

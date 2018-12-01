@@ -19,6 +19,7 @@ class Student extends CI_Controller{
         $this->load->model('diploma_course_model');
         $this->load->model('core_model');
         $this->load->model('craft_model');
+        $this->load->model('company_model');
     }
 
     /**
@@ -98,6 +99,8 @@ class Student extends CI_Controller{
         // Necessary page data
         // vocational programs
         $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
+        // Company
+        $data['company']     = $this->company_model->get_company('a',array('status'=>'1'));
         // Page headers and navigation
         $this->load->view('templates/html-comp/sis-header');
         // Flash data messages
@@ -157,6 +160,8 @@ class Student extends CI_Controller{
         $data['student'] = $this->student_model->getStudents('s',array('student_id'=>$student_id));
         // vocational programs
         $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
+        // Company
+        $data['company']= $this->company_model->get_company('a',array('status'=>'1'));
         // core
         $data['cores']  = $this->core_model->get_core('a',array('status'=>'1'));
         // craft
@@ -441,23 +446,22 @@ class Student extends CI_Controller{
         if($this->input->post('deactivate')){
             // Deactivate student
             $data = array('student_id'=>$this->input->post('student_id'));
-            $this->crud->updateDataBatch($data,array('student_status'=>'0','student_updated_by'=>$this->session->userdata('u_email')),'student_id','tbl2');
+            $this->crud->updateDataBatch($data,array('status'=>'0','updated_by'=>$this->session->userdata('u_email')),'student_id','tbl2');
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Deactivate Students',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Students has been deactivated');
         }else if($this->input->post('activate')){
             // Activate student
             $data = array('student_id'=>$this->input->post('student_id'));
-            $this->crud->updateDataBatch($data,array('student_status'=>'1','student_updated_by'=>$this->session->userdata('u_email')),'student_id','tbl2');
+            $this->crud->updateDataBatch($data,array('status'=>'1','updated_by'=>$this->session->userdata('u_email')),'student_id','tbl2');
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Activate Students',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Students has been activated');
         }else if($this->input->post('delete')){
             // Delete student
-            $data = array('student_id'=>$this->input->post('student_id'));
-            $this->student_model->delete_student($data);
+            $this->student_model->delete_student($this->input->post('student_id'));
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Deleted/Removed Student(s)',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Student(s) has been deleted/removed');
         }
-        redirect('student');
+        redirect('students');
     }
 
     /**
@@ -1194,7 +1198,7 @@ class Student extends CI_Controller{
                 </tr>
             </table>';
 
-            if($student['ramarks']=='Graduated')
+            if($student['ramarks']=='Ongoing')
             {
                 $html .= '
                     <table border="0">
@@ -1303,7 +1307,7 @@ class Student extends CI_Controller{
                                             <td> '.$student_pro['eng_rating'].'</td>
                                             <td> '.$student_pro['grade'].'</td>
                                             <td>';
-                                                    if(!empty($student_pro['eng_completed']) || $student_pro['eng_completed']=='0000-00-00'){
+                                                    if(!empty($student_pro['eng_completed']) && $student_pro['eng_completed']!='0000-00-00'){
                                                         $html .= date('M d, Y',strtotime($student_pro['eng_completed']));
                                                     }else{
                                                         $html .= '';

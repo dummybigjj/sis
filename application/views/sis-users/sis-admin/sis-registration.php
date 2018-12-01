@@ -222,7 +222,14 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="company"><font color="red">*</font> Company</label>
-                                                    <input type="text" class="form-control required" id="company" name="company" maxlength="100">
+                                                    <select class="form-control required select2-search " id="company" name="company" style="width: 100%">
+                                                        <option></option>
+                                                        <?php if(!empty($company)): ?>
+                                                            <?php foreach ($company as $value): ?>
+                                                                <option value="<?php echo $value['company_name']; ?>"><?php echo $value['company_name']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </select>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="vocational_course"><font color="red">*</font> Vocational Course</label>
@@ -230,7 +237,7 @@
                                                         <option></option>
                                                         <?php if(!empty($voc_program)): ?>
                                                             <?php foreach ($voc_program as $value): ?>
-                                                                <option value="<?php echo $value['voc_program_acronym']; ?>"><?php echo $value['voc_program']; ?></option>
+                                                                <option value="<?php echo $value['voc_program_acronym']; ?>"><?php echo $value['voc_program'].' - '.$value['voc_program_acronym']; ?></option>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
                                                     </select>

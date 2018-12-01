@@ -143,8 +143,7 @@ class Core extends CI_Controller{
             $this->session->set_flashdata('success','Core(s) has been activated');
         }else if($this->input->post('delete')){
             // Delete Core
-            $data = array('core_item_id'=>$this->input->post('core_item_id'));
-            $this->core_model->delete_core($data);
+            $this->core_model->delete_core($this->input->post('core_item_id'));
             $this->user_model->recordLogs('Delete Core',$this->session->userdata('u_id'));
             $this->session->set_flashdata('success','Core(s) has been deleted');
         }

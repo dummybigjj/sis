@@ -64,7 +64,7 @@ class Student_model extends CI_Model {
 	{
 		if(!empty($data)){
 			for ($i=0; $i < count($data); $i++) { 
-				$this->crud->deleteData(array('student_id'=>$data['student_id'][$i]),'tbl2');
+				$this->crud->deleteData(array('student_id'=>$data[$i]),'tbl2');
 			}
 			return TRUE;
 		}

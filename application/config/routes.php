@@ -87,6 +87,9 @@ $route['new_craft']				= 'craft/new_craft';
 $route['core']					= 'core/core';
 $route['new_core']				= 'core/new_core';
 
+$route['company']				= 'company/company';
+$route['new_company']			= 'company/new_company';
+
 $route['rooms']				 	= 'room/rooms';
 $route['new_room']		 		= 'room/new_room';
 
