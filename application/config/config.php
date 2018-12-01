@@ -26,8 +26,8 @@ date_default_timezone_set('Asia/Riyadh');
 */
 // $config['base_url'] = 'http://localhost/sis/';
 // $config['site_url'] = 'http://localhost/sis/';
-$config['base_url'] = 'http://student.uitcgroup.com/';
-$config['site_url'] = 'http://student.uitcgroup.com/';
+$config['base_url'] = 'http://studentinformation.uitcgroup.com/';
+$config['site_url'] = 'http://studentinformation.uitcgroup.com/';
 
 /*
 |--------------------------------------------------------------------------
