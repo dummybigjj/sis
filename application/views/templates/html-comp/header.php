@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Bootstrap Admin Template">
-    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <meta name="description" content="Student Information System">
+    <meta name="keywords" content="student information system">
     <title> Student Information System </title>
 
     <!-- Vendor styles-->
