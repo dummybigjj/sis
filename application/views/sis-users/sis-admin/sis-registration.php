@@ -107,7 +107,7 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="student_no"><font color="red">*</font> Student No.</label>
-                                                    <input type="text" class="form-control required" id="student_no" name="student_no" data-mask="999999" placeholder="999999">
+                                                    <input type="text" class="form-control required" id="student_no" name="student_no" onkeypress="validate(event)" maxlength="6">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="national_id">National ID</label>
