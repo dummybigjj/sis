@@ -107,7 +107,7 @@
                                             <div class="form-group row col-lg-12">
                                                 <div class="col-lg-6">
                                                     <label for="student_no"><font color="red">*</font> Student No.</label>
-                                                    <input type="text" class="form-control required" id="student_no" name="student_no" data-mask="99999" placeholder="99999">
+                                                    <input type="text" class="form-control required" id="student_no" name="student_no" data-mask="999999" placeholder="999999">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="national_id">National ID</label>
@@ -147,7 +147,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="picture">Student Picture</label>
-                                                    <input type="file" class="form-control" id="picture" name="picture" accept="image/jpg,image/jpeg,image/png" capture aria-describedby="help_block_file">
+                                                    <input type="file" class="form-control" id="picture" name="picture" accept="image/*" capture="user" aria-describedby="help_block_file">
                                                     <small id="help_block_file" class="form-text text-muted">
                                                         image file accepts: .jpg, .jpeg, and .png<br>
                                                         recommended dimensions: 400px x 400px
