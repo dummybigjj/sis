@@ -1129,7 +1129,13 @@ class Student extends CI_Controller{
                                         </tr>
                                         <tr>
                                             <td>Date of Birth: </td>
-                                            <td>'.date('M d, Y',strtotime($student['date_of_birth'])).'</td>
+                                            <td>';
+                                                    if(!empty($student['date_of_birth']) && $student['date_of_birth']!='0000-00-00'){
+                                                        $html .= date('F d, Y',strtotime($student['date_of_birth']));
+                                                    }else{
+                                                        $html .= '';
+                                                    }
+                                                $html .='</td>
                                         </tr>
                                     </table>
 
