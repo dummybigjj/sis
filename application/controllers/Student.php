@@ -1016,7 +1016,13 @@ class Student extends CI_Controller{
                                         </tr>
                                         <tr>
                                             <td>Training Period: </td>
-                                            <td>'.date('F d, Y',strtotime($student['training_start'])).' to '.date('F d, Y',strtotime($student['training_end'])).'</td>
+                                            <td>';
+                                                    if((!empty($student['training_start']) && $student['training_start']!='0000-00-00') && (!empty($student['training_end']) && $student['training_end']!='0000-00-00')){
+                                                        $html .= date('F d, Y',strtotime($student['training_start'])).' to '.date('F d, Y',strtotime($student['training_end']));
+                                                    }else{
+                                                        $html .= '';
+                                                    }
+                                                $html .='</td>
                                         </tr>
                                         <tr>
                                             <td>Company: </td>
