@@ -1055,7 +1055,7 @@ class Student extends CI_Controller{
                                     if(!empty($student['id_picture'])){
                                         $html .= '<br><br><img border="1" width="110px" height="110px" src="'.$file_path.'" >';
                                     }else{
-                                        $html .= '<img border="1" width="110px" height="110px" src="'.base_url('uploads/students_images/not-available.png').'" >';
+                                        $html .= '<br><br><img border="1" width="110px" height="110px" src="'.base_url('uploads/students_images/not-available.png').'" >';
                                     }
 
                 $html .=        '</td>
