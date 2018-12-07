@@ -98,7 +98,7 @@ class Student extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar'));        
         // Necessary page data
         // vocational programs
-        $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
+        $data['voc_program'] = $this->vocational_program_model->get_vocational_program('a',array('status'=>'1'));
         // Company
         $data['company']     = $this->company_model->get_company('a',array('status'=>'1'));
         // Page headers and navigation
@@ -159,7 +159,7 @@ class Student extends CI_Controller{
         // student info
         $data['student'] = $this->student_model->getStudents('s',array('student_id'=>$student_id));
         // vocational programs
-        $data['voc_program'] = $this->vocational_program_model->getVocationalPrograms('a',array('status'=>'1'));
+        $data['voc_program'] = $this->vocational_program_model->get_vocational_program('a',array('status'=>'1'));
         // Company
         $data['company']= $this->company_model->get_company('a',array('status'=>'1'));
         // core
@@ -222,13 +222,7 @@ class Student extends CI_Controller{
             $student['date_graduated'] = NULL;
         }
         $verify_student_no  = $this->student_model->isValidUniqueKey(array('student_no'=>$student['student_no']),'tbl2');
-        $verify_national_id = $this->student_model->isValidUniqueKey(array('national_id'=>$student['national_id']),'tbl2');
-        // if(!empty($this->input->post('email_address')))
-        // {
-        //     $student['email_address'] = trim($this->input->post('email_address'));
-        //     $verify_email = $this->student_model->isValidUniqueKey(array('email_address'=>$student['email_address']),'tbl2');
-        // }
-        if($verify_student_no===TRUE && $verify_national_id===TRUE){
+        if($verify_student_no===TRUE){
             // upload student image
             // Check whether user upload picture
             if(!empty($_FILES['picture']['name'])){
@@ -262,8 +256,6 @@ class Student extends CI_Controller{
             $msg_type= 'danger';
             $message = 'Error occured due to ';
             ($verify_student_no===FALSE)?$message.='Invalid `Student No.` ':'';
-            ($verify_national_id===FALSE)?$message.='Invalid `National Id` ':'';
-            ($verify_email===FALSE)?$message.='Invalid `Email` ':'';
             // set flash data message and redirect
             $this->session->set_flashdata($msg_type,$message);
             redirect('student_registration');
@@ -361,9 +353,7 @@ class Student extends CI_Controller{
             $student['date_graduated'] = NULL;
         }
         $verify_student_no  = $this->student_model->isValidUniqueKey(array('student_no'=>$student['student_no'],'student_id !='=>$student_id),'tbl2');
-        $verify_national_id = $this->student_model->isValidUniqueKey(array('national_id'=>$student['national_id'],'student_id !='=>$student_id),'tbl2');
-        // $verify_email       = $this->student_model->isValidUniqueKey(array('email_address'=>$student['email_address'],'student_id !='=>$student_id),'tbl2');
-        if($verify_student_no===TRUE && $verify_national_id===TRUE){
+        if($verify_student_no===TRUE){
 
             // upload student image
             // Check whether user upload picture
@@ -427,8 +417,6 @@ class Student extends CI_Controller{
             $msg_type= 'danger';
             $message = 'Error occured due to ';
             ($verify_student_no===FALSE)?$message.='Invalid `Student No.` ':'';
-            ($verify_national_id===FALSE)?$message.='Invalid `National Id` ':'';
-            ($verify_email===FALSE)?$message.='Invalid `Email` ':'';
         }
         // set flash data message and redirect
         $this->session->set_flashdata($msg_type,$message);

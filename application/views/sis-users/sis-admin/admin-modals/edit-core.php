@@ -23,7 +23,7 @@
                 <select name="voc_program" class="form-control" required="" >
                   <?php if(!empty($course)): ?>
                     <?php foreach ($course as $value): ?>
-                      <option value="<?php echo $value['voc_program_acronym']; ?>"><?php echo $value['voc_program'].' - '.$value['voc_program_acronym']; ?></option>
+                      <option value="<?php echo $value['vocational']; ?>"><?php echo $value['description']; ?></option>
                     <?php endforeach; ?>
                   <?php endif; ?>
                 </select>

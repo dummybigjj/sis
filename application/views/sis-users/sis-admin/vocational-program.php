@@ -56,7 +56,7 @@
                                   <td>
                                     <div class="form-group mt-0">
                                       <div class="custom-control custom-checkbox mb-0">
-                                        <input class="custom-control-input" name="voc_program_id[]" id="logcheck <?php echo $ctr; ?>" type="checkbox" value="<?php echo $value['voc_program_id'] ?>">
+                                        <input class="custom-control-input" name="voc_program_id[]" id="logcheck <?php echo $ctr; ?>" type="checkbox" value="<?php echo $value['voc_id'] ?>">
                                         <label class="custom-control-label" for="logcheck <?php echo $ctr; ?>"></label>
                                       </div>
                                     </div>
@@ -64,12 +64,12 @@
                                   <td>
                                     <?php echo ($value['status']=='1')?'<div class="badge badge-success">TRUE</div>':'<div class="badge badge-danger">FALSE</div>'; ?>
                                   </td>
-                                  <td><?php echo $value['voc_program_acronym']; ?></td>
-                                  <td><?php echo $value['voc_program']; ?></td>
+                                  <td><?php echo $value['vocational']; ?></td>
+                                  <td><?php echo $value['description']; ?></td>
                                   <td><?php echo $value['created_by']; ?></td>
                                   <td><?php echo $value['created']; ?></td>
                                   <td>
-                                    <button class="mb-4 btn btn-warning" onclick="edit_vocational_program(<?php echo $value['voc_program_id'];?>)" type="button"><span class="nav-icon"><em class="ion-edit"></em></span> Edit</button>
+                                    <button class="mb-4 btn btn-warning" onclick="edit_vocational_program(<?php echo $value['voc_id'];?>)" type="button"><span class="nav-icon"><em class="ion-edit"></em></span> Edit</button>
                                   </td>
                                 </tr>
                                 <?php $ctr++; ?>
@@ -117,9 +117,9 @@ function edit_vocational_program(id){
       type: "GET",
       dataType: "JSON",
       success: function(data){
-        $('[name="voc_program_id"]').val(data.voc_program_id);
-        $('[name="voc_program"]').val(data.voc_program);
-        $('[name="voc_program_acronym"]').val(data.voc_program_acronym);
+        $('[name="voc_program_id"]').val(data.voc_id);
+        $('[name="voc_program"]').val(data.description);
+        $('[name="voc_program_acronym"]').val(data.vocational);
         //SHOW MODAL
         $('#editVocProgram').modal('show');
         $('.modal-title').text('Edit Vocational Program');
