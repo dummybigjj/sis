@@ -71,6 +71,14 @@ class Student_model extends CI_Model {
 		return FALSE;
 	}
 
+	/**
+	 * insert_update_student_eng_pro function.
+	 * 
+	 * @access public
+	 * @param associative array $data
+	 * @param int $student_id
+	 * @return boolean TRUE on success.
+	 */
 	public function insert_update_student_eng_pro($data = array(),$student_id)
 	{
 		if(!empty($data))

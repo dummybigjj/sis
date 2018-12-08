@@ -101,18 +101,17 @@
                                                 <div class="col-lg-4">
                                                     <label for="eng_rating"><font color="red">*</font> Rating</label>
                                                     <select name="eng_rating" id="eng_rating" class="form-control required" style="width: 100%">
-                                                      <option></option>
-                                                      <option value="Competent">Competent</option>
-                                                      <option value="Not Yet Competent">Not Yet Competent</option>
+                                                      <option value="Competent" <?php echo ($eng['eng_rating']=='Competent')?'selected':''; ?> >Competent</option>
+                                                      <option value="Not Yet Competent" <?php echo ($eng['eng_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <label for="eng_completed">Completed</label>
-                                                    <input type="text" name="eng_completed" id="eng_completed" class="form-control dob">
+                                                    <input type="text" name="eng_completed" id="eng_completed" value="<?php echo $eng['eng_completed'] ?>" class="form-control dob">
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <label for="eng_grade">Grade</label>
-                                                    <input type="text" name="eng_grade" id="eng_grade" onkeypress="validate(event)" maxlength="3" class="form-control">
+                                                    <input type="text" name="eng_grade" id="eng_grade" onkeypress="validate(event)" maxlength="3" value="<?php echo $eng['grade'] ?>" class="form-control">
                                                 </div>
                                             </div><br>
 
@@ -135,36 +134,48 @@
                                                 <label><i class="fa fa-question-circle-o"></i> Fields with (<font color="red">*</font>) are required.</label>
                                             </div>
 
-                                            <div class="form-group row col-lg-12">
-                                                <div class="col-lg-3">
-                                                    <label for="core_skill">Skills</label>
-                                                    <select name="core_skill[]" id="core_skill" class="form-control " style="width: 100%">
-                                                        <?php if(!empty($core)): ?>
-                                                            <?php foreach ($core as $value): ?>
-                                                                <option value="<?php echo $value['core_item_id'] ?>"><?php echo $value['core_code']; ?></option>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <label for="core_rating">Rating</label>
-                                                    <select name="core_rating[]" id="core_rating" class="form-control " style="width: 100%">
-                                                      <option></option>
-                                                      <option value="Competent">Competent</option>
-                                                      <option value="Not Yet Competent">Not Yet Competent</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <label for="core_completed">Completed</label>
-                                                    <input type="text" name="core_completed[]" id="core_completed" class="form-control dob">
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <label for="core_grade">Grade</label>
-                                                    <input type="text" name="core_grade[]" id="core_grade" onkeypress="validate(event)" maxlength="3" class="form-control">
-                                                </div>
-                                            </div><br>
+                                            <?php if(!empty($core)): ?>
+                                                <?php for ($i=0; $i < count($core); $i++): ?>
 
+                                                    <div class="form-group row col-lg-12">
+                                                        <div class="col-lg-3">
+                                                            <label for="core_skill">Skills</label>
+                                                            <input type="hidden" name="core_id[]" value="<?php echo $core[$i]['core_id']; ?>">
+                                                            <select name="core_skill[]" id="core_skill" class="form-control " style="width: 100%">
+                                                                <?php if(!empty($cores)): ?>
+                                                                    <?php foreach ($cores as $value): ?>
+                                                                        <option value="<?php echo $value['core_item_id'] ?>" <?php echo ($core[$i]['core_skill']==$value['core_item_id'])?'selected':''; ?> ><?php echo $value['core_code']; ?></option>
+                                                                    <?php endforeach; ?>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="core_rating">Rating</label>
+                                                            <select name="core_rating[]" id="core_rating" class="form-control " style="width: 100%">
+                                                              <option value="Competent" <?php echo ($core[$i]['core_rating']=='Competent')?'selected':''; ?> >Competent</option>
+                                                              <option value="Not Yet Competent" <?php echo ($core[$i]['core_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="core_completed">Completed</label>
+                                                            <input type="text" name="core_completed[]" id="core_completed" value="<?php echo $core[$i]['core_completed'] ?>" class="form-control dob">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="core_grade">Grade</label>
+                                                            <input type="text" name="core_grade[]" id="core_grade" onkeypress="validate(event)" maxlength="3" value="<?php echo $core[$i]['grade'] ?>" class="form-control">
+                                                        </div>
+                                                    </div><br>
+
+                                                <?php endfor; ?>
+                                            <?php endif; ?>
+                                            
                                             <div id="TextBoxesGroupCore"></div>
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-12">
+                                                    <?php $core_tk = $this->student_model->get_skills_not_taken($core,'core_skill',$cores,'core_item_id','core_code'); ?>
+                                                    <?php echo (!empty($core_tk))?'Core Skills not yet taken '.$core_tk:''; ?>
+                                                </div>
+                                            </div>
                                             <div class="col-lg-2">
                                                 <div class="btn-group">
                                                     <button id="addButtonCore" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
@@ -191,36 +202,45 @@
                                                 <label><i class="fa fa-question-circle-o"></i> Fields with (<font color="red">*</font>) are required. </label>
                                             </div>
 
-                                            <div class="form-group row col-lg-12">
-                                                <div class="col-lg-3">
-                                                    <label for="craft_skill">Skills</label>
-                                                    <select name="craft_skill[]" id="craft_skill" class="form-control " style="width: 100%">
-                                                        <?php if(!empty($craft)): ?>
-                                                            <?php foreach ($craft as $value): ?>
-                                                                <option value="<?php echo $value['craft_item_id'] ?>"><?php echo $value['craft_code']; ?></option>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <label for="craft_rating">Rating</label>
-                                                    <select name="craft_rating[]" id="craft_rating" class="form-control " style="width: 100%">
-                                                      <option></option>
-                                                      <option value="Competent">Competent</option>
-                                                      <option value="Not Yet Competent">Not Yet Competent</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <label for="craft_completed">Completed</label>
-                                                    <input type="text" name="craft_completed[]" id="craft_completed" class="form-control dob">
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <label for="craft_grade">Grade</label>
-                                                    <input type="text" name="craft_grade[]" id="craft_grade" onkeypress="validate(event)" maxlength="3" class="form-control">
-                                                </div>
-                                            </div><br>
+                                            <?php if(!empty($craft)): ?>
+                                                <?php for ($i=0; $i < count($craft); $i++): ?>
+                                                    <div class="form-group row col-lg-12">
+                                                        <div class="col-lg-3">
+                                                            <label for="craft_skill">Skills</label>
+                                                            <input type="hidden" name="craft_id[]" value="<?php echo $craft[$i]['craft_id']; ?>">
+                                                            <select name="craft_skill[]" id="craft_skill" class="form-control " style="width: 100%">
+                                                                <?php if(!empty($crafts)): ?>
+                                                                    <?php foreach ($crafts as $value): ?>
+                                                                        <option value="<?php echo $value['craft_item_id'] ?>" <?php echo ($craft[$i]['craft_skill']==$value['craft_item_id'])?'selected':''; ?> ><?php echo $value['craft_code']; ?></option>
+                                                                    <?php endforeach; ?>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="craft_rating">Rating</label>
+                                                            <select name="craft_rating[]" id="craft_rating" class="form-control " style="width: 100%">
+                                                              <option value="Competent" <?php echo ($craft[$i]['craft_rating']=='Competent')?'selected':''; ?> >Competent</option>
+                                                              <option value="Not Yet Competent" <?php echo ($craft[$i]['craft_rating']=='Not Yet Competent')?'selected':''; ?> >Not Yet Competent</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="craft_completed">Completed</label>
+                                                            <input type="text" name="craft_completed[]" id="craft_completed" value="<?php echo $craft[$i]['craft_completed'] ?>" class="form-control dob">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="craft_grade">Grade</label>
+                                                            <input type="text" name="craft_grade[]" id="craft_grade" onkeypress="validate(event)" maxlength="3" value="<?php echo $craft[$i]['grade'] ?>" class="form-control">
+                                                        </div>
+                                                    </div><br>
+                                                <?php endfor; ?>
+                                            <?php endif; ?>
                                             <div id="TextBoxesGroupCraft"></div>
-
+                                            <div class="form-group row col-lg-12">
+                                                <div class="col-lg-12">
+                                                    <?php $craft_tk = $this->student_model->get_skills_not_taken($craft,'craft_skill',$crafts,'craft_item_id','craft_code'); ?>
+                                                    <?php echo (!empty($craft_tk))?'Craft Skills not yet taken '.$craft_tk:''; ?>
+                                                </div>
+                                            </div>
                                             <div class="col-lg-2">
                                                 <div class="btn-group">
                                                     <button id="addButtonCraft" type="button" class="btn btn-outline-success"> &nbsp <i class="fa fa-plus-square-o fa-lg" style="color: green"></i> Add &nbsp</button>
@@ -288,8 +308,8 @@
                     '<div class="col-lg-3">'+
                         '<label for="craft_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="craft_skill[]" id="craft_skill'+counter+'" class="form-control required">'+
-                            '<?php if(!empty($craft)): ?>'+
-                                '<?php foreach ($craft as $value): ?>'+
+                            '<?php if(!empty($crafts)): ?>'+
+                                '<?php foreach ($crafts as $value): ?>'+
                                     '<option value="<?php echo $value['craft_item_id']; ?>"><?php echo $value['craft_code']; ?></option>'+
                                 '<?php endforeach; ?>'+
                             '<?php endif; ?>'+
@@ -346,8 +366,8 @@
                     '<div class="col-lg-3">'+
                         '<label for="core_skill'+counter+'"><font color="red">*</font> Skills</label>'+
                         '<select name="core_skill[]" id="core_skill'+counter+'" class="form-control required">'+
-                            '<?php if(!empty($core)): ?>'+
-                                '<?php foreach ($core as $value): ?>'+
+                            '<?php if(!empty($cores)): ?>'+
+                                '<?php foreach ($cores as $value): ?>'+
                                     '<option value="<?php echo $value['core_item_id']; ?>"><?php echo $value['core_code']; ?></option>'+
                                 '<?php endforeach; ?>'+
                             '<?php endif; ?>'+

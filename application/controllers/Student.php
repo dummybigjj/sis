@@ -131,9 +131,14 @@ class Student extends CI_Controller{
         empty($data['student'])?redirect('student'):TRUE;
 
         // core
-        $data['core']  = $this->core_model->get_core('a',array('status'=>'1'));
+        $data['cores']  = $this->core_model->get_core('a',array('status'=>'1'));
         // craft
-        $data['craft'] = $this->craft_model->get_craft('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
+        $data['crafts'] = $this->craft_model->get_craft('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
+
+        // student skills
+        $data['craft'] = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'craft_skill ASC','tbl10');
+        $data['core']  = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'core_skill ASC','tbl12');
+        $data['eng']   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
 
         // Page headers and navigation
         $this->load->view('templates/html-comp/sis-header');
@@ -163,13 +168,13 @@ class Student extends CI_Controller{
         // Company
         $data['company']= $this->company_model->get_company('a',array('status'=>'1'));
         // core
-        $data['cores']  = $this->core_model->get_core('a',array('status'=>'1'));
+        // $data['cores']  = $this->core_model->get_core('a',array('status'=>'1'));
         // craft
-        $data['crafts'] = $this->craft_model->get_craft('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
+        // $data['crafts'] = $this->craft_model->get_craft('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
         // student skills
-        $data['craft'] = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'craft_skill ASC','tbl10');
-        $data['core']  = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'core_skill ASC','tbl12');
-        $data['eng']   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
+        // $data['craft'] = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'craft_skill ASC','tbl10');
+        // $data['core']  = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'core_skill ASC','tbl12');
+        // $data['eng']   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
         // Page headers and navigation
         $this->load->view('templates/html-comp/sis-header');
         // Flash data messages
@@ -276,40 +281,41 @@ class Student extends CI_Controller{
         $this->crud->credibilityAuth(array('Administrator','Registrar'));
         // set english proficiency rating
         $student_id = $this->input->post('student_id');
+        
+        // update english proficiency rating
         $eng_pro = array(
-            'student_id'    => $student_id,
-            'eng_rating'    => $this->input->post('eng_rating'),
-            'eng_completed' => $this->input->post('eng_completed')
+            'eng_rating'    =>$this->input->post('eng_rating'),
+            'eng_completed' =>$this->input->post('eng_completed')
         );
         if(!empty($this->input->post('eng_grade')))$eng_pro['grade'] = $this->input->post('eng_grade');
-        $this->crud->setData($eng_pro,'','tbl8');
-        $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created english proficiency rating for '.$student['student_no'],$this->session->userdata('u_id'));
-
-        // set craft rating and skill
+        $this->student_model->insert_update_student_eng_pro($eng_pro,$student_id);
+        // $this->crud->updateData($eng_pro,array('student_id' => $student_id),'tbl8');
+        $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated eng. pro. rating for '.$student['student_no'],$this->session->userdata('u_id'));
+        
+        // update craft rating and skill
         $craft = array(
-            'craft_id'       => '',
-            'craft_rating'   => $this->input->post('craft_rating'),
-            'craft_skill'    => $this->input->post('craft_skill'),
-            'craft_completed'=> $this->input->post('craft_completed'),
-            'grade'          => $this->input->post('craft_grade')
+            'craft_rating'    => $this->input->post('craft_rating'),
+            'craft_skill'     => $this->input->post('craft_skill'),
+            'craft_id'        => $this->input->post('craft_id'),
+            'craft_completed' => $this->input->post('craft_completed'),
+            'grade'           => $this->input->post('craft_grade')
         );
         $this->student_model->insertOrUpdateStudentCraft($craft,$student_id);
-        $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
-
-
-        // set core rating and skill
+        $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
+        
+        // update core rating and skill
         $core = array(
-            'core_id'       =>'',
-            'core_rating'   =>$this->input->post('core_rating'),
-            'core_skill'    =>$this->input->post('core_skill'),
-            'core_completed'=>$this->input->post('core_completed'),
-            'grade'         => $this->input->post('core_grade')
+            'core_rating'    => $this->input->post('core_rating'),
+            'core_skill'     => $this->input->post('core_skill'),
+            'core_id'        => $this->input->post('core_id'),
+            'core_completed' => $this->input->post('core_completed'),
+            'grade'          => $this->input->post('core_grade')
         );
         $this->student_model->insertOrUpdateStudentCore($core,$student_id);
-        $this->user_model->recordLogs($this->session->userdata('u_fullname').' Created core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
+        $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
 
-        $this->session->set_flashdata('success','Student Skills has been saved!. Student Registration is now completed');
-        redirect('student_registration');
+        $this->session->set_flashdata('success','Student Skills has been saved!.');
+        redirect('student/'.$student_id);
     }
 
     /**
@@ -381,37 +387,37 @@ class Student extends CI_Controller{
             // record student registration in history logs
             $this->user_model->recordLogs($this->session->userdata('u_fullname').' Update Student Information',$this->session->userdata('u_id'));
             
-            // update english proficiency rating
-            $eng_pro = array(
-                'eng_rating'    =>$this->input->post('eng_rating'),
-                'eng_completed' =>$this->input->post('eng_completed')
-            );
-            if(!empty($this->input->post('eng_grade')))$eng_pro['grade'] = $this->input->post('eng_grade');
-            $this->student_model->insert_update_student_eng_pro($eng_pro,$student_id);
-            // $this->crud->updateData($eng_pro,array('student_id' => $student_id),'tbl8');
-            $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated eng. pro. rating for '.$student['student_no'],$this->session->userdata('u_id'));
+            // // update english proficiency rating
+            // $eng_pro = array(
+            //     'eng_rating'    =>$this->input->post('eng_rating'),
+            //     'eng_completed' =>$this->input->post('eng_completed')
+            // );
+            // if(!empty($this->input->post('eng_grade')))$eng_pro['grade'] = $this->input->post('eng_grade');
+            // $this->student_model->insert_update_student_eng_pro($eng_pro,$student_id);
+            // // $this->crud->updateData($eng_pro,array('student_id' => $student_id),'tbl8');
+            // $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated eng. pro. rating for '.$student['student_no'],$this->session->userdata('u_id'));
             
-            // update craft rating and skill
-            $craft = array(
-                'craft_rating'    => $this->input->post('craft_rating'),
-                'craft_skill'     => $this->input->post('craft_skill'),
-                'craft_id'        => $this->input->post('craft_id'),
-                'craft_completed' => $this->input->post('craft_completed'),
-                'grade'           => $this->input->post('craft_grade')
-            );
-            $this->student_model->insertOrUpdateStudentCraft($craft,$student_id);
-            $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
+            // // update craft rating and skill
+            // $craft = array(
+            //     'craft_rating'    => $this->input->post('craft_rating'),
+            //     'craft_skill'     => $this->input->post('craft_skill'),
+            //     'craft_id'        => $this->input->post('craft_id'),
+            //     'craft_completed' => $this->input->post('craft_completed'),
+            //     'grade'           => $this->input->post('craft_grade')
+            // );
+            // $this->student_model->insertOrUpdateStudentCraft($craft,$student_id);
+            // $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated craft rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
             
-            // update core rating and skill
-            $core = array(
-                'core_rating'    => $this->input->post('core_rating'),
-                'core_skill'     => $this->input->post('core_skill'),
-                'core_id'        => $this->input->post('core_id'),
-                'core_completed' => $this->input->post('core_completed'),
-                'grade'          => $this->input->post('core_grade')
-            );
-            $this->student_model->insertOrUpdateStudentCore($core,$student_id);
-            $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
+            // // update core rating and skill
+            // $core = array(
+            //     'core_rating'    => $this->input->post('core_rating'),
+            //     'core_skill'     => $this->input->post('core_skill'),
+            //     'core_id'        => $this->input->post('core_id'),
+            //     'core_completed' => $this->input->post('core_completed'),
+            //     'grade'          => $this->input->post('core_grade')
+            // );
+            // $this->student_model->insertOrUpdateStudentCore($core,$student_id);
+            // $this->user_model->recordLogs($this->session->userdata('u_fullname').' Updated core rating and skill for '.$student['student_no'],$this->session->userdata('u_id'));
         
         }else{
             $msg_type= 'danger';
@@ -420,7 +426,7 @@ class Student extends CI_Controller{
         }
         // set flash data message and redirect
         $this->session->set_flashdata($msg_type,$message);
-        redirect('student/'.$student_id);
+        redirect('student_skills/'.$student_id);
     }
 
     /**
@@ -844,8 +850,6 @@ class Student extends CI_Controller{
         // get stident subjects and schedules
         $condition = array('student_id'=>$student_id,'is_active'=>'true');
         $student_subjects = $this->student_model->get_student_subject($condition,'','a');
-        // get student diploma or vocational course
-        $vocational = $this->crud->getData('','s',array('voc_program_acronym'=>$student['vocational_course']),'tbl6');
 
         //============================================================+
         // File name   : example_001.php
@@ -998,9 +1002,7 @@ class Student extends CI_Controller{
                                         </tr>
                                         <tr>
                                             <td style="width:26%;">Training Course: </td>
-                                            <td style="width:74%;">';
-                                                $html .= $vocational['voc_program'];
-                                $html .=   '</td>
+                                            <td style="width:74%;">'.$student['vocational_course'].'</td>
                                         </tr>
                                         <tr>
                                             <td>Training Period: </td>
