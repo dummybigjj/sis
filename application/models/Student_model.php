@@ -35,6 +35,21 @@ class Student_model extends CI_Model {
 	}
 
 	/**
+	 * get_student_craft function.
+	 * 
+	 * @access public
+	 * @param array $student
+	 * @return associative array list of student craft skills on success.
+	 */
+	public function get_student_craft($student)
+	{
+		$select = '`craft`.`craft_id`, `craft`.`craft_rating`, `craft`.`craft_skill`, `craft`.`craft_completed`, `craft`.`grade`';
+        $jointb = array('`craft_item`'=>'`craft`.`craft_skill` = `craft_item`.`craft_item_id`');
+        $condit = array('`craft`.`student_id`'=>$student['student_id'],'`craft_item`.`voc_program`'=>$student['vocational_course']);
+        return $this->crud->getJoinDataWithSort($select,'a',$condit,$jointb,'`craft`.`craft_skill` ASC','tbl10');
+	}
+
+	/**
 	 * get_student_subject function.
 	 * 
 	 * @access public

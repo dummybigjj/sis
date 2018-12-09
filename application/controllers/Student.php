@@ -136,9 +136,12 @@ class Student extends CI_Controller{
         $data['crafts'] = $this->craft_model->get_craft('a',array('status'=>'1','voc_program'=>$data['student']['vocational_course']));
 
         // student skills
-        $data['craft'] = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'craft_skill ASC','tbl10');
+        $data['craft'] = $this->student_model->get_student_craft($data['student']);
         $data['core']  = $this->crud->getDataWithSort('','a',array('student_id'=>$student_id),'core_skill ASC','tbl12');
         $data['eng']   = $this->crud->getData('','s',array('student_id'=>$student_id),'tbl8');
+
+        // print_r($data['craft']);
+        // print_r($data['student']);
 
         // Page headers and navigation
         $this->load->view('templates/html-comp/sis-header');
