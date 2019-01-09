@@ -84,7 +84,7 @@ class User extends CI_Controller{
         // $this->output->enable_profiler(TRUE);
         $data['header'] = array('title'=>'User','icon'=>'ios-person-outline');
         // Necessary page data here
-        $data['users'] = $this->user_model->getUsers('a','');        
+        $data['users'] = $this->user_model->getUsers('a','');   
         // Page headers and navigation
         $this->load->view('templates/html-comp/header');
         $this->load->view('templates/html-comp/header-bar',$data);
@@ -185,16 +185,8 @@ class User extends CI_Controller{
      */
     public function user_resolve_login(){
         // login procedure
-        $email    = trim($this->input->post('email'));
-        $password = trim($this->input->post('password'));
-        $resolve  = $this->user_model->resolveUserLoginCredentials($email,$password);
-        if($resolve===TRUE){
-            $this->user_model->recordLogs('Login user',$this->session->userdata('u_id'));
-            redirect('user/user_role');
-        }else{
-            $this->session->set_flashdata('danger',$resolve);
-            redirect('login');
-        }
+        $this->session->set_flashdata('warning','The system is temporarily closed.');
+        redirect('login');
     }
 
     /**
